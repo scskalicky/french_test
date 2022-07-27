@@ -4,19 +4,64 @@ import base64
 # recorded audio in base64 format
 example = open('recorded_audio.txt').read()
 
-
 # decode the string
 decode_string = base64.b64decode(example)
 
-len(decode_string)
+
 # write to a wav
 with open('test_wav.wav', 'wb') as w:
     w.write(decode_string)
   
-# the wav is created but sucks. it has no headers
+type(decode_string)
+# the wav is created but sucks. it has no headers(?)
+#
 import wave
+wv = wave.open('test_wav.wav', 'r')
+wv.readframes(len(decode_string))
 
-b = wave.open(decode_string, 'wb')
+wv = wave.open('test_wav.wav', 'w')
+wv.setnchannels(2)
+wv.setsampwidth(1)
+wv.setnframes(len(decode_string))
+wv.setframerate(441000)
+wv.getparams()
+# Hmmmmmm
+wv.writeframes(decode_string)
+wv.close()
+
+wv = wave.open('myWave.wav', 'w')
+#...Put sound data in 'data', taking into account channels...#
+
+wv.writeframesraw(decode_string)
+wv.close()
+
+
+
+
+
+w = wave.open(decode_string)
+
+
+
+
+
+w = wave.open('test_wav.wav', 'wb')
+w.setparams((1,1,1,1, 'NONE', 'NONE'))
+
+
+
+with wave.open('new_wave.wav', 'wb') as p:
+    p.writeframes(w)
+
+w.getparams()
+
+with wave.open('test_wav.wav', 'rb') as w:
+    w.setparams(1,1,1,1,'NONE', 'NONE')
+    w.writeframes(decode_string)
+
+
+with wave.open('test2.wav', 'rb') as w:
+    w.getparams()
 
 
 with wave.open('test2.wav', 'wb') as w:
