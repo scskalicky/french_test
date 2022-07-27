@@ -33,6 +33,7 @@ function saveData(name, data){
   xhr.open('POST', 'write_data.php');
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send(JSON.stringify({filedata: data}));
+  console.log(JSON.stringify({filedata: data}));
 }
 
 const timeline = []
