@@ -35,7 +35,7 @@ function saveData(name, data){
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'write_data.php');
   xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send({ID: id}, JSON.stringify({filedata: data}));
+  xhr.send(JSON.stringify({filedata: data}));
   //console.log(JSON.stringify({filedata: data}));
 }
 
@@ -99,8 +99,16 @@ var record_voice = {
     stimulus: 'What would you say? (5 seconds of recording time)',
     recording_duration: 5000,
     show_done_button: true,
-    done_button_label: "Finish Recording"
-};
+    done_button_label: "Finish Recording",
+    // save the audio to the server then remove from active data object
+    on_finish: function(data){
+      // call the php script
+        fetch('save_audio.php', { audio_base64: data.response })
+            .then((audio_id) => {
+                data.response = audio_id;
+            });
+  }
+}
 
 timeline.push(record_voice)
 
