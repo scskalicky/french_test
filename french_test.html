@@ -16,8 +16,8 @@
   <script>
   const jsPsych = initJsPsych({
     on_finish: function(data){
-      jsPsych.data.displayData();
-      console.log('finished')
+      //jsPsych.data.displayData();
+     // console.log('finished')
       // save data to csv
       saveData(jsPsych.data.get().csv())
     }
