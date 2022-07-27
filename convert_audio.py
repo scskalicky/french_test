@@ -14,7 +14,7 @@ with open('test_wav.wav', 'wb') as w:
   
 type(decode_string)
 # the wav is created but sucks. it has no headers(?)
-#
+# hi
 import wave
 wv = wave.open('test_wav.wav', 'r')
 wv.readframes(len(decode_string))
