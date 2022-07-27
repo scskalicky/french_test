@@ -19,13 +19,17 @@
       //jsPsych.data.displayData();
      // console.log('finished')
       // save data to csv
-      saveData(jsPsych.data.get().csv())
+      saveData(id, jsPsych.data.get().csv())
     }
   });
   </script>
 </html>
 
 <script>
+
+//random id for testing
+const id = Math.random();
+console.log(id);
 
 // function to save data as csv file
 function saveData(name, data){
