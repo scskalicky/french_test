@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>8==DFrench Test</title>
+  <title>French Test</title>
   <script src="/css/styles.css?v={Math.random()}"></script>
   <script src = "jspsych/jspsych.js"></script>
   <script src = "jspsych/plugin-html-keyboard-response.js"></script>
@@ -18,12 +18,23 @@
     on_finish: function(data){
       jsPsych.data.displayData();
       console.log('finished')
+      // save data to csv
+      saveData(jsPsych.data.get().csv())
     }
   });
   </script>
 </html>
 
 <script>
+
+// function to save data as csv file
+function saveData(name, data){
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'write_data.php');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send(JSON.stringify({filedata: data}));
+}
+
 const timeline = []
 
 var preload = {
@@ -34,7 +45,7 @@ timeline.push(preload)
 
 const preamble = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: '8===dPlease connect your microphone to the computer. <br> We recommend using a pair of headphones with a microphone. <br>Once you have connected your microphone & headphones to the computer, click this button to prompt browser access to your microphone',
+    stimulus: 'Please connect your microphone to the computer. <br> We recommend using a pair of headphones with a microphone. <br>Once you have connected your microphone & headphones to the computer, click this button to prompt browser access to your microphone',
     choices: ['Add Microphone']
 }
 
