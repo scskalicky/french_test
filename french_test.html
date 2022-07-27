@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>French Test</title>
+  <script src = "jspsych/jspsych.js"></script>
+  <script src = "jspsych/plugin-html-keyboard-response.js"></script>
+  <script src = "jspsych/plugin-initialize-microphone.js"></script>
+  <script src = "jspsych/plugin-html-audio-response.js"></script>
+  <script src = "jspsych/plugin-audio-keyboard-response.js"></script>
+  <script src = "jspsych/plugin-html-button-response.js"></script>
+  <script src="jspsych/plugin-preload.js"></script>
+  <link href = "jspsych/jspsych.css" rel="stylesheet" type = "text/css" />
+  </head>
+  <body></body>
+  <script>
+  const jsPsych = initJsPsych({
+    on_finish: function(data){
+      jsPsych.data.displayData();
+      console.log('finished')
+    }
+  });
+  </script>
+</html>
+
+<script>
+const timeline = []
+
+var preload = {
+    type: jsPsychPreload,
+    auto_preload: true
+}
+timeline.push(preload)
+
+const preamble = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: 'Please connect your microphone to the computer. <br> We recommend using a pair of headphones with a microphone. <br>Once you have connected your microphone & headphones to the computer, click this button to prompt browser access to your microphone',
+    choices: ['Add Microphone']
+}
+
+timeline.push(preamble)
+
+const ready_microphone = {
+    type: jsPsychInitializeMicrophone
+}
+
+timeline.push(ready_microphone)
+
+const welcome_trial = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'This a test of recording audio for our French test. <br>Press the spacebar.',
+    choices: ' '
+}
+
+timeline.push(welcome_trial);
+
+const warn_audio = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: 'Press the spacebar to hear the audio',
+  choices: [' ']
+}
+
+timeline.push(warn_audio)
+
+var present_audio = {
+  type: jsPsychAudioKeyboardResponse,
+  stimulus: 'audio/fiona1.mp3',
+  choices: 'NO_KEYS',
+  trial_ends_after_audio: true
+}
+
+timeline.push(present_audio)
+
+const prepare_response = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: 'Press the spacebar to record your response',
+  choices: [' ']
+}
+
+timeline.push(prepare_response)
+
+var record_voice = {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: 'What would you say? (5 seconds of recording time)',
+    recording_duration: 5000,
+    show_done_button: true,
+    done_button_label: "Finish Recording"
+};
+
+timeline.push(record_voice)
+
+
+jsPsych.run(timeline);
+</script>
