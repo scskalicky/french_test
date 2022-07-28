@@ -110,7 +110,7 @@ const conversations = {
     choices: ['PLAY AUDIO_1']},
     
     {type: jsPsychAudioKeyboardResponse,
-    stimulus: 'turn1',
+    stimulus: jsPsych.timelineVariable('turn1'),
     choices: 'NO_KEYS',
     trial_ends_after_audio: true},
     
@@ -143,7 +143,7 @@ const conversations = {
     choices: ['PLAY AUDIO_2']},
     
     {type: jsPsychAudioKeyboardResponse,
-    stimulus: 'turn2',
+      stimulus: jsPsych.timelineVariable('turn2'),
     choices: 'NO_KEYS',
     trial_ends_after_audio: true},
 
@@ -176,7 +176,7 @@ const conversations = {
     choices: ['PLAY AUDIO_3']},
     
     {type: jsPsychAudioKeyboardResponse,
-    stimulus: 'turn3',
+      stimulus: jsPsych.timelineVariable('turn3'),
     choices: 'NO_KEYS',
     trial_ends_after_audio: true},
 
