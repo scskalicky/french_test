@@ -107,6 +107,11 @@ const prepare_trials = {
 
 const conversations = {
   timeline: [
+  {type: jsPsychHtmlButtonResponse,
+  stimulus: 'You are about to begin a NEW conversation.',
+  choices: ['BEGIN']},
+
+
     {type: jsPsychHtmlButtonResponse,
       stimulus: '',
     choices: ['PLAY AUDIO_1']},
@@ -179,6 +184,7 @@ const conversations = {
     }},
 
     {type: jsPsychHtmlButtonResponse,
+      stimulus: '',
     choices: ['PLAY AUDIO_3']},
     
     {type: jsPsychAudioKeyboardResponse,
@@ -211,6 +217,12 @@ const conversations = {
      // replace the base64 in the jsP data with the audio_id
     data.response = audio_id;
     }},
+
+    {type: jsPsychHtmlKeyboardResponse,
+      stimulus: "LOADING NEXT ITEM...",
+      trial_duration: 2500,
+      choices: "NO_KEYS"
+    }
   
   
  ], timeline_variables: audio}
