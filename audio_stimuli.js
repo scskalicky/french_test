@@ -9,5 +9,3 @@ const audio = [
     turn3: 'audio/torin3.mp3', 
     data: {stim_id: 'torin'}}
 ]
-
-export default audio;
