@@ -116,9 +116,10 @@ var record_voice = {
             dataType: 'text',
             success: function(result){
               return result;
+              data.response = result;
             audio_id = result;}
           }),
-      data.response = audio_id;
+     // data.response = audio_id;
         }
     }
 
