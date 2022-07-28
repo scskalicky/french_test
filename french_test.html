@@ -21,6 +21,7 @@
      // console.log('finished')
       // save data to csv
       saveData(id, jsPsych.data.get().csv())
+      window.location = "https://www.duolingo.com";
     }
   });
   </script>
@@ -194,6 +195,7 @@ const conversations = {
     trial_ends_after_audio: true},
 
     {type: jsPsychHtmlButtonResponse,
+      stimulus: '',
     choices: ['RECORD RESPONSE']},
 
     {type: jsPsychHtmlAudioResponse,
@@ -228,6 +230,14 @@ const conversations = {
  ], timeline_variables: audio}
 
  timeline.push(conversations)
+
+ var end = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: 'Press the spacebar to end the test',
+  choices: ' '
+ }
+ 
+ timeline.push(end)
  
 
 jsPsych.run(timeline);
