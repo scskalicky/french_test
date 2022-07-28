@@ -110,7 +110,6 @@ var record_voice = {
     on_finish: function(data){
       audio_id = 'audio-'.concat(Math.random(9999999999));
       console.log(audio_id);
-      var audio_id;
       // call the php script
       $.ajax ({
 						url: "save_audio.php",
