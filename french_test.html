@@ -28,7 +28,7 @@
 <script>
 
 //random id for testing
-const id = Math.random();
+const id = Math.random(10000);
 console.log(id);
 
 jsPsych.data.addProperties({subject: id})
@@ -104,6 +104,7 @@ var record_voice = {
     done_button_label: "Finish Recording",
     // save the audio to the server then remove from active data object
     on_finish: function(data){
+      console.log(data.subject)
       // call the php script
       $.ajax ({
 						url: "save_audio.php",
@@ -112,10 +113,11 @@ var record_voice = {
             dataType: 'json',
          //   success: function(result){console.log(result['audio_id'])}
           });
-      console.log(data.subject)
-      //console.log(data)
+    console.log(data)
         }
     }
+
+// need to console.log the data from jspsych to see why i can't add it. 
 
 timeline.push(record_voice)
 
