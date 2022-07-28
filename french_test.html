@@ -105,7 +105,7 @@ var record_voice = {
       // call the php script
         fetch('save_audio.php', { audio_base64: data.response })
             .then((audio_id) => {
-                data.response = audio_id;
+                data.response = audio_id.text();
                 console.log(audio_id)
             });
   }
