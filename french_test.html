@@ -103,11 +103,16 @@ var record_voice = {
     // save the audio to the server then remove from active data object
     on_finish: function(data){
       // call the php script
-        fetch('save_audio.php', { audio_base64: data.response })
-            .then((audio_id) => {
-                data.response = audio_id.text();
-                console.log(audio_id)
-            });
+      $.ajax ({
+						url: "save_audio.php",
+						type: "POST",
+						data: {audio_base64: data.response},
+						success: function() {
+							console.log("data sent!");
+						},
+						failure: function() {
+							console.log("data didn't send!");
+       
   }
 }
 
