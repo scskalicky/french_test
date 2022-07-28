@@ -117,7 +117,7 @@ var record_voice = {
     done_button_label: "Finish Recording",
     // save the audio to the server then remove from active data object
     on_finish: function(data){
-      fetch('save_audio.php', {audio_base64:data.response})
+      fetch('save_audio.php', {method: "POST", body: {audio_base64:data.response}})
       .then(function(response) {console.log(response);})
       //.then(function(data){console.log(JSON.stringify(data));})
     }
