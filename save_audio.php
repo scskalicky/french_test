@@ -1,10 +1,8 @@
 <?php
 // grab the data from the post call
 $data = $_POST['audio_base64'];
-
-$trial = $_POST['trial']
-$subject = $_POST['subject']
-
+$trial = $_POST['trial'];
+$subject = $_POST['subject'];
 // create a random audio id
 $audio_id = uniqid("audio-");
 
