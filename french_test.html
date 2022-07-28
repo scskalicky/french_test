@@ -37,7 +37,6 @@ function saveData(name, data){
   xhr.open('POST', 'write_data.php');
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send(JSON.stringify({filedata: data}));
-  //console.log(JSON.stringify({filedata: data}));
 }
 
 const timeline = []
@@ -108,12 +107,8 @@ var record_voice = {
 						url: "save_audio.php",
 						type: "POST",
 						data: {audio_base64: data.response},
-						success: function() {
-							console.log("data sent!");
-						},
-						failure: function() {
-							console.log("data didn't send!");}
-            })
+            }),
+            console.log($audio_id)
           }
         }
 
