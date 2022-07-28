@@ -112,7 +112,7 @@ var record_voice = {
             dataType: 'json',
          //   success: function(result){console.log(result['audio_id'])}
           });
-      data.response = data.subject.concat(data.trial_index)
+      data.response = data.subject.text().concat(data.trial_index.text())
       //console.log(data)
         }
     }
