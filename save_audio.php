@@ -7,9 +7,9 @@ $subject = $_POST['subject'];
 $audio_id = uniqid("audio-");
 
 // save the data as a .txt file to server with audio id
-file_put_contents("data/" . $subject . $trial . ".txt", $data);
+file_put_contents("data/" $audio_id . ".txt", $data);
 
 //$audio_return['audio_id'] = $audio_id;
 // echo the audio id back to jsPsych to be added to data as a replacement for the audio
-//echo $audio_id
+echo $audio_id
 ?>
