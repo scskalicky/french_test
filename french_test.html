@@ -108,7 +108,7 @@ var record_voice = {
 						type: "POST",
 						data: {audio_base64: data.response},
             dataType: 'json',
-            success: function(){console.log($audio_id)}
+            success: function(result){console.log(result['audio_id'])}
           });
       //data.response = $audio_id
       //console.log(data)
