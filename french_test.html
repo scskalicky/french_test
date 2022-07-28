@@ -66,11 +66,17 @@ const ready_microphone = {
 
 timeline.push(ready_microphone)
 
+const test_audio_instructions = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: 'Let\s make sure the test can hear you. Please click the button below and speak into your microphone. <br> You will be able to review your recording afterwards. <br> Please do not continue the test until you are able to hear a recording of yourself played back to you.',
+  choices: ['Begin Recording']
+}
+
 const test_audio = {
     type: jsPsychHtmlAudioResponse,
-    stimulus: 'Please speak into your microphone to record yourself, and then click the button to continue.',
+    recording_duration: 10000,
+    stimulus: 'RECORDING...',
     allow_playback: true,
-    recording_duration: 4000,
     show_done_button: true,
     record_again_button_label: 'Record Again'
 }
