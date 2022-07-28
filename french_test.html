@@ -109,7 +109,8 @@ var record_voice = {
     // save the audio to the server then remove from active data object
     // this is necessary because the audio data takes up much memory
     on_finish: function(data){
-      audio_id = 'subject_'.concat(id).concat('audio-').concat(Math.floor(Math.random()*9999999999));
+      // create a random id for the specific audio file.
+      audio_id = 'subject-'.concat(id).concat('_audio-').concat(Data.new().toString(32))
       console.log(audio_id);
       // call the php script
       $.ajax ({
