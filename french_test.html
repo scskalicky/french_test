@@ -99,15 +99,6 @@ const prepare_response = {
 
 timeline.push(prepare_response)
 
-function saveAudio(audio_id, data){
-  var url = 'save_audio.php';
-  var data_to_send = {audio_base64: data};
-  fetch(url, {
-    method: 'POST',
-    body: JSON.stringify(data_to_send),
-    headers: new Headers ({'Content-Type': 'application/json'})
-  })
-}
 
 var record_voice = {
     type: jsPsychHtmlAudioResponse,
@@ -116,26 +107,17 @@ var record_voice = {
     show_done_button: true,
     done_button_label: "Finish Recording",
     // save the audio to the server then remove from active data object
-    on_finish: function(data){
-      fetch('save_audio.php', {method: "POST", body: {audio_base64:data.response}})
-      .then(function(response) {console.log(response);})
-      //.then(function(data){console.log(JSON.stringify(data));})
-    }
-  }
-    
-          
- //     console.log(data.subject)
+    on_finish: function(){
       // call the php script
-   //   $.ajax ({
-		//				url: "save_audio.php",
-			//			type: "POST",
-				//		data: {audio_base64: data.response, subject: data.subject, trial: data.trial_index},
-          //  dataType: 'json',
-         //   success: function(result){console.log(result['audio_id'])}
-        //  });
-   // console.log(data)
-     //   }
-   // }
+      $.ajax ({
+						url: "save_audio.php",
+						type: "POST",
+						data: {audio_base64: data.response},
+            dataType: 'json',
+            success: function(result){console.log(result['audio_id'])}
+          });
+        }
+    }
 
 // need to console.log the data from jspsych to see why i can't add it. 
 
