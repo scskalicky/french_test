@@ -28,17 +28,7 @@
 
 <script>
 
-var audio = [
-    {turn1: 'audio/fiona1.mp3', 
-    turn2: 'audio/fiona2.mp3', 
-    turn3: 'audio/fiona3.mp3', 
-    data: {stim_id: 'fiona'}},
-    
-    {turn1: 'audio/torin1.mp3', 
-    turn2: 'audio/torin2.mp3', 
-    turn3: 'audio/torin3.mp3', 
-    data: {stim_id: 'torin'}}
-]
+import {audio} from '/audio_stimuli.js';
 
 //random id for testing
 const id = jsPsych.randomization.sampleWithoutReplacement(['Stephen', 'stephen'], 1)
@@ -57,14 +47,13 @@ function saveData(name, data){
 }
 
 
-
-
 const timeline = []
 
 var preload = {
     type: jsPsychPreload,
     auto_preload: true
 }
+
 timeline.push(preload)
 
 const preamble = {
