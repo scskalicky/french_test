@@ -5,7 +5,7 @@ $data = $_POST['audio_base64'];
 // create a random audio id
 //$audio_id = uniqid("audio-");
 
-$audio_id = $_POST['identifier']
+$audio_id = $_POST['identifier'];
 
 // save the data as a .txt file to server with audio id
 file_put_contents("data/" . $audio_id . ".txt", $data);
