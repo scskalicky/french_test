@@ -107,7 +107,7 @@ var record_voice = {
     show_done_button: true,
     done_button_label: "Finish Recording",
     // save the audio to the server then remove from active data object
-    on_finish: function(){
+    on_finish: function(data){
       // call the php script
       $.ajax ({
 						url: "save_audio.php",
