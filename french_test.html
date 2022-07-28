@@ -93,7 +93,7 @@ timeline.push(test_audio)
 const recording_passed = {
     type: jsPsychHtmlButtonResponse,
     stimulus: 'Thank you. You have indicated that you are able to hear the recording played back to you. <br> Press the button to continue the test.',
-    choices: 'Continue'
+    choices: ['Continue']
 }
 
 timeline.push(recording_passed);
@@ -101,13 +101,14 @@ timeline.push(recording_passed);
 
 const prepare_trials = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: 'This test requires you to participante in some short back-and-forth conversations. You will first hear a speaker say something, and then you will record your response. You will then hear the speaker reply, and you will then record your response. The test will start recording you as soon as you click the "record response" button. You will only hear the audio once.',
+  stimulus: 'This test requires you to participate in some short back-and-forth conversations. You will first hear a speaker say something, and then you will record your response. You will then hear the speaker reply, and you will then record your response. The test will start recording you as soon as you click the "record response" button. You will only hear the audio once.',
   choices: 'LET\S GO!'
 }
 
 const conversations = {
   timeline: [
     {type: jsPsychHtmlButtonResponse,
+      stimulus: '',
     choices: ['PLAY AUDIO_1']},
     
     {type: jsPsychAudioKeyboardResponse,
@@ -143,6 +144,7 @@ const conversations = {
     }},
     
     {type: jsPsychHtmlButtonResponse,
+      stimulus: '',
     choices: ['PLAY AUDIO_2']},
     
     {type: jsPsychAudioKeyboardResponse,
