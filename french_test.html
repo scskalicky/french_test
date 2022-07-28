@@ -115,7 +115,7 @@ var record_voice = {
 						data: {audio_base64: data.response},
             dataType: 'text',
             success: function(result){
-              console.log(result);
+              return result;
             audio_id = result;}
           }),
       data.response = audio_id;
