@@ -107,10 +107,11 @@ var record_voice = {
 						url: "save_audio.php",
 						type: "POST",
 						data: {audio_base64: data.response},
-            }),
-            console.log(audio_id)
-          }
-        }
+            success: function() {
+							console.log(audio_id);
+						},
+          })}
+      }
 
 timeline.push(record_voice)
 
