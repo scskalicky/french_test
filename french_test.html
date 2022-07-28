@@ -110,7 +110,7 @@ var record_voice = {
     // this is necessary because the audio data takes up much memory
     on_finish: function(data){
       // create a random id for the specific audio file.
-      audio_id = 'subject-'.concat(id).concat('_audio-').concat(Date.new().toString(32))
+      audio_id = 'subject-'.concat(id).concat('_audio-').concat(Date.now().toString(32))
       console.log(audio_id);
       // call the php script
       $.ajax ({
