@@ -1,4 +1,4 @@
-export const audio = [
+const audio = [
     {turn1: 'audio/fiona1.mp3', 
     turn2: 'audio/fiona2.mp3', 
     turn3: 'audio/fiona3.mp3', 
@@ -9,3 +9,5 @@ export const audio = [
     turn3: 'audio/torin3.mp3', 
     data: {stim_id: 'torin'}}
 ]
+
+export default audio;
