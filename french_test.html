@@ -108,7 +108,7 @@ var record_voice = {
     done_button_label: "Finish Recording",
     // save the audio to the server then remove from active data object
     on_finish: function(data){
-      audio_id = id.concat('_').concat(Math.random(9999999999));
+      audio_id = 'audio-'.concat(Math.random(9999999999));
       console.log(audio_id);
       var audio_id;
       // call the php script
