@@ -103,7 +103,7 @@ var record_voice = {
     // save the audio to the server then remove from active data object
     on_finish: function(data){
         fetch('save_audio.php', { audio_base64: data.response })
-            .then((audio_id) => {
+            .then(audio_id => {
                 data.response = audio_id;
                 console.log(audio_id);
             });
