@@ -114,9 +114,11 @@ var record_voice = {
 						type: "POST",
 						data: {audio_base64: data.response},
             dataType: 'text',
-            success: function(result){console.log(result)}
+            success: function(result){
+              console.log(result);
+            audio_id = result;}
           }),
-      data.response = result
+      data.response = audio_id;
         }
     }
 
