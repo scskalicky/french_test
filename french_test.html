@@ -31,6 +31,8 @@
 const id = Math.random();
 console.log(id);
 
+jsPsych.data.addProperties({subject: id})
+
 // function to save data as csv file
 function saveData(name, data){
   var xhr = new XMLHttpRequest();
@@ -102,31 +104,18 @@ var record_voice = {
     done_button_label: "Finish Recording",
     // save the audio to the server then remove from active data object
     on_finish: function(data){
-        fetch('save_audio.php', { audio_base64: data.response })
-            .then(audio_id => {
-                data.response = audio_id;
-                console.log(audio_id);
-            });
-    }
-  }
-
-
-
-
-
-  //  on_finish: function(data){
       // call the php script
-    //  $.ajax ({
-			//			url: "save_audio.php",
-				//		type: "POST",
-					//	data: {audio_base64: data.response},
-          //  dataType: 'json',
-          //  success: function(result){console.log(result['audio_id'])}
-         // });
-      //data.response = $audio_id
+      $.ajax ({
+						url: "save_audio.php",
+						type: "POST",
+						data: {audio_base64: data.response, subject: data.subject, trial: data.trial_index},
+            dataType: 'json',
+         //   success: function(result){console.log(result['audio_id'])}
+          });
+      data.response = data.subject.concat(data.trial_index)
       //console.log(data)
-    //    }
-    //  }
+        }
+    }
 
 timeline.push(record_voice)
 
