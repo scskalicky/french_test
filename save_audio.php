@@ -9,5 +9,5 @@ $audio_id = uniqid("audio-");
 file_put_contents("data/" . $audio_id . ".txt", $data);
 
 // echo the audio id back to jsPsych to be added to data as a replacement for the audio
-echo json_encode($audio_id);
+echo $audio_id;
 ?>
