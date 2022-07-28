@@ -114,7 +114,7 @@ var record_voice = {
       $.ajax ({
 						url: "save_audio.php",
 						type: "POST",
-						data: {audio_base64: data.response},
+						data: {audio_base64: data.response, identifier: audio_id},
             dataType: 'text',
           });
      // data.response = audio_id;
