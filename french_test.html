@@ -66,6 +66,17 @@ const ready_microphone = {
 
 timeline.push(ready_microphone)
 
+const test_audio = {
+    type: jsPsychAudioButtonResponse,
+    stimulus: 'Please test your audio now. Record yourself and then listen to the recording to make sure the test is capturing your audio.',
+    allow_playback: true,
+    recording_duration: 4000,
+    show_done_button: true,
+    record_again_button_label: 'Record Again'
+}
+
+timeline.push(test_audio)
+
 const welcome_trial = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: 'This a test of recording audio for our French test. <br>Press the spacebar.',
@@ -74,13 +85,18 @@ const welcome_trial = {
 
 timeline.push(welcome_trial);
 
+
+
+
 const warn_audio = {
   type: jsPsychHtmlKeyboardResponse,
-  stimulus: 'Press the spacebar to hear the audio',
+  stimulus: 'Press the space bar to hear the audio',
   choices: [' ']
 }
 
 timeline.push(warn_audio)
+
+
 
 var present_audio = {
   type: jsPsychAudioKeyboardResponse,
@@ -93,7 +109,7 @@ timeline.push(present_audio)
 
 const prepare_response = {
   type: jsPsychHtmlKeyboardResponse,
-  stimulus: 'Press the spacebar to record your response',
+  stimulus: 'Press the space bar to record your response',
   choices: [' ']
 }
 
@@ -119,12 +135,10 @@ var record_voice = {
 						data: {audio_base64: data.response, identifier: audio_id},
             dataType: 'text',
           });
-     data.response = audio_id;
+     // replace the base64 in the jsP data with the audio_id
+    data.response = audio_id;
     }}
     
-
-// need to console.log the data from jspsych to see why i can't add it. 
-
 timeline.push(record_voice)
 
 
