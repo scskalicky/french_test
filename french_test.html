@@ -91,9 +91,9 @@ const test_audio = {
 timeline.push(test_audio)
 
 const recording_passed = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Thank you. You have indicated that you are able to hear the recording played back to you.',
-    choices: ' '
+    type: jsPsychHtmlButtonResponse,
+    stimulus: 'Thank you. You have indicated that you are able to hear the recording played back to you. <br> Press the button to continue the test.',
+    choices: 'Continue'
 }
 
 timeline.push(recording_passed);
@@ -117,6 +117,7 @@ const conversations = {
     trial_ends_after_audio: true},
     
     {type: jsPsychHtmlButtonResponse,
+      stimulus: '',
     choices: ['RECORD RESPONSE']},
 
     {type: jsPsychHtmlAudioResponse,
