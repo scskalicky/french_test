@@ -31,8 +31,6 @@
 const id = Math.random();
 console.log(id);
 
-var audio_id = '...';
-
 // function to save data as csv file
 function saveData(name, data){
   var xhr = new XMLHttpRequest();
@@ -109,10 +107,10 @@ var record_voice = {
 						url: "save_audio.php",
 						type: "POST",
 						data: {audio_base64: data.response},
-            success: function(result){console.log(result[audio_id])}
+            success: function(result){console.log(result)}
           });
-      data.response = audio_id
-      console.log(data)
+      //data.response = audio_id
+      //console.log(data)
         }
       }
 
