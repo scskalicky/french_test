@@ -83,50 +83,39 @@ const test_audio = {
     record_again_button_label: 'Record Again'
 }
 
+// eventually want to flush this response from the data to save space. 
 timeline.push(test_audio)
 
-const welcome_trial = {
+const recording_passed = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'This a test of recording audio for our French test. <br>Press the spacebar.',
+    stimulus: 'Thank you. You have indicated that you are able to hear the recording played back to you.',
     choices: ' '
 }
 
-timeline.push(welcome_trial);
+timeline.push(recording_passed);
 
 
-
-
-const warn_audio = {
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: 'Press the space bar to hear the audio',
-  choices: [' ']
+const prepare_trials = {
+  type: jsPsychButtonResponse,
+  stimulus: 'This test requires you to participante in some short back-and-forth conversations. You will first hear a speaker say something, and then you will record your response. You will then hear the speaker reply, and you will then record your response. The test will start recording you as soon as you click the "record response" button. You will only hear the audio once.',
+  choices: 'LET\S GO!'
 }
 
-timeline.push(warn_audio)
+const conversations = {
+  timeline: [
+    {type: jsPsychHtmlButtonResponse,
+    choices: ['PLAY AUDIO_1']},
+    
+    {type: jsPsychAudioKeyboardResponse,
+    stimulus: turn1,
+    choices: 'NO_KEYS',
+    trial_ends_after_audio: true},
+    
+    {type: jsPsychHtmlButtonResponse,
+    choices: ['RECORD RESPONSE']},
 
-
-
-var present_audio = {
-  type: jsPsychAudioKeyboardResponse,
-  stimulus: 'audio/fiona1.mp3',
-  choices: 'NO_KEYS',
-  trial_ends_after_audio: true
-}
-
-timeline.push(present_audio)
-
-const prepare_response = {
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: 'Press the space bar to record your response',
-  choices: [' ']
-}
-
-timeline.push(prepare_response)
-
-
-var record_voice = {
-    type: jsPsychHtmlAudioResponse,
-    stimulus: 'What would you say? (5 seconds of recording time)',
+    {type: jsPsychHtmlAudioResponse,
+    stimulus: 'RECORDING...',
     recording_duration: 5000,
     show_done_button: true,
     done_button_label: "Finish Recording",
@@ -145,10 +134,77 @@ var record_voice = {
           });
      // replace the base64 in the jsP data with the audio_id
     data.response = audio_id;
-    }}
+    }},
     
-timeline.push(record_voice)
+    {type: jsPsychHtmlButtonResponse,
+    choices: ['PLAY AUDIO_2']},
+    
+    {type: jsPsychAudioKeyboardResponse,
+    stimulus: turn2,
+    choices: 'NO_KEYS',
+    trial_ends_after_audio: true},
 
+    {type: jsPsychHtmlButtonResponse,
+    choices: ['RECORD RESPONSE']},
+
+    {type: jsPsychHtmlAudioResponse,
+    stimulus: 'RECORDING...',
+    recording_duration: 5000,
+    show_done_button: true,
+    done_button_label: "Finish Recording",
+    // save the audio to the server then remove from active data object
+    // this is necessary because the audio data takes up much memory
+    on_finish: function(data){
+      // create a random id for the specific audio file.
+      audio_id = (id).toString().concat('_audio-').concat(Date.now().toString().concat('_').concat(Math.floor(Math.random()*9999)).toString())
+      console.log(audio_id);
+      // call the php script
+      $.ajax ({
+						url: "save_audio.php",
+						type: "POST",
+						data: {audio_base64: data.response, identifier: audio_id},
+            dataType: 'text',
+          });
+     // replace the base64 in the jsP data with the audio_id
+    data.response = audio_id;
+    }},
+
+    {type: jsPsychHtmlButtonResponse,
+    choices: ['PLAY AUDIO_3']},
+    
+    {type: jsPsychAudioKeyboardResponse,
+    stimulus: turn3,
+    choices: 'NO_KEYS',
+    trial_ends_after_audio: true},
+
+    {type: jsPsychHtmlButtonResponse,
+    choices: ['RECORD RESPONSE']},
+
+    {type: jsPsychHtmlAudioResponse,
+    stimulus: 'RECORDING...',
+    recording_duration: 5000,
+    show_done_button: true,
+    done_button_label: "Finish Recording",
+    // save the audio to the server then remove from active data object
+    // this is necessary because the audio data takes up much memory
+    on_finish: function(data){
+      // create a random id for the specific audio file.
+      audio_id = (id).toString().concat('_audio-').concat(Date.now().toString().concat('_').concat(Math.floor(Math.random()*9999)).toString())
+      console.log(audio_id);
+      // call the php script
+      $.ajax ({
+						url: "save_audio.php",
+						type: "POST",
+						data: {audio_base64: data.response, identifier: audio_id},
+            dataType: 'text',
+          });
+     // replace the base64 in the jsP data with the audio_id
+    data.response = audio_id;
+    }},
+  
+  
+ ], timeline_variables: audio_stimuli}
+ 
 
 jsPsych.run(timeline);
 </script>

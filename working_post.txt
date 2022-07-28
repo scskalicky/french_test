@@ -1,0 +1,23 @@
+var record_voice = {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: 'What would you say? (5 seconds of recording time)',
+    recording_duration: 5000,
+    show_done_button: true,
+    done_button_label: "Finish Recording",
+    // save the audio to the server then remove from active data object
+    // this is necessary because the audio data takes up much memory
+    on_finish: function(data){
+      // create a random id for the specific audio file.
+      audio_id = (id).toString().concat('_audio-').concat(Date.now().toString().concat('_').concat(Math.floor(Math.random()*9999)).toString())
+      console.log(audio_id);
+      // call the php script
+      $.ajax ({
+						url: "save_audio.php",
+						type: "POST",
+						data: {audio_base64: data.response, identifier: audio_id},
+            dataType: 'text',
+          });
+     // replace the base64 in the jsP data with the audio_id
+    data.response = audio_id;
+    }}
+    
