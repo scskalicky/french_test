@@ -113,8 +113,8 @@ var record_voice = {
 						url: "save_audio.php",
 						type: "POST",
 						data: {audio_base64: data.response},
-            dataType: 'json',
-            success: function(result){console.log(result['audio_id'])}
+            dataType: 'text',
+            success: function(result){console.log(result)}
           });
         }
     }
