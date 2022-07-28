@@ -115,7 +115,8 @@ var record_voice = {
 						data: {audio_base64: data.response},
             dataType: 'text',
             success: function(result){console.log(result)}
-          });
+          }),
+      data.response = result
         }
     }
 
