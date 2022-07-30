@@ -4,12 +4,11 @@
   <title>French Test</title>
   <script type="text/javascript" src="jquery-3.6.0.js"></script>
   <script src = "audio_stimuli.js?new"></script>
-  <script id = 'foo'></script>
-
+  <script id = 'helper'></script>
   <script>
   var stable = "helper_functions.js?="
   var dynamic = Date.now()
-  var parent = document.getElementById("foo")
+  var parent = document.getElementById("helper")
   var someScriptElement = document.createElement("script")
   someScriptElement.setAttribute("src", stable + dynamic)
   foo.appendChild(someScriptElement)
