@@ -51,13 +51,16 @@ var get_subject = {
   questions: [{prompt: 'Please enter subject id'}],
   on_finish: function(data){
     jsPsych.data.addProperties({subject: data.response})
+    console.log(jsPsych.data.get().select('subject')[0])
   }
 }
 
 timeline.push(get_subject)
 
-const subject = jsPsych.data.get().select('subject')[0]
-console.log(subject);
+
+
+//const subject = jsPsych.data.get().select('subject')[0]
+//console.log(subject);
 console.log(audio);
 
 const preamble = {
