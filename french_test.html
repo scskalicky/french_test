@@ -52,7 +52,7 @@ var get_subject = {
   on_finish: function(data){
     jsPsych.data.addProperties({subject: data.response})
     console.log(jsPsych.data.get())
-    console.log(jsPsych.data.get()[1].subject)
+    console.log(jsPsych.data.get()[1])
   }
 }
 
