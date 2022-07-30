@@ -149,8 +149,8 @@ const conversations = {
     // save the audio to the server then remove from active data object
     // this is necessary because the audio data takes up much memory
     on_finish: function(data){
-      console.log(jsPsych.data.get().select('subject')[0].Q0)
-      purgeAudio(jsPsych.data.get().select('subject')[0].Q0, data)
+      console.log(jsPsych.data.get().select('subject').values[0].Q0)
+      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0, data)
       
       // create a random id for the specific audio file.
    //   audio_id = (id).toString().concat('_audio-').concat(Date.now().toString().concat('_').concat(Math.floor(Math.random()*9999)).toString())
