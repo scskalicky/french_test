@@ -50,7 +50,7 @@ var get_subject = {
   type: jsPsychSurveyText,
   questions: [{prompt: 'Please enter subject id'}],
   on_finish: function(data){
-    jsPsych.data.addProperties({subject: id})
+    jsPsych.data.addProperties({subject: data.response})
   }
 }
 
