@@ -6,7 +6,7 @@
 function purgeAudio(subject, data){
     // create a random id for the specific audio file.
     // subject = jsPsych.data.get().select('subject')[0]
-    audio_id = (subject).toString().concat('_audio-').concat(Date.now().toString().concat('_').concat(Math.floor(Math.random()*9999)).toString())
+    audio_id = (subject).concat('_audio-').concat(Date.now().toString().concat('_').concat(Math.floor(Math.random()*9999)).toString())
        console.log(audio_id);
        // call the php script
        $.ajax ({
