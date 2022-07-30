@@ -31,10 +31,6 @@
 
 <script>
 
-
-
-
-
 const timeline = []
 
 var preload = {
@@ -43,8 +39,6 @@ var preload = {
 }
 
 timeline.push(preload)
-
-//random id for testing
 
 var get_subject = {
   type: jsPsychSurveyText,
@@ -61,7 +55,7 @@ timeline.push(get_subject)
 //  return console.log(jsPsych.data.get().select('subject').values[0].Q0)
 //}
 
-const subject = jsPsych.data.get().select('subject')[0]
+subject = jsPsych.data.get().select('subject')[0]
 //console.log(subject);
 //console.log(audio);
 
