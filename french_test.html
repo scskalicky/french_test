@@ -51,16 +51,19 @@ var get_subject = {
   questions: [{prompt: 'Please enter subject id'}],
   on_finish: function(data){
     jsPsych.data.addProperties({subject: data.response})
-    console.log(jsPsych.data.get().select('subject').values[0].Q0)
-   // console.log(jsPsych.data.getLastTrialData().select('subject').values[0])
-   // console.log(jsPsych.data.get()['trials'])
+    subject = console.log(jsPsych.data.get().select('subject').values[0].Q0)
   }
 }
 
+
+
 timeline.push(get_subject)
 
+//function store_subject(){
+//  return console.log(jsPsych.data.get().select('subject').values[0].Q0)
+//}
 
-
+console.log(subject)
 //const subject = jsPsych.data.get().select('subject')[0]
 //console.log(subject);
 //console.log(audio);
@@ -68,7 +71,8 @@ timeline.push(get_subject)
 const preamble = {
     type: jsPsychHtmlButtonResponse,
     stimulus: 'Please connect your microphone to the computer. <br> We recommend using a pair of headphones with a microphone. <br>Once you have connected your microphone & headphones to the computer, click this button to prompt browser access to your microphone',
-    choices: ['Add Microphone']
+    choices: ['Add Microphone'],
+    on_finish: function(){console.log(subject)}
 }
 
 timeline.push(preamble)
