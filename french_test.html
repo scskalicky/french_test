@@ -5,7 +5,7 @@
   <script>
   var random_number = Math.random(999)*100; </script>
   <script src = "audio_stimuli.js?x=" + random_number"></script>
-  <script id = 'load_helper' src = 'helper_functions.js?x='></script>
+  <script id = 'load_helper' src = ''></script>
   <script src = "jspsych/jspsych.js"></script>
   <script src = "jspsych/plugin-html-keyboard-response.js"></script>
   <script src = "jspsych/plugin-initialize-microphone.js"></script>
@@ -36,7 +36,6 @@
 
 document.addEventListener("load", function(){
   document.getElementById("load_helper").setAttribute("src","helper_functions.js?x=" + Date.now());
-
 });
 
 
