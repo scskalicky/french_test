@@ -1,4 +1,5 @@
 
+var jsPsych = initJsPsych();
 // creates a random audio id based on the username + date + random number
 // pushes the audio data to server then overwrites audio data from the jsPsych data file
 // one thing to think about is perhaps creating subfolders for each participant. 
