@@ -30,23 +30,8 @@
 
 <script>
 
-//random id for testing
-const id = jsPsych.randomization.sampleWithoutReplacement(['Stephen', 'stephen'], 1)
-console.log(id);
 
-console.log(audio);
 
-// currently cannot understand why I cannot import variable from another script. fucking annoying. 
-
-jsPsych.data.addProperties({subject: id})
-
-// save all data at the end
-function saveData(name, data){
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'write_data.php');
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(JSON.stringify({filedata: data}));
-}
 
 
 const timeline = []
@@ -57,6 +42,20 @@ var preload = {
 }
 
 timeline.push(preload)
+
+//random id for testing
+
+var get_subject = {
+  type: jsPsychSurveyText,
+  questions: [{prompt: 'Please enter subject id'}],
+  on_finish: function(data){
+    jsPsych.data.addProperties({subject: id})
+  }
+}
+
+const subject = jsPsych.data.get().select('subject')[0]
+console.log(subject);
+console.log(audio);
 
 const preamble = {
     type: jsPsychHtmlButtonResponse,
