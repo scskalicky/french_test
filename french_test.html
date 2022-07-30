@@ -2,8 +2,12 @@
 <html>
   <head>
   <title>French Test</title>
+  <script>
+  $(document).ready(function(){
+    $(document).append("<script type='text/javascript' src='helper_functions.js'" + Date.now() + "<//script>");});
+</script>
   <script src = "audio_stimuli.js" + random_number"></script>
-  <script src = 'helper_functions.js'></script>
+
   <script src = "jspsych/jspsych.js"></script>
   <script src = "jspsych/plugin-html-keyboard-response.js"></script>
   <script src = "jspsych/plugin-initialize-microphone.js"></script>
