@@ -4,8 +4,8 @@
   <title>French Test</title>
   <script>
   var random_number = Math.random(999)*100; </script>
-  <script src = "audio_stimuli.js?=" + random_number></script>
-  <script src = 'helper_functions.js?=' + random_number></script>
+  <script src = "audio_stimuli.js?x=" + random_number></script>
+  <script src = 'helper_functions.js?x=' + random_number></script>
   <script src = "jspsych/jspsych.js"></script>
   <script src = "jspsych/plugin-html-keyboard-response.js"></script>
   <script src = "jspsych/plugin-initialize-microphone.js"></script>
@@ -65,7 +65,6 @@ const preamble = {
     type: jsPsychHtmlButtonResponse,
     stimulus: 'Please connect your microphone to the computer. <br> We recommend using a pair of headphones with a microphone. <br>Once you have connected your microphone & headphones to the computer, click this button to prompt browser access to your microphone',
     choices: ['Add Microphone'],
-    on_finish: function(){console.log(subject)}
 }
 
 timeline.push(preamble)
