@@ -4,7 +4,15 @@
   <title>French Test</title>
   <script type="text/javascript" src="jquery-3.6.0.js"></script>
   <script src = "audio_stimuli.js?new"></script>
-  <script src = "helper_functions.js?=<?php echo rand(4); ?>"></script>
+
+  <script>
+  var stable = "helper_functions.js?="
+  var dynamic = Date.now()
+  var parent = document.getElementById("foo")
+  var someScriptElement = document.createElement("script")
+  someScriptElement.setAttribute("src", stable + dynamic)
+  foo.appendChild(someScriptElement)
+  </script>
   <script src = "jspsych/jspsych.js"></script>
   <script src = "jspsych/plugin-html-keyboard-response.js"></script>
   <script src = "jspsych/plugin-initialize-microphone.js"></script>
