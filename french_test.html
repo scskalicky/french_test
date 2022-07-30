@@ -52,7 +52,7 @@ var get_subject = {
   on_finish: function(data){
     jsPsych.data.addProperties({subject: data.response})
     console.log(jsPsych.data.getLastTrialData())
-    console.log(jsPsych.data.get()['trials'])
+   // console.log(jsPsych.data.get()['trials'])
   }
 }
 
@@ -62,7 +62,7 @@ timeline.push(get_subject)
 
 //const subject = jsPsych.data.get().select('subject')[0]
 //console.log(subject);
-console.log(audio);
+//console.log(audio);
 
 const preamble = {
     type: jsPsychHtmlButtonResponse,
