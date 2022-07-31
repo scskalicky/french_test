@@ -45,7 +45,7 @@
       //jsPsych.data.displayData();
      // console.log('finished')
       // save data to csv
-      saveData(id, jsPsych.data.get().csv())
+      saveData(subject, jsPsych.data.get().csv())
       window.location = "https://www.duolingo.com";
     }
   });
@@ -74,13 +74,8 @@ var get_subject = {
 
 timeline.push(get_subject)
 
-//function store_subject(){
-//  return console.log(jsPsych.data.get().select('subject').values[0].Q0)
-//}
 
 subject = jsPsych.data.get().select('subject')[0]
-//console.log(subject);
-//console.log(audio);
 
 const preamble = {
     type: jsPsychHtmlButtonResponse,
@@ -110,11 +105,13 @@ const test_audio = {
     stimulus: 'RECORDING...',
     allow_playback: true,
     show_done_button: true,
-    record_again_button_label: 'Record Again'
+    record_again_button_label: 'Record Again',
+    on_finish: function(data){
+      data.response = 'sanitized'}
 }
 
-// eventually want to flush this response from the data to save space. 
-//timeline.push(test_audio)
+
+timeline.push(test_audio)
 
 const recording_passed = {
     type: jsPsychHtmlButtonResponse,
