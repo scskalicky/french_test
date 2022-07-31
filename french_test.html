@@ -45,7 +45,7 @@
       //jsPsych.data.displayData();
      // console.log('finished')
       // save data to csv
-      saveData(subject, jsPsych.data.get().csv())
+      saveData(jsPsych.data.get().select('subject')[0].values[0].Q0, jsPsych.data.get().csv())
      // window.location = "https://www.duolingo.com";
     }
   });
@@ -75,7 +75,7 @@ var get_subject = {
 timeline.push(get_subject)
 
 
-subject = jsPsych.data.get().select('subject')[0];
+subject = jsPsych.data.get().select('subject')[0].values[0].Q0;
 console.log('test'.concat(subject));
 
 const preamble = {
