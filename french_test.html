@@ -46,7 +46,7 @@
      // console.log('finished')
       // save data to csv
       console.log(subject)
-      console.log(jsPsych.data.get().csv)
+      console.log(JSON.stringify({dat:jsPsych.data.get().csv}))
       saveData(subject, jsPsych.data.get().csv())
      // window.location = "https://www.duolingo.com";
     }
