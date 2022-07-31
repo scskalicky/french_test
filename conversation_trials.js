@@ -1,16 +1,16 @@
-play_audio_button = {
+var play_audio_button = {
     type: jsPsychHtmlButtonResponse,
     stimulus: '',
     choices: ['PLAY AUDIO']
 }
 
-record_response_button = {
+var record_response_button = {
     type: jsPsychHtmlButtonResponse,
     stimulus: '',
   choices: ['RECORD RESPONSE']
 }
 
-record_answer = {
+var record_answer = {
     type: jsPsychHtmlAudioResponse,
     stimulus: 'RECORDING...',
     recording_duration: 5000,
