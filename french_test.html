@@ -42,7 +42,7 @@
 
   const jsPsych = initJsPsych({
     on_finish: function(data){
-      //jsPsych.data.displayData();
+      jsPsych.data.displayData();
      // console.log('finished')
       // save data to csv
       saveData(jsPsych.data.get().select('subject')[0].values[0].Q0, jsPsych.data.get().csv())
@@ -68,8 +68,7 @@ var get_subject = {
   questions: [{prompt: 'Please enter subject id'}],
   on_finish: function(data){
     jsPsych.data.addProperties({subject: data.response})
-    var subject = console.log(jsPsych.data.get().select('subject').values[0].Q0)
-    console.log(subject)
+    console.log(jsPsych.data.get().select('subject').values[0].Q0)
   }
 }
 
