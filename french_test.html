@@ -152,9 +152,6 @@ const prepare_trials = {
 
 timeline.push(prepare_trials)
 
-// back-and-forth conversation trials. 
-
-
 // conversation trials timeline. 
 const conversations = {
   timeline: [
@@ -162,19 +159,19 @@ const conversations = {
   stimulus: 'You are about to begin a NEW conversation.',
   choices: ['BEGIN']},
 
-    play_audio_button,
+  play_audio_button,
 
-    {type: jsPsychAudioKeyboardResponse,
-    stimulus: jsPsych.timelineVariable('turn1'),
-    data: jsPsych.timelineVariable("data"),
-    choices: 'NO_KEYS',
-    trial_ends_after_audio: true},
+  {type: jsPsychAudioKeyboardResponse,
+  stimulus: jsPsych.timelineVariable('turn1'),
+  data: jsPsych.timelineVariable("data"),
+  choices: 'NO_KEYS',
+  trial_ends_after_audio: true},
     
-    record_response_button,
+  record_response_button,
 
-    record_answer,
+  record_answer,
     
-    play_audio_button,
+  play_audio_button,
 
   {type: jsPsychAudioKeyboardResponse,
   stimulus: jsPsych.timelineVariable('turn2'),

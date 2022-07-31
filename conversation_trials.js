@@ -4,13 +4,13 @@ const play_audio_button = {
     type: jsPsychHtmlButtonResponse,
     stimulus: '',
     choices: ['PLAY AUDIO']
-}
+};
 
 const record_response_button = {
     type: jsPsychHtmlButtonResponse,
     stimulus: '',
   choices: ['RECORD RESPONSE']
-}
+};
 
 const record_answer = {
     type: jsPsychHtmlAudioResponse,
