@@ -5,18 +5,15 @@
   <script type = "text/javascript" src="jquery-3.6.0.js"></script>
   <script id = 'stimuli'></script>
   <script>
-  var baf_stim = ''
   var stable = "stimuli.js?="
   var dynamic = Date.now()
   var parent = document.getElementById("stimuli")
   var someScriptElement = document.createElement("script")
   someScriptElement.setAttribute("src", stable + dynamic)
   stimuli.appendChild(someScriptElement)
-  
   </script>
   <script id = "helper"></script>
   <script>
-  
     // force reload of stimuli pages (for development.)
     var stable = "helper_functions.js?="
     var dynamic = Date.now()
@@ -25,18 +22,6 @@
     someScriptElement.setAttribute("src", stable + dynamic)
     helper.appendChild(someScriptElement)
     </script>
-
-
-  <script id = 'conv_trials'></script>
-  <script>
-    var stable = "conversation_trials.js?="
-    var dynamic = Date.now()
-    var parent = document.getElementById("conv_trials")
-    var someScriptElement = document.createElement("script")
-    someScriptElement.setAttribute("src", stable + dynamic)
-    conv_trials.appendChild(someScriptElement)
-    </script>
-
   <script src = "jspsych/jspsych.js"></script>
   <script src = "jspsych/plugin-html-keyboard-response.js"></script>
   <script src = "jspsych/plugin-initialize-microphone.js"></script>
@@ -151,6 +136,38 @@ const prepare_trials = {
 timeline.push(prepare_trials)
 
 // conversation trials timeline. 
+
+// define repeated trials. 
+const play_audio_button = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '',
+    choices: ['PLAY AUDIO']
+};
+
+const record_response_button = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '',
+  choices: ['RECORD RESPONSE']
+};
+
+const record_answer = {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: 'RECORDING...',
+    recording_duration: 5000,
+    show_done_button: true,
+    done_button_label: "Finish Recording",
+    // save audio
+    on_finish: function(data){
+        //subject name
+      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+      // audio file name
+      jsPsych.data.get().last(3).values()[0].stimulus, 
+      // current js data object
+      data)
+}}
+
+
+
 const conversations = {
   timeline: [
   {type: jsPsychHtmlButtonResponse,
