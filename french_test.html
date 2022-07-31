@@ -149,22 +149,7 @@ const conversations = {
     // save the audio to the server then remove from active data object
     // this is necessary because the audio data takes up much memory
     on_finish: function(data){
-      console.log(jsPsych.data.get().select('subject').values[0].Q0)
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0, data)
-      
-      // create a random id for the specific audio file.
-   //   audio_id = (id).toString().concat('_audio-').concat(Date.now().toString().concat('_').concat(Math.floor(Math.random()*9999)).toString())
-    //  console.log(audio_id);
-      // call the php script
-     // $.ajax ({
-			//			url: "save_audio.php",
-				//		type: "POST",
-					//	data: {audio_base64: data.response, identifier: audio_id},
-          //  dataType: 'text',
-         // });
-     // replace the base64 in the jsP data with the audio_id
-   // data.response = audio_id;
-   // 
   }},
     
     {type: jsPsychHtmlButtonResponse,
@@ -189,18 +174,7 @@ const conversations = {
     // save the audio to the server then remove from active data object
     // this is necessary because the audio data takes up much memory
     on_finish: function(data){
-      // create a random id for the specific audio file.
-      audio_id = (id).toString().concat('_audio-').concat(Date.now().toString().concat('_').concat(Math.floor(Math.random()*9999)).toString())
-      console.log(audio_id);
-      // call the php script
-      $.ajax ({
-						url: "save_audio.php",
-						type: "POST",
-						data: {audio_base64: data.response, identifier: audio_id},
-            dataType: 'text',
-          });
-     // replace the base64 in the jsP data with the audio_id
-    data.response = audio_id;
+      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0, data)
     }},
 
     {type: jsPsychHtmlButtonResponse,
@@ -222,21 +196,8 @@ const conversations = {
     recording_duration: 5000,
     show_done_button: true,
     done_button_label: "Finish Recording",
-    // save the audio to the server then remove from active data object
-    // this is necessary because the audio data takes up much memory
     on_finish: function(data){
-      // create a random id for the specific audio file.
-      audio_id = (id).toString().concat('_audio-').concat(Date.now().toString().concat('_').concat(Math.floor(Math.random()*9999)).toString())
-      console.log(audio_id);
-      // call the php script
-      $.ajax ({
-						url: "save_audio.php",
-						type: "POST",
-						data: {audio_base64: data.response, identifier: audio_id},
-            dataType: 'text',
-          });
-     // replace the base64 in the jsP data with the audio_id
-    data.response = audio_id;
+      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0, data)
     }},
 
     {type: jsPsychHtmlKeyboardResponse,
