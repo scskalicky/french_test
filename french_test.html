@@ -13,6 +13,7 @@
   var parent = document.getElementById("helper")
   var someScriptElement = document.createElement("script")
   someScriptElement.setAttribute("src", stable + dynamic)
+  someScriptElement.setAttribute('type', 'module')
   helper.appendChild(someScriptElement)
 
   var stable = "conversation_trials.js?="
@@ -20,6 +21,7 @@
   var parent = document.getElementById("conv_trials")
   var someScriptElement = document.createElement("script")
   someScriptElement.setAttribute("src", stable + dynamic)
+  someScriptElement.setAttribute('type', 'module')
   conv_trials.appendChild(someScriptElement)
   
   var stable = "audio_stimuli.js?="
@@ -27,6 +29,7 @@
   var parent = document.getElementById("audio_stimuli")
   var someScriptElement = document.createElement("script")
   someScriptElement.setAttribute("src", stable + dynamic)
+  someScriptElement.setAttribute('type', 'module')
   audio_stimuli.appendChild(someScriptElement)
   
   </script>
