@@ -12,13 +12,11 @@
   <script src = "jspsych/plugin-survey-text.js"></script>
   <script src="jspsych/plugin-preload.js"></script>
   <link href = "jspsych/jspsych.css" rel="stylesheet" type = "text/css" />
-  <script id = "audio_stimuli"></script>
+  <script id = "stimuli"></script>
   <script id = 'conv_trials'></script>
   <script id = 'helper'></script>
   <script>
-  var baf_stim
-  </script>
-  <script>
+  
   // force reload of stimuli pages (for development.)
   var stable = "helper_functions.js?="
   var dynamic = Date.now()
@@ -37,12 +35,12 @@
   console.log(baf_stim)
 </script>
 <script>
-  var stable = "audio_stimuli.js?="
+  var stable = "stimuli.js?="
   var dynamic = Date.now()
-  var parent = document.getElementById("audio_stimuli")
+  var parent = document.getElementById("stimuli")
   var someScriptElement = document.createElement("script")
   someScriptElement.setAttribute("src", stable + dynamic)
-  audio_stimuli.appendChild(someScriptElement)
+  stimuli.appendChild(someScriptElement)
   
   </script>
   
