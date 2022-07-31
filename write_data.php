@@ -1,16 +1,17 @@
 <?php
 // get the data from the POST message
-$post_data = json_decode(file_get_contents('php://input'), true);
+//$post_data = json_decode(file_get_contents('php://input'), true);
 
-$data = $post_data['filedata'];
 
-$subject = $post_data['filedata']['subject'];
+//$data = $post_data['filedata'];
+$file = $_POST['data'];
+$subject = $_POST['subject'];
 
 // generate a unique ID for the file, e.g., session-6feu833950202 
-$file = uniqid("session-");
+//$file = uniqid("session-");
 
 // the directory "data" must be writable by the server
-$name = "data/{$subject}/{$file}.csv"; 
+$name = "data/{$subject}/results.csv"; 
 
 // write the file to disk
 file_put_contents($name, $data);

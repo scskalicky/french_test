@@ -22,9 +22,15 @@ function purgeAudio(subject, item, data){
 
 // saves all jsPsych data to server at end of test
 function saveData(name, data){
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'write_data.php');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({filedata: data}));
+    $.ajax({
+        url: 'write_data.php',
+        type: 'POST',
+        data: {full_data: JSON.stringify(data), subject: name},
+        dataType: 'text'})
+
+ //   var xhr = new XMLHttpRequest();
+  //  xhr.open('POST', 'write_data.php');
+  //  xhr.setRequestHeader('Content-Type', 'application/json');
+  //  xhr.send(JSON.stringify({filedata: data}));
   }
   
