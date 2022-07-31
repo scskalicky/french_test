@@ -30,6 +30,7 @@
   audio_stimuli.appendChild(someScriptElement)
   
   </script>
+  
   <script src = "jspsych/jspsych.js"></script>
   <script src = "jspsych/plugin-html-keyboard-response.js"></script>
   <script src = "jspsych/plugin-initialize-microphone.js"></script>
@@ -40,8 +41,12 @@
   <script src="jspsych/plugin-preload.js"></script>
   <link href = "jspsych/jspsych.css" rel="stylesheet" type = "text/css" />
   </head>
+  
   <body></body>
+  
   <script>
+  import { back_and_forth_audio } from 'audio_stimuli.js';
+
   const jsPsych = initJsPsych({
     on_finish: function(data){
       //jsPsych.data.displayData();
