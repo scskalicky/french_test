@@ -3,10 +3,10 @@
 // creates a random audio id based on the username + date + random number
 // pushes the audio data to server then overwrites audio data from the jsPsych data file
 // one thing to think about is perhaps creating subfolders for each participant. 
-function purgeAudio(subject, data){
+function purgeAudio(subject, item, data){
     // create a random id for the specific audio file.
     // subject = jsPsych.data.get().select('subject')[0]
-    audio_id = subject.concat('_audio-').concat(Date.now().toString().concat('_').concat(Math.floor(Math.random()*9999)).toString())
+    audio_id = subject.concat('_').concat(item).concat('_').concat(Date.now().toString())
        console.log(audio_id);
        // call the php script
        $.ajax ({
