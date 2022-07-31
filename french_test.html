@@ -45,8 +45,6 @@
       //jsPsych.data.displayData();
      // console.log('finished')
       // save data to csv
-      console.log(subject)
-      console.log(JSON.stringify({dat:jsPsych.data.get().csv}))
       saveData(subject, jsPsych.data.get().csv())
      // window.location = "https://www.duolingo.com";
     }
@@ -119,7 +117,10 @@ const test_audio = {
 const recording_passed = {
     type: jsPsychHtmlButtonResponse,
     stimulus: 'Thank you. You have indicated that you are able to hear the recording played back to you. <br> Press the button to continue the test.',
-    choices: ['Continue']
+    choices: ['Continue'],
+    on_finish: function(){
+    console.log(subject)
+    console.log(JSON.stringify({dat:jsPsych.data.get().csv}))}
 }
 
 timeline.push(recording_passed);
