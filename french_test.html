@@ -12,6 +12,7 @@
   <script src = "jspsych/plugin-survey-text.js"></script>
   <script src="jspsych/plugin-preload.js"></script>
   <link href = "jspsych/jspsych.css" rel="stylesheet" type = "text/css" />
+  
   <script id = "stimuli"></script>
   <script id = 'conv_trials'></script>
   <script id = 'helper'></script>
@@ -25,6 +26,7 @@
   someScriptElement.setAttribute("src", stable + dynamic)
   helper.appendChild(someScriptElement)
   </script>
+  
   <script>
   var stable = "conversation_trials.js?="
   var dynamic = Date.now()
@@ -32,8 +34,9 @@
   var someScriptElement = document.createElement("script")
   someScriptElement.setAttribute("src", stable + dynamic)
   conv_trials.appendChild(someScriptElement)
-</script>
-<script>
+  </script>
+  
+  <script>
   var stable = "stimuli.js?="
   var dynamic = Date.now()
   var parent = document.getElementById("stimuli")
@@ -62,6 +65,8 @@
 </html>
 
 <script>
+
+var audio_trials = jsPsych.randomization.shuffle(baf_stim)
 
 const timeline = []
 
@@ -219,7 +224,7 @@ const conversations = {
   }
   
 
- ], timeline_variables: baf_stim}
+ ], timeline_variables: audio_trials}
 
  timeline.push(conversations)
 
