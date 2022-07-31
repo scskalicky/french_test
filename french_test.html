@@ -3,7 +3,9 @@
   <head>
   <title>French Test</title>
   <script type="text/javascript" src="jquery-3.6.0.js"></script>
-  
+  <script id = "audio_stimuli"></script>
+  <script id = 'conv_trials'></script>
+  <script id = 'helper'></script>
 
   <script>
   // force reload of stimuli pages (for development.)
@@ -13,14 +15,16 @@
   var someScriptElement = document.createElement("script")
   someScriptElement.setAttribute("src", stable + dynamic)
   helper.appendChild(someScriptElement)
-
+  </script>
+  <script>
   var stable = "conversation_trials.js?="
   var dynamic = Date.now()
   var parent = document.getElementById("conv_trials")
   var someScriptElement = document.createElement("script")
   someScriptElement.setAttribute("src", stable + dynamic)
   conv_trials.appendChild(someScriptElement)
-  
+</script>
+<script>
   var stable = "audio_stimuli.js?="
   var dynamic = Date.now()
   var parent = document.getElementById("audio_stimuli")
