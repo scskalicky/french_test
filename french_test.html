@@ -45,6 +45,8 @@
       //jsPsych.data.displayData();
      // console.log('finished')
       // save data to csv
+      console.log(subject)
+      console.log(JSON.stringify(jsPsych.data.get().csv))
       saveData(subject, jsPsych.data.get().csv())
      // window.location = "https://www.duolingo.com";
     }
@@ -75,7 +77,8 @@ var get_subject = {
 timeline.push(get_subject)
 
 
-subject = jsPsych.data.get().select('subject')[0]
+subject = jsPsych.data.get().select('subject')[0];
+console.log(subject);
 
 const preamble = {
     type: jsPsychHtmlButtonResponse,

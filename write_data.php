@@ -2,9 +2,11 @@
 // get the data from the POST message
 //$post_data = json_decode(file_get_contents('php://input'), true);
 
+// trying to save to directory that is name of subhect how to pass that variable?
 
 //$data = $post_data['filedata'];
 $data = $_POST['full_data'];
+
 $subject = $_POST['subject'];
 
 // generate a unique ID for the file, e.g., session-6feu833950202 
