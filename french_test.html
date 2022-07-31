@@ -148,7 +148,7 @@ const conversations = {
     // save audio
     on_finish: function(data){
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0, data)
-      console.log(jsPsych.data.get().last(3).values[0])
+      console.log(jsPsych.data.get().last(3).values)
   }},
     
     {type: jsPsychHtmlButtonResponse,
