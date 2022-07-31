@@ -1,6 +1,6 @@
 // let jsPsych = initJsPsych()
 
-var play_audio_button = {
+play_audio_button = {
     type: jsPsychHtmlButtonResponse,
     stimulus: '',
     choices: ['PLAY AUDIO']
