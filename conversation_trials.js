@@ -1,19 +1,19 @@
 
 //jsPsych = initJsPsych()
 
-play_audio_button = {
+let play_audio_button = {
     type: jsPsychHtmlButtonResponse,
     stimulus: '',
     choices: ['PLAY AUDIO']
 }
 
-record_response_button = {
+let record_response_button = {
     type: jsPsychHtmlButtonResponse,
     stimulus: '',
   choices: ['RECORD RESPONSE']
 }
 
-record_answer = {
+let record_answer = {
     type: jsPsychHtmlAudioResponse,
     stimulus: 'RECORDING...',
     recording_duration: 5000,
