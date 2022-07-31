@@ -4,7 +4,7 @@
 
 
 //$data = $post_data['filedata'];
-$file = $_POST['full_data'];
+$data = $_POST['full_data'];
 $subject = $_POST['subject'];
 
 // generate a unique ID for the file, e.g., session-6feu833950202 
