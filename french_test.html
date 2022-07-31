@@ -61,7 +61,7 @@ var preload = {
     auto_preload: true
 }
 
-timeline.push(preload)
+//timeline.push(preload)
 
 var get_subject = {
   type: jsPsychSurveyText,
@@ -83,13 +83,13 @@ const preamble = {
     choices: ['Add Microphone'],
 }
 
-timeline.push(preamble)
+//timeline.push(preamble)
 
 const ready_microphone = {
     type: jsPsychInitializeMicrophone
 }
 
-timeline.push(ready_microphone)
+//timeline.push(ready_microphone)
 
 const test_audio_instructions = {
   type: jsPsychHtmlButtonResponse,
@@ -97,7 +97,7 @@ const test_audio_instructions = {
   choices: ['Begin Recording']
 }
 
-timeline.push(test_audio_instructions)
+//timeline.push(test_audio_instructions)
 
 const test_audio = {
     type: jsPsychHtmlAudioResponse,
@@ -111,7 +111,7 @@ const test_audio = {
 }
 
 
-timeline.push(test_audio)
+//timeline.push(test_audio)
 
 const recording_passed = {
     type: jsPsychHtmlButtonResponse,
@@ -119,7 +119,7 @@ const recording_passed = {
     choices: ['Continue']
 }
 
-timeline.push(recording_passed);
+//timeline.push(recording_passed);
 
 
 const prepare_trials = {
@@ -129,7 +129,7 @@ const prepare_trials = {
   on_finish: function(){console.log(baf_stim)}
 }
 
-timeline.push(prepare_trials)
+//timeline.push(prepare_trials)
 
 // conversation trials timeline. 
 
@@ -216,7 +216,7 @@ const conversations = {
 
  ], timeline_variables: baf_stim}
 
- timeline.push(conversations)
+ //timeline.push(conversations)
 
  var end = {
   type: jsPsychHtmlKeyboardResponse,
