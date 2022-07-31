@@ -2,7 +2,7 @@
 <html>
   <head>
   <title>French Test</title>
-  <script type="text/javascript" src="jquery-3.6.0.js"></script>
+  <script type = "text/javascript" src="jquery-3.6.0.js"></script>
   <script src = "jspsych/jspsych.js"></script>
   <script src = "jspsych/plugin-html-keyboard-response.js"></script>
   <script src = "jspsych/plugin-initialize-microphone.js"></script>
@@ -15,7 +15,9 @@
   <script id = "audio_stimuli"></script>
   <script id = 'conv_trials'></script>
   <script id = 'helper'></script>
-
+  <script>
+  var baf_stim
+  </script>
   <script>
   // force reload of stimuli pages (for development.)
   var stable = "helper_functions.js?="
@@ -63,7 +65,6 @@
 
 <script>
 
-var baf_audio = baf_audio1
 const timeline = []
 
 var preload = {
@@ -139,7 +140,7 @@ const prepare_trials = {
   type: jsPsychHtmlButtonResponse,
   stimulus: 'This test requires you to participate in some short back-and-forth conversations. You will first hear a speaker say something, and then you will record your response. You will then hear the speaker reply, and you will then record your response. The test will start recording you as soon as you click the "record response" button. You will only hear the audio once.',
   choices: ['LET\'S GO!'],
-  on_finish: function(){console.log(baf_audio)}
+  on_finish: function(){console.log(baf_stim)}
 }
 
 //timeline.push(prepare_trials)
@@ -220,7 +221,7 @@ const conversations = {
   }
   
 
- ], timeline_variables: baf_audio}
+ ], timeline_variables: baf_stim}
 
  timeline.push(conversations)
 

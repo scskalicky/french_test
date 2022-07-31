@@ -1,5 +1,6 @@
 
-var baf_audio1 = [
+
+baf_stim = [
     {turn1: 'audio/fiona1.mp3', 
     turn2: 'audio/fiona2.mp3', 
     turn3: 'audio/fiona3.mp3', 
@@ -10,3 +11,5 @@ var baf_audio1 = [
     turn3: 'audio/torin3.mp3', 
     data: {stim_id: 'torin'}}
 ]
+
+
