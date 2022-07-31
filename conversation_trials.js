@@ -1,4 +1,4 @@
-var jsPsych = initJsPsych()
+let jsPsych = initJsPsych()
 
 play_audio_button = {
     type: jsPsychHtmlButtonResponse,
