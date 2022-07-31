@@ -47,6 +47,8 @@
   <script src="jspsych/plugin-preload.js"></script>
   <link href = "jspsych/jspsych.css" rel="stylesheet" type = "text/css" />
   <script src = 'stimuli.js'></script>
+  <script src = 'helper_functions.js'></script>
+  <script src = 'conversation_trials.js'></script>
    
   </head>
   
@@ -152,11 +154,11 @@ timeline.push(prepare_trials)
 
 // back-and-forth conversation trials. 
 // define repeatedly used trials
-var play_audio_button = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: '',
-    choices: ['PLAY AUDIO']
-}
+//var play_audio_button = {
+  //  type: jsPsychHtmlButtonResponse,
+  //  stimulus: '',
+  //  choices: ['PLAY AUDIO']
+//}
 
 var record_response_button = {
     type: jsPsychHtmlButtonResponse,
