@@ -87,7 +87,7 @@ const test_audio_instructions = {
   choices: ['Begin Recording']
 }
 
-timeline.push(test_audio_instructions)
+//timeline.push(test_audio_instructions)
 
 const test_audio = {
     type: jsPsychHtmlAudioResponse,
@@ -99,7 +99,7 @@ const test_audio = {
 }
 
 // eventually want to flush this response from the data to save space. 
-timeline.push(test_audio)
+//timeline.push(test_audio)
 
 const recording_passed = {
     type: jsPsychHtmlButtonResponse,
@@ -116,7 +116,7 @@ const prepare_trials = {
   choices: ['LET\'S GO!']
 }
 
-timeline.push(prepare_trials)
+//timeline.push(prepare_trials)
 
 
 const conversations = {
@@ -148,7 +148,7 @@ const conversations = {
     // save audio
     on_finish: function(data){
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0, data)
-      console.log(jsPsych.data.get().last(2))
+      console.log(jsPsych.data.get().last(3))
   }},
     
     {type: jsPsychHtmlButtonResponse,
