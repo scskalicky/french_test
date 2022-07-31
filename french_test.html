@@ -3,7 +3,7 @@
   <head>
   <title>French Test</title>
   <script type="text/javascript" src="jquery-3.6.0.js"></script>
-  <script src = "audio_stimuli.js"></script>
+  <script id = "audio_stimuli"></script>
   <script id = 'conv_trials'></script>
   <script id = 'helper'></script>
   <script>
@@ -21,6 +21,13 @@
   var someScriptElement = document.createElement("script")
   someScriptElement.setAttribute("src", stable + dynamic)
   conv_trials.appendChild(someScriptElement)
+  
+  var stable = "audio_stimuli.js?="
+  var dynamic = Date.now()
+  var parent = document.getElementById("audio_stimuli")
+  var someScriptElement = document.createElement("script")
+  someScriptElement.setAttribute("src", stable + dynamic)
+  audio_stimuli.appendChild(someScriptElement)
   </script>
   <script src = "jspsych/jspsych.js"></script>
   <script src = "jspsych/plugin-html-keyboard-response.js"></script>
