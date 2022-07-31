@@ -1,19 +1,14 @@
 <?php
 // get the data from the POST message
-//$post_data = json_decode(file_get_contents('php://input'), true);
 
-// trying to save to directory that is name of subhect how to pass that variable?
-
-//$data = $post_data['filedata'];
+// data file
 $data = $_POST['full_data'];
 
+// subject name
 $subject = $_POST['subject'];
 
-// generate a unique ID for the file, e.g., session-6feu833950202 
-//$file = uniqid("session-");
-
-// the directory "data" must be writable by the server
-$name = "data/" . $subject . "/results.csv"; 
+// create filename
+$name = "data/" . $subject . "/" . $subject . "_results.csv"; 
 
 // write the file to disk
 file_put_contents($name, $data);

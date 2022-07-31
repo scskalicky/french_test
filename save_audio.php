@@ -1,11 +1,13 @@
 <?php
 // grab the data from the post call
+
+// audio base64
 $data = $_POST['audio_base64'];
 
-// create a random audio id
-//$audio_id = uniqid("audio-");
-
+// audio fileid
 $audio_id = $_POST['identifier'];
+
+// subject
 $subject = $_POST['sub'];
 
 // create directory for subject
@@ -16,8 +18,4 @@ if (!is_dir('data/' . $subject)) {
 
 // save the data as a .txt file to server with audio id
 file_put_contents("data/" . $subject . '/' . $audio_id . ".txt", $data);
-
-//$audio_return['audio_id'] = $audio_id;
-// echo the audio id back to jsPsych to be added to data as a replacement for the audio
-//echo $audio_id;
 ?>
