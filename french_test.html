@@ -4,29 +4,30 @@
   <title>French Test</title>
   <script type = "text/javascript" src="jquery-3.6.0.js"></script>
  
-  <script id = "stimuli"></script>
+  <script id = "helper"></script>
+  <script>
+  
+    // force reload of stimuli pages (for development.)
+    var stable = "helper_functions.js?="
+    var dynamic = Date.now()
+    var parent = document.getElementById("helper")
+    var someScriptElement = document.createElement("script")
+    someScriptElement.setAttribute("src", stable + dynamic)
+    helper.appendChild(someScriptElement)
+    </script>
+
+
   <script id = 'conv_trials'></script>
-  <script id = 'helper'></script>
   <script>
-  
-  // force reload of stimuli pages (for development.)
-  var stable = "helper_functions.js?="
-  var dynamic = Date.now()
-  var parent = document.getElementById("helper")
-  var someScriptElement = document.createElement("script")
-  someScriptElement.setAttribute("src", stable + dynamic)
-  helper.appendChild(someScriptElement)
-  </script>
-  
-  <script>
-  var stable = "conversation_trials.js?="
-  var dynamic = Date.now()
-  var parent = document.getElementById("conv_trials")
-  var someScriptElement = document.createElement("script")
-  someScriptElement.setAttribute("src", stable + dynamic)
-  conv_trials.appendChild(someScriptElement)
-  </script>
-  
+    var stable = "conversation_trials.js?="
+    var dynamic = Date.now()
+    var parent = document.getElementById("conv_trials")
+    var someScriptElement = document.createElement("script")
+    someScriptElement.setAttribute("src", stable + dynamic)
+    conv_trials.appendChild(someScriptElement)
+    </script>
+
+  <script id = 'stimuli'></script>
   <script>
   var stable = "stimuli.js?="
   var dynamic = Date.now()
@@ -46,9 +47,7 @@
   <script src = "jspsych/plugin-survey-text.js"></script>
   <script src="jspsych/plugin-preload.js"></script>
   <link href = "jspsych/jspsych.css" rel="stylesheet" type = "text/css" />
-  <script src = 'stimuli.js'></script>
-  <script src = 'helper_functions.js'></script>
-  <script src = 'conversation_trials.js'></script>
+
    
   </head>
   
