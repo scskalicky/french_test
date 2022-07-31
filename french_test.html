@@ -4,7 +4,7 @@
   <title>French Test</title>
   <script type="text/javascript" src="jquery-3.6.0.js"></script>
   <script src = "audio_stimuli.js"></script>
-  <script src = 'conversation_trials.js'></script>
+  <script id = 'conv_trials'></script>
   <script id = 'helper'></script>
   <script>
   var stable = "helper_functions.js?="
@@ -14,6 +14,14 @@
   someScriptElement.setAttribute("src", stable + dynamic)
   helper.appendChild(someScriptElement)
   </script>
+   <script>
+    var stable = "conversation_trials.js?="
+    var dynamic = Date.now()
+    var parent = document.getElementById("conv_trials")
+    var someScriptElement = document.createElement("script")
+    someScriptElement.setAttribute("src", stable + dynamic)
+    conv_trials.appendChild(someScriptElement)
+    </script>
   <script src = "jspsych/jspsych.js"></script>
   <script src = "jspsych/plugin-html-keyboard-response.js"></script>
   <script src = "jspsych/plugin-initialize-microphone.js"></script>
