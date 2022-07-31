@@ -54,8 +54,6 @@
 
 <script>
 
-var audio_trials = jsPsych.randomization.shuffle(baf_stim)
-
 const timeline = []
 
 var preload = {
@@ -162,7 +160,7 @@ const record_answer = {
         //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
-      jsPsych.data.get().last(3).values()[0].stimulus, 
+      jsPsych.data.get().last(3).values()[0].stimulus.substring(6), 
       // current js data object
       data)
 }}
@@ -219,7 +217,7 @@ const conversations = {
   }
   
 
- ], timeline_variables: audio_trials}
+ ], timeline_variables: baf_stim}
 
  timeline.push(conversations)
 
