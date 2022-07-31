@@ -25,7 +25,7 @@ function saveData(name, data){
     $.ajax({
         url: 'write_data.php',
         type: 'POST',
-        data: {full_data: JSON.stringify(data), subject: name},
+        data: {full_data: data, subject: name},
         dataType: 'text'})
 
  //   var xhr = new XMLHttpRequest();
