@@ -8,6 +8,6 @@ const baf_stim = [
     turn2: 'audio/torin2.mp3', 
     turn3: 'audio/torin3.mp3', 
     data: {stim_id: 'torin'}}
-]
+];
 
 
