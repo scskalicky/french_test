@@ -8,6 +8,8 @@ $data = $_POST['audio_base64'];
 $audio_id = $_POST['identifier'];
 $subject = $_POST['sub'];
 
+mkdir $subject;
+
 // save the data as a .txt file to server with audio id
 file_put_contents("data/" . $subject . '/' . $audio_id . ".txt", $data);
 
