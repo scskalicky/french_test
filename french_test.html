@@ -75,7 +75,7 @@ var get_subject = {
 
 timeline.push(get_subject)
 
-//console.log(jsPsych.data.get().select('subject').values[0].Q0)
+console.log(jsPsych.data.get().select('subject').values[0].Q0);
 //subject = jsPsych.data.get().select('subject').values[0].Q0;
 //console.log('test'.concat(subject));
 
@@ -120,7 +120,6 @@ const recording_passed = {
     stimulus: 'Thank you. You have indicated that you are able to hear the recording played back to you. <br> Press the button to continue the test.',
     choices: ['Continue'],
     on_finish: function(){
-    console.log(subject)
     console.log(JSON.stringify({dat:jsPsych.data.get().csv}))}
 }
 
