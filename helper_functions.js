@@ -19,7 +19,6 @@ function purgeAudio(subject, item, data){
  }
 
 
-
 // saves all jsPsych data to server at end of test
 function saveData(name, data){
     $.ajax({

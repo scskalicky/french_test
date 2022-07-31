@@ -4,14 +4,14 @@
 
 
 //$data = $post_data['filedata'];
-$file = $_POST['data'];
+$file = $_POST['full_data'];
 $subject = $_POST['subject'];
 
 // generate a unique ID for the file, e.g., session-6feu833950202 
 //$file = uniqid("session-");
 
 // the directory "data" must be writable by the server
-$name = "data/{$subject}/results.csv"; 
+$name = "data/" . $subject . "/results.csv"; 
 
 // write the file to disk
 file_put_contents($name, $data);
