@@ -7,21 +7,21 @@
   <script id = 'conv_trials'></script>
   <script id = 'helper'></script>
   <script>
+  // force reload of stimuli pages (for development.)
   var stable = "helper_functions.js?="
   var dynamic = Date.now()
   var parent = document.getElementById("helper")
   var someScriptElement = document.createElement("script")
   someScriptElement.setAttribute("src", stable + dynamic)
   helper.appendChild(someScriptElement)
+
+  var stable = "conversation_trials.js?="
+  var dynamic = Date.now()
+  var parent = document.getElementById("conv_trials")
+  var someScriptElement = document.createElement("script")
+  someScriptElement.setAttribute("src", stable + dynamic)
+  conv_trials.appendChild(someScriptElement)
   </script>
-   <script>
-    var stable = "conversation_trials.js?="
-    var dynamic = Date.now()
-    var parent = document.getElementById("conv_trials")
-    var someScriptElement = document.createElement("script")
-    someScriptElement.setAttribute("src", stable + dynamic)
-    conv_trials.appendChild(someScriptElement)
-    </script>
   <script src = "jspsych/jspsych.js"></script>
   <script src = "jspsych/plugin-html-keyboard-response.js"></script>
   <script src = "jspsych/plugin-initialize-microphone.js"></script>
