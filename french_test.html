@@ -119,7 +119,6 @@ const prepare_trials = {
 timeline.push(prepare_trials)
 
 
-
 const conversations = {
   timeline: [
   {type: jsPsychHtmlButtonResponse,
@@ -146,10 +145,10 @@ const conversations = {
     recording_duration: 5000,
     show_done_button: true,
     done_button_label: "Finish Recording",
-    // save the audio to the server then remove from active data object
-    // this is necessary because the audio data takes up much memory
+    // save audio
     on_finish: function(data){
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0, data)
+      console.log(jsPsych.data.get().last(2))
   }},
     
     {type: jsPsychHtmlButtonResponse,
@@ -171,8 +170,7 @@ const conversations = {
     recording_duration: 5000,
     show_done_button: true,
     done_button_label: "Finish Recording",
-    // save the audio to the server then remove from active data object
-    // this is necessary because the audio data takes up much memory
+    // save audio
     on_finish: function(data){
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0, data)
     }},
@@ -196,6 +194,7 @@ const conversations = {
     recording_duration: 5000,
     show_done_button: true,
     done_button_label: "Finish Recording",
+    // save audio
     on_finish: function(data){
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0, data)
     }},
