@@ -4,6 +4,7 @@
   <title>French Test</title>
   <script type="text/javascript" src="jquery-3.6.0.js"></script>
   <script src = "audio_stimuli.js"></script>
+  <script src = 'conversation_trials.js'></script>
   <script id = 'helper'></script>
   <script>
   var stable = "helper_functions.js?="
@@ -39,29 +40,7 @@
 
 <script>
 
-// define repeatedly used trials
-var play_audio_button = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: '',
-    choices: ['PLAY AUDIO']
-}
 
-var record_response_button = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: '',
-  choices: ['RECORD RESPONSE']
-}
-
-var record_answer = {
-    type: jsPsychHtmlAudioResponse,
-    stimulus: 'RECORDING...',
-    recording_duration: 5000,
-    show_done_button: true,
-    done_button_label: "Finish Recording",
-    // save audio
-    on_finish: function(data){
-      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,jsPsych.data.get().last(3).values()[0].stimulus, data)
-}}
 
 
 const timeline = []
@@ -143,7 +122,32 @@ const prepare_trials = {
 
 //timeline.push(prepare_trials)
 
+// back-and-forth conversation trials. 
+// define repeatedly used trials
+var play_audio_button = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '',
+    choices: ['PLAY AUDIO']
+}
 
+var record_response_button = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '',
+  choices: ['RECORD RESPONSE']
+}
+
+var record_answer = {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: 'RECORDING...',
+    recording_duration: 5000,
+    show_done_button: true,
+    done_button_label: "Finish Recording",
+    // save audio
+    on_finish: function(data){
+      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,jsPsych.data.get().last(3).values()[0].stimulus, data)
+}}
+
+// conversation trials timeline. 
 const conversations = {
   timeline: [
   {type: jsPsychHtmlButtonResponse,
@@ -151,10 +155,7 @@ const conversations = {
   choices: ['BEGIN']},
 
     play_audio_button,
- //   {type: jsPsychHtmlButtonResponse,
-  //    stimulus: '',
-   // choices: ['PLAY AUDIO_1']},
-    
+
     {type: jsPsychAudioKeyboardResponse,
     stimulus: jsPsych.timelineVariable('turn1'),
     data: jsPsych.timelineVariable("data"),
@@ -162,82 +163,41 @@ const conversations = {
     trial_ends_after_audio: true},
     
     record_response_button,
- //  {type: jsPsychHtmlButtonResponse,
-  //    stimulus: '',
-  //  choices: ['RECORD RESPONSE']},
 
     record_answer,
-  //  {type: jsPsychHtmlAudioResponse,
-   // stimulus: 'RECORDING...',
-  //  recording_duration: 5000,
-  //  show_done_button: true,
-  //  done_button_label: "Finish Recording",
-    // save audio
-   // on_finish: function(data){
-   //   purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,jsPsych.data.get().last(3).values()[0].stimulus, data)
- // }},
     
-  play_audio_button,
- //   {type: jsPsychHtmlButtonResponse,
-  //    stimulus: '',
-   // choices: ['PLAY AUDIO_2']},
-    
-    {type: jsPsychAudioKeyboardResponse,
-      stimulus: jsPsych.timelineVariable('turn2'),
-      data: jsPsych.timelineVariable("data"),
-    choices: 'NO_KEYS',
-    trial_ends_after_audio: true},
-
-    record_response_button,
-  //  {type: jsPsychHtmlButtonResponse,
-   //   stimulus: '',
-   // choices: ['RECORD RESPONSE']},
-
-    {type: jsPsychHtmlAudioResponse,
-    stimulus: 'RECORDING...',
-    recording_duration: 5000,
-    show_done_button: true,
-    done_button_label: "Finish Recording",
-    // save audio
-    on_finish: function(data){
-      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0, data)
-    }},
-
     play_audio_button,
 
-   // {type: jsPsychHtmlButtonResponse,
-    //  stimulus: '',
-    //choices: ['PLAY AUDIO_3']},
+  {type: jsPsychAudioKeyboardResponse,
+  stimulus: jsPsych.timelineVariable('turn2'),
+  data: jsPsych.timelineVariable("data"),
+  choices: 'NO_KEYS',
+  trial_ends_after_audio: true},
+
+  record_response_button,
+
+  record_answer,
+
+  play_audio_button,
+
+  {type: jsPsychAudioKeyboardResponse,
+  stimulus: jsPsych.timelineVariable('turn3'),
+  data: jsPsych.timelineVariable("data"),
+  choices: 'NO_KEYS',
+  trial_ends_after_audio: true},
     
-    {type: jsPsychAudioKeyboardResponse,
-      stimulus: jsPsych.timelineVariable('turn3'),
-      data: jsPsych.timelineVariable("data"),
-    choices: 'NO_KEYS',
-    trial_ends_after_audio: true},
+  record_response_button,
+
+  record_answer,
 
 
-    record_response_button,
- //   {type: jsPsychHtmlButtonResponse,
-   //   stimulus: '',
-   // choices: ['RECORD RESPONSE']},
-
-    {type: jsPsychHtmlAudioResponse,
-    stimulus: 'RECORDING...',
-    recording_duration: 5000,
-    show_done_button: true,
-    done_button_label: "Finish Recording",
-    // save audio
-    on_finish: function(data){
-      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0, data)
-    }},
-
-    {type: jsPsychHtmlKeyboardResponse,
-      stimulus: "LOADING NEXT ITEM...",
-      trial_duration: 2500,
-      choices: "NO_KEYS"
-    }
+  {type: jsPsychHtmlKeyboardResponse,
+  stimulus: "LOADING NEXT ITEM...",
+  trial_duration: 2500,
+  choices: "NO_KEYS"
+  }
   
-  
+
  ], timeline_variables: audio}
 
  timeline.push(conversations)
