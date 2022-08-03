@@ -75,28 +75,31 @@ var get_subject = {
 
 timeline.push(get_subject)
 
-const preamble = {
+/* activate microphone and ensure participants can hear themselves being recorded.  */
+
+// explain microphone connection
+const prepare_microphone = {
     type: jsPsychHtmlButtonResponse,
     stimulus: 'Please connect your microphone to the computer. <br> We recommend using a pair of headphones with a microphone. <br>Once you have connected your microphone & headphones to the computer, click this button to prompt browser access to your microphone',
     choices: ['Add Microphone'],
 }
+timeline.push(prepare_microphone)
 
-timeline.push(preamble)
-
+// prompt for permission and initialise microphone
 const ready_microphone = {
     type: jsPsychInitializeMicrophone
 }
-
 timeline.push(ready_microphone)
 
+// explain to participants they need to make sure they can hear themselves. 
 const test_audio_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: 'Let\'s make sure the test can hear you. Please click the button below and speak into your microphone. <br> You will be able to review your recording afterwards. <br> Please do not continue the test until you are able to hear a recording of yourself played back to you.',
+  stimulus: 'Let\'s make sure the test can hear you. Please click the button below and speak into your microphone for a few seconds. <br> Afterwards, you will be able to pleay your recording. <br>Please make sure that you can hear your recording. If not, please make sure you microphone is working properly and try again. <br> Please do not continue the test until you are able to hear a recording of yourself played back to you.',
   choices: ['Begin Recording']
 }
-
 timeline.push(test_audio_instructions)
 
+// allow recording and playback, recording limited to 10 seconds. 
 const test_audio = {
     type: jsPsychHtmlAudioResponse,
     recording_duration: 10000,
@@ -107,31 +110,51 @@ const test_audio = {
     on_finish: function(data){
       data.response = 'sanitized'}
 }
-
-
 timeline.push(test_audio)
 
+// honor system - participants will click to move on. 
 const recording_passed = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'Thank you. You have indicated that you are able to hear the recording played back to you. <br> Press the button to continue the test.',
+    stimulus: 'Thank you. You have indicated that you are able to hear yourself in the recording. <br> Press Continue when you are ready to continue the test.',
     choices: ['Continue'],
 }
-
 timeline.push(recording_passed);
 
+/***** STORY COMPLETION BLOCK *********
+These questions involve participants looking at a series of images with which they will base a story. The images will be displayed for a fixed period of time (30 seconds), after which participants will have 2 minutes to orally tell their story based on the pictures. 
+*/
 
+/***** STORY COMPLETION BLOCK *********
+These questions involve participants looking at a series of images with which they will base a story. The images will be displayed for a fixed period of time (30 seconds), after which participants will have 2 minutes to orally tell their story based on the pictures. 
+*/
+
+// todo
+
+/***** COMMUNICATIVE ADEQUACY BLOCK *********
+These questions involve participants listening and responding to a sustained simulated conversation. They will listen to the recording and then be asked to record their response. They will only be able to listen to each turn once. 
+
+- do we need a practice session? or at least one practice item to start? 
+
+*/
+
+// instructions for communicative adequacy
 const prepare_trials = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: 'This test requires you to participate in some short back-and-forth conversations. You will first hear a speaker say something, and then you will record your response. You will then hear the speaker reply, and you will then record your response. The test will start recording you as soon as you click the "record response" button. You will only hear the audio once.',
+  type: jsPsychInstructions,
+  pages: ['This test requires you to participate in some short back-and-forth conversations',
+  'You will first hear a speaker say something, and then you will record your response.',
+  'You will then hear the speaker reply, and you will then record your response.', 
+  'The test will start recording you as soon as you click the "record response" button.', 
+  'You will only hear the audio once.'],
   choices: ['LET\'S GO!'],
   on_finish: function(){console.log(baf_stim)}
 }
 
 timeline.push(prepare_trials)
 
-// conversation trials timeline. 
-
+// communicative adequacy timeline. 
 // define repeated trials. 
+
+// this might need to be changes so that each label is different for the 1st, 2nd, and 3rd playing. 
 const play_audio_button = {
     type: jsPsychHtmlButtonResponse,
     stimulus: '',
@@ -215,6 +238,25 @@ const conversations = {
  ], timeline_variables: baf_stim}
 
  timeline.push(conversations)
+
+
+/***** LISTENING COMPREHENSION BLOCK *********
+Participants will listen to a audio dialogues in French. After the dialogues they will answer different questions:
+1. Choosing from 2 English dialogues: one dialogue is the translated version, whereas the other is not. 
+2. Choosing from two pictures: one picture represents information from the dialogue, and one does not. 
+3. Listen to a short dialogue (twice), and then respond to written comprehension questions orally using French. There is a 30-sec
+*/
+
+//todo
+
+/***** C-TEST *********
+Participants will read three short texts. Each text will have some words missing parts of the word. Participants must type in letters in order to provide correct words. 
+*/
+
+//todo
+// Need French characters/keyboard?
+// How to do a c-test ??
+
 
  var end = {
   type: jsPsychHtmlKeyboardResponse,
