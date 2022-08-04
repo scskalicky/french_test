@@ -295,7 +295,7 @@ var c_test_trial = {
     loop_function: function() {
       var current_time = performance.now();
       if (current_time - start_time >= 5000){
-        return false;
+        jsPsych.endCurrentTimeline();
       } else {
         return true;
       }
