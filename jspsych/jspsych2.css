@@ -515,8 +515,6 @@
   text-align: left;
 }
 
-
-
 /*Control size of Cloze text boxes*/
 .cloze input[type=text]{
   size: 1;
