@@ -516,6 +516,6 @@
 }
 
 /*Control size of Cloze test boxes*/
-.cloze{
+.my_cloze{
   width: 5em;
 }
