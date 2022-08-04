@@ -29,7 +29,7 @@
   <script src = "jspsych/plugin-audio-keyboard-response.js"></script>
   <script src = "jspsych/plugin-html-button-response.js"></script>
   <script src = "jspsych/plugin-instructions.js"></script>
-  <script src = "jspsych/plugin-cloze11.js"></script>
+  <script src = "jspsych/plugin-cloze12.js"></script>
   <script src = "jspsych/plugin-survey-text.js"></script>
   <script src="jspsych/plugin-preload.js"></script>
   <link href = "jspsych/jspsych.css" rel="stylesheet" type = "text/css" />
@@ -276,38 +276,25 @@ timeline.push(c_test_instructions);
 var start_time;
 // how to make it end after 5 minutes? 
 
-var next_ctest_text = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: 'Press "Continue" to see the text.',
-  choices: ['Continue'],
-  on_finish: function(){
-    start_time = performance.now()
-    console.log(start_time)
-}};
+var c_test_trials = {
+timeline:[
+{type: jsPsychHtmlButtonResponse,
+stimulus: 'Press "Continue" to see the text.',
+choices: ['Continue']
+},
 
-//timeline.push(next_ctest_text)
-var c_test_trial = {
-  type: jsPsychCloze,
-  text: 'Hier, no%% avons pré%% un gr%% gâteau a%% chocolat.'
-  };
+{type: jsPsychCloze,
+text: 'Hier, no%% avons pré%% un gr%% gâteau a%% chocolat.',
+},
 
-  var c_test_loop = {
-    timeline: [next_ctest_text, c_test_trial],
-    loop_function: function(data) {
-      var current_time = performance.now();
-      console.log(curren_time);
-      if (current_time - start_time >= 1000){
-        console.log('time is up!')
-        jsPsych.finishTrial(data);
-        return false;
-      } else {
-        console.log('still doing it')
-        return true;
-      }
-    }
-  };
+{type: jsPsychHtmlKeyboardResponse,
+stimulus: 'next',
+choices: [' ']}
+]
+}
 
-timeline.push(c_test_loop)
+timeline.push(c_test_trials);
+
 
 
  var end = {
