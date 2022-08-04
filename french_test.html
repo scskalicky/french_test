@@ -83,13 +83,13 @@ const prepare_microphone = {
     stimulus: 'Please connect your microphone to the computer. <br> We recommend using a pair of headphones with a microphone. <br>Once you have connected your microphone & headphones to the computer, click this button to prompt browser access to your microphone',
     choices: ['Add Microphone'],
 }
-timeline.push(prepare_microphone)
+//timeline.push(prepare_microphone)
 
 // prompt for permission and initialise microphone
 const ready_microphone = {
     type: jsPsychInitializeMicrophone
 }
-timeline.push(ready_microphone)
+//timeline.push(ready_microphone)
 
 // explain to participants they need to make sure they can hear themselves. 
 const test_audio_instructions = {
@@ -97,7 +97,7 @@ const test_audio_instructions = {
   stimulus: 'Let\'s make sure the test can hear you. Please click the button below and speak into your microphone for a few seconds. <br> Afterwards, you will be able to pleay your recording. <br>Please make sure that you can hear your recording. If not, please make sure you microphone is working properly and try again. <br> Please do not continue the test until you are able to hear a recording of yourself played back to you.',
   choices: ['Begin Recording']
 }
-timeline.push(test_audio_instructions)
+//timeline.push(test_audio_instructions)
 
 // allow recording and playback, recording limited to 10 seconds. 
 const test_audio = {
@@ -110,7 +110,7 @@ const test_audio = {
     on_finish: function(data){
       data.response = 'sanitized'}
 }
-timeline.push(test_audio)
+//timeline.push(test_audio)
 
 // honor system - participants will click to move on. 
 const recording_passed = {
@@ -118,7 +118,7 @@ const recording_passed = {
     stimulus: 'Thank you. You have indicated that you are able to hear yourself in the recording. <br> Press Continue when you are ready to continue the test.',
     choices: ['Continue'],
 }
-timeline.push(recording_passed);
+//timeline.push(recording_passed);
 
 /***** STORY COMPLETION BLOCK *********
 These questions involve participants looking at a series of images with which they will base a story. The images will be displayed for a fixed period of time (30 seconds), after which participants will have 2 minutes to orally tell their story based on the pictures. 
@@ -149,7 +149,7 @@ const prepare_trials = {
   on_finish: function(){console.log(baf_stim)}
 }
 
-timeline.push(prepare_trials)
+//timeline.push(prepare_trials)
 
 // communicative adequacy timeline. 
 // define repeated trials. 
@@ -182,8 +182,6 @@ const record_answer = {
       // current js data object
       data)
 }}
-
-
 
 const conversations = {
   timeline: [
@@ -237,7 +235,7 @@ const conversations = {
 
  ], timeline_variables: baf_stim}
 
- timeline.push(conversations)
+ //timeline.push(conversations)
 
 
 /***** LISTENING COMPREHENSION BLOCK *********
@@ -257,6 +255,32 @@ Participants will read three short texts. Each text will have some words missing
 // Need French characters/keyboard?
 // How to do a c-test ??
 
+
+var c_test_instructions = {
+  type: jsPsychInstructions,
+  pages:['In this part of the test you will see a text presented on the screen.',
+'In the following texts, parts of some words is missing.', 
+'Please write in the missing letters to complete the words.',
+'You will have 5 minutes for each text.',
+'Please click Continue to see the first text.'] 
+}
+
+timeline.push(c_test_instructions);
+
+var c_test_trials = {
+  timeline: [
+    {type: jsPsychHtmlButtonResponse,
+    stimulus: 'Press "Continue" to see the text.',
+    button: ['Continue']},
+
+    {type: jsPsychCloze,
+    text: 'Hier, no%% avons pré%% un gr%% gâteau a%% chocolat.',
+    trial_duration: 5000,
+    }
+  ]
+}
+
+timeline.push(c_test_trials)
 
  var end = {
   type: jsPsychHtmlKeyboardResponse,
