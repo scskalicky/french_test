@@ -92,7 +92,7 @@ var jsPsychCloze = (function (jspsych) {
           display_element.querySelector("#finish_cloze_button").addEventListener("click", check);
     // end trial after certain number of milliseconds
     this.jsPsych.pluginAPI.setTimeout(()=>{
-        jsPsych.finishTrial(data);
+        jsPsych.finishTrial();
   }, 1000);
       }
       getSolutions(text) {
