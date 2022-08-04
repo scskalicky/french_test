@@ -272,25 +272,38 @@ var c_test_instructions = {
 
 timeline.push(c_test_instructions);
 //https://github.com/jspsych/jsPsych/discussions/2543
-var c_test_trials = {
-  timeline: [
-    {type: jsPsychHtmlButtonResponse,
-    stimulus: 'Press "Continue" to see the text.',
-    choices: ['Continue']},
 
-    {type: jsPsychCloze,
-    text: 'Hier, no%% avons pré%% un gr%% gâteau a%% chocolat.',
-    trial_duration: 5000,
-    },
+var start_time;
+// how to make it end after 5 minutes? 
 
-    {type: jsPsychHtmlKeyboardResponse,
-      stimulus: 'go',
-      choices: [' ']
+var next_ctest_text = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: 'Press "Continue" to see the text.',
+  choices: ['Continue'],
+  on_finish: function(){
+    start_time = performance.now()
+}};
+
+//timeline.push(next_ctest_text)
+var c_test_trial = {
+  type: jsPsychCloze,
+  text: 'Hier, no%% avons pré%% un gr%% gâteau a%% chocolat.'
+  };
+
+  var c_test_loop = {
+    timeline: [next_ctest_text, c_test_trial],
+    loop_function: function() {
+      var current_time = performance.now();
+      if (current_time - start_time >= 5000){
+        return false;
+      } else {
+        return true;
+      }
     }
-  ]
-}
+  };
 
-timeline.push(c_test_trials)
+timeline.push(c_test_loop)
+
 
  var end = {
   type: jsPsychHtmlKeyboardResponse,
