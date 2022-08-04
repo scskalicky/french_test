@@ -10,6 +10,13 @@ var jsPsychCloze = (function (jspsych) {
               pretty_name: "Cloze text",
               default: undefined,
           },
+
+           /* Any content here will be displayed below the stimulus.*/
+           prompt: {
+           type: jspsych.ParameterType.HTML_STRING,
+           pretty_name: "Prompt",
+           default: null,
+            },
           /** Text of the button participants have to press for finishing the cloze test. */
           button_text: {
               type: jspsych.ParameterType.STRING,
@@ -49,6 +56,15 @@ var jsPsychCloze = (function (jspsych) {
           this.jsPsych = jsPsych;
       }
       trial(display_element, trial) {
+        // add stimulus/prompt
+        var new_html = '<div id="jspsych-html-keyboard-response-stimulus">' + trial.stimulus + "</div>";
+        // add prompt
+        if (trial.prompt !== null) {
+            new_html += trial.prompt;
+        }
+        // draw
+        display_element.innerHTML = new_html;
+
           var html = '<div class="cloze">';
           var elements = trial.text.split("%");
           const solutions = this.getSolutions(trial.text);
@@ -57,7 +73,7 @@ var jsPsychCloze = (function (jspsych) {
               if (i % 2 === 0) {
                   html += elements[i];
               }
-              else {
+              else { // added custom size for boxes here - would be better as a param
                   html += `<input type="text" style="width:30px" id="input${solution_counter}" value="">`;
                   solution_counter++;
               }
