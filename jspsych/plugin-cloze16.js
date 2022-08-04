@@ -93,7 +93,7 @@ var jsPsychCloze = (function (jspsych) {
     
     // end trial after certain number of milliseconds
     this.jsPsych.pluginAPI.setTimeout(()=>{
-        jsPsych.finishTrial(trial_data);
+        check;
     }, 10000);
       }
       getSolutions(text) {
