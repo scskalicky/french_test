@@ -293,12 +293,13 @@ var c_test_trial = {
 
   var c_test_loop = {
     timeline: [next_ctest_text, c_test_trial],
-    loop_function: function() {
+    loop_function: function(data) {
       var current_time = performance.now();
       console.log(curren_time);
       if (current_time - start_time >= 1000){
         console.log('time is up!')
         jsPsych.finishTrial(data);
+        return false;
       } else {
         console.log('still doing it')
         return true;
