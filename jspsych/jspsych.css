@@ -517,7 +517,7 @@
 
 
 
-/*Control size of Cloze test boxes*/
+/*Control size of Cloze text boxes*/
 .cloze input[type=text]{
-  width: 5em;
+  size: 1;
 }
