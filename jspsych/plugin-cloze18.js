@@ -22,6 +22,12 @@ var jsPsychCloze = (function (jspsych) {
               pretty_name: "Check answers",
               default: false,
           },
+          /* add trial duration parameter so it can be manipulated in the html not in the plugin*/
+          trial_duration: {
+          type: jspsych.ParameterType.INT,
+          pretty_name: "Trial duration",
+          default: null,},
+
           /** Function called if check_answers is set to TRUE and there is a difference between the participants answers and the correct solution provided in the text. */
           mistake_fn: {
               type: jspsych.ParameterType.FUNCTION,
@@ -94,7 +100,7 @@ var jsPsychCloze = (function (jspsych) {
     // end trial after certain number of milliseconds
     this.jsPsych.pluginAPI.setTimeout(()=>{
         check();
-    }, 10000);
+    }, trial.trial_duration);
       }
       getSolutions(text) {
           const solutions = [];
