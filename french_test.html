@@ -297,6 +297,7 @@ var c_test_trial = {
       var current_time = performance.now();
       console.log(curren_time);
       if (current_time - start_time >= 5000){
+        console.log('time is up!')
         jsPsych.endCurrentTimeline();
       } else {
         return true;
