@@ -5,7 +5,7 @@ var jsPsychCloze = (function (jspsych) {
       name: "cloze",
       parameters: {
           /** The cloze text to be displayed. Blanks are indicated by %% signs and automatically replaced by input fields. If there is a correct answer you want the system to check against, it must be typed between the two percentage signs (i.e. %solution%). */
-          text: {
+          text: { 
               type: jspsych.ParameterType.HTML_STRING,
               pretty_name: "Cloze text",
               default: undefined,
