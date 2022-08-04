@@ -282,6 +282,7 @@ var next_ctest_text = {
   choices: ['Continue'],
   on_finish: function(){
     start_time = performance.now()
+    console.log(start_time)
 }};
 
 //timeline.push(next_ctest_text)
@@ -294,6 +295,7 @@ var c_test_trial = {
     timeline: [next_ctest_text, c_test_trial],
     loop_function: function() {
       var current_time = performance.now();
+      console.log(curren_time);
       if (current_time - start_time >= 5000){
         jsPsych.endCurrentTimeline();
       } else {
