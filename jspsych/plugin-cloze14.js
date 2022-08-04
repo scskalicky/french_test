@@ -90,10 +90,11 @@ var jsPsychCloze = (function (jspsych) {
                   trial.button_text +
                   "</button>";
           display_element.querySelector("#finish_cloze_button").addEventListener("click", check);
+    
     // end trial after certain number of milliseconds
     this.jsPsych.pluginAPI.setTimeout(()=>{
         jsPsych.finishTrial();
-  }, 1000);
+    }, 10000);
       }
       getSolutions(text) {
           const solutions = [];
