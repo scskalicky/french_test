@@ -52,7 +52,7 @@ var jsPsychCloze = (function (jspsych) {
                   html += elements[i];
               }
               else {
-                  html += `<input type="text" style="size:3 "id="input${solution_counter}" value="">`;
+                  html += `<input type="text" style="width:5em" id="input${solution_counter}" value="">`;
                   solution_counter++;
               }
           }
