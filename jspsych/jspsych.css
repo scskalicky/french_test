@@ -515,6 +515,7 @@
   text-align: left;
 }
 
+/*Control size of Cloze test boxes*/
 .cloze{
-  width: 50px
+  width: 5em;
 }
