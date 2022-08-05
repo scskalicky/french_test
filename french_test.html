@@ -279,7 +279,8 @@ var c_test_trials = {
 timeline:[
 {type: jsPsychHtmlButtonResponse,
 stimulus: 'Press "Continue" to see the text.',
-choices: ['Continue']
+choices: ['Continue'],
+on_finish: function(){console.log(c_test_stim)}
 },
 
 {type: jsPsychCloze,
