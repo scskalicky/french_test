@@ -242,7 +242,6 @@ const conversations = {
 
   record_answer,
 
-
   {type: jsPsychHtmlKeyboardResponse,
   stimulus: "LOADING NEXT ITEM...",
   trial_duration: 2500,
@@ -268,9 +267,6 @@ Participants will listen to a audio dialogues in French. After the dialogues the
 Participants will read three short texts. Each text will have some words missing parts of the word. Participants must type in letters in order to provide correct words. 
 */
 
-//todo
-// convert french text to ascii.
-
 var french_characters = 'lettres accentu&eacute;es:<br> [&ccedil; &eacute; &acirc; &ecirc; &icirc; &ocirc; &ucirc; &agrave; &egrave; &igrave; &ograve; &ugrave; &euml; &iuml; &uuml;]<br><br>'
 
 var c_test_stim = [
@@ -290,19 +286,17 @@ show_clickable_nav: true
 timeline.push(c_test_instructions);
 //https://github.com/jspsych/jsPsych/discussions/2543
 
-var start_time;
-// how to make it end after 5 minutes? 
 
 var c_test_trials = {
 timeline:[
 {type: jsPsychHtmlButtonResponse,
 stimulus: 'Press "Continue" to see the text.',
 choices: ['Continue'],
-on_finish: function(){console.log(c_test_stim)}
 },
 
 {type: jsPsychCloze,
 text: jsPsych.timelineVariable('c_text'),
+data: jsPsych.timelineVariable("data"),
 trial_duration: 300000,
 },
 
