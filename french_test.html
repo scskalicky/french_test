@@ -142,6 +142,18 @@ These questions involve participants listening and responding to a sustained sim
 
 */
 
+var ca_stim = [
+    {turn1: 'audio/fiona1.mp3', 
+    turn2: 'audio/fiona2.mp3', 
+    turn3: 'audio/fiona3.mp3', 
+    data: {stim_id: 'fiona'}},
+    
+    {turn1: 'audio/torin1.mp3', 
+    turn2: 'audio/torin2.mp3', 
+    turn3: 'audio/torin3.mp3', 
+    data: {stim_id: 'torin'}}
+];
+
 // instructions for communicative adequacy
 const prepare_trials = {
   type: jsPsychInstructions,
@@ -151,7 +163,7 @@ const prepare_trials = {
   'The test will start recording you as soon as you click the "record response" button.', 
   'You will only hear the audio once.'],
   choices: ['LET\'S GO!'],
-  on_finish: function(){console.log(baf_stim)}
+  on_finish: function(){console.log(ca_stim)}
 }
 
 //timeline.push(prepare_trials)
@@ -159,7 +171,7 @@ const prepare_trials = {
 // communicative adequacy timeline. 
 // define repeated trials. 
 
-// this might need to be changes so that each label is different for the 1st, 2nd, and 3rd playing. 
+// this might need to be changed so that each label is different for the 1st, 2nd, and 3rd playing. 
 const play_audio_button = {
     type: jsPsychHtmlButtonResponse,
     stimulus: '',
@@ -259,7 +271,7 @@ Participants will read three short texts. Each text will have some words missing
 //todo
 // convert french text to ascii.
 
-var french_characters = '&Agrave;	&#192;	&#xC0;	lettres accentuées:<br> [ç, &eacute;, &acirc;/&ecirc;/&icirc;/&ocirc;/&ucirc;, &agrave;/&egrave;/&igrave;/&ograve;/&ugrave;, &euml;/&iuml;/&uuml;]<br><br>'
+var french_characters = 'lettres accentu&eacute;es:<br> [&ccedil;, &eacute;, &acirc;/&ecirc;/&icirc;/&ocirc;/&ucirc;, &agrave;/&egrave;/&igrave;/&ograve;/&ugrave;, &euml;/&iuml;/&uuml;]<br><br>'
 
 var c_test_stim = [
     {c_text: french_characters.concat("Coucou, tu es d'accord pour m'aider &agrave; organiser l'anniversaire de Clara? Hier, no%% avons pr&eacute;%% un gr%% g&acirc;teau a%% chocolat. M%% s&oelig;urs o%% achet&eacute; d%% d&eacute;corations e%% des bon%% hier mi%%. Tu pe%% prendre d%% boissons e%% de l%% glace. L%% f&ecirc;te e%% samedi, ch%% moi.  Vi%% av%% ton co%% de fran%%, on v%% faire u%% salade d%% fruits ense%%.  Apr&egrave;s o%% va pr&eacute;p%% la mai%% et met%% de l%% musique. Appelle-moi quand tu arrives."), data: {stim_id: 'ctest_text1'}}
