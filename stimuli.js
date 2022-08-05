@@ -10,8 +10,8 @@ var baf_stim = [
     data: {stim_id: 'torin'}}
 ];
 
-var french_characters = 'lettres accentuées:<br> [ç, é, â/ê/î/ô/û, à/è/ì/ò/ù, ë/ï/ü]'
+var french_characters = 'lettres accentuées:<br> [ç, é, â/ê/î/ô/û, à/è/ì/ò/ù, ë/ï/ü]<br><br>'
 
 var c_test_stim = [
-    {c_text: "Coucou, tu es d'accord pour m'aider à organiser l'anniversaire de Clara? Hier, no%% avons pré%% un gr%% gâteau a%% chocolat. M%% sœurs o%% acheté d%% décorations e%% des bon%% hier mi%%. Tu pe%% prendre d%% boissons e%% de l%% glace. L%% fête e%% samedi, ch%% moi.  Vi%% av%% ton co%% de fran%%, on v%% faire u%% salade d%% fruits ense%%.  Après o%% va prép%% la mai%% et met%% de l%% musique. Appelle-moi quand tu arrives.", data: {stim_id: 'ctest_text1'}}
+    {c_text: french_characters + "Coucou, tu es d'accord pour m'aider à organiser l'anniversaire de Clara? Hier, no%% avons pré%% un gr%% gâteau a%% chocolat. M%% sœurs o%% acheté d%% décorations e%% des bon%% hier mi%%. Tu pe%% prendre d%% boissons e%% de l%% glace. L%% fête e%% samedi, ch%% moi.  Vi%% av%% ton co%% de fran%%, on v%% faire u%% salade d%% fruits ense%%.  Après o%% va prép%% la mai%% et met%% de l%% musique. Appelle-moi quand tu arrives.", data: {stim_id: 'ctest_text1'}}
 ]
