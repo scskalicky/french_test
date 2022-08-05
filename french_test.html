@@ -265,7 +265,8 @@ var c_test_instructions = {
 'In the following texts, parts of some words is missing.', 
 'Please write in the missing letters to complete the words.',
 'You will have 5 minutes for each text.',
-'Please click Continue to see the first text.'] 
+'Please click Continue to see the first text.'],
+show_clickable_nav: true
 }
 
 timeline.push(c_test_instructions);
@@ -283,7 +284,7 @@ choices: ['Continue']
 
 {type: jsPsychCloze,
 text: jsPsych.timelineVariable('c_text'),
-//trial_duration: 10000,
+trial_duration: 10000,
 },
 
 {type: jsPsychHtmlKeyboardResponse,
