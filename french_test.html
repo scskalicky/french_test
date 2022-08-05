@@ -282,14 +282,14 @@ choices: ['Continue']
 },
 
 {type: jsPsychCloze,
-text: '[FRENCH CHARACTERS FOR USE HERE] <br><br><br> Hier, no%% avons pré%% un gr%% gâteau a%% chocolat.',
+text: jsPsych.timelineVariable('c_text'),
 trial_duration: 2000,
 },
 
 {type: jsPsychHtmlKeyboardResponse,
 stimulus: 'next',
 choices: [' ']}
-]
+], timeline_variables: c_test_stim
 }
 
 timeline.push(c_test_trials);
