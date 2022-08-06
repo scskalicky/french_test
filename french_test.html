@@ -74,7 +74,10 @@ const record_response_button = {
 var preload = {
     type: jsPsychPreload,
     auto_preload: true,
-    images: ['image/park1.jpg', 'image/park2.jpg', 'image/sixpanel1.jpg']
+    images: ['image/park1.jpg', 
+    'image/park2.jpg', 
+    'image/sixpanel1.jpg',
+    'image/sixpanel2.jpg']
 }
 
 timeline.push(preload)
@@ -161,9 +164,11 @@ const record_answer_SC = {
 
 
 const sc_stimuli = [
-  {image: 'image/sixpanel1.jpg', 
-  data: {stim_id: 'park1'}},
+  {image: 'image/sixpanel2.jpg', 
+  data: {stim_id: 'sixpanel2'}},
 
+  {image: 'image/sixpanel1.jpg', 
+  data: {stim_id: 'sixpanel1'}},
 
   {image: 'image/park1.jpg', 
   data: {stim_id: 'park1'}},
