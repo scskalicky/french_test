@@ -74,7 +74,7 @@ const record_response_button = {
 var preload = {
     type: jsPsychPreload,
     auto_preload: true,
-    images: ['image/park1.jpg', 'image/park2.jpg']
+    images: ['image/park1.jpg', 'image/park2.jpg', 'image/sixpanel1.jpg']
 }
 
 timeline.push(preload)
@@ -161,6 +161,10 @@ const record_answer_SC = {
 
 
 const sc_stimuli = [
+  {image: 'image/sixpanel1.jpg', 
+  data: {stim_id: 'park1'}},
+
+
   {image: 'image/park1.jpg', 
   data: {stim_id: 'park1'}},
 
@@ -185,8 +189,6 @@ var story_completion_trials = {
     {type: jsPsychImageButtonResponse,
       stimulus: jsPsych.timelineVariable('image'),
       trial_duration: 10000,
-      stimulus_height: 600,
-      stimulus_width: 800,
       data: jsPsych.timelineVariable('data'),
       choices: ["I'm Ready"]
     },
