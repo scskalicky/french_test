@@ -161,35 +161,35 @@ const record_answer_SC = {
       console.log(jsPsych.data.get().last(3).values()[0].stimulus.substring(6))
 }}
 
+/* Story Completion Part 1 - single image of a part
+- 30 seconds to prepare
+- 2 minutes for response
+*/
 
-
-const sc_stimuli = [
-  {image: 'image/sixpanel2.jpg', 
-  data: {stim_id: 'sixpanel2'}},
-
-  {image: 'image/sixpanel1.jpg', 
-  data: {stim_id: 'sixpanel1'}},
-
+const sc_stimuli_p1 = [
   {image: 'image/park1.jpg', 
   data: {stim_id: 'park1'}},
-
   {image: 'image/park2.jpg', 
-  data: {stim_id: 'park2'}}
-]
+  data: {stim_id: 'park2'}}]
 
-var story_completion_instructions = {
+
+var story_completion_instructions_p1 = {
   type: jsPsychInstructions,
-  pages: ['instructions for story completion task'],
+  pages: ['On the next screen you will see an image depicting a scene.',
+'Your task is to describe what you see in the picture.',
+'Provide as many details as you can to describe the picture as best you can.',
+'You will have 30 seconds to study the image and prepare your response.',
+'You will then have 2 minutes to make your response.'],
   show_clickable_nav: true
 }
 
-timeline.push(story_completion_instructions)
+timeline.push(story_completion_instructions_p1)
 
-var story_completion_trials = {
+var story_completion_trials_p1 = {
   timeline: [
     {type: jsPsychHtmlButtonResponse,
-    stimulus: 'You will have two minutes to prepare',
-    choices: ["See Next Picture"]},
+    stimulus: 'Once you click this button, you will have 30 seconds to study the picture and prepare your response',
+    choices: ["See Picture"]},
 
     {type: jsPsychImageButtonResponse,
       stimulus: jsPsych.timelineVariable('image'),
@@ -206,12 +206,59 @@ var story_completion_trials = {
     // defined above
     record_answer_SC
 
-  ], timeline_variables: sc_stimuli
+  ], timeline_variables: sc_stimuli_p1
 }
 
-timeline.push(story_completion_trials)
+timeline.push(story_completion_trials_p1)
 
-// todo
+const sc_stimuli_p2 = [
+{image: 'image/sixpanel1.jpg', 
+  data: {stim_id: 'sixpanel1'}},
+
+  {image: 'image/sixpanel2.jpg', 
+  data: {stim_id: 'sixpanel2'}}
+]
+
+var story_completion_instructions_p2 = {
+  type: jsPsychInstructions,
+  pages: ['On the next screen you will see six images as part of a story.',
+          'Your task is to describe what is happening in each box.',
+          'Provide as many details as possible to make the story interesting.',
+          'You will have 30 seconds to study the image plan your story. Then you will have 2 minutes to speak your response.',
+          'Be sure to tell us your story with as many interesting details as you can.',
+          'If you forget some words, you can use English',
+],
+  show_clickable_nav: true
+}
+
+timeline.push(story_completion_instructions_p2)
+
+var story_completion_trials_p2 = {
+  timeline: [
+    {type: jsPsychHtmlButtonResponse,
+    stimulus: 'Once you click this button, you will have 30 seconds to study the picture and prepare your response',
+    choices: ["See Picture"]},
+
+    {type: jsPsychImageButtonResponse,
+      stimulus: jsPsych.timelineVariable('image'),
+      trial_duration: 10000,
+      stimulus_height: 800,
+      stimmulus_width: 600,
+      data: jsPsych.timelineVariable('data'),
+      choices: ["I'm Ready"]
+    },
+    
+    // defined above
+    record_response_button,
+
+    // defined above
+    record_answer_SC
+
+  ], timeline_variables: sc_stimuli_p2
+}
+
+timeline.push(story_completion_trials_p2)
+
 
 /***** COMMUNICATIVE ADEQUACY BLOCK *********
 These questions involve participants listening and responding to a sustained simulated conversation. They will listen to the recording and then be asked to record their response. They will only be able to listen to each turn once. 
