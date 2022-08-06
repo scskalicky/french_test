@@ -61,6 +61,32 @@
 
 const timeline = []
 
+/*
+Trials for recording audio. Might need to make separate ones for story completion and CA. Or adjust the stimuli substring to be appropriate.
+*/
+const record_response_button = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '',
+  choices: ['RECORD RESPONSE']
+};
+
+const record_answer = {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: 'RECORDING...',
+    recording_duration: 5000,
+    show_done_button: true,
+    done_button_label: "Finish Recording",
+    // save audio
+    on_finish: function(data){
+        //subject name
+      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+      // audio file name
+      jsPsych.data.get().last(3).values()[0].stimulus.substring(6), 
+      // current js data object
+      data)
+}}
+
+
 var preload = {
     type: jsPsychPreload,
     auto_preload: true
@@ -129,9 +155,39 @@ const recording_passed = {
 These questions involve participants looking at a series of images with which they will base a story. The images will be displayed for a fixed period of time (30 seconds), after which participants will have 2 minutes to orally tell their story based on the pictures. 
 */
 
-/***** STORY COMPLETION BLOCK *********
-These questions involve participants looking at a series of images with which they will base a story. The images will be displayed for a fixed period of time (30 seconds), after which participants will have 2 minutes to orally tell their story based on the pictures. 
-*/
+var sc_stimuli = [
+  {image: 'image/at_the_park1.png', data: {stim_id: 'park1'},
+  image: 'image/at_the_park2.png', data: {stim_id: 'park2'}}
+]
+
+
+var story_completion_instructions = {
+  type: jsPsychInstructions,
+  pages: ['instructions for story completion task'],
+  show_clickable_nav: true
+}
+
+timeline.push(story_completion_instructions)
+
+var story_completion_trials = {
+  timeline: [
+    {type: jsPsychHtmlButtonResponse,
+    choices: ["See Next Picture"]},
+
+    {type: jsPsychImageButtonResponse,
+      trial_duration: 5000,
+      stimulus: jsPsych.timelineVariable('image'),
+      data: jsPsych.timelineVariable('data')
+    },
+    
+    // defined above
+    record_response_button,
+
+    // defined above
+    record_answer
+
+  ], timeline_variables: sc_stimuli
+}
 
 // todo
 
@@ -178,27 +234,9 @@ const play_audio_button = {
     choices: ['PLAY AUDIO']
 };
 
-const record_response_button = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: '',
-  choices: ['RECORD RESPONSE']
-};
 
-const record_answer = {
-    type: jsPsychHtmlAudioResponse,
-    stimulus: 'RECORDING...',
-    recording_duration: 5000,
-    show_done_button: true,
-    done_button_label: "Finish Recording",
-    // save audio
-    on_finish: function(data){
-        //subject name
-      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
-      // audio file name
-      jsPsych.data.get().last(3).values()[0].stimulus.substring(6), 
-      // current js data object
-      data)
-}}
+
+
 
 const conversations = {
   timeline: [
