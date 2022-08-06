@@ -181,8 +181,8 @@ var story_completion_instructions_p1 = {
   pages: ['On the next screen you will see an image depicting a scene.',
 'Your task is to describe what you see in the picture.',
 'Provide as many details as you can to describe the picture as best you can.',
-'You will have 30 seconds to study the image and prepare your response.',
-'You will then have 2 minutes to make your response.'],
+'You will have 30 seconds to study the images and plan your story. Then you will have 2 minutes to speak your response.',
+'If you forget some words, you can use English.'],
   show_clickable_nav: true
 }
 
@@ -233,9 +233,9 @@ var story_completion_instructions_p2 = {
   pages: ['On the next screen you will see six images as part of a story.',
           'Your task is to describe what is happening in each box.',
           'Provide as many details as possible to make the story interesting.',
-          'You will have 30 seconds to study the image plan your story. Then you will have 2 minutes to speak your response.',
+          'You will have 30 seconds to study the images and plan your story. Then you will have 2 minutes to speak your response.',
           'Be sure to tell us your story with as many interesting details as you can.',
-          'If you forget some words, you can use English',
+          'If you forget some words, you can use English.',
 ],
   show_clickable_nav: true
 }
@@ -287,14 +287,14 @@ var story_completion_instructions_p3 = {
   pages: ['On the next screen you will see an image which tells the story of the child Max.',
         'Study the picture and imagine a) what happened <b>before</b>, b) what is happening <b>now</b>, and c) what <b>will</b> happen.',
         'Your task is to tell Max\'s story.',
-        'You will have 30 seconds to study the image plan your story. Then you will have 2 minutes to speak your response.',
+        'You will have 30 seconds to study the image and plan your story. Then you will have 2 minutes to speak your response.',
         ' Begin by saying the title and tell us your story with as many interesting details as you can.',
-        'If you forget some words, you can use English',
+        'If you forget some words, you can use English.',
 ],
   show_clickable_nav: true
 }
 
-timeline.push(story_completion_instructions_p3);
+//timeline.push(story_completion_instructions_p3);
 
 var story_completion_trials_p3 = {
   timeline: [
@@ -320,10 +320,58 @@ var story_completion_trials_p3 = {
   ], timeline_variables: sc_stimuli_p3
 }
 
-timeline.push(story_completion_trials_p3)
+//timeline.push(story_completion_trials_p3)
 
+/* Story Completion Part 4 - unrelated picture story.
+- 60 seconds to prepare
+- 2 minutes for response
+- size images to be w600xh800
+- is there only one image? Will we just re-use the same img? 
+*/
 
+const sc_stimuli_p4 = [
+{image: 'image/unrelated.jpg', 
+  data: {stim_id: 'unrelated'}},
+]
 
+var story_completion_instructions_p4 = {
+  type: jsPsychInstructions,
+  pages: ['On the next screen you will see six pictures of different things.',
+        'Your task is to narrate a story which includes all the elements depicted by the pictures.',
+        'You must use all of the pictures that you see, but you can also add extra information.',
+        'You will have 60 seconds to study the pictures. Then you will have 2 minutes to speak your response.',
+        'If you forget some words, you can use English.',
+],
+  show_clickable_nav: true
+}
+
+timeline.push(story_completion_instructions_p4);
+
+var story_completion_trials_p4 = {
+  timeline: [
+    {type: jsPsychHtmlButtonResponse,
+    stimulus: 'Once you click this button, you will have 60 seconds to study the picture and prepare your response',
+    choices: ["See Picture"]},
+
+    {type: jsPsychImageButtonResponse,
+      stimulus: jsPsych.timelineVariable('image'),
+      trial_duration: 10000,
+      stimulus_height: 800,
+      stimulus_width: 600,
+      data: jsPsych.timelineVariable('data'),
+      choices: ["I'm Ready"]
+    },
+    
+    // defined above
+    record_response_button,
+
+    // defined above
+    record_answer_SC
+
+  ], timeline_variables: sc_stimuli_p4
+}
+
+timeline.push(story_completion_trials_p4)
 
 
 
