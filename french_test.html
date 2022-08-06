@@ -190,6 +190,8 @@ var story_completion_trials = {
   ], timeline_variables: sc_stimuli
 }
 
+timeline.push(story_completion_trials)
+
 // todo
 
 /***** COMMUNICATIVE ADEQUACY BLOCK *********
@@ -234,9 +236,6 @@ const play_audio_button = {
     stimulus: '',
     choices: ['PLAY AUDIO']
 };
-
-
-
 
 
 const conversations = {
@@ -322,7 +321,7 @@ var c_test_instructions = {
 show_clickable_nav: true
 }
 
-timeline.push(c_test_instructions);
+//timeline.push(c_test_instructions);
 //https://github.com/jspsych/jsPsych/discussions/2543
 
 
@@ -345,7 +344,7 @@ choices: [' ']}
 ], timeline_variables: c_test_stim
 }
 
-timeline.push(c_test_trials);
+//timeline.push(c_test_trials);
 
 
 
