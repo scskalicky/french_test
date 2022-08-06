@@ -161,9 +161,10 @@ const record_answer_SC = {
       console.log(jsPsych.data.get().last(3).values()[0].stimulus.substring(6))
 }}
 
-/* Story Completion Part 1 - single image of a part
+/* Story Completion Part 1 - single image of a park
 - 30 seconds to prepare
 - 2 minutes for response
+- size images to be w800xh600
 */
 
 const sc_stimuli_p1 = [
@@ -219,6 +220,12 @@ const sc_stimuli_p2 = [
   data: {stim_id: 'sixpanel2'}}
 ]
 
+/* Story Completion Part 2 - six-panel images making a story
+- 30 seconds to prepare
+- 2 minutes for response
+- size images to be w600xh800
+*/
+
 var story_completion_instructions_p2 = {
   type: jsPsychInstructions,
   pages: ['On the next screen you will see six images as part of a story.',
@@ -258,6 +265,65 @@ var story_completion_trials_p2 = {
 }
 
 timeline.push(story_completion_trials_p2)
+
+/* Story Completion Part 3 - story of Max: before, now, and after.
+- 30 seconds to prepare
+- 2 minutes for response
+- size images to be w600xh800
+*/
+
+const sc_stimuli_p3 = [
+{image: 'image/max1.jpg', 
+  data: {stim_id: 'max1'}},
+
+  {image: 'image/max2.jpg', 
+  data: {stim_id: 'max2'}}
+]
+
+var story_completion_instructions_p3 = {
+  type: jsPsychInstructions,
+  pages: ['On the next screen you will see an image which tells the story of the child Max.',
+        'Study the picture and imagine a) what happened <b>before</b>, b) what is happening <b>now</b>, and c) what <b>will</b> happen.',
+        'Your task is to tell Max\'s story.',
+        'You will have 30 seconds to study the image plan your story. Then you will have 2 minutes to speak your response.',
+        ' Begin by saying the title and tell us your story with as many interesting details as you can.',
+        'If you forget some words, you can use English',
+],
+  show_clickable_nav: true
+}
+
+timeline.push(story_completion_instructions_p3);
+
+var story_completion_trials_p3 = {
+  timeline: [
+    {type: jsPsychHtmlButtonResponse,
+    stimulus: 'Once you click this button, you will have 30 seconds to study the picture and prepare your response',
+    choices: ["See Picture"]},
+
+    {type: jsPsychImageButtonResponse,
+      stimulus: jsPsych.timelineVariable('image'),
+      trial_duration: 10000,
+      stimulus_height: 800,
+      stimulus_width: 600,
+      data: jsPsych.timelineVariable('data'),
+      choices: ["I'm Ready"]
+    },
+    
+    // defined above
+    record_response_button,
+
+    // defined above
+    record_answer_SC
+
+  ], timeline_variables: sc_stimuli_p3
+}
+
+timeline.push(story_completion_trials_p3)
+
+
+
+
+
 
 
 /***** COMMUNICATIVE ADEQUACY BLOCK *********
