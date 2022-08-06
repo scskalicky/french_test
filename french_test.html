@@ -71,21 +71,7 @@ const record_response_button = {
   choices: ['RECORD RESPONSE']
 };
 
-const record_answer = {
-    type: jsPsychHtmlAudioResponse,
-    stimulus: 'RECORDING...',
-    recording_duration: 5000,
-    show_done_button: true,
-    done_button_label: "Finish Recording",
-    // save audio
-    on_finish: function(data){
-        //subject name
-      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
-      // audio file name
-      jsPsych.data.get().last(3).values()[0].stimulus.substring(6), 
-      // current js data object
-      data)
-}}
+
 
 
 var preload = {
@@ -156,6 +142,26 @@ const recording_passed = {
 These questions involve participants looking at a series of images with which they will base a story. The images will be displayed for a fixed period of time (30 seconds), after which participants will have 2 minutes to orally tell their story based on the pictures. 
 */
 
+// record answer trial for story completion trials
+const record_answer_SC = {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: 'RECORDING...',
+    recording_duration: 5000,
+    show_done_button: true,
+    done_button_label: "Finish Recording",
+    // save audio
+    on_finish: function(data){
+        //subject name
+      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+      // audio file name
+      jsPsych.data.get().last(3).values()[0].stimulus.substring(6), 
+      // current js data object
+      data),
+      console.log(jsPsych.data.get().last(3).values()[0].stimulus.substring(6))
+}}
+
+
+
 const sc_stimuli = [
   {image: 'image/at_the_park1.png', 
   data: {stim_id: 'park1'}},
@@ -189,7 +195,7 @@ var story_completion_trials = {
     record_response_button,
 
     // defined above
-    record_answer
+    record_answer_SC
 
   ], timeline_variables: sc_stimuli
 }
@@ -204,6 +210,24 @@ These questions involve participants listening and responding to a sustained sim
 - do we need a practice session? or at least one practice item to start? 
 
 */
+
+// record answer trial for CA trials
+const record_answer_CA = {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: 'RECORDING...',
+    recording_duration: 5000,
+    show_done_button: true,
+    done_button_label: "Finish Recording",
+    // save audio
+    on_finish: function(data){
+        //subject name
+      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+      // audio file name
+      jsPsych.data.get().last(3).values()[0].stimulus.substring(6), 
+      // current js data object
+      data)
+}}
+
 
 var ca_stim = [
     {turn1: 'audio/fiona1.mp3', 
@@ -241,7 +265,6 @@ const play_audio_button = {
     choices: ['PLAY AUDIO']
 };
 
-
 const conversations = {
   timeline: [
   {type: jsPsychHtmlButtonResponse,
@@ -258,7 +281,7 @@ const conversations = {
     
   record_response_button,
 
-  record_answer,
+  record_answer_CA,
     
   play_audio_button,
 
@@ -270,7 +293,7 @@ const conversations = {
 
   record_response_button,
 
-  record_answer,
+  record_answer_CA,
 
   play_audio_button,
 
@@ -282,7 +305,7 @@ const conversations = {
     
   record_response_button,
 
-  record_answer,
+  record_answer_CA,
 
   {type: jsPsychHtmlKeyboardResponse,
   stimulus: "LOADING NEXT ITEM...",
