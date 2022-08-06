@@ -29,6 +29,7 @@
   <script src = "jspsych/plugin-audio-keyboard-response.js"></script>
   <script src = "jspsych/plugin-html-button-response.js"></script>
   <script src = "jspsych/plugin-image-button-response.js"></script>
+  <script src = "jspsych/plugin-survey-multi-select.js"></script>
   <script src = "jspsych/plugin-instructions.js"></script>
   <script src = "jspsych/plugin-cloze19.js"></script>
   <script src = "jspsych/plugin-survey-text.js"></script>
@@ -485,20 +486,70 @@ const conversations = {
   choices: "NO_KEYS"
   }
   
-
  ], timeline_variables: baf_stim}
 
- //timeline.push(conversations)
+//timeline.push(conversations)
 
 
 /***** LISTENING COMPREHENSION BLOCK *********
 Participants will listen to a audio dialogues in French. After the dialogues they will answer different questions:
-1. Choosing from 2 English dialogues: one dialogue is the translated version, whereas the other is not. 
+1. Listen to a dialoge and indicate which pictures each line of the dialogue corresponds to (how to do this???) 
 2. Choosing from two pictures: one picture represents information from the dialogue, and one does not. 
 3. Listen to a short dialogue (twice), and then respond to written comprehension questions orally using French. There is a 30-sec
 */
 
-//todo
+var lc_stim_1 = [
+  {dialogue: 'audio/fiona.mp3', data:{stim_id: 'dialogue1'}}
+]
+
+var lc_instructions_1 = {
+  type: jsPsychInstructions,
+  pages: ['For this question you will listen to a short dialogue.',
+'After you hear the dialogue, you will indicate which line of the dialogue corresponds to different pictures.',
+'One picture will not correspond to a line - you should choose "None" for this picture.']
+}
+
+timeline.push(lc_instructions_1)
+
+var lc_trials_1 = [
+
+  play_audio_button,
+ 
+  {type: jsPsychAudioKeyboardResponse,
+  stimulus: jsPsych.timelineVariable('dialogue'),
+  data: jsPsych.timelineVariable("data"),
+  choices: 'NO_KEYS',
+  trial_ends_after_audio: true},
+
+  {type: jsPsychSurveyMultiSelect,
+  data:jsPsych.timelineVariable('data'),
+  preamble: 'want image here',
+  
+  questions: [
+  {prompt: 'Which line from the dialogue corresponds to Image 1?',
+  options: ['A', 'B', 'C', 'None'],
+  name: 'Image 1'
+  },
+  {prompt: 'Which line from the dialogue corresponds to Image 2?',
+  options: ['A', 'B', 'C', 'None'],
+  name: 'Image 2'
+  },
+  {prompt: 'Which line from the dialogue corresponds to Image 3?',
+  options: ['A', 'B', 'C', 'None'],
+  name: 'Image 3'
+  },
+  {prompt: 'Which line from the dialogue corresponds to Image 3?',
+  options: ['A', 'B', 'C', 'None'],
+  name: 'Image 4'
+  }]
+}
+]
+
+timeline.push(lc_trials_1)
+
+
+
+
 
 /***** C-TEST *********
 Participants will read three short texts. Each text will have some words missing parts of the word. Participants must type in letters in order to provide correct words. 
