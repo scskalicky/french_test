@@ -185,7 +185,7 @@ var story_completion_instructions_p1 = {
   show_clickable_nav: true
 }
 
-timeline.push(story_completion_instructions_p1)
+//timeline.push(story_completion_instructions_p1)
 
 var story_completion_trials_p1 = {
   timeline: [
@@ -211,7 +211,7 @@ var story_completion_trials_p1 = {
   ], timeline_variables: sc_stimuli_p1
 }
 
-timeline.push(story_completion_trials_p1)
+//timeline.push(story_completion_trials_p1)
 
 const sc_stimuli_p2 = [
 {image: 'image/sixpanel1.jpg', 
@@ -239,7 +239,7 @@ var story_completion_instructions_p2 = {
   show_clickable_nav: true
 }
 
-timeline.push(story_completion_instructions_p2)
+//timeline.push(story_completion_instructions_p2)
 
 var story_completion_trials_p2 = {
   timeline: [
@@ -265,12 +265,12 @@ var story_completion_trials_p2 = {
   ], timeline_variables: sc_stimuli_p2
 }
 
-timeline.push(story_completion_trials_p2)
+//timeline.push(story_completion_trials_p2)
 
 /* Story Completion Part 3 - story of Max: before, now, and after.
 - 30 seconds to prepare
 - 2 minutes for response
-- size images to be w600xh800
+- size images to be w800xh600
 */
 
 const sc_stimuli_p3 = [
@@ -304,8 +304,8 @@ var story_completion_trials_p3 = {
     {type: jsPsychImageButtonResponse,
       stimulus: jsPsych.timelineVariable('image'),
       trial_duration: 10000,
-      stimulus_height: 800,
-      stimulus_width: 600,
+      stimulus_height: 600,
+      stimulus_width: 800,
       data: jsPsych.timelineVariable('data'),
       choices: ["I'm Ready"]
     },
