@@ -181,8 +181,8 @@ var story_completion_trials = {
     choices: ["See Next Picture"]},
 
     {type: jsPsychImageButtonResponse,
+      stimulus: jsPsych.timelineVariable('image', true),
       trial_duration: 5000,
-      stimulus: jsPsych.timelineVariable('image'),
       data: jsPsych.timelineVariable('data')
     },
     
