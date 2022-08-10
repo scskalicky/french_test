@@ -600,7 +600,7 @@ var lc_trial_2 = {
  {type: jsPsychHtmlButtonResponse,
   on_start: function(trial){
      // glue some HTML to the top of the picture.
-    trial.stimulus = "Second Listening<br><br><img src = ".concat(jsPsych.timelineVariable('image')).concat(">")},
+    trial.stimulus = "<img src = ".concat(jsPsych.timelineVariable('image')).concat(">")},
   data: jsPsych.timelineVariable("data"),
   //stimulus: "<imc src =".concat(jsPsych.timelineVariable('image')).concat('>'),
   prompt: "Which image corresponds to the dialogue you just heard?",
