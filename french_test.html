@@ -599,7 +599,7 @@ var lc_trial_2 = {
   // participant response
  {type: jsPsychHtmlButtonResponse,
 data: jsPsych.timelineVariable("data"),
-stimulus: jsPsych.timelineVariable('image'),
+stimulus: "<imc src =".concat(jsPsych.timelineVariable('image')).concat('>'),
 prompt: "Which image corresponds to the dialogue you just heard?",
 choices: ['Image A', 'Image B']}
 
