@@ -572,10 +572,13 @@ var lc_trial_2 = {
   timeline: [
   
   {type: jsPsychAudioKeyboardResponse,
+  on_start: function(trial){
+    trial.prompt = "First Listening<br><br><img src = ".concat(jsPsych.timelineVariable('image')).concat(">")
+  },
   stimulus: jsPsych.timelineVariable('message'),
   data: jsPsych.timelineVariable("data"),
   choices: 'NO_KEYS',
-  prompt: 'First Listening<br><br>'.concat(jsPsych.timelineVariable('image')),
+  //prompt: 'First Listening<br><br>'.concat(jsPsych.timelineVariable('image')),
   trial_ends_after_audio: true}
 
   ], timeline_variables: lc_stim_2
