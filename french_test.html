@@ -575,10 +575,16 @@ var lc_trial_2 = {
 
 
   // first listening
+  {type: jsPsychHtmlKeyboardResponse,
+  stimulus: 'First Listening',
+choice: 'NO_KEYS', 
+trial_duration: 1000},
+  
+  
   {type: jsPsychAudioKeyboardResponse,
   on_start: function(trial){
     // glue some HTML to the top of the picture.
-    trial.prompt = "First Listening<br><br><img src = ".concat(jsPsych.timelineVariable('image')).concat(">")
+    trial.prompt = "<img src = ".concat(jsPsych.timelineVariable('image')).concat(">")
   },
   stimulus: jsPsych.timelineVariable('message'),
   data: jsPsych.timelineVariable("data"),
@@ -594,7 +600,7 @@ trial_duration: 1000},
   {type: jsPsychAudioKeyboardResponse,
   on_start: function(trial){
      // glue some HTML to the top of the picture.
-    trial.prompt = "Second Listening<br><br><img src = ".concat(jsPsych.timelineVariable('image')).concat(">")
+    trial.prompt = "<img src = ".concat(jsPsych.timelineVariable('image')).concat(">")
   },
   stimulus: jsPsych.timelineVariable('message'),
   data: jsPsych.timelineVariable("data"),
