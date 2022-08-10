@@ -73,13 +73,14 @@ const record_response_button = {
     stimulus: '',
   choices: ['RECORD RESPONSE']
 };
-
+/*
 var preload = {
     type: jsPsychPreload,
     auto_preload: true,
     images: ['image/park1.jpg', 'image/park2.jpg', 'image/sixpanel1.jpg', 'image/sixpanel2.jpg', 'image/max1.jpg',
 'image/max2.jpg','image/LC1_A.png', 'image/LC1_B.png','image/LC1_C.png','image/LC1_D.png','image/m1_img.jpg','image/m2_img.jpg']
 }
+*/
 
 timeline.push(preload)
 
@@ -490,7 +491,7 @@ const conversations = {
 
 /***** LISTENING COMPREHENSION BLOCK *********
 Participants will listen to a audio dialogues in French. After the dialogues they will answer different questions:
-1. Listen to a dialoge and indicate which pictures each line of the dialogue corresponds to (how to do this???) 
+1. Listen to a dialogue and indicate which pictures each line of the dialogue corresponds to (how to do this???) 
 2. Choosing from two pictures: one picture represents information from the dialogue, and one does not. 
 3. Listen to a short dialogue (twice), and then respond to written comprehension questions orally using French. There is a 30-sec
 */
@@ -498,6 +499,15 @@ Participants will listen to a audio dialogues in French. After the dialogues the
 var lc_stim_1 = [
   {dialogue: 'audio/fiona1.mp3', data:{stim_id: 'dialogue1'}}
 ]
+
+var lc_stim_1_images = ['image/LC1_A.png','image/LC1_B.png','image/LC1_C.png','image/LC1_D.png']
+var lc_stim_1_audio = ['audio/fiona.mp3']
+
+var preload_lc_1 = {
+  type: jsPsychPreload,
+  images:lc_stim1_images,
+  audio: lc_stim_1_audio
+}
 
 var lc_instructions_1 = {
   type: jsPsychInstructions,
