@@ -77,18 +77,8 @@ const record_response_button = {
 var preload = {
     type: jsPsychPreload,
     auto_preload: true,
-    images: ['image/park1.jpg', 
-    'image/park2.jpg', 
-    'image/sixpanel1.jpg',
-    'image/sixpanel2.jpg',
-    'image/max1.jpg',
-'image/max2.jpg',
-'image/LC1_A.png',
-'image/LC1_B.png',
-'image/LC1_C.png',
-'image/LC1_D.png',
-'image/m1_img.jpg',
-'image/m2_img.jpg']
+    images: ['image/park1.jpg', 'image/park2.jpg', 'image/sixpanel1.jpg', 'image/sixpanel2.jpg', 'image/max1.jpg',
+'image/max2.jpg','image/LC1_A.png', 'image/LC1_B.png','image/LC1_C.png','image/LC1_D.png','image/m1_img.jpg','image/m2_img.jpg']
 }
 
 timeline.push(preload)
@@ -573,6 +563,18 @@ timeline.push(lc_instructions_2)
 
 var lc_trial_2 = {
   timeline: [
+
+
+  // participant response
+  
+  {type: jsPsychAudioButtonResponse,
+  stimulus: jsPsych.timelineVariable('message'),
+  on_start: function(trial){
+    // glue some HTML to the top of the picture.
+    trial.prompt = "Which image corresponds to the message?<br><img src = ".concat(jsPsych.timelineVariable('image')).concat(">")},
+  //prompt: "Which image corresponds to the dialogue you just heard?",
+  data: jsPsych.timelineVariable("data"),  
+  choices: ['Image A', 'Image B']},
 
   // first listening
   {type: jsPsychHtmlKeyboardResponse,
