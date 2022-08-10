@@ -300,7 +300,7 @@ var story_completion_instructions_p3 = {
   show_clickable_nav: true
 }
 
-timeline.push(story_completion_instructions_p3);
+//timeline.push(story_completion_instructions_p3);
 
 var story_completion_trials_p3 = {
   timeline: [
@@ -326,7 +326,7 @@ var story_completion_trials_p3 = {
   ], timeline_variables: sc_stimuli_p3
 }
 
-timeline.push(story_completion_trials_p3)
+//timeline.push(story_completion_trials_p3)
 
 /* Story Completion Part 4 - unrelated picture story.
 - 60 seconds to prepare
@@ -508,9 +508,12 @@ var lc_stim_1 = [
 
 var lc_instructions_1 = {
   type: jsPsychInstructions,
-  pages: ['For this question you will listen to a short dialogue.',
-'After you hear the dialogue, you will indicate which line of the dialogue corresponds to different pictures.',
-'One picture will not correspond to a line - you should choose "None" for this picture.'],
+  pages: ['For this question you will hear <b>two</b> different dialogues, two times each.',
+  'You will also be shown four images.',
+  'Your task is to select which image corresponds to the dialogue.',
+  'One image corresponds to the first dialogue, and another image corresponds to the second dialogue.',
+  'Two images do not correspond to either dialogue.',
+  'Indicate you answer by clicking on the corresponding button under the image.'],
 show_clickable_nav: true,
 }
 
@@ -522,10 +525,20 @@ var lc_trials_1 = {
 
   play_audio_button,
  
+  // play audio once
   {type: jsPsychAudioKeyboardResponse,
   stimulus: jsPsych.timelineVariable('dialogue'),
   data: jsPsych.timelineVariable("data"),
   choices: 'NO_KEYS',
+  prompt: 'First Listening <br><br><img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
+  trial_ends_after_audio: true},
+  
+  // play audio twice
+  {type: jsPsychAudioKeyboardResponse,
+  stimulus: jsPsych.timelineVariable('dialogue'),
+  data: jsPsych.timelineVariable("data"),
+  choices: 'NO_KEYS',
+  prompt: 'First Listening',
   trial_ends_after_audio: true},
   
   {type: jsPsychSurveyHtmlForm,
