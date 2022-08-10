@@ -517,7 +517,7 @@ var lc_instructions_1 = {
 show_clickable_nav: true,
 }
 
-timeline.push(lc_instructions_1)
+//timeline.push(lc_instructions_1)
 
 
 var lc_trials_1 = {
@@ -542,65 +542,48 @@ var lc_trials_1 = {
   trial_ends_after_audio: true},
   
 {type: jsPsychHtmlButtonResponse,
+data: jsPsych.timelineVariable("data"),
 stimulus: '<img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
-prompt: "Which image corresponds to the dialoge you just heard?",
-choices: ['Image A', 'Image B', 'Image C', 'Image D']
-},
+prompt: "Which image corresponds to the dialogue you just heard?",
+choices: ['Image A', 'Image B', 'Image C', 'Image D']}
+]}
 
+//timeline.push(lc_trials_1)
 
-  {type: jsPsychSurveyHtmlForm,
-  preamble: 'Indicate the correct dialogue for each picture',
-  html: '<p><img src = "image/LC1_A.png" width = "200" height = "200"><br><input type = "radio" id = "D1" name = "LC1A" value = "D1"><label for = "D1">Dialogue 1</label><input type = "radio" id = "D2" name = "LC1A" value = "D2"><label for = "D2">Dialogue 2</label><input type = "radio" id = "Neither" name = "LC1A" value = "Neither"><label for = "Neither">Neither</label><img src = "image/LC1_B.png" width = "200" height = "200"><br><input type = "radio" id = "D1" name = "LC1B" value = "D1"><label for = "D1">Dialogue 1</label><input type = "radio" id = "D2" name = "LC1B" value = "D2"><label for = "D2">Dialogue 2</label><input type = "radio" id = "Neither" name = "LC1B" value = "Neither"><label for = "Neither">Neither</label><br><img src = "image/LC1_C.png" width = "200" height = "200"><br><input type = "radio" id = "D1" name = "LC1C" value = "D1"><label for = "D1">Dialogue 1</label><input type = "radio" id = "D2" name = "LC1C" value = "D2"><label for = "D2">Dialogue 2</label><input type = "radio" id = "Neither" name = "LC1C" value = "Neither"><label for = "Neither">Neither</label><br><img src = "image/LC1_D.png" width = "200" height = "200"><br><input type = "radio" id = "D1" name = "LC1D" value = "D1"><label for = "D1">Dialogue 1</label><input type = "radio" id = "D2" name = "LC1D" value = "D2"><label for = "D2">Dialogue 2</label><input type = "radio" id = "Neither" name = "LC1D" value = "Neither"><label for = "Neither">Neither</label></p>'}  
-], timeline_variables: lc_stim_1
+var lc_stim_2 = [
+  {message: 'audio/fiona1.mp3', image: 'image/m1_img.png', data:{stim_id: 'message1'},
+  message: 'audio/torin1.mp3', image: 'image/m2_img.png', data:{stim_id: 'message2'}
 }
+]
+
+var lc_instructions_2 = {
+  type: jsPsychInstructions,
+  pages: ['For this question you will hear a short message from a person.',
+  'You will also be shown two images.',
+  'Your task is to select which image corresponds to the speaker of the message.',
+  'You will listen to the message twice before making your answer.',
+  'Indicate you answer by clicking on the corresponding button under the image.'],
+show_clickable_nav: true,
+}
+timeline.push(lc_instructions_2)
 
 
-
-/*
-var lc_trials_1 = {
+var lc_trial_2 = {
   timeline: [
-
-  play_audio_button,
- 
+  
   {type: jsPsychAudioKeyboardResponse,
-  stimulus: jsPsych.timelineVariable('dialogue'),
+  stimulus: jsPsych.timelineVariable('message'),
   data: jsPsych.timelineVariable("data"),
   choices: 'NO_KEYS',
-  trial_ends_after_audio: true},
+  prompt: 'First Listening'.concat(jsPsych.timelineVariable('image')),
+  trial_ends_after_audio: true}
 
-  {type: jsPsychSurveyMultiSelect,
-  data: jsPsych.timelineVariable('data'),
-  preamble: 'want image here',
-  
-  questions: [
-  {prompt: 'Which line from the dialogue corresponds to Image 1?',
-  options: ['A', 'B', 'C', 'None'],
-  horizontal: true,
-  required: true,
-  name: 'Image 1'
-  },
-  {prompt: 'Which line from the dialogue corresponds to Image 2?',
-  options: ['A', 'B', 'C', 'None'],
-  horizontal: true,
-  required: true,
-  name: 'Image 2'
-  },
-  {prompt: 'Which line from the dialogue corresponds to Image 3?',
-  options: ['A', 'B', 'C', 'None'],
-  horizontal: true,
-  required: true,
-  name: 'Image 3'
-  },
-  {prompt: 'Which line from the dialogue corresponds to Image 3?',
-  options: ['A', 'B', 'C', 'None'],
-  horizontal: true,
-  required: true,
-  name: 'Image 4'
-  }]}
-], timeline_variables: lc_stim_1
+  ]
 }
-*/
-timeline.push(lc_trials_1)
+
+timeline.push(lc_trial_2)
+
+
 
 
 /***** C-TEST *********
