@@ -529,6 +529,17 @@ var lc_trials_1 = {
   timeline: [
 
   play_audio_button,
+
+  {type: jsPsychAudioButtonResponse,
+  //  on_start: function(trial){
+     // trial.prompt = "<audio><source src = >".concat(jsPsych.timelineVariable('dialogue')).concat('></audio>')
+   // },
+  data: jsPsych.timelineVariable("data"),
+  prompt: '<img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
+  stimulus: jsPsych.timelineVariable('dialogue'),
+  //prompt: "Which image corresponds to the dialogue you just heard?",
+  response_allowed_while_playing: false,
+  choices: ['Image A', 'Image B', 'Image C', 'Image D']},
   
   {type: jsPsychHtmlButtonResponse,
     on_start: function(trial){
