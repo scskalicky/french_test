@@ -531,10 +531,8 @@ var lc_trials_1 = {
 
   play_audio_button,
 
+
   {type: jsPsychAudioButtonResponse,
-  //  on_start: function(trial){
-     // trial.prompt = "<audio><source src = >".concat(jsPsych.timelineVariable('dialogue')).concat('></audio>')
-   // },
   data: jsPsych.timelineVariable("data"),
   prompt: 'Which image best matches the dialogue?<br><img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
   stimulus: jsPsych.timelineVariable('dialogue'),
@@ -542,37 +540,7 @@ var lc_trials_1 = {
   response_allowed_while_playing: false,
   choices: ['Image A', 'Image B', 'Image C', 'Image D']},
   
-  {type: jsPsychHtmlButtonResponse,
-    on_start: function(trial){
-      trial.prompt = "<audio><source src = >".concat(jsPsych.timelineVariable('dialogue')).concat('></audio>')
-    },
-  data: jsPsych.timelineVariable("data"),
-  stimulus: '<img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
-//prompt: "Which image corresponds to the dialogue you just heard?",
-choices: ['Image A', 'Image B', 'Image C', 'Image D']},
-  
  
-  // play audio once
-  {type: jsPsychAudioKeyboardResponse,
-  stimulus: jsPsych.timelineVariable('dialogue'),
-  data: jsPsych.timelineVariable("data"),
-  choices: 'NO_KEYS',
-  prompt: 'First Listening <br><br><img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
-  trial_ends_after_audio: true},
-  
-  // play audio twice
- {type: jsPsychAudioKeyboardResponse,
-  stimulus: jsPsych.timelineVariable('dialogue'),
-  data: jsPsych.timelineVariable("data"),
-  choices: 'NO_KEYS',
-  prompt: 'Second Listening <br><br><img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
-  trial_ends_after_audio: true},
-  
-{type: jsPsychHtmlButtonResponse,
-data: jsPsych.timelineVariable("data"),
-stimulus: '<img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
-prompt: "Which image corresponds to the dialogue you just heard?",
-choices: ['Image A', 'Image B', 'Image C', 'Image D']}
 ], timeline_variables: lc_stim_1}
 
 timeline.push(lc_trials_1)
