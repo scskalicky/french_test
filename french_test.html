@@ -575,9 +575,8 @@ var lc_trial_2 = {
   timeline: [
 
   // first listening
-  {type: jsPsychImageKeyboardResponse,
-  prompt: 'First Listening',
-  stimulus: jsPsych.timelineVariable('image'),
+  {type: jsPsychHtmlKeyboardResponse,
+  stimulus: 'First Listening',
   choice: 'NO_KEYS', 
   trial_duration: 1000},
   
@@ -593,14 +592,14 @@ var lc_trial_2 = {
 
   {type: jsPsychHtmlKeyboardResponse,
   stimulus: 'Second Listening',
-choice: 'NO_KEYS', 
-trial_duration: 1000},
+  choice: 'NO_KEYS', 
+  trial_duration: 1000},
 
   // second listening
   {type: jsPsychAudioKeyboardResponse,
   on_start: function(trial){
-     // glue some HTML to the top of the picture.
-    trial.prompt = "<img src = ".concat(jsPsych.timelineVariable('image')).concat(">")
+  // glue some HTML to the top of the picture.
+  trial.prompt = "<img src = ".concat(jsPsych.timelineVariable('image')).concat(">")
   },
   stimulus: jsPsych.timelineVariable('message'),
   data: jsPsych.timelineVariable("data"),
@@ -608,7 +607,7 @@ trial_duration: 1000},
   trial_ends_after_audio: true},
 
   // participant response
- {type: jsPsychImageButtonResponse,
+  {type: jsPsychImageButtonResponse,
   stimulus: jsPsych.timelineVariable('image'),
   prompt: "Which image corresponds to the dialogue you just heard?",
   data: jsPsych.timelineVariable("data"),  
