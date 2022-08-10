@@ -85,7 +85,9 @@ var preload = {
 'image/LC1_A.png',
 'image/LC1_B.png',
 'image/LC1_C.png',
-'image/LC1_D.png']
+'image/LC1_D.png',
+'image/m1_img.jpg',
+'image/m2_img.jpg']
 }
 
 timeline.push(preload)
@@ -570,15 +572,28 @@ timeline.push(lc_instructions_2)
 
 var lc_trial_2 = {
   timeline: [
-  
+
+
+  // first listening
   {type: jsPsychAudioKeyboardResponse,
   on_start: function(trial){
+    // glue some HTML to the top of the picture.
     trial.prompt = "First Listening<br><br><img src = ".concat(jsPsych.timelineVariable('image')).concat(">")
   },
   stimulus: jsPsych.timelineVariable('message'),
   data: jsPsych.timelineVariable("data"),
   choices: 'NO_KEYS',
-  //prompt: 'First Listening<br><br>'.concat(jsPsych.timelineVariable('image')),
+  trial_ends_after_audio: true},
+
+  // second listening
+  {type: jsPsychAudioKeyboardResponse,
+  on_start: function(trial){
+     // glue some HTML to the top of the picture.
+    trial.prompt = "Second Listening<br><br><img src = ".concat(jsPsych.timelineVariable('image')).concat(">")
+  },
+  stimulus: jsPsych.timelineVariable('message'),
+  data: jsPsych.timelineVariable("data"),
+  choices: 'NO_KEYS',
   trial_ends_after_audio: true}
 
   ], timeline_variables: lc_stim_2
