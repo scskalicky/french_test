@@ -594,7 +594,14 @@ var lc_trial_2 = {
   stimulus: jsPsych.timelineVariable('message'),
   data: jsPsych.timelineVariable("data"),
   choices: 'NO_KEYS',
-  trial_ends_after_audio: true}
+  trial_ends_after_audio: true},
+
+  // participant response
+ {type: jsPsychHtmlButtonResponse,
+data: jsPsych.timelineVariable("data"),
+stimulus: jsPsych.timelineVariable('image'),
+prompt: "Which image corresponds to the dialogue you just heard?",
+choices: ['Image A', 'Image B']}
 
   ], timeline_variables: lc_stim_2
 }
@@ -624,7 +631,7 @@ var c_test_instructions = {
 show_clickable_nav: true
 }
 
-timeline.push(c_test_instructions);
+//timeline.push(c_test_instructions);
 //https://github.com/jspsych/jsPsych/discussions/2543
 
 
@@ -647,7 +654,7 @@ choices: [' ']}
 ], timeline_variables: c_test_stim
 }
 
-timeline.push(c_test_trials);
+//timeline.push(c_test_trials);
 
 
 
