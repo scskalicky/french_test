@@ -532,7 +532,7 @@ var lc_trials_1 = {
   
   {type: jsPsychHtmlButtonResponse,
     on_start: function(trial){
-      trial.prompt = "<audio src = >".concat(jsPsych.timelineVariable('dialogue')).concat('>')
+      trial.prompt = "<audio><source src = >".concat(jsPsych.timelineVariable('dialogue')).concat('</audio>')
     },
   data: jsPsych.timelineVariable("data"),
   stimulus: '<img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
