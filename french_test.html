@@ -29,6 +29,7 @@
   <script src = "jspsych/plugin-audio-keyboard-response.js"></script>
   <script src = "jspsych/plugin-html-button-response.js"></script>
   <script src = "jspsych/plugin-image-button-response.js"></script>
+  <script src = "jspsych/plugin-image-keyboard-response.js"></script>
   <script src = "jspsych/plugin-survey-multi-select.js"></script>
   <script src = "jspsych/plugin-survey-html-form.js"></script>
   <script src = "jspsych/plugin-instructions.js"></script>
@@ -573,13 +574,12 @@ timeline.push(lc_instructions_2)
 var lc_trial_2 = {
   timeline: [
 
-
   // first listening
-  {type: jsPsychHtmlKeyboardResponse,
-  stimulus: 'First Listening',
-choice: 'NO_KEYS', 
-trial_duration: 1000},
-  
+  {type: jsPsychImageButtonResponse,
+  prompt: 'First Listening',
+  stimulus: jsPsych.timelineVariable('image'),
+  choice: 'NO_KEYS', 
+  trial_duration: 1000},
   
   {type: jsPsychAudioKeyboardResponse,
   on_start: function(trial){
