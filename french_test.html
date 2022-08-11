@@ -525,7 +525,7 @@ var CA_preload =
 {type: jsPsychPreload,
   audio: CA_audio
 }
-timeline.push(CA_preload)
+//timeline.push(CA_preload)
 
 
 // instructions for communicative adequacy
@@ -539,17 +539,9 @@ const CA_instructions = {
   show_clickable_nav: true,
 }
 
-timeline.push(CA_instructions)
+//timeline.push(CA_instructions)
 
 // communicative adequacy timeline. 
-
-// this might need to be changed so that each label is different for the 1st, 2nd, and 3rd playing. 
-const play_audio_button = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: '',
-    choices: ['PLAY AUDIO']
-};
-
 const CA_trials = {
   timeline: [
   {type: jsPsychHtmlButtonResponse,
@@ -568,7 +560,7 @@ const CA_trials = {
     
   // simulate a countdown for recording to start
   {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 3...',
+    stimulus: 'Begin speaking your reply in 3...',
     choices: 'NO_KEYS',
     data: jsPsych.timelineVariable("data"),
     trial_duration: 1050
@@ -576,7 +568,7 @@ const CA_trials = {
   
   // simulate a countdown for recording to start
   {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 2...',
+    stimulus: 'Begin speaking your reply in 2...',
     choices: 'NO_KEYS',
     data: jsPsych.timelineVariable("data"),
     trial_duration: 1050
@@ -584,7 +576,7 @@ const CA_trials = {
   
   // simulate a countdown for recording to start
   {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 1...',
+    stimulus: 'Begin speaking your reply in 1...',
     choices: 'NO_KEYS',
     data: jsPsych.timelineVariable("data"),
     trial_duration: 1050
@@ -620,7 +612,7 @@ const CA_trials = {
 
   // simulate a countdown for recording to start
   {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 3...',
+    stimulus: 'Begin speaking your reply in 3...',
     choices: 'NO_KEYS',
     data: jsPsych.timelineVariable("data"),
     trial_duration: 1050
@@ -628,7 +620,7 @@ const CA_trials = {
   
   // simulate a countdown for recording to start
   {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 2...',
+    stimulus: 'Begin speaking your reply in 2...',
     choices: 'NO_KEYS',
     data: jsPsych.timelineVariable("data"),
     trial_duration: 1050
@@ -636,7 +628,7 @@ const CA_trials = {
   
   // simulate a countdown for recording to start
   {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 1...',
+    stimulus: 'Begin speaking your reply in 1...',
     choices: 'NO_KEYS',
     data: jsPsych.timelineVariable("data"),
     trial_duration: 1050
@@ -673,21 +665,21 @@ const CA_trials = {
 
   // simulate a countdown for recording to start
   {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 3...',
+    stimulus: 'Begin speaking your reply in 3...',
     choices: 'NO_KEYS',
     data: jsPsych.timelineVariable("data"),
     trial_duration: 1050
   },
   // simulate a countdown for recording to start
   {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 2...',
+    stimulus: 'Begin speaking your reply in 2...',
     choices: 'NO_KEYS',
     data: jsPsych.timelineVariable("data"),
     trial_duration: 1050
   },  
   // simulate a countdown for recording to start
   {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 1...',
+    stimulus: 'Begin speaking your reply in 1...',
     choices: 'NO_KEYS',
     data: jsPsych.timelineVariable("data"),
     trial_duration: 1050
@@ -718,8 +710,7 @@ const CA_trials = {
   
  ], timeline_variables: CA_timeline_stimuli}
 
-timeline.push(CA_trials)
-
+//timeline.push(CA_trials)
 
 /***** LISTENING COMPREHENSION BLOCK *********
 Participants will listen to a audio dialogues in French. After the dialogues they will answer different questions:
@@ -981,7 +972,7 @@ var LC4_preload = {
   audio: LC4_audio,
   images: LC4_images
 }
-timeline.push(LC4_preload)
+//timeline.push(LC4_preload)
 
 var LC4_instructions = {
   type: jsPsychInstructions,
@@ -991,7 +982,7 @@ var LC4_instructions = {
   'After you hear the audio for the second time, please indicate your answers to the questions.'],
 show_clickable_nav: true,
 }
-timeline.push(LC4_instructions)
+//timeline.push(LC4_instructions)
 
 var LC4_trials = {
   timeline: [
@@ -1011,11 +1002,7 @@ var LC4_trials = {
   ], timeline_variables: LC4_timeline_stimuli
 }
 
-timeline.push(LC4_trials)
-
-
-
-
+//timeline.push(LC4_trials)
 
 /***** C-TEST *********
 Participants will read three short texts. Each text will have some words missing parts of the word. Participants must type in letters in order to provide correct words. 
@@ -1062,6 +1049,10 @@ choices: [' ']}
 
 //timeline.push(c_test_trials);
 
+
+/***** ERROR CORRECTION TASK *********
+TODO- SEE NOTES
+*/
 
 
  var end = {
