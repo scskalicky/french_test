@@ -590,7 +590,7 @@ const CA_trials = {
     trial_duration: 1050
   },
 
-  // record answer trial for CA trials
+  // record answer to first turn.
     {
     type: jsPsychHtmlAudioResponse,
     stimulus: 'RECORDING...',
@@ -643,7 +643,7 @@ const CA_trials = {
   },
 
 
-   // record answer trial for CA trials
+   // record answer trial to second turn
    {
     type: jsPsychHtmlAudioResponse,
     stimulus: 'RECORDING...',
@@ -661,18 +661,15 @@ const CA_trials = {
       data)
 }},
 
-
 {type: jsPsychHtmlButtonResponse,
   stimulus: '',
   choices: ['PLAY THIRD AUDIO']},
-
 
   {type: jsPsychAudioKeyboardResponse,
   stimulus: jsPsych.timelineVariable('turn3'),
   data: jsPsych.timelineVariable("data"),
   choices: 'NO_KEYS',
   trial_ends_after_audio: true},
-
 
   // simulate a countdown for recording to start
   {type: jsPsychHtmlKeyboardResponse,
@@ -681,15 +678,13 @@ const CA_trials = {
     data: jsPsych.timelineVariable("data"),
     trial_duration: 1050
   },
-  
   // simulate a countdown for recording to start
   {type: jsPsychHtmlKeyboardResponse,
     stimulus: 'Begin speaking your answer in 2...',
     choices: 'NO_KEYS',
     data: jsPsych.timelineVariable("data"),
     trial_duration: 1050
-  },
-  
+  },  
   // simulate a countdown for recording to start
   {type: jsPsychHtmlKeyboardResponse,
     stimulus: 'Begin speaking your answer in 1...',
@@ -697,10 +692,7 @@ const CA_trials = {
     data: jsPsych.timelineVariable("data"),
     trial_duration: 1050
   },
-
-    
-
-     // record answer trial for CA trials
+     // record answer to third turn
      {
     type: jsPsychHtmlAudioResponse,
     stimulus: 'RECORDING...',
@@ -724,9 +716,9 @@ const CA_trials = {
   choices: "NO_KEYS"
   }
   
- ], timeline_variables: baf_stim}
+ ], timeline_variables: CA_timeline_stimuli}
 
-//timeline.push(conversations)
+timeline.push(CA_trials)
 
 
 /***** LISTENING COMPREHENSION BLOCK *********
