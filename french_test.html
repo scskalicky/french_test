@@ -682,6 +682,27 @@ var LC3_trials = {
   trial_ends_after_audio: true,
   choices: "NO_KEYS"},
   
+  // simulate a countdown for recording to start
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 3...',
+    choices: 'NO_KEYS',
+    trial_duration: 1050
+  },
+  
+  // simulate a countdown for recording to start
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 2...',
+    choices: 'NO_KEYS',
+    trial_duration: 1050
+  },
+  
+  // simulate a countdown for recording to start
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 1...',
+    choices: 'NO_KEYS',
+    trial_duration: 1050
+  },
+ 
   // participant records response
   record_answer_LC,
 
