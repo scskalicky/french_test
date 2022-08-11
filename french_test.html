@@ -630,6 +630,7 @@ const record_answer_LC = {
     on_start: function(trial){
       trial.stimulus = 'RECORDING...<br><br><br>'.concat(jsPsych.timelineVariable('questions'))
     },
+    stimulus: '',
     recording_duration: 5000,
     show_done_button: true,
     done_button_label: "Finish Recording",
