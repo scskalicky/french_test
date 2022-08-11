@@ -325,7 +325,7 @@ var SC3_preload = {
   type: jsPsychPreload,
   images: 'image/max1.jpg'
 }
-timeline.push(SC3_preload)
+//timeline.push(SC3_preload)
 
 var SC3_instructions = {
   type: jsPsychInstructions,
@@ -339,7 +339,7 @@ var SC3_instructions = {
   show_clickable_nav: true
 }
 
-timeline.push(SC3_instructions);
+//timeline.push(SC3_instructions);
 
 var SC3_trials = {
   timeline: [
@@ -404,7 +404,7 @@ var SC3_trials = {
   ]
 }
 
-timeline.push(SC3_trials)
+//timeline.push(SC3_trials)
 
 /* Story Completion Part 4 - unrelated picture story.
 - 60 seconds to prepare
@@ -413,12 +413,13 @@ timeline.push(SC3_trials)
 - is there only one image? Will we just re-use the same img? 
 */
 
-const sc_stimuli_p4 = [
-{image: 'image/unrelated.jpg', 
-  data: {stim_id: 'unrelated'}},
-]
+var SC4_preload = {
+  type: jsPsychPreload,
+  images: 'image/unrelated1.jpg'
+}
+timeline.push(SC4_preload)
 
-var story_completion_instructions_p4 = {
+var SC4_instructions = {
   type: jsPsychInstructions,
   pages: ['On the next screen you will see six pictures of different things.',
         'Your task is to narrate a story which includes all the elements depicted by the pictures.',
@@ -428,34 +429,72 @@ var story_completion_instructions_p4 = {
 ],
   show_clickable_nav: true
 }
+timeline.push(SC4_instructions);
 
-//timeline.push(story_completion_instructions_p4);
-
-var story_completion_trials_p4 = {
+var SC4_trials = {
   timeline: [
     {type: jsPsychHtmlButtonResponse,
     stimulus: 'Once you click this button, you will have 60 seconds to study the picture and prepare your response',
     choices: ["See Picture"]},
 
     {type: jsPsychImageButtonResponse,
-      stimulus: jsPsych.timelineVariable('image'),
+      stimulus: 'image/unrelated1.jpg',
       trial_duration: 10000,
       stimulus_height: 800,
       stimulus_width: 600,
-      data: jsPsych.timelineVariable('data'),
+      on_finish: function(data){
+        data.stim_id = 'unrelated1.jpg'},
       choices: ["I'm Ready"]
     },
     
-    // defined above
-    record_response_button,
+  // simulate a countdown for recording to start
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 3...',
+    choices: 'NO_KEYS',
+    on_finish: function(data){
+        data.stim_id = 'unrelated1.jpg'},
+    trial_duration: 1050
+  },
+  
+  // simulate a countdown for recording to start
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 2...',
+    choices: 'NO_KEYS',
+    on_finish: function(data){
+        data.stim_id = 'unrelated1.jpg'},
+    trial_duration: 1050
+  },
+  
+  // simulate a countdown for recording to start
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 1...',
+    choices: 'NO_KEYS',
+    on_finish: function(data){
+      data.stim_id = 'unrelated1.jpg'},
+    trial_duration: 1050
+  },
 
-    // defined above
-    //record_answer_SC
-
-  ], timeline_variables: sc_stimuli_p4
+  {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: 'RECORDING...',
+    recording_duration: 5000,
+    show_done_button: true,
+    done_button_label: "Finish Recording",
+    // save audio
+    on_finish: function(data){
+      data.stim_id = 'unrelated1.jpg';
+      //subject name
+      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+      // audio file name
+      jsPsych.data.get().last(5).values()[0].stimulus.substring(6), 
+      // current js data object
+      data),
+    console.log(jsPsych.data.get().last(5).values()[0].stimulus.substring(6))
+}}
+  ]
 }
 
-//timeline.push(story_completion_trials_p4)
+timeline.push(SC4_trials)
 
 
 
