@@ -171,7 +171,7 @@ pages: ['On the next screen you will see an image depicting a scene.',
 
 timeline.push(story_completion_instructions_p1)
 
-var story_completion_trials_p1 = {
+var SC1_trials = {
   timeline: [
     {type: jsPsychHtmlButtonResponse,
     stimulus: 'Once you click this button, you will have 30 seconds to study the picture and prepare your response',
@@ -212,11 +212,16 @@ var story_completion_trials_p1 = {
 
     // defined above
     record_answer_SC
-
   ]
 }
+timeline.push(SC1_trials)
 
-timeline.push(story_completion_trials_p1)
+/* Story Completion Part 2 - six-panel images making a story
+- 30 seconds to prepare
+- 2 minutes for response
+- size images to be w600xh800
+- 1 trial so no need for timeline variables. 
+*/
 
 const sc_stimuli_p2 = [
 {image: 'image/sixpanel1.jpg', 
@@ -226,11 +231,8 @@ const sc_stimuli_p2 = [
   data: {stim_id: 'sixpanel2'}}
 ]
 
-/* Story Completion Part 2 - six-panel images making a story
-- 30 seconds to prepare
-- 2 minutes for response
-- size images to be w600xh800
-*/
+
+
 
 var story_completion_instructions_p2 = {
   type: jsPsychInstructions,
