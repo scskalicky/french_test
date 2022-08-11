@@ -520,7 +520,7 @@ var LC1_preload = {
   audio: LC2_audio
 }
 
-timeline.push(LC1_preload)
+//timeline.push(LC1_preload)
 
 var LC1_instructions = {
   type: jsPsychInstructions,
@@ -533,7 +533,7 @@ var LC1_instructions = {
 show_clickable_nav: true,
 }
 
-timeline.push(LC1_instructions)
+//timeline.push(LC1_instructions)
 
 
 var LC1_trials = {
@@ -555,13 +555,12 @@ var LC1_trials = {
  
 ], timeline_variables: LC1_timeline_stimuli}
 
-timeline.push(LC1_trials)
+//timeline.push(LC1_trials)
 
 
 /***** LC2 - messages *******
  * Participants will see two pictures. They will hear a short message play twice. They will then choose which picture matches the message.
 */
-
 
 // LC2 timeline stimuli
 var LC2_timeline_stimuli = [
@@ -581,7 +580,7 @@ var LC2_preload = {
   audio: LC2_audio
 }
 
-timeline.push(LC2_preload)
+//timeline.push(LC2_preload)
 
 var LC2_instructions = {
   type: jsPsychInstructions,
@@ -592,7 +591,7 @@ var LC2_instructions = {
   'Indicate you answer by clicking on the corresponding button.'],
 show_clickable_nav: true,
 }
-timeline.push(LC2_instructions)
+//timeline.push(LC2_instructions)
 
 
 var LC2_trials = {
@@ -615,8 +614,84 @@ var LC2_trials = {
 ], timeline_variables: LC2_timeline_stimuli
 }
 
-timeline.push(LC2_trials)
+//timeline.push(LC2_trials)
 
+
+/*LC3 - audio answers ******
+* participant will hear a short monologue. It will play once, pause for 30 seconds, then play again.
+* participant will also see four questions
+* after the second dialogue, participants will respond orally to the four questions. 
+* participants will have a maximum of 2 minutes to record their answers. 
+*/
+
+// record answer trial for story completion trials
+const record_answer_LC = {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: 'RECORDING...',
+    recording_duration: 5000,
+    show_done_button: true,
+    done_button_label: "Finish Recording",
+    // save audio
+    on_finish: function(data){
+        //subject name
+      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+      // audio file name
+      jsPsych.data.get().last(2).values()[0].stimulus.substring(6), 
+      // current js data object
+      data),
+      console.log(jsPsych.data.get().last(2).values()[0].stimulus.substring(6))
+}}
+
+
+// LC3 stimuli for timeline
+
+var LC3_timeline_stimuli = [{monologue: 'audio/fiona1.mp3', questions: '<ul><li>Question 1</li><li>Question2</li><li>Question3</li><li>Question 4</li></ul>', data: {stim_id: 'monologue1'}},
+{monologue: 'audio/torin1.mp3', questions: '<ul><li>Question 1</li><li>Question2</li><li>Question3</li><li>Question 4</li></ul>', data: {stim_id: 'monologue1'}}]
+
+
+var LC3_audio = ['audio/fiona1.mp3', 'torin1.mp3']
+
+var LC3_preload = {
+  type: jsPsychPreload,
+  audio: LC3_audio
+}
+
+timeline.push(LC3_preload)
+
+var LC3_instructions = {
+  type: jsPsychInstructions,
+  pages: ['In the next questions you will hear a speaker talk about an event',
+  'You will also see four questions (in French) about the event',
+  'You will listen to the audio twice, with a 30 second break between the audio',
+  'After you hear the audio for the second time, you will answer the questions by speaking in French.',
+  'Please try to answer all four questions in your response. You will have up to two minutes to answer the four questions.'],
+show_clickable_nav: true,
+}
+timeline.push(LC3_instructions)
+
+var LC3_trials = {
+  timeline: [
+
+  // defined above
+  play_audio_button,
+
+  {type: jsPsychAudioKeyboardResponse, 
+  prompt: jsPsych.timelineVariable('questions'),
+  data: jsPsych.timelineVariable("data"),
+  stimulus: jsPsych.timelineVariable('message'),
+  trial_ends_after_audio: true,
+  choices: "NO_KEYS"},
+  
+  // participant records response
+  record_answer_LC,
+
+  {type: jsPsychHtmlButtonResponse,
+    stimulus: 'Press continue to proceed to the next question',
+  choices: ["Continue"]}
+], timeline_variables: LC3_timeline_stimuli
+}
+
+timeline.push(LC3_trials)
 
 
 
