@@ -93,7 +93,7 @@ var jsPsychSurveyMultiSelect = (function (jspsych) {
           // inject CSS for trial
           var cssstr = ".jspsych-survey-multi-select-question { margin-top: 2em; margin-bottom: 2em; text-align: left; }" +
               ".jspsych-survey-multi-select-text span.required {color: darkred;}" +
-              ".jspsych-survey-multi-select-horizontal .jspsych-survey-multi-select-text {  text-align: center;}" +
+              ".jspsych-survey-multi-select-horizontal .jspsych-survey-multi-select-text {  text-align: left;}" +
               ".jspsych-survey-multi-select-option { line-height: 2; }" +
               ".jspsych-survey-multi-select-horizontal .jspsych-survey-multi-select-option {  display: inline-block;  margin-left: 1em;  margin-right: 1em;  vertical-align: top;}" +
               "label.jspsych-survey-multi-select-text input[type='checkbox'] {margin-right: 1em;}";
