@@ -627,7 +627,9 @@ var LC2_trials = {
 // record answer trial for story completion trials
 const record_answer_LC = {
     type: jsPsychHtmlAudioResponse,
-    stimulus: 'RECORDING...',
+    on_start: function(trial){
+      trial.stimulus = 'RECORDING...<br><br><br>'.concat(jsPsych.timelineVariable('questions'))
+    },
     recording_duration: 5000,
     show_done_button: true,
     done_button_label: "Finish Recording",
