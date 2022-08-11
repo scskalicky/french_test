@@ -137,6 +137,8 @@ const record_answer_SC = {
     done_button_label: "Finish Recording",
     // save audio
     on_finish: function(data){
+
+        data.stim_id = 'park1';
         //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
@@ -193,6 +195,9 @@ var SC1_trials = {
   {type: jsPsychHtmlKeyboardResponse,
     stimulus: 'Begin speaking your answer in 3...',
     choices: 'NO_KEYS',
+    on_finish: function(data){
+        data.stim_id = 'park1'
+      },
     trial_duration: 1050
   },
   
@@ -200,6 +205,9 @@ var SC1_trials = {
   {type: jsPsychHtmlKeyboardResponse,
     stimulus: 'Begin speaking your answer in 2...',
     choices: 'NO_KEYS',
+    on_finish: function(data){
+        data.stim_id = 'park1'
+      },
     trial_duration: 1050
   },
   
@@ -207,6 +215,9 @@ var SC1_trials = {
   {type: jsPsychHtmlKeyboardResponse,
     stimulus: 'Begin speaking your answer in 1...',
     choices: 'NO_KEYS',
+    on_finish: function(data){
+        data.stim_id = 'park1'
+      },
     trial_duration: 1050
   },
 
