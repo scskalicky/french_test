@@ -32,6 +32,7 @@
   <script src = "jspsych/plugin-image-button-response.js"></script>
   <script src = "jspsych/plugin-image-keyboard-response.js"></script>
   <script src = "jspsych/plugin-survey-multi-select.js"></script>
+  <script src = "jspsych/plugin-survey-multi-choice.js"></script>
   <script src = "jspsych/plugin-survey-html-form.js"></script>
   <script src = "jspsych/plugin-instructions.js"></script>
   <script src = "jspsych/plugin-cloze19.js"></script>
@@ -622,6 +623,7 @@ var LC2_trials = {
 * participant will also see four questions
 * after the second dialogue, participants will respond orally to the four questions. 
 * participants will have a maximum of 2 minutes to record their answers. 
+* TWO trials like this per test
 */
 
 // record answer trial for story completion trials
@@ -646,10 +648,8 @@ const record_answer_LC = {
 }}
 
 // LC3 stimuli for timeline
-
 var LC3_timeline_stimuli = [{monologue: 'audio/fiona1.mp3', questions: '<ul><li>Question 1</li><li>Question2</li><li>Question3</li><li>Question 4</li></ul>', data: {stim_id: 'monologue1'}},
 {monologue: 'audio/torin1.mp3', questions: '<ul><li>Question 1</li><li>Question2</li><li>Question3</li><li>Question 4</li></ul>', data: {stim_id: 'monologue1'}}]
-
 
 var LC3_audio = ['audio/fiona1.mp3', 'audio/torin1.mp3']
 
@@ -657,7 +657,6 @@ var LC3_preload = {
   type: jsPsychPreload,
   audio: LC3_audio
 }
-
 timeline.push(LC3_preload)
 
 var LC3_instructions = {
@@ -713,8 +712,66 @@ var LC3_trials = {
   choices: ["Continue"]}
 ], timeline_variables: LC3_timeline_stimuli
 }
-
 timeline.push(LC3_trials)
+
+/*LC4 - multiple guess questions ******
+* participant will hear a short monologue. It will play once, pause for 30 seconds, then play again.
+* participants will then answer multiple choice questions which include both text and images. 
+* questions are shown while listening to the audio
+*/
+
+// LC4 stimuli for timeline
+var LC4_timeline_stimuli = [{phone_audio: 'audio/fiona1.mp3', 
+survey_questions: [{prompt: 'What is his birthday?', name: 'Q1', options: ['A', 'B', 'C', 'D'], required: true}, 
+            {prompt: 'Which picture?', name: 'Q2', options: ['LC1_A.png', 'LC1_D.png'], required: true},
+          {prompt: 'Who will take the cake?', name: 'Q3', options: ['Cat', 'Zebra', 'Kiwi'], required: true}], 
+            data: {stim_id: 'phone1'}},
+
+{phone_audio: 'audio/torin1.mp3', 
+survey_questions: [{prompt: 'What is his birthday?', name: 'Q1', options: ['A', 'B', 'C', 'D'], required: true}, 
+            {prompt: 'Which picture?', name: 'Q2', options: ['LC1_A.png', 'LC1_D.png'], required: true},
+          {prompt: 'Who will take the cake?', name: 'Q3', options: ['Cat', 'Zebra', 'Kiwi'], required: true}], data: {stim_id: 'phone2'}}]
+
+//var LC4_timeline_stimuli = [{phone_audio: 'audio/fiona1.mp3', question_strings:[], question_buttons: [], 
+  //          data: {stim_id: 'phone1'}}]
+
+var LC4_audio = ['audio/fiona1.mp3', 'audio/torin1.mp3']
+var LC4_images = ['LC1_A.png', 'LC1_B.png', 'LC1_C.png', 'LC1_D.png']
+
+var LC4_preload = {
+  type: jsPsychPreload,
+  audio: LC4_audio,
+  images: LC4_images
+}
+timeline.push(LC4_preload)
+
+var LC4_instructions = {
+  type: jsPsychInstructions,
+  pages: ['For these next questions you will listen to a short phone message from a speaker.',
+  'You will also see several multiple choice questions asking about the message.',
+  'You will listen to the audio twice, with a 30 second break between the audio.',
+  'After you hear the audio for the second time, please indicate your answers to the questions.'],
+show_clickable_nav: true,
+}
+timeline.push(LC4_instructions)
+
+var LC4_trials = {
+  timeline: [
+  
+  
+  // listen to audio while seeing questions
+
+
+  // answer MC questions
+  {type: jsPsychSurveyMultiChoice,
+  questions: jsPsych.timelineVariable('survey_questions')}
+
+  ], timeline_variables: LC4_timeline_stimuli
+}
+
+timeline.push(LC4_trials)
+
+
 
 
 
