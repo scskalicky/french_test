@@ -725,13 +725,18 @@ var LC4_timeline_stimuli = [
   {phone_audio: 'audio/fiona1.mp3', survey_questions: [
   {prompt: 'What is his birthday?', name: 'Q1', options: ['A', 'B', 'C', 'D'], required: true, horizontal: true}, 
   {prompt: 'Which picture?', name: 'Q2', options: ['<img src = image/LC1_A.png>', '<img src = image/LC1_D.png>'], required: true, horizontal: true},
-  {prompt: 'Who will take the cake?', name: 'Q3', options: ['Cat', 'Zebra', 'Kiwi'], required: true, horizontal: true}], 
+  {prompt: 'Who will take the cake?', name: 'Q3', options: ['Cat', 'Zebra', 'Kiwi'], required: true, horizontal: true}],
+  question_display: 'What is his birthday? <br> Which picture? <br> Who will take the cake?', 
             data: {stim_id: 'phone1'}},
 
 {phone_audio: 'audio/torin1.mp3', 
 survey_questions: [{prompt: 'What is his birthday?', name: 'Q1', options: ['A', 'B', 'C', 'D'], required: true}, 
             {prompt: 'Which picture?', name: 'Q2', options: ['LC1_A.png', 'LC1_D.png'], required: true},
-          {prompt: 'Who will take the cake?', name: 'Q3', options: ['Cat', 'Zebra', 'Kiwi'], required: true}], data: {stim_id: 'phone2'}}]
+          {prompt: 'Who will take the cake?', name: 'Q3', options: ['Cat', 'Zebra', 'Kiwi'], required: true}], 
+          question_display: 'What is his birthday? <br> Which picture? <br> Who will take the cake?', 
+data: {stim_id: 'phone2'}}
+        
+]
 
 //var LC4_timeline_stimuli = [{phone_audio: 'audio/fiona1.mp3', question_strings:[], question_buttons: [], 
   //          data: {stim_id: 'phone1'}}]
@@ -762,7 +767,7 @@ var LC4_trials = {
   
   // listen to audio while seeing questions
   {type: jsPsychAudioKeyboardResponse, 
-  prompt: jsPsych.timelineVariable('survey_questions'),
+  prompt: jsPsych.timelineVariable('question_display'),
   data: jsPsych.timelineVariable("data"),
   stimulus: jsPsych.timelineVariable('phone_audio'),
   trial_ends_after_audio: true,
