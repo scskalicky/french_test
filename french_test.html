@@ -128,26 +128,6 @@ const recording_passed = {
 These questions involve participants looking at a series of images with which they will base a story. The images will be displayed for a fixed period of time (30 seconds), after which participants will have 2 minutes to orally tell their story based on the pictures. 
 */
 
-// record answer trial for story completion trials
-const record_answer_SC = {
-    type: jsPsychHtmlAudioResponse,
-    stimulus: 'RECORDING...',
-    recording_duration: 5000,
-    show_done_button: true,
-    done_button_label: "Finish Recording",
-    // save audio
-    on_finish: function(data){
-
-        data.stim_id = 'park1';
-        //subject name
-      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
-      // audio file name
-      jsPsych.data.get().last(5).values()[0].stimulus.substring(6), 
-      // current js data object
-      data),
-      console.log(jsPsych.data.get().last(5).values()[0].stimulus.substring(6))
-}}
-
 /* Story Completion Part 1 - single image of a park
 - 30 seconds to prepare
 - 2 minutes for response
@@ -221,8 +201,24 @@ var SC1_trials = {
     trial_duration: 1050
   },
 
-    // defined above
-    record_answer_SC
+  // record answer 
+  {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: 'RECORDING...',
+    recording_duration: 5000,
+    show_done_button: true,
+    done_button_label: "Finish Recording",
+    // save audio
+    on_finish: function(data){
+        data.stim_id = 'park1';
+        //subject name
+      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+      // audio file name
+      jsPsych.data.get().last(5).values()[0].stimulus.substring(6), 
+      // current js data object
+      data),
+      console.log(jsPsych.data.get().last(5).values()[0].stimulus.substring(6))
+}}
   ]
 }
 //timeline.push(SC1_trials)
@@ -238,7 +234,7 @@ var SC2_preload = {
   type: jsPsychPreload,
   images: 'image/sixpanel2.jpg'
 }
-timeline.push(SC2_preload)
+//timeline.push(SC2_preload)
 
 var SC2_instructions = {
   type: jsPsychInstructions,
@@ -251,7 +247,7 @@ var SC2_instructions = {
 ],
   show_clickable_nav: true
 }
-timeline.push(SC2_instructions)
+//timeline.push(SC2_instructions)
 
 var SC2_trials = {
   timeline: [
@@ -296,11 +292,27 @@ var SC2_trials = {
     trial_duration: 1050
   },
 
-    // defined above
-    record_answer_SC
+    // record answer 
+  {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: 'RECORDING...',
+    recording_duration: 5000,
+    show_done_button: true,
+    done_button_label: "Finish Recording",
+    // save audio
+    on_finish: function(data){
+        data.stim_id = 'sixpanel1';
+        //subject name
+      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+      // audio file name
+      jsPsych.data.get().last(5).values()[0].stimulus.substring(6), 
+      // current js data object
+      data),
+      console.log(jsPsych.data.get().last(5).values()[0].stimulus.substring(6))
+}}
   ]
 }
-timeline.push(SC2_trials)
+//timeline.push(SC2_trials)
 
 /* Story Completion Part 3 - story of Max: before, now, and after.
 - 30 seconds to prepare
@@ -308,15 +320,14 @@ timeline.push(SC2_trials)
 - size images to be w800xh600
 */
 
-const sc_stimuli_p3 = [
-{image: 'image/max1.jpg', 
-  data: {stim_id: 'max1'}},
 
-  {image: 'image/max2.jpg', 
-  data: {stim_id: 'max2'}}
-]
+var SC3_preload = {
+  type: jsPsychPreload,
+  images: 'image/max1.jpg'
+}
+timeline.push(SC3_preload)
 
-var story_completion_instructions_p3 = {
+var SC3_instructions = {
   type: jsPsychInstructions,
   pages: ['On the next screen you will see an image which tells the story of the child Max.',
         'Study the picture and imagine a) what happened <b>before</b>, b) what is happening <b>now</b>, and c) what <b>will</b> happen.',
@@ -328,33 +339,72 @@ var story_completion_instructions_p3 = {
   show_clickable_nav: true
 }
 
-//timeline.push(story_completion_instructions_p3);
+timeline.push(SC3_instructions);
 
-var story_completion_trials_p3 = {
+var SC3_trials = {
   timeline: [
     {type: jsPsychHtmlButtonResponse,
     stimulus: 'Once you click this button, you will have 30 seconds to study the picture and prepare your response',
     choices: ["See Picture"]},
 
     {type: jsPsychImageButtonResponse,
-      stimulus: jsPsych.timelineVariable('image'),
+      stimulus: 'image/max1.jpg',
       trial_duration: 10000,
       stimulus_height: 600,
       stimulus_width: 800,
-      data: jsPsych.timelineVariable('data'),
-      choices: ["I'm Ready"]
+      choices: ["I'm Ready"],
+      on_finish: function(data){
+        data.stim_id = 'max1.jpg'
+      }
     },
-    
-    // defined above
-    record_response_button,
+    // simulate a countdown for recording to start
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 3...',
+    choices: 'NO_KEYS',
+    on_finish: function(data){
+        data.stim_id = 'max1.jpg'},
+    trial_duration: 1050
+  },
+  
+  // simulate a countdown for recording to start
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 2...',
+    choices: 'NO_KEYS',
+    on_finish: function(data){
+        data.stim_id = 'max1.jpg'},
+    trial_duration: 1050
+  },
+  
+  // simulate a countdown for recording to start
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 1...',
+    choices: 'NO_KEYS',
+    on_finish: function(data){
+      data.stim_id = 'max1.jpg'},
+    trial_duration: 1050
+  },
 
-    // defined above
-    record_answer_SC
-
-  ], timeline_variables: sc_stimuli_p3
+  {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: 'RECORDING...',
+    recording_duration: 5000,
+    show_done_button: true,
+    done_button_label: "Finish Recording",
+    // save audio
+    on_finish: function(data){
+      data.stim_id = 'max1.jpg';
+      //subject name
+      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+      // audio file name
+      jsPsych.data.get().last(5).values()[0].stimulus.substring(6), 
+      // current js data object
+      data),
+    console.log(jsPsych.data.get().last(5).values()[0].stimulus.substring(6))
+}}
+  ]
 }
 
-//timeline.push(story_completion_trials_p3)
+timeline.push(SC3_trials)
 
 /* Story Completion Part 4 - unrelated picture story.
 - 60 seconds to prepare
