@@ -765,6 +765,13 @@ timeline.push(LC4_instructions)
 
 var LC4_trials = {
   timeline: [
+
+  {type: jsPsychAudioButtonResponse, 
+  prompt: jsPsych.timelineVariable('question_display'),
+  data: jsPsych.timelineVariable("data"),
+  stimulus: jsPsych.timelineVariable('phone_audio'),
+  trial_ends_after_audio: true,
+  choices: [['a', 'b'],['x', 'y', 'z']]},
   
   // listen to audio while seeing questions
   {type: jsPsychAudioKeyboardResponse, 
