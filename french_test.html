@@ -761,6 +761,13 @@ var LC4_trials = {
   
   
   // listen to audio while seeing questions
+  {type: jsPsychAudioKeyboardResponse, 
+  prompt: jsPsych.timelineVariable('survey_questions'),
+  data: jsPsych.timelineVariable("data"),
+  stimulus: jsPsych.timelineVariable('phone_audio'),
+  trial_ends_after_audio: true,
+  choices: "NO_KEYS"},
+
 
 
   // answer MC questions
