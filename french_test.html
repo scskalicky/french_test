@@ -234,13 +234,11 @@ var SC1_trials = {
 - 1 trial so no need for timeline variables. 
 */
 
-const sc_stimuli_p2 = [
-{image: 'image/sixpanel1.jpg', 
-  data: {stim_id: 'sixpanel1'}},
-
-  {image: 'image/sixpanel2.jpg', 
-  data: {stim_id: 'sixpanel2'}}
-]
+var SC2_preload = {
+  type: jsPsychPreload,
+  images: 'image/sixpanel2.jpg'
+}
+timeline.push(SC2_preload)
 
 var SC2_instructions = {
   type: jsPsychInstructions,
@@ -253,7 +251,6 @@ var SC2_instructions = {
 ],
   show_clickable_nav: true
 }
-
 timeline.push(SC2_instructions)
 
 var SC2_trials = {
@@ -263,7 +260,7 @@ var SC2_trials = {
     choices: ["See Picture"]},
 
     {type: jsPsychImageButtonResponse,
-      stimulus: jsPsych.timelineVariable('image'),
+      stimulus: jsPsych.timelineVariable('image/sixpanel1.jpg'),
       trial_duration: 10000,
       stimulus_height: 800,
       stimulus_width: 600,
@@ -308,7 +305,6 @@ var SC2_trials = {
     record_answer_SC
   ]
 }
-
 timeline.push(SC2_trials)
 
 /* Story Completion Part 3 - story of Max: before, now, and after.
