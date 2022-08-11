@@ -153,12 +153,6 @@ const record_answer_SC = {
 - one trial so do not need timeline variables. 
 */
 
-var SC1_timeline_stimuli = [
-  {image: 'image/park1.jpg', 
-  data: {stim_id: 'park1'}},
-  {image: 'image/park2.jpg', 
-  data: {stim_id: 'park2'}}]
-
 var SC1_preload = {
   type: jsPsychPreload,
   images: 'image/park1.jpg'
@@ -190,13 +184,31 @@ var story_completion_trials_p1 = {
       stimulus_width: 800,
       data: jsPsych.timelineVariable('data'),
       on_finish: function(data){
-        data.stim_id = 'park1.jpg'
+        data.stim_id = 'park1'
       },
       choices: ["I'm Ready"]
     },
-    
-    // defined above
-    record_response_button,
+
+    // simulate a countdown for recording to start
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 3...',
+    choices: 'NO_KEYS',
+    trial_duration: 1050
+  },
+  
+  // simulate a countdown for recording to start
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 2...',
+    choices: 'NO_KEYS',
+    trial_duration: 1050
+  },
+  
+  // simulate a countdown for recording to start
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 1...',
+    choices: 'NO_KEYS',
+    trial_duration: 1050
+  },
 
     // defined above
     record_answer_SC
