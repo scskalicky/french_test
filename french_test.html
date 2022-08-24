@@ -179,7 +179,7 @@ var SC1_trials = {
       trial_duration: 10000, // should be 1 minute (60000 ms), add 500 ms as buffer
       stimulus_height: 600,
       stimulus_width: 800,
-      prompt: '<br>Remember to describe:<ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul>',
+      prompt: '<br><p style = "text-align: left">Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul>',
       data: jsPsych.timelineVariable('data'),
       on_finish: function(data){
         data.stim_id = 'PD1'
