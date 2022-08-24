@@ -1117,7 +1117,7 @@ var EC_trials = {
 
   {type: jsPsychSurveyHtmlForm,
   on_start: function(trial){
-  trial.preamble = '<audio autoplay><source src ='.concat(jsPsych.timelineVariable('audio')).concat('</audio>').concat('<b>').concat(jsPsych.timelineVariable('sentence').concat('</b><br><br>'))
+  trial.preamble = '<audio autoplay><source src ='.concat(jsPsych.timelineVariable('audio')).concat('></audio>').concat('<b>').concat(jsPsych.timelineVariable('sentence').concat('</b><br><br>'))
 },
   html: EC_html,
   preamble: ''
