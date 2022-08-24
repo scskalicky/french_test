@@ -118,7 +118,7 @@ var jsPsychSurveyHtmlFormTO = (function (jspsych) {
               };
               display_element.innerHTML = "";
               // next trial
-              this.jsPsych.finishTrial(trialdata);
+              this.jsPsych.finishTrial(question_data);
           });
           var startTime = performance.now();
           /**
