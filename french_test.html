@@ -1091,9 +1091,24 @@ EC_prompts = [{prompt: 'What is the error?', required: true},
 {prompt: 'What is the correction?', required: true}, 
 {prompt: 'Why is it an error?', required: true}]
 
+EC_demo_html = '<p>What is the error? <input readonly type = "text" id = "demo_error" name = "demo_response" placeholder = "at"/></p>' +
+'<p>What is the correction? <input readonly type = "text" id = "demo_correction" name = "demo_response" placeholder = "in"/></p>' +
+'<p>Why is it an error? <input readonly type = "text" id = "demo_explanation" name = "demo_response" placeholder = "used the wrong preposition"/></p>'
+
 EC_html = '<p>What is the error? <input type = "text" id = "error" name = "response"/></p><p>What is the correction? <input type = "text" id = "correction" name = "response"/></p><p>Why is it an error? <input type = "text" id = "explanation" name = "response"/></p>'
 
+
 var EC_demo = {
+  timeline:[
+  {type: jsPsychSurveyHtmlForm,
+  html: EC_demo_html,
+  preamble: 'I put a bottle of water at the freezer'
+}], timeline_variables: EC_timeline_stimuli
+}
+
+timeline.push(EC_demo);
+
+var EC_trials = {
   timeline:[
   {type: jsPsychSurveyHtmlForm,
   on_start: function(trial){
@@ -1104,7 +1119,7 @@ var EC_demo = {
 }], timeline_variables: EC_timeline_stimuli
 }
 
-timeline.push(EC_demo)
+//timeline.push(EC_trials)
 
 
 
