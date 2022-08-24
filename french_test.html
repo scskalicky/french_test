@@ -1094,9 +1094,11 @@ EC_prompts = [{prompt: 'What is the error?', required: true},
 EC_html = '<p>What is the error? <input type = "text" id = "error" name = "response"/></p><br><p>What is the correction? <input type = "text" id = "correction" name = "response"/><br></p><p>Why is it an error? <input type = "text" id = "explanation" name = "response"/></p>'
 
 var EC_demo = {
-  type: jsPsychSurveyHtmlForm,
+  timeline:[
+  {type: jsPsychSurveyHtmlForm,
   html: EC_html,
   preamble: jsPsych.timelineVariable('sentence')
+}], timeline_variables: EC_timeline_stimuli
 }
 
 timeline.push(EC_demo)
