@@ -150,7 +150,7 @@ timeline.push(SC_task_instructions)
 
 var SC1_preload = {
   type: jsPsychPreload,
-  images: 'image/PD1.jpg'
+  images: 'image/PD_1.jpg'
 }
 timeline.push(SC1_preload)
 
@@ -175,14 +175,14 @@ var SC1_trials = {
     choices: ["See Picture"]},
 
     {type: jsPsychImageButtonResponse,
-      stimulus: 'image/PD1.jpg',
+      stimulus: 'image/PD_1.jpg',
       trial_duration: 10000, // should be 1 minute (60000 ms), add 500 ms as buffer
       stimulus_height: 600,
       stimulus_width: 800,
       prompt: '<br><p style = "text-align: left">Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul>',
       data: jsPsych.timelineVariable('data'),
       on_finish: function(data){
-        data.stim_id = 'PD1'
+        data.stim_id = 'PD_1'
       },
       choices: ["I'm Ready"]
     },
@@ -192,7 +192,7 @@ var SC1_trials = {
     stimulus: 'Begin speaking your answer in 3...',
     choices: 'NO_KEYS',
     on_finish: function(data){
-        data.stim_id = 'PD1'
+        data.stim_id = 'PD_1'
       },
     trial_duration: 1050
   },
@@ -202,7 +202,7 @@ var SC1_trials = {
     stimulus: 'Begin speaking your answer in 2...',
     choices: 'NO_KEYS',
     on_finish: function(data){
-        data.stim_id = 'PD1'
+        data.stim_id = 'PD_1'
       },
     trial_duration: 1050
   },
@@ -212,7 +212,7 @@ var SC1_trials = {
     stimulus: 'Begin speaking your answer in 1...',
     choices: 'NO_KEYS',
     on_finish: function(data){
-        data.stim_id = 'PD1'
+        data.stim_id = 'PD_1'
       },
     trial_duration: 1050
   },
@@ -226,7 +226,7 @@ var SC1_trials = {
     done_button_label: "Finish Recording",
     // save audio
     on_finish: function(data){
-        data.stim_id = 'PD1';
+        data.stim_id = 'PD_1';
         //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
