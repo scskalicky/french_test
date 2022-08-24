@@ -34,6 +34,7 @@
   <script src = "jspsych/plugin-survey-multi-select1.js"></script>
   <script src = "jspsych/plugin-survey-multi-choice1.js"></script>
   <script src = "jspsych/plugin-survey-html-form.js"></script>
+  <script src = "jspsych/plugin-survey-html-form-timeout.js"></script>
   <script src = "jspsych/plugin-instructions.js"></script>
   <script src = "jspsych/plugin-cloze19.js"></script>
   <script src = "jspsych/plugin-survey-text.js"></script>
@@ -1118,12 +1119,13 @@ var EC_trials = {
     stimulus: 'Click Next to see/hear the next sentence',
     choices: ["Next"]},
 
-  {type: jsPsychSurveyHtmlForm,
+  {type: jsPsychSurveyHtmlFormTO,
   on_start: function(trial){
   trial.preamble = '<audio autoplay><source src ='.concat(jsPsych.timelineVariable('audio')).concat('></audio>').concat('<b>').concat(jsPsych.timelineVariable('sentence').concat('</b><br><br>'))
   },
   html: EC_html,
-  preamble: ''
+  preamble: '',
+  trial_duration: 3000
   },
   
 ], timeline_variables: EC_timeline_stimuli
