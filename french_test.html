@@ -1110,16 +1110,21 @@ timeline.push(EC_demo);
 
 var EC_trials = {
   timeline:[
+
+  {type: jsPsychHtmlButtonResponse,
+    stimulus: 'Click Next to see/hear the next sentence',
+    choices: ["Next"]},
+
   {type: jsPsychSurveyHtmlForm,
   on_start: function(trial){
-  trial.preamble = '<b>'.concat(jsPsych.timelineVariable('sentence').concat('</b><br><br>'))
+  trial.preamble = '<audio autoplay><source src ='.concat(jsPsych.timelineVariable('audio')).concat('</audio>').concat('<b>').concat(jsPsych.timelineVariable('sentence').concat('</b><br><br>'))
 },
   html: EC_html,
   preamble: ''
 }], timeline_variables: EC_timeline_stimuli
 }
 
-//timeline.push(EC_trials)
+timeline.push(EC_trials)
 
 
 
