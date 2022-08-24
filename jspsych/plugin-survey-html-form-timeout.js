@@ -173,7 +173,7 @@ var jsPsychSurveyHtmlFormTO = (function (jspsych) {
           };
         // end trial after certain number of milliseconds
         this.jsPsych.pluginAPI.setTimeout(()=>{
-            jsPsych.finishTrial(data);
+            jsPsych.finishTrial(trialdata);
         }, trial.trial_duration);
       }
   }
