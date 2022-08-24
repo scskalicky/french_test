@@ -1010,11 +1010,11 @@ Participants will read three short texts. Each text will have some words missing
 
 var french_characters = 'If your keyboard does not have French accents, please use these numbers to replace the appropriate letter with the corresponding number:<br> 1 = &agrave; <br>2 = &eacute; <br>3 = &ecirc; <br>4 = &egrave;<br>Example: For the word <b>&eacute;cole</b>, please type it as <b>2cole</b><br><br>'
 
-var c_test_stim = [
+var CT_stim = [
     {c_text: french_characters.concat("Coucou, tu es d'accord pour m'aider &agrave; organiser l'anniversaire de Clara? Hier, no%% avons pr&eacute;%% un gr%% g&acirc;teau a%% chocolat. M%% s&oelig;urs o%% achet&eacute; d%% d&eacute;corations e%% des bon%% hier mi%%. Tu pe%% prendre d%% boissons e%% de l%% glace. L%% f&ecirc;te e%% samedi, ch%% moi.  Vi%% av%% ton co%% de fran%%, on v%% faire u%% salade d%% fruits ense%%.  Apr&egrave;s o%% va pr&eacute;p%% la mai%% et met%% de l%% musique. Appelle-moi quand tu arrives."), data: {stim_id: 'ctest_text1'}}
 ]
 
-var c_test_instructions = {
+var CT_instructions = {
   type: jsPsychInstructions,
   pages:['In this part of the test you will see a text presented on the screen.',
 'In the following texts, parts of some words is missing.', 
@@ -1024,11 +1024,11 @@ var c_test_instructions = {
 show_clickable_nav: true
 }
 
-//timeline.push(c_test_instructions);
+//timeline.push(CT_instructions);
 //https://github.com/jspsych/jsPsych/discussions/2543
 
 
-var c_test_trials = {
+var CT_trials = {
 timeline:[
 {type: jsPsychHtmlButtonResponse,
 stimulus: 'Press "Continue" to see the text.',
@@ -1047,12 +1047,61 @@ choices: [' ']}
 ], timeline_variables: c_test_stim
 }
 
-//timeline.push(c_test_trials);
+//timeline.push(CT_trials);
 
 
 /***** ERROR CORRECTION TASK *********
-TODO- SEE NOTES
+Participants will see a sentence and also hear the sentence spoken one time
+They will know there is an error somewhere in the sentence
+Their task is to locate and correct the error
+
+
 */
+EC_timeline_stimuli = [
+  {sentence: 'This sentence has an erORO.', audio: 'audio/fiona1.mp3', data: {stim_id: 'EC1'}
+  },
+
+  {sentence: 'Warning, presence of ID10T error identified.', audio: 'torin1.mp3', data: {stim_id: 'EC1'}
+  },
+]
+
+var EC_audio = ['audio/fiona1.mp3', 'audio/torin1.mp3']
+
+var EC_preload = {
+  type: jsPsychPreload,
+  audio: EC_audio
+}
+
+timeline.push(EC_preload);
+
+var EC_instructions = {
+  type: jsPsychInstructions,
+  pages: ['This portion of the test is about error correction',
+  'In this part, you will see a sentence on the screen. You will also hear the sentence be spoken, one time.',
+  'Your job is to locate the error in the sentence, correct the error, and explain why it is an error.',
+  'Each sentence will have only one error',
+'Continue to see an example in English.'],
+show_clickable_nav: true,
+}
+
+timeline.push(EC_instructions);
+
+
+EC_prompts = [{prompt: 'What is the error?', required: true}, 
+{prompt: 'What is the correction?', required: true}, 
+{prompt: 'Why is it an error?', required: true}]
+
+EC_html = '<p>What is the error? <input type = "text" id = "error" name = "response"/></p><br><p>What is the correction? <input type = "text" id = "correction" name = "response"/><br></p><p>Why is it an error? <input type = "text" id = "explanation" name = "response"/></p>'
+
+var EC_demo = {
+  type: jsPsychSurveyHtmlForm,
+  html: EC_html,
+  preamble: jsPsychTimelineVariable('sentence')
+}
+
+timeline.push(EC_demo)
+
+
 
 
  var end = {
