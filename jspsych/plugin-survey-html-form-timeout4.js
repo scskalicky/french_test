@@ -118,7 +118,7 @@ var jsPsychSurveyHtmlFormTO = (function (jspsych) {
               };
               display_element.innerHTML = "";
               // next trial
-              this.jsPsych.finishTrial(question_data);
+              this.jsPsych.finishTrial(trialdata);
           });
           var startTime = performance.now();
           /**
@@ -173,7 +173,7 @@ var jsPsychSurveyHtmlFormTO = (function (jspsych) {
           };
         // end trial after certain number of milliseconds
         this.jsPsych.pluginAPI.setTimeout(()=>{
-            jsPsych.finishTrial(trialdata);
+            jsPsych.finishTrial(question_data);
         }, trial.trial_duration);
       }
   }
