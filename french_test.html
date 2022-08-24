@@ -1042,7 +1042,7 @@ data: jsPsych.timelineVariable("data"),
 trial_duration: 300000,
 },
 
-{type: jsPsychHtmlKeyboardResponse,
+{type: jsPsychHtmlKeyboardResponse, // TO UPDATE AND ACTUALLY PROMPT ACTION
 stimulus: 'next',
 choices: [' ']}
 ], timeline_variables: c_test_stim
@@ -1056,16 +1056,93 @@ Participants will see a sentence and also hear the sentence spoken one time
 They will know there is an error somewhere in the sentence
 Their task is to locate and correct the error
 
-
 */
+
 EC_timeline_stimuli = [
-  {sentence: 'Julian pr&eacute;pare les tomates rouge pour la salade.', audio: 'audio/EC/EC1.mp3', data: {stim_id: 'EC1'}
+  {sentence: 'Julian pr&eacute;pare les tomates rouge pour la salade.', 
+  audio: 'audio/EC/EC1.mp3', 
+  data: {stim_id: 'EC1'}
   },
-  {sentence: 'Pour c&eacute;l&eacute;brer la f&ecirc;te de Paola, ils allent au restaurant.', audio: 'audio/EC/EC2.mp3', data: {stim_id: 'EC2'}
+  {sentence: 'Pour c&eacute;l&eacute;brer la f&ecirc;te de Paola, ils allent au restaurant.', 
+  audio: 'audio/EC/EC2.mp3', 
+  data: {stim_id: 'EC2'}
   },
+  {sentence: 'Tu fait souvent du vc&eacute;lo de montagne avec ton cousin.', 
+  audio: 'audio/EC/EC3.mp3', 
+  data: {stim_id: 'EC3'}
+  },
+  {sentence: 'David et Laurence sont lou&eacute; une chambre d\'h&ocirc;tel au centre-ville. ', 
+  audio: 'audio/EC/EC4.mp3', 
+  data: {stim_id: 'EC4'}
+  },
+  {sentence: 'Madame Zuniga habites sur le campus de l\'universit&eacute;.', 
+  audio: 'audio/EC/EC5.mp3', 
+  data: {stim_id: 'EC5'}
+  },
+  {sentence: 'Elle a trouver un ballon de foot pour l\'anniversaire de Marwan.', 
+  audio: 'audio/EC/EC6.mp3', 
+  data: {stim_id: 'EC6'}
+  },
+  {sentence: 'Ils ne trouvent pas une grande maison &agrave; Boston.  ', 
+  audio: 'audio/EC/EC7.mp3', 
+  data: {stim_id: 'EC7'}
+  },
+  {sentence: 'Je ne pas danse bien avec mes nouvelles chaussures.', 
+  audio: 'audio/EC/EC8.mp3', 
+  data: {stim_id: 'EC8'}
+  },
+  {sentence: 'Ta fr&egrave;re travaille toute la journ&eacute;e au bureau. ', 
+  audio: 'audio/EC/EC9.mp3', 
+  data: {stim_id: 'EC9'}
+  },
+  {sentence: 'Je garde le chien de le voisin chez moi. ', 
+  audio: 'audio/EC/EC10.mp3', 
+  data: {stim_id: 'EC10'}
+  },
+  {sentence: 'Nous jouons au tennis avec un raquette et une balle.', 
+  audio: 'audio/EC/EC11.mp3', 
+  data: {stim_id: 'EC11'}
+  },
+  {sentence: 'Vous finis vos devoirs avant de jouer avec vos copains!', 
+  audio: 'audio/EC/EC12.mp3', 
+  data: {stim_id: 'EC12'}
+  },
+  {sentence: 'Elisabeth aime la petit plante dans la cuisine.', 
+  audio: 'audio/EC/EC13.mp3', 
+  data: {stim_id: 'EC13'}
+  },
+  {sentence: 'Magali explique la nouvelle le&ccedil;on &agrave; les &eacute;tudiants.', 
+  audio: 'audio/EC/EC14.mp3', 
+  data: {stim_id: 'EC14'}
+  },
+  {sentence: 'J\'ai chaud. Je veut une glace au chocolat et &agrave; la vanille.', 
+  audio: 'audio/EC/EC15.mp3', 
+  data: {stim_id: 'EC15'}
+  },
+  {sentence: 'J\'adore la nouvelle professeure de fran&ccedil;ais de ton s&oelig;ur.', 
+  audio: 'audio/EC/EC16.mp3', 
+  data: {stim_id: 'EC16'}
+  },
+  {sentence: 'Les enfants de Max et Laurent grandissez tr&egrave;s rapidement.', 
+  audio: 'audio/EC/EC17.mp3', 
+  data: {stim_id: 'EC17'}
+  },
+  {sentence: 'Chaque matin, nous boire un th&eacute; sur la terrasse.', 
+  audio: 'audio/EC/EC18.mp3', 
+  data: {stim_id: 'EC18'}
+  },
+  {sentence: 'Ils avons une pizza italienne au parc.', 
+  audio: 'audio/EC/EC19.mp3', 
+  data: {stim_id: 'EC19'}
+  },
+  {sentence: 'Le weekend, on regardent la t&eacute;l&eacute;vision avec notre famille.', 
+  audio: 'audio/EC/EC20.mp3', 
+  data: {stim_id: 'EC20'}
+  }
 ]
 
-var EC_audio = ['audio/EC/EC1.mp3', 'audio/EC/EC2.mp3']
+// yes this bad programming.
+var EC_audio = ['audio/EC/EC1.mp3', 'audio/EC/EC2.mp3', 'audio/EC/EC3.mp3','audio/EC/E4.mp3','audio/EC/EC5.mp3','audio/EC/EC6.mp3','audio/EC/EC7.mp3','audio/EC/EC8.mp3','audio/EC/EC9.mp3','audio/EC/EC10.mp3','audio/EC/EC11.mp3','audio/EC/EC12.mp3','audio/EC/EC13.mp3','audio/EC/EC14.mp3','audio/EC/EC15.mp3','audio/EC/EC16.mp3','audio/EC/EC17.mp3','audio/EC/EC18.mp3','audio/EC/EC19.mp3','audio/EC/EC20.mp3',]
 
 var EC_preload = {
   type: jsPsychPreload,
@@ -1116,16 +1193,17 @@ var EC_trials = {
   timeline:[
 
   {type: jsPsychHtmlButtonResponse,
-    stimulus: 'Click Next to see/hear the next sentence',
+    stimulus: 'Click Next to proceed to the next sentence.<br>',
     choices: ["Next"]},
 
   {type: jsPsychSurveyHtmlFormTO,
+  data: jsPsych.timeline('data'),
   on_start: function(trial){
   trial.preamble = '<audio autoplay><source src ='.concat(jsPsych.timelineVariable('audio')).concat('></audio>').concat('<b>').concat(jsPsych.timelineVariable('sentence').concat('</b><br><br>'))
   },
   html: EC_html,
   preamble: '',
-  trial_duration: 3000
+  trial_duration: 120050 //duration of each question is 2 minutes +50ms buffer
   },
   
 ], timeline_variables: EC_timeline_stimuli
