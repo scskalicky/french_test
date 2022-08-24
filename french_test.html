@@ -272,7 +272,7 @@ var SC2_trials = {
 
     {type: jsPsychImageButtonResponse,
       stimulus: 'image/PN1.png',
-      trial_duration: 10000, // should be 30 seconds (30000 ms), add 500 ms as buffer
+      trial_duration: 305000, // should be 30 seconds (30000 ms), add 500 ms as buffer
       stimulus_height: 800,
       stimulus_width: 600,
       on_finish: function(data){
@@ -285,7 +285,7 @@ var SC2_trials = {
     stimulus: 'Begin speaking your answer in 3...',
     choices: 'NO_KEYS',
     on_finish: function(data){
-        data.stim_id = 'sixpanel1'},
+        data.stim_id = 'PN1'},
     trial_duration: 1050
   },
   
@@ -303,7 +303,7 @@ var SC2_trials = {
     stimulus: 'Begin speaking your answer in 1...',
     choices: 'NO_KEYS',
     on_finish: function(data){
-        data.stim_id = 'sixpanel1'},
+        data.stim_id = 'PN1'},
     trial_duration: 1050
   },
 
@@ -311,12 +311,12 @@ var SC2_trials = {
   {
     type: jsPsychHtmlAudioResponse,
     stimulus: 'RECORDING...',
-    recording_duration: 5000, // trial duration should be 2 minutes (120000ms), add 500ms as a buffer
+    recording_duration: 180500, // trial duration should be 3 minutes (180000ms), add 500ms as a buffer
     show_done_button: true,
     done_button_label: "Finish Recording",
     // save audio
     on_finish: function(data){
-        data.stim_id = 'sixpanel1';
+        data.stim_id = 'PN1';
         //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
@@ -327,7 +327,7 @@ var SC2_trials = {
 }}
   ]
 }
-//timeline.push(SC2_trials)
+timeline.push(SC2_trials)
 
 /* Story Completion Part 3 - story of Max: before, now, and after.
 - 30 seconds to prepare
