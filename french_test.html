@@ -1058,9 +1058,9 @@ Their task is to locate and correct the error
 
 */
 EC_timeline_stimuli = [
-  {sentence: 'This sentence has an erORO.', audio: 'audio/fiona1.mp3', data: {stim_id: 'EC1'}
+  {sentence: 'Julian pr&eacute;pare les tomates rouge pour la salade.', audio: 'audio/EC/EC 1.mp3', data: {stim_id: 'EC1'}
   },
-  {sentence: 'Warning, presence of ID10T error identified.', audio: 'audio/torin1.mp3', data: {stim_id: 'EC2'}
+  {sentence: 'Pour c&eacute;l&eacute;brer la f&ecirc;te de Paola, ils allent au restaurant.', audio: 'audio/EC/EC 2.mp3', data: {stim_id: 'EC2'}
   },
 ]
 
@@ -1075,16 +1075,15 @@ timeline.push(EC_preload);
 
 var EC_instructions = {
   type: jsPsychInstructions,
-  pages: ['This portion of the test is about error correction',
-  'In this part, you will see a sentence on the screen. You will also hear the sentence be spoken, one time.',
-  'Your job is to locate the error in the sentence, correct the error, and explain why it is an error.',
-  'Each sentence will have only one error',
+  pages: ['In this activity, you are given a sentence that contains one <b>grammatical error</b>.',
+  'While the sentence remains on the screen, you will hear it once.',
+  'The written sentence will then stay on the screen, and you have 2 minutes to complete each question.',
+  'You must (1) identify the error, (2) correct the error, and (3) explain why it is incorrect in English.',
 'Continue to see an example in English.'],
 show_clickable_nav: true,
 }
 
 timeline.push(EC_instructions);
-
 
 EC_prompts = [{prompt: 'What is the error?', required: true}, 
 {prompt: 'What is the correction?', required: true}, 
