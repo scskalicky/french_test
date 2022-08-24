@@ -136,38 +136,55 @@ These questions involve participants looking at a series of images with which th
 - one trial so do not need timeline variables. 
 */
 
-var SC1_preload = {
-  type: jsPsychPreload,
-  images: 'image/park1.jpg'
-}
-//timeline.push(SC1_preload)
 
-var story_completion_instructions_p1 = {
-type: jsPsychInstructions,
-pages: ['On the next screen you will see an image depicting a scene.',
-'Your task is to describe what you see in the picture.',
-'Provide as many details as you can to describe the picture as best you can.',
-'You will have 30 seconds to study the images and plan your story. Then you will have 2 minutes to speak your response.',
-'If you forget some words, you can use English.'],
+var SC_task_instructions = {
+  type: jsPsychInstructions,
+  pages: ['In this next part, you will complete speaking tasks.',
+  'For each task, you must use complete sentences.',
+  'However, since you\'re in the process of learning French, you can substitute some French words in English, but only if you don\'t know them.', 
+  'We look forward to hearing your stories!'],
   show_clickable_nav: true
 }
 
-//timeline.push(story_completion_instructions_p1)
+timeline.push(SC_task_instructions)
+
+var SC1_preload = {
+  type: jsPsychPreload,
+  images: 'image/PD1.jpg'
+}
+timeline.push(SC1_preload)
+
+var SC1_instructions = {
+type: jsPsychInstructions,
+pages: ['<b>Picture description task</b>',
+'Objective: <b>Describe the people and the activities the people are doing</b>.',
+'You will see an image with many people, doing many activities.',
+'You have 1 minute to study the image and 4 minutes to describe what is happening in the image.',
+'You can focus on <ul><li>Activities</li><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Weather</li>',
+  'Use complete sentences as much as possible.',
+  'If you cannot make a complete sentence, provide a list of vocabulary words to describe the scene.'],
+show_clickable_nav: true
+}
+
+timeline.push(SC1_instructions)
 
 var SC1_trials = {
   timeline: [
     {type: jsPsychHtmlButtonResponse,
-    stimulus: 'Once you click this button, you will have 30 seconds to study the picture and prepare your response',
+    stimulus: 'Once you click this button, you will have 1 minute to study the picture and prepare your response',
     choices: ["See Picture"]},
 
     {type: jsPsychImageButtonResponse,
-      stimulus: 'image/park1.jpg',
-      trial_duration: 10000, // should be 30 seconds (30000 ms), add 500 ms as buffer
+      on_start: function(trial){
+        trial.stimulus = 'PD1.jpg'.concat('<br>Remember to describe:<ul><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li>')
+      },
+      stimulus: '',
+      trial_duration: 10000, // should be 1 minute (60000 ms), add 500 ms as buffer
       stimulus_height: 600,
       stimulus_width: 800,
       data: jsPsych.timelineVariable('data'),
       on_finish: function(data){
-        data.stim_id = 'park1'
+        data.stim_id = 'PD1'
       },
       choices: ["I'm Ready"]
     },
@@ -177,7 +194,7 @@ var SC1_trials = {
     stimulus: 'Begin speaking your answer in 3...',
     choices: 'NO_KEYS',
     on_finish: function(data){
-        data.stim_id = 'park1'
+        data.stim_id = 'PD1'
       },
     trial_duration: 1050
   },
@@ -187,7 +204,7 @@ var SC1_trials = {
     stimulus: 'Begin speaking your answer in 2...',
     choices: 'NO_KEYS',
     on_finish: function(data){
-        data.stim_id = 'park1'
+        data.stim_id = 'PD1'
       },
     trial_duration: 1050
   },
@@ -197,7 +214,7 @@ var SC1_trials = {
     stimulus: 'Begin speaking your answer in 1...',
     choices: 'NO_KEYS',
     on_finish: function(data){
-        data.stim_id = 'park1'
+        data.stim_id = 'PD1'
       },
     trial_duration: 1050
   },
@@ -211,7 +228,7 @@ var SC1_trials = {
     done_button_label: "Finish Recording",
     // save audio
     on_finish: function(data){
-        data.stim_id = 'park1';
+        data.stim_id = 'PD1';
         //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
@@ -1161,7 +1178,7 @@ var EC_instructions = {
 show_clickable_nav: true,
 }
 
-timeline.push(EC_instructions);
+//timeline.push(EC_instructions);
 
 EC_prompts = [{prompt: 'What is the error?', required: true}, 
 {prompt: 'What is the correction?', required: true}, 
@@ -1209,7 +1226,7 @@ var EC_trials = {
 ], timeline_variables: EC_timeline_stimuli
 }
 
-timeline.push(EC_trials)
+//timeline.push(EC_trials)
 
 
 
