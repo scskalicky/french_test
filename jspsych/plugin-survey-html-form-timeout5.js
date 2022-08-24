@@ -173,6 +173,8 @@ var jsPsychSurveyHtmlFormTO = (function (jspsych) {
           };
         // end trial after certain number of milliseconds
         this.jsPsych.pluginAPI.setTimeout(()=>{
+            var this_form = display_element.querySelector("#jspsych-survey-html-form");
+            var question_data = serializeArray(this_form);
             jsPsych.finishTrial(question_data);
         }, trial.trial_duration);
       }
