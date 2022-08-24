@@ -130,10 +130,8 @@ These questions involve participants looking at a series of images with which th
 */
 
 /* Story Completion Part 1 - single image of a park
-- 30 seconds to prepare
-- 2 minutes for response
-- size images to be w800xh600
-- one trial so do not need timeline variables. 
+- 1 minute to prepare
+- 4 minutes for response
 */
 
 
@@ -171,12 +169,12 @@ timeline.push(SC1_instructions)
 var SC1_trials = {
   timeline: [
     {type: jsPsychHtmlButtonResponse,
-    stimulus: 'Once you click this button, you will have 1 minute to study the picture and prepare your response',
+    stimulus: 'Once you click this button, you will have 1 minute to study the picture and prepare your response.<br>',
     choices: ["See Picture"]},
 
     {type: jsPsychImageButtonResponse,
       stimulus: 'image/PD_1.jpg',
-      trial_duration: 10000, // should be 1 minute (60000 ms), add 500 ms as buffer
+      trial_duration: 60500, // should be 1 minute (60000 ms), add 500 ms as buffer
       stimulus_height: 600,
       stimulus_width: 800,
       prompt: '<br><p style = "text-align: left">Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul>',
@@ -221,7 +219,7 @@ var SC1_trials = {
   {
     type: jsPsychHtmlAudioResponse,
     stimulus: 'RECORDING...',
-    recording_duration: 5000, // trial duration should be 2 minutes (120000ms), add 500ms as a buffer
+    recording_duration: 240500, // trial duration should be 4 minutes (240000ms), add 500ms as a buffer
     show_done_button: true,
     done_button_label: "Finish Recording",
     // save audio
@@ -254,16 +252,17 @@ var SC2_preload = {
 
 var SC2_instructions = {
   type: jsPsychInstructions,
-  pages: ['On the next screen you will see six images as part of a story.',
-          'Your task is to describe what is happening in each box.',
-          'Provide as many details as possible to make the story interesting.',
-          'You will have 30 seconds to study the images and plan your story. Then you will have 2 minutes to speak your response.',
-          'Be sure to tell us your story with as many interesting details as you can.',
-          'If you forget some words, you can use English.',
+  pages: ['<b>Picture Narration Task</b>',
+  'Objective: <b>Tell the story with as many interesting details as you can.</b>',
+  'You will see six images.',
+  'Your task is to create an original story using the pictures to inspire your story.',
+  'Provide additional details based on your imagination to make the story more interesting. ',
+  'You have 30 seconds to plan your story and 3 minutes to tell your story.',
+  ' If you forget some words, you can use English.'
 ],
   show_clickable_nav: true
 }
-//timeline.push(SC2_instructions)
+timeline.push(SC2_instructions)
 
 var SC2_trials = {
   timeline: [
