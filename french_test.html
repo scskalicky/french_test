@@ -1096,7 +1096,7 @@ EC_html = '<p>What is the error? <input type = "text" id = "error" name = "respo
 var EC_demo = {
   type: jsPsychSurveyHtmlForm,
   html: EC_html,
-  preamble: jsPsychTimelineVariable('sentence')
+  preamble: jsPsych.timelineVariable('sentence')
 }
 
 timeline.push(EC_demo)
