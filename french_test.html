@@ -1058,10 +1058,10 @@ Their task is to locate and correct the error
 
 */
 EC_timeline_stimuli = [
-  {sentence: 'This sentence has an erORO.<br>', audio: 'audio/fiona1.mp3', data: {stim_id: 'EC1'}
+  {sentence: 'This sentence has an erORO.', audio: 'audio/fiona1.mp3', data: {stim_id: 'EC1'}
   },
 
-  {sentence: 'Warning, presence of ID10T error identified.<br>', audio: 'torin1.mp3', data: {stim_id: 'EC1'}
+  {sentence: 'Warning, presence of ID10T error identified.', audio: 'torin1.mp3', data: {stim_id: 'EC1'}
   },
 ]
 
@@ -1091,13 +1091,16 @@ EC_prompts = [{prompt: 'What is the error?', required: true},
 {prompt: 'What is the correction?', required: true}, 
 {prompt: 'Why is it an error?', required: true}]
 
-EC_html = '<p>What is the error? <input type = "text" id = "error" name = "response"/></p><p>What is the correction? <input type = "text" id = "correction" name = "response"/></p><p>Why is it an error? <input type = "text" id = "explanation" name = "response"/></p>'
+EC_html = '<p>What is the error? <input type = "text" id = "error" name = "response"/></p><br><p>What is the correction? <input type = "text" id = "correction" name = "response"/><br></p><p>Why is it an error? <input type = "text" id = "explanation" name = "response"/></p>'
 
 var EC_demo = {
   timeline:[
   {type: jsPsychSurveyHtmlForm,
+  on_start: function(trial){
+  trial.preamble = '<b>'.concat(jsPsych.timelineVariable('sentence').concat('</b><br><br>'))
+},
   html: EC_html,
-  preamble: jsPsych.timelineVariable('sentence')
+  preamble: ''
 }], timeline_variables: EC_timeline_stimuli
 }
 
