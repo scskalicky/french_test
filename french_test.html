@@ -549,15 +549,18 @@ var CA_preload =
 // instructions for communicative adequacy
 const CA_instructions = {
   type: jsPsychInstructions,
-  pages: ['This test requires you to participate in some short back-and-forth conversations',
-  'You will first hear a speaker say something, and then you will record your response.',
-  'You will then hear the speaker reply, and you will then record your response.', 
-  'The test will start recording you as soon as you click the "record response" button.', 
-  'You will only hear the audio once.'],
+  pages: ['<b>Discourse Completion Task<b>',
+    'Carefully read the scenario, written in English.',
+    'You will then participate in a short dialogue with the computer.',
+    'You will begin by starting the conversation - be sure to address the topic provided!',
+    'After you record your answer, you will hear a response, followed by your recording.',
+    'For each question, you will make three short recordings.',
+    'Use complete sentences.',
+    'Use as much French as possible.'],
   show_clickable_nav: true,
 }
 
-//timeline.push(CA_instructions)
+timeline.push(CA_instructions)
 
 // communicative adequacy timeline. 
 const CA_trials = {
