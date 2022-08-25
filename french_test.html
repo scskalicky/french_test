@@ -619,10 +619,11 @@ Each trial shows pictures, plays dialogue once, then immediately plays again, th
 */
 
 // stim for timeline variable
+/*
 var LC1_timeline_stimuli = [
   {dialogue: 'audio/LC1/1_mehdi_twice.mp3', data: {stim_id: 'mehdi'}},
   {dialogue: 'audio/LC1/1_poisson.mp3', data: {stim_id: 'poisson'}},
-]
+]*/
 
 // stim for media preloading
 var LC1_images = ['image/LC1_A.png','image/LC1_B.png','image/LC1_C.png','image/LC1_D.png']
@@ -641,7 +642,7 @@ var LC1_instructions = {
   type: jsPsychInstructions,
   pages: ['<b>Listening Comprehension</b>',
   'Look at the images.',
-  'You will hear two short dialogues play, with a breif pause in between them',
+  'You will hear two short dialogues. Each dialogue will play twice',
   'Listen to the short dialogues and write the number of the dialogue under the corresponding image',
   'Be careful, there are four images, but only two dialogues.'],
 show_clickable_nav: true,
@@ -661,7 +662,7 @@ var LC1_trials = {
 
 {type: jsPsychAudioButtonResponse,
   prompt: 'Which image best matches the dialogue?<br><img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
-  stimulus: jsPsych.timelineVariable('audio/LC1/1_mehdi_twice.mp3'),
+  stimulus: 'audio/LC1/1_mehdi_twice.mp3',
   //prompt: "Which image corresponds to the dialogues you just heard?",
   response_allowed_while_playing: false,
   choices: ['Image A', 'Image B', 'Image C', 'Image D'],
@@ -672,7 +673,7 @@ var LC1_trials = {
 
 {type: jsPsychAudioButtonResponse,
   prompt: 'Which image best matches the dialogue?<br><img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
-  stimulus: jsPsych.timelineVariable('audio/LC1/1_poisson_twice.mp3'),
+  stimulus: 'audio/LC1/1_poisson_twice.mp3',
   //prompt: "Which image corresponds to the dialogues you just heard?",
   response_allowed_while_playing: false,
   choices: ['Image A', 'Image B', 'Image C', 'Image D'],
