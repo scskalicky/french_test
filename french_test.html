@@ -97,7 +97,7 @@ const prepare_microphone = {
     stimulus: 'Please connect your microphone to the computer. <br> We recommend using a pair of headphones with a microphone. <br>Once you have connected your microphone & headphones to the computer, click this button to prompt browser access to your microphone',
     choices: ['Add Microphone'],
 }
-//timeline.push(prepare_microphone)
+timeline.push(prepare_microphone)
 
 // prompt for permission and initialise microphone
 const ready_microphone = {
@@ -111,7 +111,7 @@ const test_audio_instructions = {
   stimulus: 'Let\'s make sure the test can hear you. Please click the button below and speak into your microphone for a few seconds. <br> Afterwards, you will be able to play your recording. <br>Please make sure that you can hear your recording. If not, please make sure you microphone is working properly and try again. <br> Please do not continue the test until you are able to hear a recording of yourself played back to you.',
   choices: ['Begin Recording']
 }
-//timeline.push(test_audio_instructions)
+timeline.push(test_audio_instructions)
 
 // allow recording and playback, recording limited to 10 seconds. 
 const test_audio = {
@@ -124,7 +124,7 @@ const test_audio = {
     on_finish: function(data){
       data.response = 'sanitized'}
 }
-//timeline.push(test_audio)
+timeline.push(test_audio)
 
 // honor system - participants will click to move on. 
 const recording_passed = {
@@ -132,7 +132,7 @@ const recording_passed = {
     stimulus: 'Thank you. You have indicated that you are able to hear yourself in the recording. <br> Press Continue when you are ready to continue the test.',
     choices: ['Continue'],
 }
-//timeline.push(recording_passed);
+timeline.push(recording_passed);
 
 /***** STORY COMPLETION BLOCK *********
 These questions involve participants looking at a series of images with which they will base a story. The images will be displayed for a fixed period of time (30 seconds), after which participants will have 2 minutes to orally tell their story based on the pictures. 
@@ -154,13 +154,13 @@ var SC_task_instructions = {
   show_clickable_nav: true
 }
 
-//timeline.push(SC_task_instructions)
+timeline.push(SC_task_instructions)
 
 var SC1_preload = {
   type: jsPsychPreload,
   images: 'image/PD_1.jpg'
 }
-//timeline.push(SC1_preload)
+timeline.push(SC1_preload)
 
 var SC1_instructions = {
 type: jsPsychInstructions,
@@ -174,7 +174,7 @@ pages: ['<b>Picture description task</b>',
 show_clickable_nav: true
 }
 
-//timeline.push(SC1_instructions)
+timeline.push(SC1_instructions)
 
 var SC1_trials = {
   timeline: [
@@ -217,7 +217,7 @@ var SC1_trials = {
 }}
   ]
 }
-//timeline.push(SC1_trials)
+timeline.push(SC1_trials)
 
 /* Story Completion Part 2 - six-panel images making a story
 - 30 seconds to prepare
@@ -245,7 +245,7 @@ var SC2_instructions = {
 ],
   show_clickable_nav: true
 }
-//timeline.push(SC2_instructions)
+timeline.push(SC2_instructions)
 
 var SC2_trials = {
   timeline: [
@@ -286,7 +286,7 @@ var SC2_trials = {
 }}
   ]
 }
-//timeline.push(SC2_trials)
+timeline.push(SC2_trials)
 
 /* Story Completion Part 3 - story of Max: before, now, and after.
 - 1 minute to prepare
@@ -312,7 +312,7 @@ var SC3_instructions = {
   show_clickable_nav: true
 }
 
-//timeline.push(SC3_instructions);
+timeline.push(SC3_instructions);
 
 var SC3_trials = {
   timeline: [
@@ -352,7 +352,7 @@ var SC3_trials = {
   ]
 }
 
-//timeline.push(SC3_trials)
+timeline.push(SC3_trials)
 
 /* Story Completion Part 4 - unrelated picture story.
 - 60 seconds to prepare
@@ -376,7 +376,7 @@ var SC4_instructions = {
   'There are no right or wrong stories, just let these four images inspire you.'],
   show_clickable_nav: true
 }
-// timeline.push(SC4_instructions);
+timeline.push(SC4_instructions);
 
 var SC4_trials = {
   timeline: [
@@ -416,7 +416,7 @@ var SC4_trials = {
   ]
 }
 
-//timeline.push(SC4_trials)
+timeline.push(SC4_trials)
 
 
 /***** COMMUNICATIVE ADEQUACY BLOCK *********
@@ -450,7 +450,7 @@ var CA_preload =
   audio: CA_audio,
   message: "Loading audio, please wait..."
 }
-//timeline.push(CA_preload)
+timeline.push(CA_preload)
 
 const computer_response_prompt = {
   type: jsPsychHtmlKeyboardResponse,
@@ -471,7 +471,7 @@ const CA_instructions = {
   show_clickable_nav: true,
 }
 
-// timeline.push(CA_instructions)
+timeline.push(CA_instructions)
 
 // communicative adequacy timeline. 
 const CA_trials = {
@@ -605,9 +605,9 @@ computer_response_prompt,
   choices: "NO_KEYS"
   }
   
- ], timeline_variables: CA_timeline_stimuli}
+ ], timeline_variables: CA_timeline_stimuli, randomize_order: true}
 
-//timeline.push(CA_trials)
+timeline.push(CA_trials)
 
 /***** LISTENING COMPREHENSION BLOCK *********
 Participants will listen to a audio dialogues in French. After the dialogues they will answer different questions based on pictures shown.
@@ -651,15 +651,12 @@ show_clickable_nav: true,
 
 timeline.push(LC1_instructions)
 
-
 var LC1_trials = {
   timeline: [
 
 // this trial type is the best way to get image responses to audio. 
 // but if we want a FORM we need something else. 
 // do it one at a time because they don't know what ONE means. 
-
-
 
 {type: jsPsychAudioButtonResponse,
   prompt: 'Which image best matches the dialogue?<br><img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
@@ -682,8 +679,6 @@ var LC1_trials = {
     data.stim_id = 'poisson_LC1'
   }
 },
-  
- 
 ]
 }
 
