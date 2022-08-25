@@ -57,6 +57,11 @@
 </html>
 
 <script>
+/*version A
+- need to create separate data folders for versions A and B, or otherwise figure out how to sort this properly. 
+
+*/
+const test_version = 'A'
 const timeline = []
 
 /*
@@ -420,7 +425,7 @@ var SC3_trials = {
   ]
 }
 
-timeline.push(SC3_trials)
+//timeline.push(SC3_trials)
 
 /* Story Completion Part 4 - unrelated picture story.
 - 60 seconds to prepare
@@ -435,15 +440,15 @@ var SC4_preload = {
 
 var SC4_instructions = {
   type: jsPsychInstructions,
-  pages: ['On the next screen you will see six pictures of different things.',
-        'Your task is to narrate a story which includes all the elements depicted by the pictures.',
-        'You must use all of the pictures that you see, but you can also add extra information.',
-        'You will have 60 seconds to study the pictures. Then you will have 2 minutes to speak your response.',
-        'If you forget some words, you can use English.',
-],
+  pages: ['<b>Unrelated Picture Narration Task</b>',
+  'You will see 4 images that are not related.',
+  'You <b>must create a story</b> based on these images.',
+  'The order of the images is not important.',
+  'Feel free to add characters!',
+  'There are no right or wrong stories, just let these four images inspire you.'],
   show_clickable_nav: true
 }
-// timeline.push(SC4_instructions);
+timeline.push(SC4_instructions);
 
 var SC4_trials = {
   timeline: [
