@@ -427,7 +427,7 @@ These questions involve participants listening and responding to a sustained sim
 var CA_timeline_stimuli = [
   {scenario: 'You are sick and calling the health clinic to <b>make an appointment</b> with your doctor.<br>The new receptionist is very busy learning her new tasks.<br><br>Start the conversation by:<br>1. Greeting the receptionist.<br>2. Requesting an appointment for tomorrow.<br><br>', turn1: 'audio/1_infirmiere1.mp3', turn2: 'audio/1_infirmiere2.mp3', turn3: 'audio/1_infirmiere3.mp3', data: {stim_id: 'DCT1'}},
 
-  {scenario: 'You need a ride to school for your exam. The exam is Tuesday at 9h.<br>You call your friend to <b>ask for a ride</b>. Your friend is very tired because he started a new job.<br><br> Start the conversation by:<br>1. Greeting your friend<br>2. Requesting a ride for Tuesday at 9h.<br><br>', turn1: 'audio/2_auto1.mp3', turn2: 'audio/2_auto2.mp3', turn3: 'audio/2_auto3.mp3', data: {stim_id: 'DCT2'}},
+  {scenario: 'You need a ride to school for your exam. The exam is Tuesday at 9h.<br>You call your friend to <b>ask for a ride</b>. Your friend is very tired because he started a new job.<br><br> Start the conversation by:<br>1. Greeting your friend.<br>2. Requesting a ride for Tuesday at 9h.<br><br>', turn1: 'audio/2_auto1.mp3', turn2: 'audio/2_auto2.mp3', turn3: 'audio/2_auto3.mp3', data: {stim_id: 'DCT2'}},
 
   {scenario: 'You are taking a French class and you need to practice outside of class for your upcoming exam.<br>You call Madame Janine, a retired French teacher, <b>to ask if you can be her student</b>. Madame Janine has a good reputation and has many students.<br><br>Start the conversation by:<br>1. Greeting Madame Janine<br>2. Requesting an appointment for a first course.<br><br>', turn1: 'audio/3_cours1.mp3', turn2: 'audio/3_cours2.mp3', turn3: 'audio/3_cours3.mp3', data:{stim_id: 'DCT3'}},
 
@@ -494,7 +494,7 @@ const CA_trials = {
         //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
-      'conversation_opening', 
+      'conversation_opening'.concat(jsPsych.timelineVariable('stim_id')), 
       data)
 }},
 
@@ -579,7 +579,7 @@ const CA_trials = {
   choices: 'NO_KEYS',
   trial_ends_after_audio: true},
 
-  /* don't have a response after the computer's final turn.
+  /* don't have a response after the computer's final turn?
   // 3 second countdown
   countdown321,
 
