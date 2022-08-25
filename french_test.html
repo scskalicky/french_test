@@ -434,7 +434,7 @@ var SC3_trials = {
 
 var SC4_preload = {
   type: jsPsychPreload,
-  images: 'image/unrelated1.jpg'
+  images: 'image/unrelated.jpg'
 }
 //timeline.push(SC4_preload)
 
@@ -457,12 +457,12 @@ var SC4_trials = {
     choices: ["See Picture"]},
 
     {type: jsPsychImageButtonResponse,
-      stimulus: 'image/unrelated1.jpg',
+      stimulus: 'image/unrelated.jpg',
       trial_duration: 61000, // should be 60 seconds (60,000 ms), add 1000 ms as buffer
       stimulus_height: 800,
       stimulus_width: 600,
       on_finish: function(data){
-        data.stim_id = 'unrelated1.jpg'},
+        data.stim_id = 'unrelated'},
       choices: ["I'm Ready"]
     },
     
@@ -471,7 +471,7 @@ var SC4_trials = {
     stimulus: 'Begin speaking your answer in 3...',
     choices: 'NO_KEYS',
     on_finish: function(data){
-        data.stim_id = 'unrelated1.jpg'},
+        data.stim_id = 'unrelated'},
     trial_duration: 1050
   },
   
@@ -480,7 +480,7 @@ var SC4_trials = {
     stimulus: 'Begin speaking your answer in 2...',
     choices: 'NO_KEYS',
     on_finish: function(data){
-        data.stim_id = 'unrelated1.jpg'},
+        data.stim_id = 'unrelated'},
     trial_duration: 1050
   },
   
@@ -489,7 +489,7 @@ var SC4_trials = {
     stimulus: 'Begin speaking your answer in 1...',
     choices: 'NO_KEYS',
     on_finish: function(data){
-      data.stim_id = 'unrelated1.jpg'},
+      data.stim_id = 'unrelated'},
     trial_duration: 1050
   },
 
@@ -501,7 +501,7 @@ var SC4_trials = {
     done_button_label: "Finish Recording",
     // save audio
     on_finish: function(data){
-      data.stim_id = 'unrelated1.jpg';
+      data.stim_id = 'unrelated';
       //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
@@ -513,9 +513,7 @@ var SC4_trials = {
   ]
 }
 
-// timeline.push(SC4_trials)
-
-
+timeline.push(SC4_trials)
 
 
 /***** COMMUNICATIVE ADEQUACY BLOCK *********
