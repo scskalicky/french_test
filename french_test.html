@@ -136,11 +136,11 @@ These questions involve participants looking at a series of images with which th
 
 
 var SC_task_instructions = {
-  type: jsPsychInstructions,
-  pages: ['In this next part, you will complete speaking tasks.',
-  'For each task, you must use complete sentences.',
-  'However, since you\'re in the process of learning French, you can substitute some French words in English, but only if you don\'t know them.', 
-  'We look forward to hearing your stories!'],
+  type: jsPsychHtmlButtonResponse,
+  stimulus: 'In this next part, you will complete speaking tasks.<br>' +
+  'For each task, you must use complete sentences.<br>' +
+  'However, since you\'re in the process of learning French, you can substitute some French words in English, but only if you don\'t know them.<br>' + 
+  'We look forward to hearing your stories!',
   show_clickable_nav: true
 }
 
@@ -344,13 +344,14 @@ var SC3_preload = {
 
 var SC3_instructions = {
   type: jsPsychInstructions,
-  pages: ['On the next screen you will see an image which tells the story of the child Max.',
-        'Study the picture and imagine a) what happened <b>before</b>, b) what is happening <b>now</b>, and c) what <b>will</b> happen.',
-        'Your task is to tell Max\'s story.',
-        'You will have 30 seconds to study the image and plan your story. Then you will have 2 minutes to speak your response.',
-        ' Begin by saying the title and tell us your story with as many interesting details as you can.',
-        'If you forget some words, you can use English.',
-],
+  pages: ['<b>Picture Description Task</b>',
+  'Objective: <b>Tell Samantha\'s Story!',
+    'You will see one image.',
+    'Your task is to tell us what you think happened to Samantha ONE hour ago...',
+    '...what is happening to Samantha NOW...',
+    '...and what will happen NEXT.',
+    'You will have one minute to plan and five minutes to record your story.',
+    'You story <b>must</b> include: <ol style = "text-align: left"><li>what happened one hour ago</li><li>what is happening now</li><li>what will happen next</li></ol>'],
   show_clickable_nav: true
 }
 
