@@ -128,11 +128,9 @@ const test_audio_instructions = {
 }
 //timeline.push(test_audio_instructions)
 
-timeline.push(countdown321)
-
 // allow recording and playback, recording limited to 10 seconds. 
 const test_audio = {
-    type: jsPsychHtmlAudioResponse,
+  type: jsPsychHtmlAudioResponse,
     recording_duration: 10000,
     stimulus: 'RECORDING...',
     allow_playback: true,
@@ -212,6 +210,8 @@ var SC1_trials = {
       choices: ["I'm Ready"]
     },
 
+    countdown321,
+
     // simulate a countdown for recording to start
   {type: jsPsychHtmlKeyboardResponse,
     stimulus: 'Begin speaking your answer in 3...',
@@ -262,7 +262,7 @@ var SC1_trials = {
 }}
   ]
 }
-//timeline.push(SC1_trials)
+timeline.push(SC1_trials)
 
 /* Story Completion Part 2 - six-panel images making a story
 - 30 seconds to prepare
