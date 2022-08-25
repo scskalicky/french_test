@@ -494,7 +494,7 @@ const CA_trials = {
         //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
-      'conversation_opening'.concat(jsPsych.timelineVariable('scenario_num')), 
+      'conversation_opening_'.concat(jsPsych.timelineVariable('scenario_num')), 
       data)
 }},
 
@@ -529,7 +529,7 @@ const CA_trials = {
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
       //jsPsych.data.get().last(5).values()[0].stimulus.substring(6), 
-      'first_response'.concat(jsPsych.timelineVariable('scenario_num')), 
+      'first_response_'.concat(jsPsych.timelineVariable('scenario_num')), 
       // current js data object
       data)
 }},
@@ -564,7 +564,7 @@ const CA_trials = {
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
      // jsPsych.data.get().last(5).values()[0].stimulus.substring(6), 
-     'second_response'.concat(jsPsych.timelineVariable('scenario_num')), 
+     'second_response_'.concat(jsPsych.timelineVariable('scenario_num')), 
       // current js data object
       data)
 }},
