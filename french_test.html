@@ -94,7 +94,7 @@ timeline.push(get_subject)
 // explain microphone connection
 const prepare_microphone = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'Please connect your microphone to the computer. <br> We recommend using a pair of headphones with a microphone. <br>Once you have connected your microphone & headphones to the computer, click this button to prompt browser access to your microphone',
+    stimulus: 'Please connect your microphone to the computer.<br>We recommend using a pair of headphones with a microphone.<br><br>Once you have connected your microphone & headphones to the computer, click this button to prompt browser access to your microphone.<br>',
     choices: ['Add Microphone'],
 }
 timeline.push(prepare_microphone)
@@ -108,7 +108,7 @@ timeline.push(ready_microphone)
 // explain to participants they need to make sure they can hear themselves. 
 const test_audio_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: 'Let\'s make sure the test can hear you. Please click the button below and speak into your microphone for a few seconds. <br> Afterwards, you will be able to play your recording. <br>Please make sure that you can hear your recording. If not, please make sure you microphone is working properly and try again. <br> Please do not continue the test until you are able to hear a recording of yourself played back to you.',
+  stimulus: 'Let\'s make sure the test can hear you.<br>Please click the button below and speak into your microphone for a few seconds.<br>Afterwards, you will be able to play your recording.<br><br>Please make sure that you can hear your recording. If not, please make sure you microphone is working properly and try again. <br> Please do not continue the test until you are able to hear a recording of yourself played back to you.<br><br>',
   choices: ['Begin Recording']
 }
 timeline.push(test_audio_instructions)
@@ -158,7 +158,8 @@ timeline.push(SC_task_instructions)
 
 var SC1_preload = {
   type: jsPsychPreload,
-  images: 'image/PD_1.jpg'
+  images: 'image/PD_1.jpg',
+  message: 'Loading...'
 }
 timeline.push(SC1_preload)
 
@@ -228,7 +229,8 @@ timeline.push(SC1_trials)
 
 var SC2_preload = {
   type: jsPsychPreload,
-  images: 'image/narrative_marcus.png'
+  images: 'image/narrative_marcus.png',
+  message: "Loading..."
 }
 
 timeline.push(SC2_preload)
@@ -295,7 +297,8 @@ timeline.push(SC2_trials)
 
 var SC3_preload = {
   type: jsPsychPreload,
-  images: 'image/samantha1.png'
+  images: 'image/samantha1.png',
+  message: 'Loading...'
 }
 timeline.push(SC3_preload)
 
@@ -317,7 +320,7 @@ timeline.push(SC3_instructions);
 var SC3_trials = {
   timeline: [
     {type: jsPsychHtmlButtonResponse,
-    stimulus: 'Once you click this button, you will have one minute to study the picture and prepare your response',
+    stimulus: 'Once you click this button, you will have one minute to study the picture and prepare your response.',
     choices: ["See Picture"]},
 
     {type: jsPsychImageButtonResponse,
@@ -362,7 +365,8 @@ timeline.push(SC3_trials)
 
 var SC4_preload = {
   type: jsPsychPreload,
-  images: 'image/unrelated.png'
+  images: 'image/unrelated.png',
+  message: 'Loading...'
 }
 timeline.push(SC4_preload)
 
@@ -435,7 +439,7 @@ var CA_timeline_stimuli = [
 
   {scenario_num: 'DCT5',scenario: 'You arrive late to your mid-term French exam because you missed the bus.<br><b>You apologize to your professor</b>, Monsieur Jean, for being late.<br>You know how much your teacher hates it!<br><br>Start the conversation by:<br>1. Greeting your teacher Monsieur Jean.<br>2. Apologizing for being late and telling him that you will not arrive late again.<br><br>', turn1: 'audio/5_retard1.mp3', turn2: 'audio/5_retard2.mp3', turn3: 'audio/5_retard3.mp3', data:{stim_id: 'DCT5'}},
 
-  {scenario_num: 'DCT6',scenario: 'You borrowed your brother\'s car to go to work last night and then went to a concert.<br> You lost your brother\'s car keys somewhere. You call your brother David to apologize and tell him that you will make a copy.<br><br>Start the conversation by:<br>1. Greeting your brother David.<br>2. Apologizing for losing the keys at the concert and telling him that you will make a copy.<br><br>', turn1: 'audio/6_cle1.mp3', turn2: 'audio/6_cle2.mp3', turn3: 'audio/6_cle3.mp3', data:{stim_id: 'DCT6'}},
+  {scenario_num: 'DCT6',scenario: 'You borrowed your brother\'s car to go to work last night and then went to a concert.<br> You lost your brother\'s car keys somewhere. You call your brother David <b>to apologize</b> and tell him that you will make a copy.<br><br>Start the conversation by:<br>1. Greeting your brother David.<br>2. Apologizing for losing the keys at the concert and telling him that you will make a copy.<br><br>', turn1: 'audio/6_cle1.mp3', turn2: 'audio/6_cle2.mp3', turn3: 'audio/6_cle3.mp3', data:{stim_id: 'DCT6'}},
 ];
 
 var CA_audio = ['audio/1_infirmiere1.mp3', 'audio/1_infirmiere2.mp3', 'audio/1_infirmiere3.mp3', 'audio/2_auto1.mp3', 'audio/2_auto2.mp3', 'audio/2_auto3.mp3', 'audio/3_cours1.mp3', 'audio/3_cours2.mp3', 'audio/3_cours3.mp3', 'audio/4_gateau1.mp3', 'audio/4_gateau2.mp3', 'audio/4_gateau3.mp3', 'audio/5_retard1.mp3', 'audio/5_retard2.mp3', 'audio/5_retard3.mp3', 
