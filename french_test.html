@@ -329,7 +329,7 @@ var SC2_trials = {
 }}
   ]
 }
-timeline.push(SC2_trials)
+//timeline.push(SC2_trials)
 
 /* Story Completion Part 3 - story of Max: before, now, and after.
 - 1 minute to prepare
@@ -366,11 +366,11 @@ var SC3_trials = {
     {type: jsPsychImageButtonResponse,
       stimulus: 'image/samantha1.png',
       trial_duration: 61000, // should be 1 minute (60,000 ms), add 1000 ms as buffer
-      stimulus_height: 500,
-      stimulus_width: 700,
+      stimulus_height: 600,
+      stimulus_width: 800,
       choices: ["I'm Ready"],
       on_finish: function(data){
-        data.stim_id = 'oliver'
+        data.stim_id = 'samantha'
       }
     },
     // simulate a countdown for recording to start
@@ -403,7 +403,7 @@ var SC3_trials = {
   {
     type: jsPsychHtmlAudioResponse,
     stimulus: 'RECORDING...',
-    recording_duration: 5000, // trial duration should be 2 minutes (120000ms), add 500ms as a buffer
+    recording_duration: 301000, // trial duration should be 5 minutes (300000ms), add 1000ms as a buffer
     show_done_button: true,
     done_button_label: "Finish Recording",
     // save audio
@@ -424,9 +424,7 @@ timeline.push(SC3_trials)
 
 /* Story Completion Part 4 - unrelated picture story.
 - 60 seconds to prepare
-- 2 minutes for response
-- size images to be w600xh800
-- is there only one image? Will we just re-use the same img? 
+- 5 minutes for response
 */
 
 var SC4_preload = {
@@ -455,7 +453,7 @@ var SC4_trials = {
 
     {type: jsPsychImageButtonResponse,
       stimulus: 'image/unrelated1.jpg',
-      trial_duration: 10000, // should be 60 seconds (60000 ms), add 500 ms as buffer
+      trial_duration: 61000, // should be 60 seconds (60,000 ms), add 1000 ms as buffer
       stimulus_height: 800,
       stimulus_width: 600,
       on_finish: function(data){
