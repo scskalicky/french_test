@@ -65,23 +65,17 @@ const test_version = 'A'
 const timeline = []
 
 
-const countdown321 =  [
-// simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 3...',
-    choices: 'NO_KEYS',
-    trial_duration: 1050
-  },
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 2...',
-    choices: 'NO_KEYS',
-    trial_duration: 1050
-  },
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 1...',
-    choices: 'NO_KEYS',
-    trial_duration: 1050
-  }]
+const countdown321 =  {
+  // simulate a countdown for recording to start
+  type: jsPsychHtmlKeyboardResponse,
+  choices: 'NO_KEYS',
+  trial_duration: 1050,
+  timeline: [
+    {stimulus: 'Begin speaking your answer in 3...'},
+    {stimulus: 'Begin speaking your answer in 2...'},
+    {stimulus: 'Begin speaking your answer in 1...'}
+  ]}
+
 
 /*
 Trials for recording audio. Might need to make separate ones for story completion and CA. Or adjust the stimuli substring to be appropriate.
