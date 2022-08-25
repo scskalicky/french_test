@@ -450,7 +450,7 @@ var CA_preload =
   audio: CA_audio,
   message: "Loading audio, please wait..."
 }
-timeline.push(CA_preload)
+//timeline.push(CA_preload)
 
 const computer_response_prompt = {
   type: jsPsychHtmlKeyboardResponse,
@@ -458,7 +458,6 @@ const computer_response_prompt = {
   trial_duration: 1500
 }
 
-// instructions for communicative adequacy
 const CA_instructions = {
   type: jsPsychInstructions,
   pages: ['<b>Discourse Completion Task<b>',
@@ -472,7 +471,7 @@ const CA_instructions = {
   show_clickable_nav: true,
 }
 
-timeline.push(CA_instructions)
+// timeline.push(CA_instructions)
 
 // communicative adequacy timeline. 
 const CA_trials = {
@@ -608,15 +607,11 @@ computer_response_prompt,
   
  ], timeline_variables: CA_timeline_stimuli}
 
-timeline.push(CA_trials)
+//timeline.push(CA_trials)
 
 /***** LISTENING COMPREHENSION BLOCK *********
-Participants will listen to a audio dialogues in French. After the dialogues they will answer different questions:
-1. Listen to a dialogue and indicate which pictures each line of the dialogue corresponds to (how to do this???) 
-2. Choosing from two pictures: one picture represents information from the dialogue, and one does not. 
-3. Listen to a short dialogue (twice), and then respond to written comprehension questions orally using French. There is a 30-sec
+Participants will listen to a audio dialogues in French. After the dialogues they will answer different questions based on pictures shown.
 */
-
 
 /**** LC1 - Two Dialogues*******
 Listen to two dialogues and choose which picture from among four pictures matches the dialogue
@@ -625,57 +620,72 @@ Each trial shows pictures, plays dialogue once, then immediately plays again, th
 
 // stim for timeline variable
 var LC1_timeline_stimuli = [
-  {dialogue: 'audio/fiona1.mp3', data:{stim_id: 'dialogue1'}},
-  {dialogue: 'audio/fiona2.mp3', data:{stim_id: 'dialogue1'}}
+  {dialogue: 'audio/LC1/1_mehdi_twice.mp3', data: {stim_id: 'mehdi'}},
+  {dialogue: 'audio/LC1/1_poisson.mp3', data: {stim_id: 'poisson'}},
 ]
 
 // stim for media preloading
 var LC1_images = ['image/LC1_A.png','image/LC1_B.png','image/LC1_C.png','image/LC1_D.png']
-var LC2_audio = ['audio/fiona.mp3']
+var LC2_audio = ['audio/LC1/1_mehdi_poisson.mp3']
 
-// preload LC1 stimuli just before the trial. 
+// preload LC1 stimuli
 var LC1_preload = {
   type: jsPsychPreload,
   images:LC1_images,
   audio: LC2_audio
 }
 
-//timeline.push(LC1_preload)
+timeline.push(LC1_preload)
 
 var LC1_instructions = {
   type: jsPsychInstructions,
-  pages: ['For this question you will hear <b>two</b> different dialogues, two times each.',
-  'While listening to the dialogue, you will also be shown four images.',
-  'Your task is to select which image corresponds to each dialogue.',
-  'One image corresponds to the first dialogue, and another image corresponds to the second dialogue.',
-  'Two images do not correspond to either dialogue.',
-  'After listening to the dialogue, indicate you answer by clicking the corresponding button.'],
+  pages: ['<b>Listening Comprehension</b>',
+  'Look at the images.',
+  'You will hear two short dialogues play, with a breif pause in between them',
+  'Listen to the short dialogues and write the number of the dialogue under the corresponding image',
+  'Be careful, there are four images, but only two dialogues.'],
 show_clickable_nav: true,
 }
 
-//timeline.push(LC1_instructions)
+timeline.push(LC1_instructions)
 
 
 var LC1_trials = {
   timeline: [
 
-  // defined above. 
-  //play_audio_button,
+// this trial type is the best way to get image responses to audio. 
+// but if we want a FORM we need something else. 
+// do it one at a time because they don't know what ONE means. 
 
-  // this trial type is the best way to get image responses to audio. 
-  // images load slightly slower than the audio, so audio needs a time buffer. 
-  {type: jsPsychAudioButtonResponse,
-  data: jsPsych.timelineVariable("data"),
+
+
+{type: jsPsychAudioButtonResponse,
   prompt: 'Which image best matches the dialogue?<br><img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
-  stimulus: jsPsych.timelineVariable('dialogue'),
-  //prompt: "Which image corresponds to the dialogue you just heard?",
+  stimulus: jsPsych.timelineVariable('audio/LC1/1_mehdi_twice.mp3'),
+  //prompt: "Which image corresponds to the dialogues you just heard?",
   response_allowed_while_playing: false,
-  choices: ['Image A', 'Image B', 'Image C', 'Image D']},
+  choices: ['Image A', 'Image B', 'Image C', 'Image D'],
+  on_finish: function(data){
+    data.stim_id = 'mehdi_LC1'
+  }
+},
+
+{type: jsPsychAudioButtonResponse,
+  prompt: 'Which image best matches the dialogue?<br><img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
+  stimulus: jsPsych.timelineVariable('audio/LC1/1_poisson_twice.mp3'),
+  //prompt: "Which image corresponds to the dialogues you just heard?",
+  response_allowed_while_playing: false,
+  choices: ['Image A', 'Image B', 'Image C', 'Image D'],
+  on_finish: function(data){
+    data.stim_id = 'poisson_LC1'
+  }
+},
   
  
-], timeline_variables: LC1_timeline_stimuli}
+]
+}
 
-//timeline.push(LC1_trials)
+timeline.push(LC1_trials)
 
 
 /***** LC2 - messages *******
