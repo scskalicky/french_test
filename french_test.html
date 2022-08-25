@@ -77,19 +77,7 @@ const countdown321 =  {
   ]}
 
 
-/*
-Trials for recording audio. Might need to make separate ones for story completion and CA. Or adjust the stimuli substring to be appropriate.
-
-actually might be able to delete this? 
-
-*/
-const record_response_button = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: '',
-  choices: ['RECORD RESPONSE']
-};
-
-// will be changed to get from URL variable. 
+// will be changed to get from URL variable, and also concat it to the test version. 
 var get_subject = {
   type: jsPsychSurveyText,
   questions: [{prompt: 'Please enter subject id'}],
@@ -439,15 +427,20 @@ These questions involve participants listening and responding to a sustained sim
 var CA_timeline_stimuli = [
   {scenario: 'You are sick and calling the health clinic to make an appointment with your doctor.<br>The new receptionist is very busy learning her new tasks.<br><br>Start the conversation by:<br>1. Greeting the receptionist<br>2. Requesting an appointment for tomorrow.<br><br>', turn1: 'audio/1_infirmiere1.mp3', turn2: 'audio/1_infirmiere2.mp3', turn3: 'audio/1_infirmiere3.mp3', data: {stim_id: 'DCT1'}},
 
-  {scenario: 'You need a ride to school for your exam. The exam is Tuesday at 9h.<br>You call your friend to <b>ask for a ride</b>. Your friend is very tired because he started a new job.<br><br> Start the conversation by:<br>1. Greeting your friend<br>2. Requesting a ride for Tuesday at 9h.<br><br>', turn1: 'audio/2_auto1.mp3', turn2: 'audio/2_auto2.mp3', turn3: 'audio/2_auto3.mp3', data: {stim_id: 'DCT2'}}
+  {scenario: 'You need a ride to school for your exam. The exam is Tuesday at 9h.<br>You call your friend to <b>ask for a ride</b>. Your friend is very tired because he started a new job.<br><br> Start the conversation by:<br>1. Greeting your friend<br>2. Requesting a ride for Tuesday at 9h.<br><br>', turn1: 'audio/2_auto1.mp3', turn2: 'audio/2_auto2.mp3', turn3: 'audio/2_auto3.mp3', data: {stim_id: 'DCT2'}},
+
+  {scenario: '', turn1: '', turn2: '', turn3: '', data:{stim_id: ''}}
+
 
 ];
 
-var CA_audio = ['audio/1_infirmiere1.mp3', 'audio/1_infirmiere2.mp3', 'audio/1_infirmiere3.mp3', 'audio/2_auto1.mp3', 'audio/2_auto2.mp3', 'audio/2_auto3.mp3']
+var CA_audio = ['audio/1_infirmiere1.mp3', 'audio/1_infirmiere2.mp3', 'audio/1_infirmiere3.mp3', 'audio/2_auto1.mp3', 'audio/2_auto2.mp3', 'audio/2_auto3.mp3', 'audio/3_cours1.mp3', 'audio/3_course2.mp3', 'audio/3_cours3.mp3', 'audio/4_gateau1.mpr', 'audio/4_gateau2.mp3', 'audio/4_gateau3.mp3', 'audio/5_retard1.mp3', 'audio/5_retard2.mp3', 'audio/5_retard3.mp3', 
+'audio/cle1.mp3', 'audio/cle2.mp3', 'audio/cle3.mp3', 'audio/7_collegue1.mpr', 'audio/7_collegue2.mp3', 'audio/7_collegue3.mp3', 'audio/8_invitation_we1.mp3', 'audio/8_invitation_we2.mp3', 'audio/8_invitation_we3.mp3']
 
 var CA_preload = 
 {type: jsPsychPreload,
-  audio: CA_audio
+  audio: CA_audio,
+  message: "Loading audio, please wait..."
 }
 timeline.push(CA_preload)
 
