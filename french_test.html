@@ -64,6 +64,25 @@
 const test_version = 'A'
 const timeline = []
 
+
+const countdown321 =  [
+// simulate a countdown for recording to start
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 3...',
+    choices: 'NO_KEYS',
+    trial_duration: 1050
+  },
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 2...',
+    choices: 'NO_KEYS',
+    trial_duration: 1050
+  },
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your answer in 1...',
+    choices: 'NO_KEYS',
+    trial_duration: 1050
+  }]
+
 /*
 Trials for recording audio. Might need to make separate ones for story completion and CA. Or adjust the stimuli substring to be appropriate.
 */
@@ -108,6 +127,8 @@ const test_audio_instructions = {
   choices: ['Begin Recording']
 }
 //timeline.push(test_audio_instructions)
+
+timeline.push(countdown321)
 
 // allow recording and playback, recording limited to 10 seconds. 
 const test_audio = {
@@ -525,25 +546,19 @@ These questions involve participants listening and responding to a sustained sim
 */
 
 var CA_timeline_stimuli = [
-    {turn1: 'audio/fiona1.mp3', 
-    turn2: 'audio/fiona2.mp3', 
-    turn3: 'audio/fiona3.mp3', 
-    data: {stim_id: 'fiona'}},
-    
-    {turn1: 'audio/torin1.mp3', 
-    turn2: 'audio/torin2.mp3', 
-    turn3: 'audio/torin3.mp3', 
-    data: {stim_id: 'torin'}}
+  {scenario: 'You are sick and calling the health clinic to make an appointment with your doctor.<br><br>The new receptionist is very busy learning her new tasks.<br><br>Start the conversation by:<ol><li>Greeting the receptionist</li><li>Requesting an appointment for tomorrow.</li></ol>', turn1: '1_infirmière1.mp3', turn2: '1_infirmière2.mp3', turn3: '1_infirmière3.mp3', data: {stim_id: 'DCT1'}},
+
+  {scenario: 'You need a ride to school for your exam. The exam is Tuesday at 9h.<br><br>You call your friend to <b>ask for a ride</b>. Your friend is very tired because he started a new job. Start the conversation by:<ol><li>Greeting your friend</li><li>Requesting a ride for Tuesday at 9h.</li></ol>', turn1: '2_auto1.mp3', turn2: '2_auto2.mp3', turn3: '2_auto3.mp3', data: {stim_id: 'DCT2'}}
+
 ];
 
-
-var CA_audio = ['audio/fiona1.mp3', 'audio/fiona2.mp3', 'audio/fiona3.mp3', 'audio/torin1.mp3', 'audio/torin2.mp3', 'audio/torin3.mp3']
+var CA_audio = ['1_infirmière1.mp3', '1_infirmière2.mp3', '1_infirmière3.mp3', '2_auto1.mp3', '2_auto2.mp3', '2_auto3.mp3']
 
 var CA_preload = 
 {type: jsPsychPreload,
   audio: CA_audio
 }
-//timeline.push(CA_preload)
+timeline.push(CA_preload)
 
 
 // instructions for communicative adequacy
@@ -569,18 +584,14 @@ const CA_trials = {
   stimulus: 'You are about to begin a NEW conversation.',
   choices: ['BEGIN']},
 
-  {type: jsPsychHtmlButtonResponse,
-  stimulus: '',
-  choices: ['PLAY FIRST AUDIO']},
+{
+  type: jsPsychHtmlButtonResponse,
+  stimulus: jsPsych.timelineVariable('scenario'),
+  choices: ['Start your conversation...']
+},
 
-  {type: jsPsychAudioKeyboardResponse,
-  stimulus: jsPsych.timelineVariable('turn1'),
-  data: jsPsych.timelineVariable("data"),
-  choices: 'NO_KEYS',
-  trial_ends_after_audio: true},
-    
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
+ // simulate a countdown for recording to start
+ {type: jsPsychHtmlKeyboardResponse,
     stimulus: 'Begin speaking your reply in 3...',
     choices: 'NO_KEYS',
     data: jsPsych.timelineVariable("data"),
@@ -594,6 +605,63 @@ const CA_trials = {
     data: jsPsych.timelineVariable("data"),
     trial_duration: 1050
   },
+  
+  // simulate a countdown for recording to start
+  {type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Begin speaking your reply in 1...',
+    choices: 'NO_KEYS',
+    data: jsPsych.timelineVariable("data"),
+    trial_duration: 1050
+  },
+
+  // record conversation opening
+  {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: 'RECORDING...',
+    recording_duration: 5000, // limit to ? how long? 
+    show_done_button: true,
+    data: jsPsych.timelineVariable("data"),
+    done_button_label: "Finish Recording",
+    // save audio
+    on_finish: function(data){
+        //subject name
+      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+      // audio file name
+      'conversation_opening', 
+      data)
+}},
+
+{
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: 'Their response is...',
+  trial_duration: 2000
+},
+
+{
+  type: jsPsychAudioKeyboardResponse,
+  stimulus: jsPsych.timelineVariable('turn1'),
+  data: jsPsych.timelineVariable("data"),
+  choices: 'NO_KEYS',
+  trial_ends_after_audio: true
+},
+    
+  // simulate a countdown for recording to start
+{
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: 'Begin speaking your reply in 3...',
+  choices: 'NO_KEYS',
+  data: jsPsych.timelineVariable("data"),
+  trial_duration: 1050
+},
+  
+  // simulate a countdown for recording to start
+{
+type: jsPsychHtmlKeyboardResponse,
+stimulus: 'Begin speaking your reply in 2...',
+choices: 'NO_KEYS',
+data: jsPsych.timelineVariable("data"),
+trial_duration: 1050
+},
   
   // simulate a countdown for recording to start
   {type: jsPsychHtmlKeyboardResponse,
