@@ -64,7 +64,7 @@
 const test_version = 'A'
 const timeline = []
 
-
+/* reuse this countdown variable throughout*/
 const countdown321 =  {
   // simulate a countdown for recording to start
   type: jsPsychHtmlKeyboardResponse,
@@ -79,6 +79,9 @@ const countdown321 =  {
 
 /*
 Trials for recording audio. Might need to make separate ones for story completion and CA. Or adjust the stimuli substring to be appropriate.
+
+actually might be able to delete this? 
+
 */
 const record_response_button = {
     type: jsPsychHtmlButtonResponse,
@@ -152,7 +155,6 @@ These questions involve participants looking at a series of images with which th
 - 4 minutes for response
 */
 
-
 var SC_task_instructions = {
   type: jsPsychInstructions,
   pages: ['<b>Speaking Tasks</b>',
@@ -204,37 +206,8 @@ var SC1_trials = {
       choices: ["I'm Ready"]
     },
 
+    // 3 second countdown
     countdown321,
-
-    // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 3...',
-    choices: 'NO_KEYS',
-    on_finish: function(data){
-        data.stim_id = 'PD_1'
-      },
-    trial_duration: 1050
-  },
-  
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 2...',
-    choices: 'NO_KEYS',
-    on_finish: function(data){
-        data.stim_id = 'PD_1'
-      },
-    trial_duration: 1050
-  },
-  
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 1...',
-    choices: 'NO_KEYS',
-    on_finish: function(data){
-        data.stim_id = 'PD_1'
-      },
-    trial_duration: 1050
-  },
 
   // record answer 
   {
@@ -301,33 +274,9 @@ var SC2_trials = {
         data.stim_id = 'narrative_marcus'},
       choices: ["I'm Ready"]
     },
-    
-    // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 3...',
-    choices: 'NO_KEYS',
-    on_finish: function(data){
-        data.stim_id = 'narrative_marcus'},
-    trial_duration: 1050
-  },
-  
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 2...',
-    choices: 'NO_KEYS',
-    on_finish: function(data){
-        data.stim_id = 'narrative_marcus'},
-    trial_duration: 1050
-  },
-  
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 1...',
-    choices: 'NO_KEYS',
-    on_finish: function(data){
-        data.stim_id = 'narrative_marcus'},
-    trial_duration: 1050
-  },
+
+    // 3 second countdown
+    countdown321,
 
     // record answer 
   {
@@ -393,33 +342,8 @@ var SC3_trials = {
         data.stim_id = 'samantha'
       }
     },
-    // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 3...',
-    choices: 'NO_KEYS',
-    on_finish: function(data){
-        data.stim_id = 'samantha'},
-    trial_duration: 1050
-  },
-  
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 2...',
-    choices: 'NO_KEYS',
-    on_finish: function(data){
-        data.stim_id = 'samantha'},
-    trial_duration: 1050
-  },
-  
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 1...',
-    choices: 'NO_KEYS',
-    on_finish: function(data){
-      data.stim_id = 'samantha'},
-    trial_duration: 1050
-  },
-
+    // 3 second countdown
+    countdown321,
   {
     type: jsPsychHtmlAudioResponse,
     stimulus: 'RECORDING...',
@@ -481,34 +405,9 @@ var SC4_trials = {
         data.stim_id = 'unrelated'},
       choices: ["I'm Ready"]
     },
-    
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 3...',
-    choices: 'NO_KEYS',
-    on_finish: function(data){
-        data.stim_id = 'unrelated'},
-    trial_duration: 1050
-  },
-  
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 2...',
-    choices: 'NO_KEYS',
-    on_finish: function(data){
-        data.stim_id = 'unrelated'},
-    trial_duration: 1050
-  },
-  
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your answer in 1...',
-    choices: 'NO_KEYS',
-    on_finish: function(data){
-      data.stim_id = 'unrelated'},
-    trial_duration: 1050
-  },
 
+    // 3 second countdown
+    countdown321,
   {
     type: jsPsychHtmlAudioResponse,
     stimulus: 'RECORDING...',
@@ -534,9 +433,7 @@ var SC4_trials = {
 
 /***** COMMUNICATIVE ADEQUACY BLOCK *********
 These questions involve participants listening and responding to a sustained simulated conversation. They will listen to the recording and then be asked to record their response. They will only be able to listen to each turn once. 
-
 - do we need a practice session? or at least one practice item to start? 
-
 */
 
 var CA_timeline_stimuli = [
@@ -584,29 +481,8 @@ const CA_trials = {
   choices: ['Start your conversation...']
 },
 
- // simulate a countdown for recording to start
- {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your reply in 3...',
-    choices: 'NO_KEYS',
-    data: jsPsych.timelineVariable("data"),
-    trial_duration: 1050
-  },
-  
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your reply in 2...',
-    choices: 'NO_KEYS',
-    data: jsPsych.timelineVariable("data"),
-    trial_duration: 1050
-  },
-  
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your reply in 1...',
-    choices: 'NO_KEYS',
-    data: jsPsych.timelineVariable("data"),
-    trial_duration: 1050
-  },
+  // 3 second countdown
+  countdown321,
 
   // record conversation opening
   {
@@ -638,32 +514,9 @@ const CA_trials = {
   choices: 'NO_KEYS',
   trial_ends_after_audio: true
 },
-    
-  // simulate a countdown for recording to start
-{
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: 'Begin speaking your reply in 3...',
-  choices: 'NO_KEYS',
-  data: jsPsych.timelineVariable("data"),
-  trial_duration: 1050
-},
-  
-  // simulate a countdown for recording to start
-{
-type: jsPsychHtmlKeyboardResponse,
-stimulus: 'Begin speaking your reply in 2...',
-choices: 'NO_KEYS',
-data: jsPsych.timelineVariable("data"),
-trial_duration: 1050
-},
-  
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your reply in 1...',
-    choices: 'NO_KEYS',
-    data: jsPsych.timelineVariable("data"),
-    trial_duration: 1050
-  },
+
+  // 3 second countdown
+  countdown321,
 
   // record answer to first turn.
     {
@@ -683,40 +536,21 @@ trial_duration: 1050
       data)
 }},
     
-{type: jsPsychHtmlButtonResponse,
-  stimulus: '',
-  choices: ['PLAY SECOND AUDIO']},
+{
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: 'Their response is...',
+  trial_duration: 2000
+},
 
-  {type: jsPsychAudioKeyboardResponse,
+{
+    type: jsPsychAudioKeyboardResponse,
   stimulus: jsPsych.timelineVariable('turn2'),
   data: jsPsych.timelineVariable("data"),
   choices: 'NO_KEYS',
-  trial_ends_after_audio: true},
-
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your reply in 3...',
-    choices: 'NO_KEYS',
-    data: jsPsych.timelineVariable("data"),
-    trial_duration: 1050
-  },
-  
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your reply in 2...',
-    choices: 'NO_KEYS',
-    data: jsPsych.timelineVariable("data"),
-    trial_duration: 1050
-  },
-  
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your reply in 1...',
-    choices: 'NO_KEYS',
-    data: jsPsych.timelineVariable("data"),
-    trial_duration: 1050
-  },
-
+  trial_ends_after_audio: true
+},
+  // 3 second countdown
+  countdown321,
 
    // record answer trial to second turn
    {
@@ -736,9 +570,11 @@ trial_duration: 1050
       data)
 }},
 
-{type: jsPsychHtmlButtonResponse,
-  stimulus: '',
-  choices: ['PLAY THIRD AUDIO']},
+{
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: 'Their response is...',
+  trial_duration: 2000
+},
 
   {type: jsPsychAudioKeyboardResponse,
   stimulus: jsPsych.timelineVariable('turn3'),
@@ -746,27 +582,9 @@ trial_duration: 1050
   choices: 'NO_KEYS',
   trial_ends_after_audio: true},
 
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your reply in 3...',
-    choices: 'NO_KEYS',
-    data: jsPsych.timelineVariable("data"),
-    trial_duration: 1050
-  },
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your reply in 2...',
-    choices: 'NO_KEYS',
-    data: jsPsych.timelineVariable("data"),
-    trial_duration: 1050
-  },  
-  // simulate a countdown for recording to start
-  {type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Begin speaking your reply in 1...',
-    choices: 'NO_KEYS',
-    data: jsPsych.timelineVariable("data"),
-    trial_duration: 1050
-  },
+  // 3 second countdown
+  countdown321,
+
      // record answer to third turn
      {
     type: jsPsychHtmlAudioResponse,
@@ -793,7 +611,7 @@ trial_duration: 1050
   
  ], timeline_variables: CA_timeline_stimuli}
 
-//timeline.push(CA_trials)
+timeline.push(CA_trials)
 
 /***** LISTENING COMPREHENSION BLOCK *********
 Participants will listen to a audio dialogues in French. After the dialogues they will answer different questions:
