@@ -637,7 +637,7 @@ computer_response_prompt,
      // record answer to third turn
      {
     type: jsPsychHtmlAudioResponse,
-    stimulus: 'RECORDING...',
+    stimulus: '<p style = "color:red"><b>RECORDING...</b></p>',
     recording_duration: 45000, // limit to ? how long? 
     show_done_button: true,
     data: jsPsych.timelineVariable("data"),
@@ -720,8 +720,15 @@ var LC1_trials = {
   }
 },
 
+{type: jsPsychHtmlButtonResponse,
+  stimulus: "Click the button to hear the next two dialogues.",
+  choices: ["Next Question"]
+
+
+},
+
 {type: jsPsychAudioButtonResponse,
-  prompt: '<b>Dialogue 2</b>Which image best matches the dialogue?<br><img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
+  prompt: '<b>Dialogue 2</b><br>Which image best matches the dialogue?<br><img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
   stimulus: 'audio/LC1/1_poisson_v2.mp3',
   //prompt: "Which image corresponds to the dialogues you just heard?",
   response_allowed_while_playing: false,
@@ -1150,10 +1157,10 @@ var EC_demo = {
   timeline:[
   {type: jsPsychSurveyHtmlForm,
   html: EC_demo_html,
-  preamble: '<i>Please follow this example when answering the questions. You may write your explanation in English. <br>Press continue when you are ready to begin.</i><br><br><br><b>The students are meeting on the library at 5pm.</b><br><br>'
+  preamble: '<i>Please follow this example when answering the questions.<br>Press continue when you are ready to begin.</i><br><br><br><b>The students are meeting on the library at 5pm.</b><br><br>'
 },
 {type: jsPsychHtmlButtonResponse,
-  stimulus: "Fill as many boxes as you can. Do not give up!<br>Do not use online dictionaries or reference tools. We are interested in what YOU know!",
+  stimulus: "Provide  as many answer as you can. Do not give up!<br>Do not use online dictionaries or reference tools.<br>We are interested in what YOU know!",
   choices:['Begin']
 }
 ]

@@ -1,3 +1,6 @@
+
+# PUT AUDIO IN raw audio folder to process
+
 import base64
 import glob
 from ffmpy import FFmpeg
