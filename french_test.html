@@ -808,7 +808,7 @@ var LC2_preload = {
   audio: LC2_audio
 }
 
-timeline.push(LC2_preload)
+//timeline.push(LC2_preload)
 
 var LC2_instructions = {
   type: jsPsychInstructions,
@@ -820,7 +820,7 @@ var LC2_instructions = {
   'Indicate you answer by clicking on the corresponding button.'],
 show_clickable_nav: true,
 }
-timeline.push(LC2_instructions)
+//timeline.push(LC2_instructions)
 
 var LC2_trials = {
   timeline: [
@@ -830,7 +830,7 @@ var LC2_trials = {
     trial.prompt = "Which image corresponds to the message?<img src = ".concat(jsPsych.timelineVariable('image')).concat(">")},
   data: jsPsych.timelineVariable("data"),
   stimulus: jsPsych.timelineVariable('message'),
-  response_allowed_while_playing: false,
+  response_allowed_while_playing: true,
   choices: ['Image A', 'Image B']},
 
   {type: jsPsychHtmlButtonResponse,
@@ -839,7 +839,7 @@ var LC2_trials = {
 ], timeline_variables: LC2_timeline_stimuli, randomize_order: true
 }
 
-timeline.push(LC2_trials)
+//timeline.push(LC2_trials)
 
 
 /*LC3 - audio answers ******
@@ -874,7 +874,7 @@ const record_answer_LC = {
 // LC3 stimuli for timeline
 var LC3_timeline_stimuli = [
 
-/*
+
 {
     monologue: 'audio/LC1/8_Martine_v2.mp3', questions: '<ul style = "text-align: left"><li>Qui f&ecirc;te son anniversaire?</li><li>Quand est l\'anniversaire?</li><li>Quel cadeau allez-vous acheter</li><li>O&ugrave; avez-vous rendez-vous?</li></ul>', data: {stim_id: 'martine_monologue'}
   },
@@ -882,9 +882,8 @@ var LC3_timeline_stimuli = [
 {
   monologue: 'audio/LC1/9_NRJ_v2.mp3', questions: '<ul style = "text-align: left"><li>1. La radio NRJ offre combien de places? </li><li>La radio NJR offre des places pour quel &eacute;v&egrave;nement </li><li>Quelle est la date de l\'&eacute;v&egrave;nement </li><li>Pour participer, il faut<ul><li>Venir &agrave; la radio</li><li>&Egrave;crire &agrave; la radio</li><li>Appeler la radio</li> </li></ul>', data: {stim_id: 'NRJ_monologue'}
 },
-*/
-  {monologue: 'audio/LC1/9_NRJ_v2.mp3', questions: '<ol style = "text-align:left"><li><b>Quel &eacute;v&egrave;nement f&ecirc;te Mme Fortin?</b><ul style = "text-align: left"><li>Son anniversaire</li><li>L\'anniversaire de sa fille</li><li>L\'anniversaire de ses cousins</li></ul></li><br><li><b>Quel g&acirc;teau Mme Fortin voudrait-elle?</b><br><image width = 500px height = 200px src = "image/cakes.png"></image></li><br><li><b>Qui va prendre les g&acirc;teaux?</b><ul style = "text-align: left"><li>Mme Fortin</li><li>Le mari de Mme Fortin</li><li>La fille de Mme Fortin</li></ul></li></ol>'
 
+  {monologue: 'audio/LC1/9_NRJ_v2.mp3', questions: '<ol style = "text-align:left"><li><b>Quel &eacute;v&egrave;nement f&ecirc;te Mme Fortin?</b><ul style = "text-align: left"><li>Son anniversaire</li><li>L\'anniversaire de sa fille</li><li>L\'anniversaire de ses cousins</li></ul></li><br><li><b>Quel g&acirc;teau Mme Fortin voudrait-elle?</b><br><image width = 500px height = 200px src = "image/cakes.png"></image></li><br><li><b>Qui va prendre les g&acirc;teaux?</b><ul style = "text-align: left"><li>Mme Fortin</li><li>Le mari de Mme Fortin</li><li>La fille de Mme Fortin</li></ul></li></ol>,', data: {stim_id: 'fortin'}
   }
 ]
 
