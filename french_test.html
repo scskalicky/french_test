@@ -92,6 +92,11 @@ const countdown321 =  {
     {stimulus: 'Begin recording in 1...'}
   ]}
 
+  const five_minute_break = {
+    type: jsPsychHtmlButtonResponse, 
+    stimulus: 'Before moving on to the next section of the test, please take a short break (up to five minutes).<br><br> Press "Continue" when you are ready to move to the next part of the test.',
+    choices:  ["Continue"]
+  }
 
 // will be changed to get from URL variable, and also concat it to the test version. 
 var get_subject = {
@@ -156,9 +161,8 @@ These questions involve participants looking at a series of images with which th
 
 /* Story Completion Part 1 - single image of a park
 - 1 minute to prepare
-- 4 minutes for response
+- 3 minutes for response
 */
-
 var SC_task_instructions = {
   type: jsPsychInstructions,
   pages: ['<b>Speaking Tasks</b>',
@@ -184,7 +188,7 @@ type: jsPsychInstructions,
 pages: ['<b>Picture description task</b>',
 'Objective: <b>Describe the people and the activities the people are doing</b>.',
 'You will see an image with many people, doing many activities.',
-'You have 1 minute to study the image and 4 minutes to describe what is happening in the image.',
+'You have 1 minute to study the image and 3 minutes to describe what is happening in the image.',
 'You can focus on <ul style = "text-align: left"><li>Activities</li><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Weather</li></ul>',
   'Use complete sentences as much as possible.',
   'If you cannot make a complete sentence, provide a list of vocabulary words to describe the scene.'],
@@ -201,7 +205,7 @@ var SC1_trials = {
 
     {type: jsPsychImageButtonResponse,
       stimulus: 'image/PD_1.jpg',
-      trial_duration: 60500, // should be 1 minute (60000 ms), add 500 ms as buffer
+      trial_duration: 61000, // should be 1 minute (60000 ms), add 500 ms as buffer
       stimulus_height: 400,
       stimulus_width: 600,
       prompt: '<br><p style = "text-align: left">Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul>',
@@ -217,8 +221,8 @@ var SC1_trials = {
   // record answer 
   {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<p style = "color:red"><b>RECORDING...</b></p><img src = "image/PD_1.jpg" width = "600" height = "400"><br><p style = "text-align: left">Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul>',
-    recording_duration: 241000, // trial duration should be 4 minutes (240000ms), add 1000ms as a buffer
+    stimulus: '<img src = "image/PD_1.jpg" width = "600" height = "400"><br><p style = "color:red"><b>RECORDING...</b></p><p style = "text-align: left">You have up to <b>three minutes</b> to describe the picture.<br>Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul>',
+    recording_duration: 181000, // trial duration should be 3 minutes (180000ms), add 1000ms as a buffer
     show_done_button: true,
     done_button_label: "Finish Recording",
     // save audio
@@ -273,6 +277,7 @@ var SC2_trials = {
 
     {type: jsPsychImageButtonResponse,
       stimulus: 'image/narrative_marcus.png',
+      prompt: 'Useful vocabulary:<br>&Eacute;chapper = <i>to drop</i><br>Prendre = <i>to take</i>',
       trial_duration: 31000, // should be 30 seconds (30,000 ms), add 1000 ms as buffer
       stimulus_height: 600,
       stimulus_width: 400,
@@ -287,8 +292,8 @@ var SC2_trials = {
     // record answer 
   {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<p style = "color:red"><b>RECORDING...</b></p><img src = "image/narrative_marcus.png" width = "400" height = "600">',
-    recording_duration: 180500, // trial duration should be 3 minutes (180000ms), add 500ms as a buffer
+    stimulus: '<img src = "image/narrative_marcus.png" width = "400" height = "600"><p style = "color:red"><b>RECORDING...</b></p>You have up to <b>three minutes</b> to complete your recording.<br>&Eacute;chapper = <i>to drop</i><br>Prendre = <i>to take</i>',
+    recording_duration: 181000, // trial duration should be 3 minutes (180000ms), add 500ms as a buffer
     show_done_button: true,
     done_button_label: "Finish Recording",
     // save audio
@@ -326,7 +331,7 @@ var SC3_instructions = {
     'Your task is to tell us what you think happened to Samantha ONE hour ago...',
     '...what is happening to Samantha NOW...',
     '...and what will happen NEXT.',
-    'You will have one minute to plan and five minutes to record your story.',
+    'You will have one minute to plan and three minutes to record your story.',
     'You story <b>must</b> include: <ol style = "text-align: left"><li>what happened one hour ago</li><li>what is happening now</li><li>what will happen next</li></ol>'],
   show_clickable_nav: true
 }
@@ -353,8 +358,8 @@ var SC3_trials = {
     countdown321,
   {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<p style = "color:red"><b>RECORDING...</b></p><img src = "image/samantha1.png" width = "800" height = "600">',
-    recording_duration: 301000, // trial duration should be 5 minutes (300000ms), add 1000ms as a buffer
+    stimulus: '<p style = "color:red"><b>RECORDING...</b></p><img src = "image/samantha1.png" width = "800" height = "600"><p>You have up to <b>three minutes</b> to complete your recording.</p>',
+    recording_duration: 181000, // trial duration should be 5 minutes (180000ms), add 1000ms as a buffer
     show_done_button: true,
     done_button_label: "Finish Recording",
     // save audio
@@ -401,7 +406,7 @@ timeline.push(SC4_instructions);
 var SC4_trials = {
   timeline: [
     {type: jsPsychHtmlButtonResponse,
-    stimulus: 'Once you click this button, you will have 60 seconds to study the picture and prepare your response',
+    stimulus: 'Once you click this button, you will have 60 seconds to study the picture and prepare your response. You will have 3 minutes to record your response.',
     choices: ["See Picture"]},
 
     {type: jsPsychImageButtonResponse,
@@ -419,7 +424,7 @@ var SC4_trials = {
   {
     type: jsPsychHtmlAudioResponse,
     stimulus: '<p style = "color:red"><b>RECORDING...</b><p><img src = "image/unrelated.png" width = "700" height = "500"',
-    recording_duration: 121000, // trial duration should be 2 minutes (120,000ms), add 100ms as a buffer
+    recording_duration: 181000, // trial duration should be 3 minutes (180,000ms), add 100ms as a buffer
     show_done_button: true,
     done_button_label: "Finish Recording",
     // save audio
@@ -444,22 +449,26 @@ These questions involve participants listening and responding to a sustained sim
 - do we need a practice session? or at least one practice item to start? 
 */
 
+// allow participants to take a break. 
+timeline.push(five_minute_break)
+
 var CA_timeline_stimuli = [
-  {scenario_num: 'DCT1', scenario: 'You are sick and calling the health clinic to <b>make an appointment</b> with your doctor.<br>The new receptionist is very busy learning her new tasks.<br><br>Start the conversation by:<br>1. Greeting the receptionist.<br>2. Requesting an appointment for tomorrow.<br><br>', turn1: 'audio/1_infirmiere_1_trim.mp3', turn2: 'audio/1_infirmiere_2_trim.mp3', turn3: 'audio/1_infirmiere_3_trim.mp3', data: {stim_id: 'DCT1'}},
+ 
+{scenario_num: 'DCT1', scenario: 'You are sick and calling the health clinic to <b>make an appointment</b> with your doctor.<br>The new receptionist is very busy learning her new tasks.<br><br>Start the conversation by:<br>1. Greeting the receptionist.<br>2. Requesting an appointment for tomorrow.<br><br>', reminder: 'Reminder: You are sick and calling the health clinic to <b>make an appointment</b> with your doctor.<br>The new receptionist is very busy learning her new tasks.', turn1: 'audio/1_infirmiere_1_trim.mp3', turn2: 'audio/1_infirmiere_2_trim.mp3', turn3: 'audio/1_infirmiere_3_trim.mp3', data: {stim_id: 'DCT1'}},
 
-  {scenario_num: 'DCT2',scenario: 'You need a ride to school for your exam. The exam is Tuesday at 9h.<br>You call your friend to <b>ask for a ride</b>. Your friend is very tired because he started a new job.<br><br> Start the conversation by:<br>1. Greeting your friend.<br>2. Requesting a ride for Tuesday at 9h.<br><br>', turn1: 'audio/2_auto_1_trim.mp3', turn2: 'audio/2_auto_2_trim.mp3', turn3: 'audio/2_auto_3_trim.mp3', data: {stim_id: 'DCT2'}},
+  {scenario_num: 'DCT2',scenario: 'You need a ride to school for your exam. The exam is Tuesday at 9h.<br>You call your friend to <b>ask for a ride</b>. Your friend is very tired because he started a new job.<br><br> Start the conversation by:<br>1. Greeting your friend.<br>2. Requesting a ride for Tuesday at 9h.<br><br>', reminder: 'Reminder: You need a ride to school for your exam. The exam is Tuesday at 9h.<br>You call your friend to <b>ask for a ride</b>. Your friend is very tired because he started a new job.', turn1: 'audio/2_auto_1_trim.mp3', turn2: 'audio/2_auto_2_trim.mp3', turn3: 'audio/2_auto_3_trim.mp3', data: {stim_id: 'DCT2'}},
 
-  {scenario_num: 'DCT3',scenario: 'You are taking a French class and you need to practice outside of class for your upcoming exam.<br>You call Madame Janine, a retired French teacher, <b>to ask if you can be her student</b>.<br>Madame Janine has a good reputation and has many students.<br><br>Start the conversation by:<br>1. Greeting Madame Janine.<br>2. Requesting an appointment for a first course.<br><br>', turn1: 'audio/3_cours_1_trim.mp3', turn2: 'audio/3_cours_2_trim.mp3', turn3: 'audio/3_cours_3_trim.mp3', data:{stim_id: 'DCT3'}},
+  {scenario_num: 'DCT3',scenario: 'You are taking a French class and you need to practice outside of class for your upcoming exam.<br>You call Madame Janine, a retired French teacher, <b>to ask if you can be her student</b>.<br>Madame Janine has a good reputation and has many students.<br><br>Start the conversation by:<br>1. Greeting Madame Janine.<br>2. Requesting an appointment for a first course.<br><br>', reminder: 'Reminder: You are taking a French class and you need to practice outside of class for your upcoming exam.<br>You call Madame Janine, a retired French teacher, <b>to ask if you can be her student</b>.<br>Madame Janine has a good reputation and has many students. ', turn1: 'audio/3_cours_1_trim.mp3', turn2: 'audio/3_cours_2_trim.mp3', turn3: 'audio/3_cours_3_trim.mp3', data:{stim_id: 'DCT3'}},
 
-  {scenario_num: 'DCT4',scenario: 'Your brother\'s graduation is coming up next weekend. The cake company canceled your order.<br>You <b>ask your best friend to make a cake</b> for the party, but she is sick.<br><br>Start the conversation by:<br>1. Greeting your friend.<br>2. Requesting a cake.<br><br>', turn1: 'audio/4_gateau_1_trim.mp3', turn2: 'audio/4_gateau_2_trim.mp3', turn3: 'audio/4_gateau_3_trim.mp3', data:{stim_id: 'DCT4'}},
+  {scenario_num: 'DCT4',scenario: 'Your brother\'s graduation is coming up next weekend. The cake company canceled your order.<br>You <b>ask your best friend to make a cake</b> for the party, but she is sick.<br><br>Start the conversation by:<br>1. Greeting your friend.<br>2. Requesting a cake.<br><br>', reminder: 'Reminder: Your brother\'s graduation is coming up next weekend. The cake company canceled your order.<br>You <b>ask your best friend to make a cake</b> for the party, but she is sick.', turn1: 'audio/4_gateau_1_trim.mp3', turn2: 'audio/4_gateau_2_trim.mp3', turn3: 'audio/4_gateau_3_trim.mp3', data:{stim_id: 'DCT4'}},
 
-  {scenario_num: 'DCT5',scenario: 'You arrive late to your mid-term French exam because you missed the bus.<br><b>You apologize to your professor</b>, Monsieur Jean, for being late.<br>You know how much your teacher hates it!<br><br>Start the conversation by:<br>1. Greeting your teacher Monsieur Jean.<br>2. Apologizing for being late and telling him that you will not arrive late again.<br><br>', turn1: 'audio/5_retard_1_trim.mp3', turn2: 'audio/5_retard_2_trim.mp3', turn3: 'audio/5_retard_3_trim.mp3', data:{stim_id: 'DCT5'}},
+  {scenario_num: 'DCT5',scenario: 'You arrive late to your mid-term French exam because you missed the bus.<br><b>You apologize to your professor</b>, Monsieur Jean, for being late.<br>You know how much your teacher hates it!<br><br>Start the conversation by:<br>1. Greeting your teacher Monsieur Jean.<br>2. Apologizing for being late and telling him that you will not arrive late again.<br><br>', reminder: 'Reminder: You arrive late to your mid-term French exam because you missed the bus.<br><b>You apologize to your professor</b>, Monsieur Jean, for being late.<br>You know how much your teacher hates it!', turn1: 'audio/5_retard_1_trim.mp3', turn2: 'audio/5_retard_2_trim.mp3', turn3: 'audio/5_retard_3_trim.mp3', data:{stim_id: 'DCT5'}},
 
-  {scenario_num: 'DCT6',scenario: 'You borrowed your brother\'s car to go to work last night and then went to a concert.<br> You lost your brother\'s car keys somewhere. You call your brother David <b>to apologize</b> and tell him that you will make a copy.<br><br>Start the conversation by:<br>1. Greeting your brother David.<br>2. Apologizing for losing the keys at the concert and telling him that you will make a copy.<br><br>', turn1: 'audio/6_cle_1_trim.mp3', turn2: 'audio/6_cle_2_trim.mp3', turn3: 'audio/6_cle_3_trim.mp3', data:{stim_id: 'DCT6'}},
+  {scenario_num: 'DCT6',scenario: 'You borrowed your brother\'s car to go to work last night and then went to a concert.<br> You lost your brother\'s car keys somewhere. You call your brother David <b>to apologize</b> and tell him that you will make a copy.<br><br>Start the conversation by:<br>1. Greeting your brother David.<br>2. Apologizing for losing the keys at the concert and telling him that you will make a copy.<br><br>', reminder: 'Reminder: You borrowed your brother\'s car to go to work last night and then went to a concert.<br> You lost your brother\'s car keys somewhere. You call your brother David <b>to apologize</b> and tell him that you will make a copy.', turn1: 'audio/6_cle_1_trim.mp3', turn2: 'audio/6_cle_2_trim.mp3', turn3: 'audio/6_cle_3_trim.mp3', data:{stim_id: 'DCT6'}}
+
 ];
 
-var CA_audio = ['audio/1_infirmiere_1_trim.mp3', 'audio/1_infirmiere_2_trim.mp3', 'audio/1_infirmiere_3_trim.mp3', 'audio/2_auto_1_trim.mp3', 'audio/2_auto_2_trim.mp3', 'audio/2_auto_3_trim.mp3', 'audio/3_cours_1_trim.mp3', 'audio/3_cours_2_trim.mp3', 'audio/3_cours_3_trim.mp3', 'audio/4_gateau_1_trim.mp3', 'audio/4_gateau_2_trim.mp3', 'audio/4_gateau_3_trim.mp3', 'audio/5_retard_1_trim.mp3', 'audio/5_retard_2_trim.mp3', 'audio/5_retard_3_trim.mp3', 
-'audio/6_cle_1_trim.mp3', 'audio/6_cle_2_trim.mp3', 'audio/6_cle_3_trim.mp3']
+var CA_audio = ['audio/1_infirmiere_1_trim.mp3', 'audio/1_infirmiere_2_trim.mp3', 'audio/1_infirmiere_3_trim.mp3', 'audio/2_auto_1_trim.mp3', 'audio/2_auto_2_trim.mp3', 'audio/2_auto_3_trim.mp3', 'audio/3_cours_1_trim.mp3', 'audio/3_cours_2_trim.mp3', 'audio/3_cours_3_trim.mp3', 'audio/4_gateau_1_trim.mp3', 'audio/4_gateau_2_trim.mp3', 'audio/4_gateau_3_trim.mp3', 'audio/5_retard_1_trim.mp3', 'audio/5_retard_2_trim.mp3', 'audio/5_retard_3_trim.mp3', 'audio/6_cle_1_trim.mp3', 'audio/6_cle_2_trim.mp3', 'audio/6_cle_3_trim.mp3']
 
 /*
 dunno if these are used? but if not, not going to load them. 
@@ -488,7 +497,7 @@ const CA_instructions = {
     'Carefully read the scenario, written in English.',
     'You will then participate in a short dialogue with the computer.',
     'You will begin by starting the conversation - be sure to address the topic provided!',
-    'After you record your answer, you will hear a response, <strike>followed by your recording.</strike>',
+    'After you record your answer, you will hear a response, and then you will need to respond to the statement.',
     'For each scenario, you will make <b>four</b> short recordings.',
     'You will have up to 45 seconds for each recording',
     'Use complete sentences.',
@@ -544,7 +553,10 @@ const CA_trials = {
   // record conversation opening
 {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<p style = "color:red"><b>RECORDING...</b></p>',
+    on_start: function(trial){
+      trial.stimulus = '<p style = "color:red"><b>RECORDING...</b></p><br>'.concat(jsPsych.timelineVariable('reminder'))
+    },
+    stimulus: '',
     recording_duration: dct_response_time_max,
     show_done_button: true,
     data: jsPsych.timelineVariable("data"),
@@ -569,12 +581,15 @@ computer_response_prompt,
 },
 
   // 5 second countdown
-  countdown54321,
+  countdown321,
 
   // record answer to first turn.
 {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<p style = "color:red"><b>RECORDING...</b></p>',
+    on_start: function(trial){
+      trial.stimulus = '<p style = "color:red"><b>RECORDING...</b></p><br>'.concat(jsPsych.timelineVariable('reminder'))
+    },
+    stimulus: '',
     recording_duration: dct_response_time_max, 
     show_done_button: true,
     data: jsPsych.timelineVariable("data"),
@@ -585,7 +600,8 @@ computer_response_prompt,
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
       //jsPsych.data.get().last(5).values()[0].stimulus.substring(6), 
-      'first_response_'.concat(jsPsych.timelineVariable('scenario_num')), 
+      jsPsych.timelineVariable('scenario_num').concat('_first_response'),
+      //'first_response_'.concat(jsPsych.timelineVariable('scenario_num')), 
       // current js data object
       data)
 }},
@@ -593,19 +609,22 @@ computer_response_prompt,
 computer_response_prompt,
 
 {
-    type: jsPsychAudioKeyboardResponse,
+  type: jsPsychAudioKeyboardResponse,
   stimulus: jsPsych.timelineVariable('turn2'),
   data: jsPsych.timelineVariable("data"),
   choices: 'NO_KEYS',
   trial_ends_after_audio: true
 },
   // 5 second countdown
-  countdown54321,
+  countdown321,
 
    // record answer trial to second turn
    {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<p style = "color:red"><b>RECORDING...</b></p>',
+    on_start: function(trial){
+      trial.stimulus = '<p style = "color:red"><b>RECORDING...</b></p><br>'.concat(jsPsych.timelineVariable('reminder'))
+    },
+    stimulus: '',
     recording_duration: dct_response_time_max,
     show_done_button: true,
     data: jsPsych.timelineVariable("data"),
@@ -615,8 +634,9 @@ computer_response_prompt,
         //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
-     // jsPsych.data.get().last(5).values()[0].stimulus.substring(6), 
-     'second_response_'.concat(jsPsych.timelineVariable('scenario_num')), 
+     // jsPsych.data.get().last(5).values()[0].stimulus.substring(6),
+     jsPsych.timelineVariable('scenario_num').concat('_second_response'),
+    // 'second_response_'.concat(jsPsych.timelineVariable('scenario_num')), 
       // current js data object
       data)
 }},
@@ -632,13 +652,16 @@ computer_response_prompt,
 },
 
   // 5 second countdown
-  countdown54321,
+  countdown321,
 
      // record answer to third turn
      {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<p style = "color:red"><b>RECORDING...</b></p>',
-    recording_duration: 45000, // limit to ? how long? 
+    on_start: function(trial){
+      trial.stimulus = '<p style = "color:red"><b>RECORDING...</b></p><br>'.concat(jsPsych.timelineVariable('reminder'))
+    },
+    stimulus: '',
+    recording_duration: 45000, //
     show_done_button: true,
     data: jsPsych.timelineVariable("data"),
     done_button_label: "Finish Recording",
@@ -648,7 +671,8 @@ computer_response_prompt,
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
       //jsPsych.data.get().last(5).values()[0].stimulus.substring(6), 
-      'conversation_ending_'.concat(jsPsych.timelineVariable('scenario_num')), 
+      jsPsych.timelineVariable('scenario_num').concat('_conversation_ending'),
+     // 'conversation_ending_'.concat(jsPsych.timelineVariable('scenario_num')), 
       // current js data object
       data)
 }},
@@ -693,6 +717,10 @@ var LC1_preload = {
 
 timeline.push(LC1_preload)
 
+
+// allow participants to take a break. 
+timeline.push(five_minute_break)
+
 var LC1_instructions = {
   type: jsPsychInstructions,
   pages: ['<b>Listening Comprehension</b>',
@@ -713,7 +741,7 @@ var LC1_trials = {
   prompt: '<b>Dialogue 1</b><br>Which image best matches the dialogue?<br><img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
   stimulus: 'audio/LC1/1_mehdi_v2.mp3',
   //prompt: "Which image corresponds to the dialogues you just heard?",
-  response_allowed_while_playing: false,
+  response_allowed_while_playing: true,
   choices: ['Image A', 'Image B', 'Image C', 'Image D'],
   on_finish: function(data){
     data.stim_id = 'mehdi_LC1'
@@ -731,7 +759,7 @@ var LC1_trials = {
   prompt: '<b>Dialogue 2</b><br>Which image best matches the dialogue?<br><img src = "image/LC1_A.png"><img src = "image/LC1_B.png"><img src = "image/LC1_C.png"><img src = "image/LC1_D.png">',
   stimulus: 'audio/LC1/1_poisson_v2.mp3',
   //prompt: "Which image corresponds to the dialogues you just heard?",
-  response_allowed_while_playing: false,
+  response_allowed_while_playing: true,
   choices: ['Image A', 'Image B', 'Image C', 'Image D'],
   on_finish: function(data){
     data.stim_id = 'poisson_LC1'
@@ -780,7 +808,7 @@ var LC2_preload = {
   audio: LC2_audio
 }
 
-//timeline.push(LC2_preload)
+timeline.push(LC2_preload)
 
 var LC2_instructions = {
   type: jsPsychInstructions,
@@ -792,7 +820,7 @@ var LC2_instructions = {
   'Indicate you answer by clicking on the corresponding button.'],
 show_clickable_nav: true,
 }
-//timeline.push(LC2_instructions)
+timeline.push(LC2_instructions)
 
 var LC2_trials = {
   timeline: [
@@ -811,7 +839,7 @@ var LC2_trials = {
 ], timeline_variables: LC2_timeline_stimuli, randomize_order: true
 }
 
-//timeline.push(LC2_trials)
+timeline.push(LC2_trials)
 
 
 /*LC3 - audio answers ******
@@ -820,7 +848,6 @@ var LC2_trials = {
 * after the second dialogue, participants will respond orally to the four questions. 
 * participants will have a maximum of 2 minutes to record their answers. 
 * TWO trials like this per test
-do you want NRJ or NRJ MTL?
 */
 
 // record answer trial for story completion trials
@@ -846,20 +873,30 @@ const record_answer_LC = {
 
 // LC3 stimuli for timeline
 var LC3_timeline_stimuli = [
+
+/*
 {
     monologue: 'audio/LC1/8_Martine_v2.mp3', questions: '<ul style = "text-align: left"><li>Qui f&ecirc;te son anniversaire?</li><li>Quand est l\'anniversaire?</li><li>Quel cadeau allez-vous acheter</li><li>O&ugrave; avez-vous rendez-vous?</li></ul>', data: {stim_id: 'martine_monologue'}
   },
 
 {
-  monologue: 'audio/LC1/9_NRJ_v2.mp3', questions: '<ul style = "text-align: left"><li>La radio NRJ offre combien de places? </li><li>La radio NJR offre des places pour quel &eacute;v&egrave;nement </li><li>Quelle est la date de l\'&eacute;v&egrave;nement </li><li>Pour participer, il faut<ul><li>Venir &agrave; la radio</li><li>&Egrave;crire agrave; la radio</li><li>Appeler la radio</li> </li></ul>', data: {stim_id: 'NRJ_monologue'}
-}]
+  monologue: 'audio/LC1/9_NRJ_v2.mp3', questions: '<ul style = "text-align: left"><li>1. La radio NRJ offre combien de places? </li><li>La radio NJR offre des places pour quel &eacute;v&egrave;nement </li><li>Quelle est la date de l\'&eacute;v&egrave;nement </li><li>Pour participer, il faut<ul><li>Venir &agrave; la radio</li><li>&Egrave;crire &agrave; la radio</li><li>Appeler la radio</li> </li></ul>', data: {stim_id: 'NRJ_monologue'}
+},
+*/
+  {monologue: 'audio/LC1/9_NRJ_v2.mp3', questions: '<ol style = "text-align:left"><li><b>Quel &eacute;v&egrave;nement f&ecirc;te Mme Fortin?</b><ul style = "text-align: left"><li>Son anniversaire</li><li>L\'anniversaire de sa fille</li><li>L\'anniversaire de ses cousins</li></ul></li><br><li><b>Quel g&acirc;teau Mme Fortin voudrait-elle?</b><br><image width = 500px height = 200px src = "image/cakes.png"></image></li><br><li><b>Qui va prendre les g&acirc;teaux?</b><ul style = "text-align: left"><li>Mme Fortin</li><li>Le mari de Mme Fortin</li><li>La fille de Mme Fortin</li></ul></li></ol>'
+
+  }
+]
 
 var LC3_audio = ['audio/LC1/8_Martine_v2.mp3', 'audio/LC1/9_NRJ_v2.mp3']
+var LC3_images = ['image/cakes.png']
 
 var LC3_preload = {
   type: jsPsychPreload,
-  audio: LC3_audio
+  audio: LC3_audio,
+  images: LC3_images
 }
+
 timeline.push(LC3_preload)
 
 var LC3_instructions = {
@@ -896,14 +933,17 @@ var LC3_trials = {
 }
 timeline.push(LC3_trials)
 
-/*LC4 - multiple guess questions ******
+/*LC4 - moot??? ******
 * participant will hear a short monologue. It will play once, pause for 30 seconds, then play again.
 * participants will then answer multiple choice questions which include both text and images. 
 * questions are shown while listening to the audio
-MISSING AUDIO FOR MMS FORTIN?
+MISSING AUDIO FOR MMS FORTIN - yep. 
 I can't finish this until I know the format of the question. 
 
-*/
+just need to combine LC3 and LC4. 
+
+
+
 
 // LC4 stimuli for timeline
 var LC4_timeline_stimuli = [
@@ -913,23 +953,12 @@ var LC4_timeline_stimuli = [
   {prompt: 'Who will take the cake?', name: 'phone3Q3', options: ['Cat', 'Zebra', 'Kiwi'], required: true, horizontal: true}],
   question_display: 'What is his birthday? <br><br> Which picture? <br><br> Who will take the cake?', 
             data: {stim_id: 'phone1'}},
-
-{phone_audio: 'audio/torin1.mp3', 
-survey_questions: [
-  {prompt: 'What is his birthday?', name: 'phone2Q1', options: ['A', 'B', 'C', 'D'], required: true, horizontal: true}, 
-  {prompt: 'Which picture?', name: 'phone2Q2', options: ['<img src = image/LC4_B.png height = 200, width = 250>', '<img src = image/LC4_A.png height = 200, width = 250>'], required: true, horizontal: true},
-  {prompt: 'Who will take the cake?', name: 'phone3Q3', options: ['Cat', 'Zebra', 'Kiwi'], required: true, horizontal: true}], 
-  // to see questions during audio
-  question_display: 'What is his birthday? <br><br> Which picture? <br><br> Who will take the cake?', 
-data: {stim_id: 'phone2'}}
         
 ]
 
-//var LC4_timeline_stimuli = [{phone_audio: 'audio/fiona1.mp3', question_strings:[], question_buttons: [], 
-  //          data: {stim_id: 'phone1'}}]
 
-var LC4_audio = ['audio/fiona1.mp3', 'audio/torin1.mp3']
-var LC4_images = ['image/LC4_A.png', 'image/LC4_B.png']
+var LC4_audio = ['audio/LC1/9_NRJ_v2.mp3']
+var LC4_images = ['image/cake1.png', 'image/cake2.png', 'image/cake3.png']
 
 var LC4_preload = {
   type: jsPsychPreload,
@@ -968,6 +997,8 @@ var LC4_trials = {
 
 //timeline.push(LC4_trials)
 
+*/
+
 /***** C-TEST *********
 Participants will read three short texts. Each text will have some words missing parts of the word. Participants must type in letters in order to provide correct words. 
 */
@@ -979,7 +1010,7 @@ var CT_stim = [
     c_text: french_keyboard.concat('Bonjour, je m\'appelle Marise et j\'ai un ami sp&egrave;cial!<p>I%% est bl%%, brun, e%%, tr&eacute;s pe%%, Mon a%% a de%% belles lon%% oreilles.<p>Le ma%%, je l%% donne d%% la nourr%%.<p>Il ad%% les caro%%. Il ma%% tr&eacute;s vi%%! <p>Mon a%% sp&eacute;cial n\'a%% pas l%% chiens, ma%% il ad%% les enf%%.<p>Tu as devin&eacute;, mon ami c\'est un lapin.'), data: {stim_id: 'CTEST_1'}
 },
 {
-    c_text: french_keyboard.concat("Coucou, tu es d\'accord pour m\'aider &agrave; organiser l\'anniversaire de Clara?<p>La fê%% est sam%% en soi%%, chez m%%.<p>Hier, o%% a pr&eacute;%% un exce%% g&acirc;teau a%% chocolat.<p>Mon fr%% a l%% d&eacute;corations e%% la mus%%.<p>Tu pe%% aller cher%% les so%% et l%% chips.<p>Viens ve%% 14h av%% ton cop%% de Fra%%, on v%% faire u%% sal%% de fru%% ensemble.<p>Ap%% on v%% d&eacute;corer l%% maison. Appelle-moi quand tu arrives."), data: {stim_id: 'CTEST_2'}
+    c_text: french_keyboard.concat("Coucou, tu es d\'accord pour m\'aider &agrave; organiser l\'anniversaire de Clara?<p>La f&ecirc;%% est sam%% en soi%%, chez m%%.<p>Hier, o%% a pr&eacute;%% un exce%% g&acirc;teau a%% chocolat.<p>Mon fr%% a l%% d&eacute;corations e%% la mus%%.<p>Tu pe%% aller cher%% les so%% et l%% chips.<p>Viens ve%% 14h av%% ton cop%% de Fra%%, on v%% faire u%% sal%% de fru%% ensemble.<p>Ap%% on v%% d&eacute;corer l%% maison. Appelle-moi quand tu arrives."), data: {stim_id: 'CTEST_2'}
 },
 {
     c_text: french_keyboard.concat("Un livre qui pr&eacute;tend introduire des aspects de la culture française ne serait pas complet sans un chapitre sur les beaux-arts.<p>En fa%%, de nomb%% touristes vo%% en Fra%% dans l\'inte%% d\'admirer s%% chefs-d\'œu%% de pein%%, d\'archit%% et d%% sculpture.<p>Q%% n\'a p%% entendu par%% du Louvre? d%% la cath%% Notre-Dame d%% Paris? des scul%% de Rodin?<p>Nous ne pouvons pas vous pr&eacute;senter une &eacute;tude en profondeur des beaux-arts en France."), data: {stim_id: 'CTEST_3'}
@@ -988,6 +1019,9 @@ var CT_stim = [
     c_text: french_keyboard.concat('Quand on revient d\'un voyage dans un pays &eacute;tranger, la premi&eacute;re chose dont on se souvient est presque toujours la cuisine:<p> non seul%% la nourr%% mais au%% la fa%% de l%% pr&eacute;parer, d%% la man%%, les heu%% des re%%, tous l%% rites q%%<p>les accomp%% et q%% caract&eacute;risent l%% gens d%% pays mi%% que n\'imp%% quel au%% aspect d%% la v%%.<p>En Fra%%, la gastr%% est particul%% importante, c%% c\'est u%% v&eacute;ritable art; et il ne s\'agit pas d\'un art pratiqu&eacute; par un petit nombre de sp&eacute;cialistes, mais d\'un art auquel participe toute la population.'), data: {stim_id: 'CTEST_4'}
 }
 ]
+
+// allow participants to take a break. 
+timeline.push(five_minute_break)
 
 var CT_instructions = {
   type: jsPsychInstructions,
@@ -1016,17 +1050,15 @@ data: jsPsych.timelineVariable("data"),
 trial_duration: 301000,
 button_text: '<br>Submit Answers</b>'
 }
-], timeline_variables: CT_stim, randomize_order: true
+], timeline_variables: CT_stim, randomize_order: false
 }
 
 timeline.push(CT_trials);
-
 
 /***** ERROR CORRECTION TASK *********
 Participants will see a sentence and also hear the sentence spoken one time
 They will know there is an error somewhere in the sentence
 Their task is to locate and correct the error
-
 */
 
 EC_timeline_stimuli = [
@@ -1121,6 +1153,10 @@ var EC_preload = {
 }
 
 timeline.push(EC_preload);
+
+
+// allow participants to take a break. 
+timeline.push(five_minute_break)
 
 var EC_instructions = {
   type: jsPsychInstructions,
