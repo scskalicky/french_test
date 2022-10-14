@@ -60,8 +60,7 @@
 
 <script>
 /*version A
-- need to create separate data folders for versions A and B, or otherwise figure out how to sort this properly. 
-
+- need to create separate data folders for versions A and B, or otherwise figure out how to sort this properly.
 */
 const test_version = 'A'
 const timeline = []
@@ -132,7 +131,7 @@ const test_audio_instructions = {
   stimulus: 'Let\'s make sure the test can hear you.<br>Please click the button below and speak into your microphone for a few seconds.<br>Afterwards, you will be able to play your recording.<br><br>Please make sure that you can hear your recording. If not, please make sure you microphone is working properly and try again. <br> Please do not continue the test until you are able to hear a recording of yourself played back to you.<br><br>',
   choices: ['Begin Recording']
 }
-timeline.push(test_audio_instructions)
+//timeline.push(test_audio_instructions)
 
 // allow recording and playback, recording limited to 10 seconds. 
 const test_audio = {
@@ -145,7 +144,7 @@ const test_audio = {
     on_finish: function(data){
       data.response = 'sanitized'}
 }
-timeline.push(test_audio)
+//timeline.push(test_audio)
 
 // honor system - participants will click to move on. 
 const recording_passed = {
@@ -205,7 +204,7 @@ var SC1_trials = {
 
     {type: jsPsychImageButtonResponse,
       stimulus: 'image/PD_1.jpg',
-      trial_duration: 61000, // should be 1 minute (60000 ms), add 500 ms as buffer
+      trial_duration: 61000, // should be 1 minute (60000 ms), add 1000ms (1 second) as buffer
       stimulus_height: 400,
       stimulus_width: 600,
       prompt: '<br><p style = "text-align: left">Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul>',
@@ -219,12 +218,31 @@ var SC1_trials = {
     countdown321,
 
   // record answer 
+
+  // need to add a ticking timer here. 
   {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<img src = "image/PD_1.jpg" width = "600" height = "400"><br><p style = "color:red"><b>RECORDING...</b></p><p style = "text-align: left">You have up to <b>three minutes</b> to describe the picture.<br>Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul>',
+    stimulus: '<img src = "image/PD_1.jpg" width = "600" height = "400"><br><p style = "color:red"><b>RECORDING...</b></p><span id = "clock" style = "color:red">-:--</span><p style = "text-align: left">You have up to <b>three minutes</b> to describe the picture.<br>Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul>',
     recording_duration: 181000, // trial duration should be 3 minutes (180000ms), add 1000ms as a buffer
     show_done_button: true,
     done_button_label: "Finish Recording",
+    
+    // countdown timers
+    on_load: function(){
+      var wait_time = 180000; // 3 minutes in milliseconds
+      var start_time = performance.now();
+      var interval = setInterval(function(){
+        var time_left = wait_time - (performance.now() - start_time);
+        var minutes = Math.floor(time_left / 1000 / 60);
+        var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
+        var seconds_str = seconds.toString().padStart(2,'0');
+        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+        // stop the clock!
+        if(time_left <= 0){
+          clearInterval(interval)
+          document.querySelector('#clock').innerHTML = "Time's Up!"
+          }
+    }, 250)},
     // save audio
     on_finish: function(data){
         data.stim_id = 'PD_1';
@@ -296,6 +314,22 @@ var SC2_trials = {
     recording_duration: 181000, // trial duration should be 3 minutes (180000ms), add 500ms as a buffer
     show_done_button: true,
     done_button_label: "Finish Recording",
+    // countdown timers
+    on_load: function(){
+      var wait_time = 180000; // 3 minutes in milliseconds
+      var start_time = performance.now();
+      var interval = setInterval(function(){
+        var time_left = wait_time - (performance.now() - start_time);
+        var minutes = Math.floor(time_left / 1000 / 60);
+        var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
+        var seconds_str = seconds.toString().padStart(2,'0');
+        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+        // stop the clock!
+        if(time_left <= 0){
+          clearInterval(interval)
+          document.querySelector('#clock').innerHTML = "Time's Up!"
+          }
+    }, 250)},
     // save audio
     on_finish: function(data){
         data.stim_id = 'narrative_marcus';
@@ -362,6 +396,22 @@ var SC3_trials = {
     recording_duration: 181000, // trial duration should be 5 minutes (180000ms), add 1000ms as a buffer
     show_done_button: true,
     done_button_label: "Finish Recording",
+    // countdown timers
+    on_load: function(){
+      var wait_time = 180000; // 3 minutes in milliseconds
+      var start_time = performance.now();
+      var interval = setInterval(function(){
+        var time_left = wait_time - (performance.now() - start_time);
+        var minutes = Math.floor(time_left / 1000 / 60);
+        var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
+        var seconds_str = seconds.toString().padStart(2,'0');
+        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+        // stop the clock!
+        if(time_left <= 0){
+          clearInterval(interval)
+          document.querySelector('#clock').innerHTML = "Time's Up!"
+          }
+    }, 250)},
     // save audio
     on_finish: function(data){
       data.stim_id = 'samantha';
@@ -382,14 +432,16 @@ timeline.push(SC3_trials)
 - 60 seconds to prepare
 - 5 minutes for response
 - PRE/POST: same
-*/
+- Does not deploy, decided to remove this from the test. 
+
+
 
 var SC4_preload = {
   type: jsPsychPreload,
   images: 'image/unrelated.png',
   message: 'Loading...'
 }
-timeline.push(SC4_preload)
+//timeline.push(SC4_preload)
 
 var SC4_instructions = {
   type: jsPsychInstructions,
@@ -401,7 +453,7 @@ var SC4_instructions = {
   'There are no right or wrong stories, just let these four images inspire you.'],
   show_clickable_nav: true
 }
-timeline.push(SC4_instructions);
+//timeline.push(SC4_instructions);
 
 var SC4_trials = {
   timeline: [
@@ -441,8 +493,8 @@ var SC4_trials = {
   ]
 }
 
-timeline.push(SC4_trials)
-
+//timeline.push(SC4_trials)
+*/
 
 /***** COMMUNICATIVE ADEQUACY BLOCK *********
 These questions involve participants listening and responding to a sustained simulated conversation. They will listen to the recording and then be asked to record their response. They will only be able to listen to each turn once. 
@@ -561,13 +613,28 @@ const CA_trials = {
     show_done_button: true,
     data: jsPsych.timelineVariable("data"),
     done_button_label: "Finish Recording",
+    // countdown timers
+    on_load: function(){
+      var wait_time = dct_response_time_max - 1000;
+      var start_time = performance.now();
+      var interval = setInterval(function(){
+        var time_left = wait_time - (performance.now() - start_time);
+        var minutes = Math.floor(time_left / 1000 / 60);
+        var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
+        var seconds_str = seconds.toString().padStart(2,'0');
+        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+        // stop the clock!
+        if(time_left <= 0){
+          clearInterval(interval)
+          document.querySelector('#clock').innerHTML = "Time's Up!"
+          }
+    }, 250)},
     // save audio
     on_finish: function(data){
         //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
       jsPsych.timelineVariable('scenario_num').concat('_1_conversation_opening'),
-
     //  'conversation_opening_'.concat(jsPsych.timelineVariable('scenario_num')), 
       data)
 }},
@@ -596,6 +663,21 @@ computer_response_prompt,
     show_done_button: true,
     data: jsPsych.timelineVariable("data"),
     done_button_label: "Finish Recording",
+    on_load: function(){
+      var wait_time = dct_response_time_max - 1000;
+      var start_time = performance.now();
+      var interval = setInterval(function(){
+        var time_left = wait_time - (performance.now() - start_time);
+        var minutes = Math.floor(time_left / 1000 / 60);
+        var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
+        var seconds_str = seconds.toString().padStart(2,'0');
+        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+        // stop the clock!
+        if(time_left <= 0){
+          clearInterval(interval)
+          document.querySelector('#clock').innerHTML = "Time's Up!"
+          }
+    }, 250)},
     // save audio
     on_finish: function(data){
         //subject name
@@ -631,6 +713,21 @@ computer_response_prompt,
     show_done_button: true,
     data: jsPsych.timelineVariable("data"),
     done_button_label: "Finish Recording",
+    on_load: function(){
+      var wait_time = dct_response_time_max - 1000;
+      var start_time = performance.now();
+      var interval = setInterval(function(){
+        var time_left = wait_time - (performance.now() - start_time);
+        var minutes = Math.floor(time_left / 1000 / 60);
+        var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
+        var seconds_str = seconds.toString().padStart(2,'0');
+        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+        // stop the clock!
+        if(time_left <= 0){
+          clearInterval(interval)
+          document.querySelector('#clock').innerHTML = "Time's Up!"
+          }
+    }, 250)},
     // save audio
     on_finish: function(data){
         //subject name
@@ -667,6 +764,21 @@ computer_response_prompt,
     show_done_button: true,
     data: jsPsych.timelineVariable("data"),
     done_button_label: "Finish Recording",
+    on_load: function(){
+      var wait_time = dct_response_time_max - 1000;
+      var start_time = performance.now();
+      var interval = setInterval(function(){
+        var time_left = wait_time - (performance.now() - start_time);
+        var minutes = Math.floor(time_left / 1000 / 60);
+        var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
+        var seconds_str = seconds.toString().padStart(2,'0');
+        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+        // stop the clock!
+        if(time_left <= 0){
+          clearInterval(interval)
+          document.querySelector('#clock').innerHTML = "Time's Up!"
+          }
+    }, 250)},
     // save audio
     on_finish: function(data){
         //subject name
@@ -691,6 +803,9 @@ timeline.push(CA_trials)
 
 /***** LISTENING COMPREHENSION BLOCK *********
 Participants will listen to a audio dialogues in French. After the dialogues they will answer different questions based on pictures shown.
+
+We decided to remove these from the test. 
+
 */
 
 /**** LC1 - Two Dialogues*******
@@ -706,9 +821,9 @@ var LC1_timeline_stimuli = [
 ]*/
 
 // stim for media preloading
-var LC1_images = ['image/LC1_A.png','image/LC1_B.png','image/LC1_C.png','image/LC1_D.png']
-var LC2_audio = ['audio/LC1/1_mehdi_v2.mp3', 'audio/LC1/1_poisson_v2.mp3']
-
+//var LC1_images = ['image/LC1_A.png','image/LC1_B.png','image/LC1_C.png','image/LC1_D.png']
+//var LC2_audio = ['audio/LC1/1_mehdi_v2.mp3', 'audio/LC1/1_poisson_v2.mp3']
+/*
 // preload LC1 stimuli
 var LC1_preload = {
   type: jsPsychPreload,
@@ -717,11 +832,11 @@ var LC1_preload = {
   message: 'Loading audio and images...'
 }
 
-timeline.push(LC1_preload)
+//timeline.push(LC1_preload)
 
 
 // allow participants to take a break. 
-timeline.push(five_minute_break)
+//timeline.push(five_minute_break)
 
 var LC1_instructions = {
   type: jsPsychInstructions,
@@ -734,7 +849,7 @@ var LC1_instructions = {
 show_clickable_nav: true,
 }
 
-timeline.push(LC1_instructions)
+//timeline.push(LC1_instructions)
 
 var LC1_trials = {
   timeline: [
@@ -770,14 +885,14 @@ var LC1_trials = {
 ]
 }
 
-timeline.push(LC1_trials)
+//timeline.push(LC1_trials)
 
 
 /***** LC2 - messages *******
  * Participants will see two pictures. They will hear a short message play twice. They will then choose which picture matches the message.
  * need to know which pictures to use and whether first question is an example or not. 
  * current pictures are placeholders. 
-*/
+
 
 // LC2 timeline stimuli
 var LC2_timeline_stimuli = [
@@ -799,8 +914,8 @@ var LC2_timeline_stimuli = [
 ]
 
 //LC2 lists for preload
-var LC2_images = ['image/m1_img.jpg', 'image/m2_img.jpg']
-var LC2_audio = ['audio/LC1/3_Laura_colour_v2.mp3', 'audio/LC1/4_Manami_v2.mp3', 'audio/LC1/5_Fouzia_v2.mp3', 'audio/LC1/6_Sylvia_v2.mp3', 'audio/LC1/7_Orphanie_v2.mp3']
+//var LC2_images = ['image/m1_img.jpg', 'image/m2_img.jpg']
+//var LC2_audio = ['audio/LC1/3_Laura_colour_v2.mp3', 'audio/LC1/4_Manami_v2.mp3', 'audio/LC1/5_Fouzia_v2.mp3', 'audio/LC1/6_Sylvia_v2.mp3', 'audio/LC1/7_Orphanie_v2.mp3']
 
 
 // LC2 preload media
@@ -844,13 +959,13 @@ var LC2_trials = {
 //timeline.push(LC2_trials)
 
 
-/*LC3 - audio answers ******
+//LC3 - audio answers ******
 * participant will hear a short monologue. It will play once, pause for 30 seconds, then play again.
 * participant will also see four questions
 * after the second dialogue, participants will respond orally to the four questions. 
 * participants will have a maximum of 2 minutes to record their answers. 
 * TWO trials like this per test
-*/
+
 
 // record answer trial for story completion trials
 const record_answer_LC = {
@@ -874,6 +989,7 @@ const record_answer_LC = {
 }}
 
 // LC3 stimuli for timeline
+
 var LC3_timeline_stimuli = [
 
 
@@ -889,8 +1005,9 @@ var LC3_timeline_stimuli = [
   }
 ]
 
-var LC3_audio = ['audio/LC1/8_Martine_v2.mp3', 'audio/LC1/9_NRJ_v2.mp3']
-var LC3_images = ['image/cakes.png']
+
+//var LC3_audio = ['audio/LC1/8_Martine_v2.mp3', 'audio/LC1/9_NRJ_v2.mp3']
+//var LC3_images = ['image/cakes.png']
 
 var LC3_preload = {
   type: jsPsychPreload,
@@ -898,7 +1015,7 @@ var LC3_preload = {
   images: LC3_images
 }
 
-timeline.push(LC3_preload)
+//timeline.push(LC3_preload)
 
 var LC3_instructions = {
   type: jsPsychInstructions,
@@ -910,7 +1027,7 @@ var LC3_instructions = {
   'Please try to answer all four questions in your response. You will have up to two minutes to answer the four questions.'],
 show_clickable_nav: true,
 }
-timeline.push(LC3_instructions)
+//timeline.push(LC3_instructions)
 
 var LC3_trials = {
   timeline: [
@@ -932,16 +1049,16 @@ var LC3_trials = {
   choices: ["Continue"]}
 ], timeline_variables: LC3_timeline_stimuli
 }
-timeline.push(LC3_trials)
+//timeline.push(LC3_trials)
 
-/*LC4 - moot??? ******
-* participant will hear a short monologue. It will play once, pause for 30 seconds, then play again.
-* participants will then answer multiple choice questions which include both text and images. 
-* questions are shown while listening to the audio
-MISSING AUDIO FOR MMS FORTIN - yep. 
-I can't finish this until I know the format of the question. 
+//LC4 - moot??? ******
+//* participant will hear a short monologue. It will play once, pause for 30 seconds, then play again.
+//* participants will then answer multiple choice questions which include both text and images. 
+//* questions are shown while listening to the audio
+//MISSING AUDIO FOR MMS FORTIN - yep. 
+//I can't finish this until I know the format of the question. 
 
-just need to combine LC3 and LC4. 
+//just need to combine LC3 and LC4. 
 
 
 
