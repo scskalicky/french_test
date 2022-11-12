@@ -524,6 +524,17 @@
   text-align:justify;
   width: 750px;
 }
+
+/* make smaller instruction screens*/
+.instructions {
+  text-align:justify;
+  width: 600px
+
+}
+
+
+
+
 table {
   width: 800px;
   margin-left: auto;
@@ -541,3 +552,4 @@ th, td {
 tr:nth-child(even) {
   background-color: #dedede;
 }
+
