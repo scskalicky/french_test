@@ -81,9 +81,12 @@ var jsPsychSurveyHtmlFormTO = (function (jspsych) {
           html += trial.html;
           // add submit button
           html +=
-              '<input type="submit" id="jspsych-survey-html-form-next" class="jspsych-btn jspsych-survey-html-form" value="' +
-                  trial.button_label +
-                  '"></input>';
+          // had to change this to a button so my countdowns would work
+          '<br><button class="jspsych-btn jspsych-survey-html-form" type="button" id="jspsych-survey-html-form-next">' +
+          //   '<input type="submit" id="jspsych-survey-html-form-next" class="jspsych-btn jspsych-survey-html-form" value="' +
+                 trial.button_label +
+               '</button>';
+                 // '"></input>';
           html += "</form>";
           display_element.innerHTML = html;
           if (trial.autofocus !== "") {
@@ -99,26 +102,27 @@ var jsPsychSurveyHtmlFormTO = (function (jspsych) {
               }
           }
           display_element
-              .querySelector("#jspsych-survey-html-form")
-              .addEventListener("submit", (event) => {
-              // don't submit form
-              event.preventDefault();
-              // measure response time
-              var endTime = performance.now();
-              var response_time = Math.round(endTime - startTime);
-              var this_form = display_element.querySelector("#jspsych-survey-html-form");
-              var question_data = serializeArray(this_form);
-              if (!trial.dataAsArray) {
+            // also had to change these to the button
+            .querySelector("button")
+            .addEventListener("click", (event) => {
+            // don't submit form
+            event.preventDefault();
+            // measure response time
+            var endTime = performance.now();
+            var response_time = Math.round(endTime - startTime);
+            var this_form = display_element.querySelector("#jspsych-survey-html-form");
+            var question_data = serializeArray(this_form);
+            if (!trial.dataAsArray) {
                   question_data = objectifyForm(question_data);
               }
               // save data
-              var trialdata = {
-                  rt: response_time,
-                  response: question_data,
+            var trialdata = {
+                rt: response_time,
+                response: question_data,
               };
-              display_element.innerHTML = "";
-              // next trial
-              this.jsPsych.finishTrial(trialdata);
+            display_element.innerHTML = "";
+            // next trial
+            this.jsPsych.finishTrial(trialdata);
           });
           var startTime = performance.now();
           /**

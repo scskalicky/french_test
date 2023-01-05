@@ -55,8 +55,11 @@
 const test_version = 'A'
 const timeline = []
 
+
+
 /* reuse this countdown variable throughout*/
-const countdown321 =  {
+const countdown321 =  
+{
   // simulate a countdown for recording to start
   type: jsPsychHtmlKeyboardResponse,
   choices: 'NO_KEYS',
@@ -68,24 +71,86 @@ const countdown321 =  {
   ]}
 
 
-  const countdown54321 =  {
-  // simulate a countdown for recording to start
-  type: jsPsychHtmlKeyboardResponse,
-  choices: 'NO_KEYS',
-  trial_duration: 1050,
-  timeline: [
-    {stimulus: 'Begin recording in 5...'},
-    {stimulus: 'Begin recording in 4...'},
-    {stimulus: 'Begin recording in 3...'},
-    {stimulus: 'Begin recording in 2...'},
-    {stimulus: 'Begin recording in 1...'}
-  ]}
 
-  const five_minute_break = {
-    type: jsPsychHtmlButtonResponse, 
-    stimulus: 'Before moving on to the next section of the test, please take a short break (up to five minutes).<br><br> Press "Continue" when you are ready to move to the next part of the test.',
-    choices:  ["Continue"]
+const five_minute_break1 = 
+{
+  type: jsPsychHtmlButtonResponse, 
+  stimulus: 'Nice work - you have completed 1 of 6 tasks!<br><br>Before moving on to the next section of the test, please take a short break (not longer than five minutes).<br><br> Press "Continue" when you are ready to move to the next part of the test.<br><br>',
+  choices:  ["Continue"]
   }
+
+const five_minute_break2 = 
+{
+  type: jsPsychHtmlButtonResponse, 
+  stimulus: 'Nice work - you have completed 2 of 6 tasks!<br><br>Before moving on to the next section of the test, please take a short break (not longer than five minutes).<br><br> Press "Continue" when you are ready to move to the next part of the test.<br><br>',
+  choices:  ["Continue"]
+  }
+
+const five_minute_break3 = 
+{
+  type: jsPsychHtmlButtonResponse, 
+  stimulus: 'Nice work - you have completed 3 of 6 tasks!<br><br>Before moving on to the next section of the test, please take a short break (not longer than five minutes).<br><br> Press "Continue" when you are ready to move to the next part of the test.<br><br>',
+  choices:  ["Continue"]
+  }
+
+const five_minute_break4 = 
+{
+  type: jsPsychHtmlButtonResponse, 
+  stimulus: 'Nice work - you have completed 4 of 6 tasks!<br><br>Before moving on to the next section of the test, please take a short break (not longer than five minutes).<br><br> Press "Continue" when you are ready to move to the next part of the test.<br><br>',
+  choices:  ["Continue"]
+  }
+
+const five_minute_break5 = 
+{
+  type: jsPsychHtmlButtonResponse, 
+  stimulus: 'Nice work - you have completed 5 of 6 tasks - only one more to go!<br><br>Before moving on to the next section of the test, please take a short break (not longer than five minutes).<br><br> Press "Continue" when you are ready to move to the next part of the test.<br><br>',
+  choices:  ["Continue"]
+  }
+
+
+const no_cheating = 
+{
+  type: jsPsychHtmlButtonResponse,
+  stimulus: 'As a reminder, please do not use any dictionaries, translation tools, or other language aids. We are only interested in <b>your</b> knowledge of French.<br><br>',
+  choices: ["I Understand"]
+}
+
+// function to create countdown timers. 
+// requires a span with id = clock to modify the inner HTML of the question.
+// must be associated with a htmlButtonResponse jsPsych trial item
+function countdown_timer(duration){
+  var wait_time = duration; // total time to wait
+  var start_time = performance.now(); // get current time
+  
+  var interval = setInterval(function(){  
+      // calculate time left and convert to minutes/seconds
+      var time_left = wait_time - (performance.now() - start_time);
+      var minutes = Math.floor(time_left / 1000 / 60);
+      var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
+      var seconds_str = seconds.toString().padStart(2,'0');
+      
+      // populate the clock html with the minutes and seconds
+      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
+        
+      // we need to stop the timer if subject clicks button
+      // listen for the button being clicked to end the trial early.
+      var clicked = false
+      
+      // kill the interval if button clicked
+      const btn = document.querySelector('button')
+      btn.addEventListener("click", () => {
+      //clicked = true
+      clearInterval(interval);
+      });
+        
+      // if the timer runs out, clear interval and replace with a message
+      if(time_left <= 0){
+        clearInterval(interval)
+        document.querySelector('#clock').innerHTML = "Time's Up!"
+      }
+    
+    }, 250)}
+
 
 // will be changed to get from URL variable, and also concat it to the test version. 
 var get_subject = {
@@ -96,17 +161,15 @@ var get_subject = {
     console.log(jsPsych.data.get().select('subject').values[0].Q0)
   }
 }
-timeline.push(get_subject)
 
 var refresh_warning = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: '<p style = "font-size: 30px; color: red"><b>WARNING</b></p><p>You should set aside at least one hour to complete this test. This test should be completed in one go - you cannot save your data and return later.<br><br>During the test, please <b>do not</b> refresh your browser or use the back button. <br>Doing so will result in a loss of all your data, and will be unable to continue with this project.<br>',
+    stimulus: '<p style = "font-size: 30px; color: red"><b>WARNING</b></p><p>You should set aside at least one hour to complete this test. This test should be completed in one go - you cannot save your data and return later.<br><br>During the test, please <b>do not</b> refresh your browser or use the back button. <br>Doing so will result in a loss of all your data, and will be unable to continue with this project.<br><br>Finally, please do not use any dictionaries, translation tools, or other language aids. We are only interested in <b>your</b> knowledge of French.',
     choices: ['I Understand']
 };
 
-timeline.push(refresh_warning)
 
-/* activate microphone and ensure participants can hear themselves being recorded.  */
+/* activate microphone and ensure participants can hear themselves being recorded.*/
 
 // explain microphone connection
 const prepare_microphone = {
@@ -114,13 +177,11 @@ const prepare_microphone = {
     stimulus: '<p style = "font-size: 30px; color: red"><b>Prepare Microphone</b></p><p>Please connect your microphone to the computer.<br>We recommend using a pair of headphones with a microphone.<br><br>Once you have connected your microphone & headphones to the computer, click this button to prompt browser access to your microphone.<br>',
     choices: ['Add Microphone'],
 }
-timeline.push(prepare_microphone)
 
 // prompt for permission and initialise microphone
 const ready_microphone = {
     type: jsPsychInitializeMicrophone
 }
-timeline.push(ready_microphone)
 
 // explain to participants they need to make sure they can hear themselves. 
 const test_audio_instructions = {
@@ -128,7 +189,6 @@ const test_audio_instructions = {
   stimulus: 'Let\'s make sure the test can hear you.<br>Please click the button below and speak into your microphone for a few seconds.<br>Afterwards, you will be able to play your recording.<br><br>Please make sure that you can hear your recording. If not, please make sure you microphone is working properly and try again. <br> Please do not continue the test until you are able to hear a recording of yourself played back to you.<br><br>',
   choices: ['Begin Recording']
 }
-timeline.push(test_audio_instructions)
 
 // allow recording and playback, recording limited to 10 seconds. 
 const test_audio = {
@@ -141,44 +201,39 @@ const test_audio = {
     on_finish: function(data){
       data.response = 'sanitized'}
 }
-timeline.push(test_audio)
 
 // honor system - participants will click to move on. 
 const recording_passed = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'Thank you. You have indicated that you are able to hear yourself in the recording. <br> Press Continue when you are ready to continue the test.',
+    stimulus: 'Thank you. You have indicated that you are able to hear yourself in the recording.<br>Press Continue when you are ready to continue the test.',
     choices: ['Continue'],
 }
-timeline.push(recording_passed);
 
 var enter_fullscreen = {
   type: jsPsychFullscreen,
   fullscreen_mode: true
 };
 
-timeline.push(enter_fullscreen);
-
-/***** STORY COMPLETION BLOCK *********
-These questions involve participants looking at a series of images with which they will base a story. The images will be displayed for a fixed period of time (30 seconds), after which participants will have 3 minutes to orally tell their story based on the pictures. 
-
+/*
 Story Completion Part 1 - single image of a park
-- 30 seconds to prepare
-- 3 minutes for response
 */
-var SC_task_instructions = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: '<p  style = "font-size: 30px"><b>Speaking Tasks</b><p class = "instructions">In this next part, you will complete three short speaking tasks.<p class = "instructions">For each task, you will see pictures. Your task is to describe or tell the story based on the pictures. You must use complete sentences. <br><br>But, since, since you\'re in the process of learning French, you can give a list of vocabulary words that you know to describe the picture. You can also use words in English to complete your ideas. But only if you don\'t know the French words! We look forward to hearing your stories!<p>Click "Continue" to move on to the first speaking task.',
-  choices: ["Continue"]
-}
 
-timeline.push(SC_task_instructions)
+
+// what to do with this? 
+// var SC_task_instructions = {
+//   type: jsPsychHtmlButtonResponse,
+//   stimulus: '<p  style = "font-size: 30px"><b>Speaking Tasks</b><p class = "instructions">In this next part, you will complete three short speaking tasks.<p class = "instructions">For each task, you will see pictures. Your task is to describe or tell the story based on the pictures. You must use complete sentences. <br><br>But, since, since you\'re in the process of learning French, you can give a list of vocabulary words that you know to describe the picture. You can also use words in English to complete your ideas. But only if you don\'t know the French words! We look forward to hearing your stories!<p>Click "Continue" to move on to the first speaking task.',
+//   choices: ["Continue"]
+// }
+
+
 
 var SC1_preload = {
   type: jsPsychPreload,
-  images: 'image/PD_1.jpg',
+  images: 'image/PD_1.png',
   message: 'Loading...'
 }
-timeline.push(SC1_preload)
+
 
 var SC1_instructions = {
 type: jsPsychHtmlButtonResponse,
@@ -186,7 +241,8 @@ stimulus: '<p style = "font-size: 30px"><b>Picture description task</b><p class 
 choices: ['Continue']
 }
 
-timeline.push(SC1_instructions)
+
+
 
 var SC1_trials = {
   timeline: [
@@ -195,11 +251,15 @@ var SC1_trials = {
     choices: ["See Picture"]},
 
     {type: jsPsychImageButtonResponse,
-      stimulus: 'image/PD_1.jpg',
+      stimulus: 'image/PD_1.png',
       trial_duration: 31000, // should be 30 seconds (30000 ms), add 1000ms (1 second) as buffer
-      stimulus_height: 400,
-      stimulus_width: 600,
-      prompt: '<br><p style = "text-align: left">Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul>',
+      
+      prompt: '<br><span id = "clock" style = "color:red">-:--</span><br><p style = "text-align: left">Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul>',
+      
+      // countdown timer
+      on_load: function(){
+        countdown_timer(31000)},
+
       on_finish: function(data){
         data.stim_id = 'PD_1'
       },
@@ -213,53 +273,30 @@ var SC1_trials = {
 
   {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<img src = "image/PD_1.jpg" width = "600" height = "400"><br><p style = "color:red"><b>RECORDING</b></p><span id = "clock" style = "color:red">-:--</span><p style = "text-align: left"><p>Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul></p>',
+    stimulus: '<img src = "image/PD_1.png"><br><p style = "color:red"><b>RECORDING</b></p><span id = "clock" style = "color:red">-:--</span><p style = "text-align: left"><p>Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul></p>',
+    
     recording_duration: 181000, // trial duration should be 3 minutes (180000ms), add 1000ms as a buffer
     show_done_button: true,
     done_button_label: "Finish Recording",
     
-    // countdown timers
+    // countdown timer
     on_load: function(){
-      var wait_time = 180000; // 3 minutes in milliseconds
-      var start_time = performance.now();
-      var interval = setInterval(function(){
-        var time_left = wait_time - (performance.now() - start_time);
-        var minutes = Math.floor(time_left / 1000 / 60);
-        var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
-        var seconds_str = seconds.toString().padStart(2,'0');
-        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-        
-        // stop timer if button is clicked.
-        // listen for the button being clicked to end the trial early.
-        var clicked = false
-        const btn = document.querySelector('button')
-        btn.addEventListener("click", () => {
-        //clicked = true
-        clearInterval(interval);
-        });
-        
-        // stop the clock!
-        if(time_left <= 0){
-          clearInterval(interval)
-          document.querySelector('#clock').innerHTML = "Time's Up!"
-          }
+      countdown_timer(181000)},
     
-    }, 250)},
-
-    // save audio
     on_finish: function(data){
         data.stim_id = 'PD_1';
-        //subject name
+      //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
       jsPsych.data.get().last(5).values()[0].stimulus.substring(6), 
       // current js data object
       data),
       console.log(jsPsych.data.get().last(5).values()[0].stimulus.substring(6))
-}}
+}
+}
   ]
 }
-timeline.push(SC1_trials)
+
 
 /* Story Completion Part 2 - six-panel images making a story
 - 30 seconds to prepare
@@ -268,35 +305,48 @@ timeline.push(SC1_trials)
 - 1 trial so no need for timeline variables. 
 */
 
+
 var SC2_preload = {
   type: jsPsychPreload,
-  images: 'image/narrative_marcus.png',
+  images: ['image/jules_storyboard.jpg', 
+  'image/a_new_life_in_montreal_canada001.png', 
+  'image/a_new_life_in_montreal_canada002.png',
+  'image/a_new_life_in_montreal_canada003.png',
+  'image/a_new_life_in_montreal_canada004.png',
+  'image/a_new_life_in_montreal_canada005.png'],
   message: "Loading..."
 }
 
-timeline.push(SC2_preload)
 
 var SC2_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: '<b style = "font-size: 30px">Story Narration</b><p class = "instructions"><b>Objective</b><br> Tell a story based on 6 images with as many interesting details as you can.<br><br><b>Procedure</b><br>You will see six images. Create an original story using the pictures as a source of inspiration. Provide additional details based on your imagination to make the story more interesting.<br><br>You will have 30 seconds to plan your story and 3 minutes to tell your story. If you forget some words, you can use English.',
+  on_start: function(trial){
+    trial.stimulus = '<b style = "font-size: 30px">Picture Narration Task</b><p class = "instructions"><br><b>Objective</b><br>Tell the story with as many interesting details as you can.<br><br><b>Procedure</b><br>You will see five images about Jules\' new life in Montreal.<br><img src = image/jules1.png><br>Create an original story using the pictures as a source of inspiration. Give extra details based on your imagination to make the story more interesting. <b>For each image, try to create at least 4 unique sentences using French.</b> You will have 1 minute to plan your story and 3 minutes to tell your story. If you forget some words, you can use English.<br>'
+  },
+  stimulus: '',
   choices: ['Continue']
 }
- timeline.push(SC2_instructions)
+
 
 var SC2_trials = {
   timeline: [
-    {type: jsPsychHtmlButtonResponse,
-    stimulus: 'Once you click this button, you will have 30 seconds to study the picture and prepare your response',
-    choices: ["See Picture"]},
+    {
+      type: jsPsychHtmlButtonResponse,
+    stimulus: 'Once you click this button, you will have 1 minute to study the picture and prepare your response',
+    choices: ["See Picture"]
+  },
 
-    {type: jsPsychImageButtonResponse,
-      stimulus: 'image/narrative_marcus.png',
-      prompt: 'Useful vocabulary:<br>&Eacute;chapper = <i>to drop</i><br>Prendre = <i>to take</i>',
-      trial_duration: 31000, // should be 30 seconds (30,000 ms), add 1000 ms as buffer
-      stimulus_height: 600,
-      stimulus_width: 400,
+    {
+      type: jsPsychImageButtonResponse,
+      stimulus: 'image/jules_storyboard.jpg',
+      prompt: '<b><span id = "clock" style = "color:red">-:--</span></b>',
+      trial_duration: 61000, // should be 60 seconds (60,000 ms), add 1000 ms as buffer
+     // countdown timers
+     on_load: function(){
+      countdown_timer(61000)},
+
       on_finish: function(data){
-        data.stim_id = 'narrative_marcus'},
+        data.stim_id = 'jules_storyboard'},
       choices: ["I'm Ready"]
     },
 
@@ -306,50 +356,151 @@ var SC2_trials = {
     // record answer 
   {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<img src = "image/narrative_marcus.png" width = "400" height = "600"><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>&Eacute;chapper = <i>to drop</i><br>Prendre = <i>to take</i>',
-    recording_duration: 181000, // trial duration should be 3 minutes (180000ms), add 500ms as a buffer
+    stimulus: '<img src = "image/a_new_life_in_montreal_canada001.png"><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>',
+    recording_duration: 41000, // make it 40 seconds per picture for now.
     show_done_button: true,
     done_button_label: "Finish Recording",
     // countdown timers
     on_load: function(){
-      var wait_time = 180000; // 3 minutes in milliseconds
-      var start_time = performance.now();
-      var interval = setInterval(function(){
-        var time_left = wait_time - (performance.now() - start_time);
-        var minutes = Math.floor(time_left / 1000 / 60);
-        var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
-        var seconds_str = seconds.toString().padStart(2,'0');
-        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-        
-        // stop timer if button is clicked.
-        // listen for the button being clicked to end the trial early.
-        var clicked = false
-        const btn = document.querySelector('button')
-        btn.addEventListener("click", () => {
-        //clicked = true
-        clearInterval(interval);
-        });
-        
-        // stop the clock!
-        if(time_left <= 0){
-          clearInterval(interval)
-          document.querySelector('#clock').innerHTML = "Time's Up!"
-          }
-    }, 250)},
-    // save audio
+      countdown_timer(41000)},
+     
+    //save audio
     on_finish: function(data){
-        data.stim_id = 'narrative_marcus';
+        data.stim_id = 'jules1';
         //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
-      jsPsych.data.get().last(5).values()[0].stimulus.substring(6), 
+      'a_new_life_in_montreal_canada001.png', 
       // current js data object
-      data),
-      console.log(jsPsych.data.get().last(5).values()[0].stimulus.substring(6))
-}}
+      data)},
+},
+
+{
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: '<b>Loading Next Image...</b>',
+  trial_duration: 1500,
+  choices: "NO_KEYS"
+},
+
+countdown321,
+
+// record answer 
+{
+type: jsPsychHtmlAudioResponse,
+stimulus: '<img src = "image/a_new_life_in_montreal_canada002.png"><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>',
+recording_duration: 41000, // make it 40 seconds per picture for now.
+show_done_button: true,
+done_button_label: "Finish Recording",
+// countdown timers
+on_load: function(){
+  countdown_timer(41000)},
+ 
+//save audio
+on_finish: function(data){
+    data.stim_id = 'jules2';
+    //subject name
+  purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+  // audio file name
+  'a_new_life_in_montreal_canada002.png', 
+  // current js data object
+  data)},
+},
+
+{
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<b>Loading Next Image...</b>',
+trial_duration: 1500,
+choices: "NO_KEYS"
+},
+
+countdown321,
+
+// record answer 
+{
+type: jsPsychHtmlAudioResponse,
+stimulus: '<img src = "image/a_new_life_in_montreal_canada003.png"><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>',
+recording_duration: 41000, // make it 40 seconds per picture for now.
+show_done_button: true,
+done_button_label: "Finish Recording",
+// countdown timers
+on_load: function(){
+  countdown_timer(41000)},
+
+//save audio
+on_finish: function(data){
+    data.stim_id = 'jules3';
+    //subject name
+  purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+  // audio file name
+  'a_new_life_in_montreal_canada003.png', 
+  // current js data object
+  data)},
+},
+
+{
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<b>Loading Next Image...</b>',
+trial_duration: 1500,
+choices: "NO_KEYS"
+},
+
+countdown321,
+
+// record answer 
+{
+type: jsPsychHtmlAudioResponse,
+stimulus: '<img src = "image/a_new_life_in_montreal_canada004.png"><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>',
+recording_duration: 41000, // make it 40 seconds per picture for now.
+show_done_button: true,
+done_button_label: "Finish Recording",
+// countdown timers
+on_load: function(){
+  countdown_timer(41000)},
+
+  //save audio
+on_finish: function(data){
+    data.stim_id = 'jules4';
+    //subject name
+  purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+  // audio file name
+  'a_new_life_in_montreal_canada004.png', 
+  // current js data object
+  data)},
+},
+
+{
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<b>Loading Next Image...</b>',
+trial_duration: 1500,
+choices: "NO_KEYS"
+},
+
+countdown321,
+
+// record answer 
+{
+type: jsPsychHtmlAudioResponse,
+stimulus: '<img src = "image/a_new_life_in_montreal_canada005.png"><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>',
+recording_duration: 41000, // make it 40 seconds per picture for now.
+show_done_button: true,
+done_button_label: "Finish Recording",
+// countdown timers
+on_load: function(){
+  countdown_timer(41000)},
+  
+//save audio
+on_finish: function(data){
+    data.stim_id = 'jules5';
+    //subject name
+  purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+  // audio file name
+  'a_new_life_in_montreal_canada005.png', 
+  // current js data object
+  data)},
+},
   ]
 }
-timeline.push(SC2_trials)
+
 
 /* Story Completion Part 3 - story of Samantha or Max: before, now, and after.
 - 30 seconds to prepare
@@ -361,7 +512,6 @@ var SC3_preload = {
   images: 'image/samantha1.png',
   message: 'Loading...'
 }
-timeline.push(SC3_preload)
 
 var SC3_instructions = {
   type: jsPsychHtmlButtonResponse,
@@ -369,7 +519,6 @@ var SC3_instructions = {
   choices: ['Continue']
 }
 
-timeline.push(SC3_instructions);
 
 var SC3_trials = {
   timeline: [
@@ -382,9 +531,13 @@ var SC3_trials = {
       trial_duration: 31000, // should be 30 seconds (30,000 ms), add 1000 ms as buffer
       stimulus_height: 600,
       stimulus_width: 800,
+      prompt: '<span id = "clock" style = "color:red">-:--</span>',
       choices: ["I'm Ready"],
+      on_load: function(){
+        countdown_timer('31000')
+      },
       on_finish: function(data){
-        data.stim_id = 'samantha'
+        data.stim_id = 'samantha_prepare'
       }
     },
     // 3 second countdown
@@ -397,33 +550,11 @@ var SC3_trials = {
     done_button_label: "Finish Recording",
     // countdown timers
     on_load: function(){
-      var wait_time = 180000; // 3 minutes in milliseconds
-      var start_time = performance.now();
-      var interval = setInterval(function(){
-        var time_left = wait_time - (performance.now() - start_time);
-        var minutes = Math.floor(time_left / 1000 / 60);
-        var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
-        var seconds_str = seconds.toString().padStart(2,'0');
-        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-        
-        // stop timer if button is clicked.
-        // listen for the button being clicked to end the trial early.
-        var clicked = false
-        const btn = document.querySelector('button')
-        btn.addEventListener("click", () => {
-        //clicked = true
-        clearInterval(interval);
-        });
-        
-        // stop the clock!
-        if(time_left <= 0){
-          clearInterval(interval)
-          document.querySelector('#clock').innerHTML = "Time's Up!"
-          }
-    }, 250)},
-    // save audio
+      countdown_timer(181000)},
+    
+      // save audio
     on_finish: function(data){
-      data.stim_id = 'samantha';
+      data.stim_id = 'samantha_record';
       //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
       // audio file name
@@ -435,14 +566,11 @@ var SC3_trials = {
   ]
 }
 
-timeline.push(SC3_trials)
 
 /***** COMMUNICATIVE ADEQUACY BLOCK *********
-These questions involve participants listening and responding to a sustained simulated conversation. They will listen to the recording and then be asked to record their response. They will only be able to listen to each turn once. 
+These questions involve participants listening and responding to a sustained simulated conversation. They will listen to the recording and then be asked to record their response. They will only be able to replay to each turn once. 
 */
 
-// allow participants to take a break. 
-timeline.push(five_minute_break)
 
 var CA_timeline_stimuli = [
  
@@ -459,11 +587,9 @@ Define all the scenarios
   {scenario_num: 'DCT4',scenario: 'Your brother\'s graduation is coming up next weekend. The cake company canceled your order.<br>You <b>ask your best friend to make a cake</b> for the party, but she is sick.<br><br>Start the conversation by:<br>1. Greeting your friend.<br>2. Requesting a cake.<br><br>', reminder: 'Reminder: Your brother\'s graduation is coming up next weekend. The cake company canceled your order.<br>You <b>ask your best friend to make a cake</b> for the party, but she is sick.', turn1: 'audio/4_gateau_1_trim.mp3', turn2: 'audio/4_gateau_2_trim.mp3', turn3: 'audio/4_gateau_3_trim.mp3', data:{stim_id: 'DCT4'}},
 
   {scenario_num: 'DCT5',scenario: 'You arrive late to your mid-term French exam because you missed the bus.<br><b>You apologize to your professor</b>, Monsieur Jean, for being late.<br>You know how much your teacher hates it!<br><br>Start the conversation by:<br>1. Greeting your teacher Monsieur Jean.<br>2. Apologizing for being late and telling him that you will not arrive late again.<br><br>', reminder: 'Reminder: You arrive late to your mid-term French exam because you missed the bus.<br><b>You apologize to your professor</b>, Monsieur Jean, for being late.<br>You know how much your teacher hates it!', turn1: 'audio/5_retard_1_trim.mp3', turn2: 'audio/5_retard_2_trim.mp3', turn3: 'audio/5_retard_3_trim.mp3', data:{stim_id: 'DCT5'}},
-/*
-  {scenario_num: 'DCT6',scenario: 'You borrowed your brother\'s car to go to work last night and then went to a concert.<br> You lost your brother\'s car keys somewhere. You call your brother David <b>to apologize</b> and tell him that you will make a copy.<br><br>Start the conversation by:<br>1. Greeting your brother David.<br>2. Apologizing for losing the keys at the concert and telling him that you will make a copy.<br><br>', reminder: 'Reminder: You borrowed your brother\'s car to go to work last night and then went to a concert.<br> You lost your brother\'s car keys somewhere. You call your brother David <b>to apologize</b> and tell him that you will make a copy.', turn1: 'audio/6_cle_1_trim.mp3', turn2: 'audio/6_cle_2_trim.mp3', turn3: 'audio/6_cle_3_trim.mp3', data:{stim_id: 'DCT6'}}
-*/
 ];
 
+// to be updated with new audio. 
 var CA_audio = ['audio/1_infirmiere_1_trim.mp3', 'audio/1_infirmiere_2_trim.mp3', 'audio/1_infirmiere_3_trim.mp3', 'audio/2_auto_1_trim.mp3', 'audio/2_auto_2_trim.mp3', 'audio/2_auto_3_trim.mp3', 'audio/3_cours_1_trim.mp3', 'audio/3_cours_2_trim.mp3', 'audio/3_cours_3_trim.mp3', 'audio/4_gateau_1_trim.mp3', 'audio/4_gateau_2_trim.mp3', 'audio/4_gateau_3_trim.mp3', 'audio/5_retard_1_trim.mp3', 'audio/5_retard_2_trim.mp3', 'audio/5_retard_3_trim.mp3', 'audio/6_cle_1_trim.mp3', 'audio/6_cle_2_trim.mp3', 'audio/6_cle_3_trim.mp3']
 
 // response duration max length for DCT (45 seconds + 1000 buffer)
@@ -481,7 +607,6 @@ var CA_preload =
   audio: CA_audio,
   message: "Loading audio, please wait..."
 }
-timeline.push(CA_preload)
 
 const CA_instructions1 = {
   type: jsPsychHtmlButtonResponse,
@@ -489,7 +614,6 @@ const CA_instructions1 = {
   choices: ['Continue Instructions']
 }
 
-timeline.push(CA_instructions1)
 
 const CA_instructions2 = {
   type: jsPsychHtmlButtonResponse,
@@ -497,7 +621,6 @@ const CA_instructions2 = {
   choices: ["Continue"]
 }
 
-timeline.push(CA_instructions2)
 
 const CA_example = {
   type: jsPsychHtmlButtonResponse,
@@ -527,7 +650,6 @@ const CA_example = {
   choices: ["I'm Ready"]
 }
 
-timeline.push(CA_example)
 
 // communicative adequacy timeline. 
 const CA_trials = {
@@ -558,30 +680,8 @@ const CA_trials = {
     done_button_label: "Finish Recording",
     // countdown timers
     on_load: function(){
-      var wait_time = dct_response_time_max - 1000;
-      var start_time = performance.now();
-      var interval = setInterval(function(){
-        var time_left = wait_time - (performance.now() - start_time);
-        var minutes = Math.floor(time_left / 1000 / 60);
-        var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
-        var seconds_str = seconds.toString().padStart(2,'0');
-        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-        
-         // stop timer if button is clicked.
-        // listen for the button being clicked to end the trial early.
-        var clicked = false
-        const btn = document.querySelector('button')
-        btn.addEventListener("click", () => {
-        //clicked = true
-        clearInterval(interval);
-        });
-        
-        // stop the clock!
-        if(time_left <= 0){
-          clearInterval(interval)
-          document.querySelector('#clock').innerHTML = "Time's Up!"
-          }
-    }, 250)},
+      countdown_timer(dct_response_time_max)},
+
     // save audio
     on_finish: function(data){
         //subject name
@@ -633,30 +733,8 @@ computer_response_prompt,
     data: jsPsych.timelineVariable("data"),
     done_button_label: "Finish Recording",
     on_load: function(){
-      var wait_time = dct_response_time_max - 1000;
-      var start_time = performance.now();
-      var interval = setInterval(function(){
-        var time_left = wait_time - (performance.now() - start_time);
-        var minutes = Math.floor(time_left / 1000 / 60);
-        var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
-        var seconds_str = seconds.toString().padStart(2,'0');
-        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-        
-         // stop timer if button is clicked.
-        // listen for the button being clicked to end the trial early.
-        var clicked = false
-        const btn = document.querySelector('button')
-        btn.addEventListener("click", () => {
-        //clicked = true
-        clearInterval(interval);
-        });
-        
-        // stop the clock!
-        if(time_left <= 0){
-          clearInterval(interval)
-          document.querySelector('#clock').innerHTML = "Time's Up!"
-          }
-    }, 250)},
+      countdown_timer(dct_response_time_max)},
+
     // save audio
     on_finish: function(data){
         //subject name
@@ -708,30 +786,8 @@ computer_response_prompt,
     data: jsPsych.timelineVariable("data"),
     done_button_label: "Finish Recording",
     on_load: function(){
-      var wait_time = dct_response_time_max - 1000;
-      var start_time = performance.now();
-      var interval = setInterval(function(){
-        var time_left = wait_time - (performance.now() - start_time);
-        var minutes = Math.floor(time_left / 1000 / 60);
-        var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
-        var seconds_str = seconds.toString().padStart(2,'0');
-        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-        
-         // stop timer if button is clicked.
-        // listen for the button being clicked to end the trial early.
-        var clicked = false
-        const btn = document.querySelector('button')
-        btn.addEventListener("click", () => {
-        //clicked = true
-        clearInterval(interval);
-        });
-        
-        // stop the clock!
-        if(time_left <= 0){
-          clearInterval(interval)
-          document.querySelector('#clock').innerHTML = "Time's Up!"
-          }
-    }, 250)},
+      countdown_timer(dct_response_time_max)},
+
     // save audio
     on_finish: function(data){
         //subject name
@@ -778,36 +834,12 @@ computer_response_prompt,
       trial.stimulus = '<p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>'
     },
     stimulus: '',
-    recording_duration: 45000, //
+    recording_duration: dct_response_time_max,
     show_done_button: true,
     data: jsPsych.timelineVariable("data"),
     done_button_label: "Finish Recording",
     on_load: function(){
-      var wait_time = dct_response_time_max - 1000;
-      var start_time = performance.now();
-      var interval = setInterval(function(){
-        var time_left = wait_time - (performance.now() - start_time);
-        var minutes = Math.floor(time_left / 1000 / 60);
-        var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
-        var seconds_str = seconds.toString().padStart(2,'0');
-        document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str
-        
-        // stop timer if button is clicked.
-        // listen for the button being clicked to end the trial early.
-        var clicked = false
-        const btn = document.querySelector('button')
-        btn.addEventListener("click", () => {
-        //clicked = true
-        clearInterval(interval);
-        });
-        
-        
-        // stop the clock!
-        if(time_left <= 0){
-          clearInterval(interval)
-          document.querySelector('#clock').innerHTML = "Time's Up!"
-          }
-    }, 250)},
+      countdown_timer(dct_response_time_max)},
     // save audio
     on_finish: function(data){
         //subject name
@@ -825,13 +857,12 @@ computer_response_prompt,
   }
  ], timeline_variables: CA_timeline_stimuli, randomize_order: true}
 
-timeline.push(CA_trials)
 
 /***** C-TEST *********
 Participants will read three short texts. Each text will have some words missing parts of the word. Participants must type in letters in order to provide correct words. 
 */
 
-var french_keyboard = '<p style = "font-size:14px; text-align:center; border:dotted; width:500px;margin:auto">If your keyboard does not have French accents, please use these numbers to replace the appropriate letter with the corresponding number:<br>1 = &agrave;&emsp;&emsp;&emsp;2 = &eacute;&emsp;&emsp;&emsp;3 = &ecirc;&emsp;&emsp;&emsp;4 = &egrave;<br>Example: For the word <b>&eacute;cole</b>, please type it as <b>2cole</b><br><i>Please type in the missing letters to complete the words.</i></p><br>'
+var french_keyboard = '<p style = "font-size:14px; text-align:center; border:dotted; width:500px;margin:auto">If your keyboard does not have French accents, please use these numbers to replace the appropriate letter with the corresponding number:<br>1 = &agrave;&emsp;&emsp;&emsp;2 = &eacute;&emsp;&emsp;&emsp;3 = &ecirc;&emsp;&emsp;&emsp;4 = &egrave;<br>Example: For the word <b>&eacute;cole</b>, please type it as <b>2cole</b><br><i>Please type in the missing letters to complete the words.</i></p><br><br><p style = "text-align:center"><span id = "clock" style = "color:red">-:--</span></p><br>'
 
 var CT_stim = [
     {
@@ -846,16 +877,12 @@ var CT_stim = [
 
 ]
 
-// allow participants to take a break. 
-timeline.push(five_minute_break)
-
 var CT_instructions = {
   type: jsPsychHtmlButtonResponse,
   stimulus: '<p style = "font-size: 30px"><b> Word Completion Task</b></p><p class = "instructions"><b>Objective</b><br>To fill in missing parts of a word to make texts complete.<br><br><b>Procedure</b><br> In the following texts, parts of some words are missing. Please type in the missing letters to complete the words. You will have 5 minutes for each text.<br><br>Do your best to not leave any spaces blank!',
 choices: ['Continue']
 }
 
-timeline.push(CT_instructions);
 // in case we want to REQUIRE answers 
 // https://github.com/jspsych/jsPsych/discussions/2543
 
@@ -863,138 +890,110 @@ timeline.push(CT_instructions);
 var CT_trials = {
 timeline:[
 {type: jsPsychHtmlButtonResponse,
-stimulus: 'Press "Continue" to see the text.',
+stimulus: 'Press "Continue" to see the next text.',
 choices: ['Continue'],
 },
 
-{type: jsPsychCloze,
+{
+type: jsPsychCloze,
 text: jsPsych.timelineVariable('c_text'),
 data: jsPsych.timelineVariable("data"),
 trial_duration: 301000,
-button_text: '<br>Submit Answers</b>'
+button_text: '<br>Submit Answers</b>',
+on_load: function(){
+  countdown_timer(301000)
+}
 }
 ], timeline_variables: CT_stim, randomize_order: false
 }
 
-timeline.push(CT_trials);
 
 /***** ERROR CORRECTION TASK *********
-Participants will see a sentence and also hear the sentence spoken one time
+Participants will see a sentence presented in text
 They will know there is an error somewhere in the sentence
 Their task is to locate and correct the error
 */
 
 EC_timeline_stimuli = [
-  {sentence: 'Julian pr&eacute;pare les tomates rouge pour la salade.', 
-  audio: 'audio/EC/EC1_trim.mp3', 
+  {sentence: '<b>Dans mon bureau, je ai un ordinateur.</b>', 
   data: {stim_id: 'EC1'}
   },
-  {sentence: 'Pour c&eacute;l&eacute;brer la f&ecirc;te de Paola, ils allent au restaurant.', 
-  audio: 'audio/EC/EC2_trim.mp3', 
+  {sentence: '<b>Il parle pas espagnol avec ses amis.</b>', 
   data: {stim_id: 'EC2'}
   },
-  {sentence: 'Tu fait souvent du v&eacute;lo de montagne avec ton cousin.', 
-  audio: 'audio/EC/EC3_trim.mp3', 
+  {sentence: '<b>Il joue avec une balle dans le maison.</b>', 
   data: {stim_id: 'EC3'}
   },
-  {sentence: 'David et Laurence sont lou&eacute; une chambre d\'h&ocirc;tel au centre-ville. ', 
-  audio: 'audio/EC/EC4_trim.mp3', 
+  {sentence: '<b>Elisabeth veut une petit plante verte dans sa classe.</b>', 
   data: {stim_id: 'EC4'}
   },
-  {sentence: 'Madame Zuniga habites sur le campus de l\'universit&eacute;.', 
-  audio: 'audio/EC/EC5_trim.mp3', 
+  {sentence: '<b>Ta fr&egrave;re travaille toute la journ&eacute;e au magasin.</b>',
   data: {stim_id: 'EC5'}
   },
-  {sentence: 'Elle a trouver un ballon de foot pour l\'anniversaire de Marwan.', 
-  audio: 'audio/EC/EC6_trim.mp3', 
+  {sentence: '<b>Ma s&oelig;ur a une fille et deux chien.</b>', 
   data: {stim_id: 'EC6'}
   },
-  {sentence: 'Ils ne trouvent pas une grande maison &agrave; Boston.  ', 
-  audio: 'audio/EC/EC7_trim.mp3', 
+  {sentence: '<b>Pour la salade, Julian pr&eacute;pare les tomates rouge.</b>', 
   data: {stim_id: 'EC7'}
   },
-  {sentence: 'Ta fr&egrave;re travaille toute la journ&eacute;e au bureau. ', 
-  audio: 'audio/EC/EC9_trim.mp3', 
+  {sentence: '<b>Le weekend, nous regardent la t&eacute;l&eacute;vision avec notre famille.</b>', 
+  data: {stim_id: 'EC8'}
+  },
+  {sentence: '<b>Je m\'appeler Simon et je r&eacute;side au Canada.</b>', 
   data: {stim_id: 'EC9'}
   },
-  {sentence: 'Nous jouons au tennis avec un raquette et une balle.', 
-  audio: 'audio/EC/EC11_trim.mp3', 
+  {sentence: '<b>Cette ann&eacute;e, Madame Zuniga habites sur le campus.</b>', 
+  data: {stim_id: 'EC10'}
+  },
+  {sentence: '<b>Pour c&eacute;l&eacute;brer ta f&ecirc;te, nous allent au restaurant.</b>', 
   data: {stim_id: 'EC11'}
   },
-  {sentence: 'Vous finis vos devoirs avant de jouer avec vos copains!', 
-  audio: 'audio/EC/EC12_trim.mp3', 
+  {sentence: '<b>Tu fait du v&eacute;lo de montagne avec ta m&egrave;re.</b>', 
   data: {stim_id: 'EC12'}
   },
-  {sentence: 'Elisabeth aime la petit plante dans la cuisine.', 
-  audio: 'audio/EC/EC13_trim.mp3', 
+  {sentence: '<b>Elle a trouver un ballon de foot pour Judith.</b>', 
   data: {stim_id: 'EC13'}
   },
-  {sentence: 'Magali explique la nouvelle le&ccedil;on &agrave; les &eacute;tudiants.', 
-  audio: 'audio/EC/EC14_trim.mp3', 
+  {sentence: '<b>David et Laurence sont lou&eacute; une chambre d\'h&ocirc;tel.</b>', 
   data: {stim_id: 'EC14'}
   },
-  {sentence: 'J\'ai chaud. Je veut une glace au chocolat et &agrave; la vanille.', 
-  audio: 'audio/EC/EC15_trim.mp3', 
+  {sentence: '<b>Nous achetons de le poisson au march&eacute;.</b>', 
   data: {stim_id: 'EC15'}
   },
-  {sentence: 'J\'adore la nouvelle professeure de fran&ccedil;ais de ton s&oelig;ur.', 
-  audio: 'audio/EC/EC16_trim.mp3', 
+  // what to do with blank line in number 16?
+  {sentence: '<b>Je prends sucre avec mon caf&eacute;.</b>', 
   data: {stim_id: 'EC16'}
   },
-  {sentence: 'Les enfants de Max et Laurent grandissez tr&egrave;s rapidement.', 
-  audio: 'audio/EC/EC17_trim.mp3', 
+  {sentence: '<b>Bonjour Madame Simard, tu aimes votre nouveau condo?</b>', 
   data: {stim_id: 'EC17'}
   },
-  {sentence: 'Chaque matin, nous boire un th&eacute; sur la terrasse.', 
-  audio: 'audio/EC/EC18_trim.mp3', 
+  {sentence: '<b>Salut! C\'est moi, Julie. Voulez-vous aller au cin&eacute;ma demain?</b>', 
   data: {stim_id: 'EC18'}
   },
-  {sentence: 'Le weekend, on regardent la t&eacute;l&eacute;vision avec notre famille.', 
-  audio: 'audio/EC/EC20_trim.mp3', 
+  {sentence: '<b>Est-ce que adorez vous la musique?</b>', 
+  data: {stim_id: 'EC19'}
+  },
+  {sentence: '<b>Tu vas visite Paris avec Lisa en avril.</b>', 
   data: {stim_id: 'EC20'}
   }
 ]
 
-// yes this bad programming.
-var EC_audio = ['audio/EC/EC1_trim.mp3', 'audio/EC/EC2_trim.mp3', 'audio/EC/EC3_trim.mp3','audio/EC/EC4_trim.mp3','audio/EC/EC5_trim.mp3','audio/EC/EC6_trim.mp3','audio/EC/EC7_trim.mp3','audio/EC/EC8_trim.mp3','audio/EC/EC9_trim.mp3','audio/EC/EC10_trim.mp3','audio/EC/EC11_trim.mp3','audio/EC/EC12_trim.mp3','audio/EC/EC13_trim.mp3','audio/EC/EC14_trim.mp3','audio/EC/EC15_trim.mp3','audio/EC/EC16_trim.mp3','audio/EC/EC17_trim.mp3','audio/EC/EC18_trim.mp3','audio/EC/EC19_trim.mp3','audio/EC/EC20_trim.mp3',]
 
-var EC_preload = {
-  type: jsPsychPreload,
-  audio: EC_audio
-}
-
-timeline.push(EC_preload);
-
-
-// allow participants to take a break. 
-timeline.push(five_minute_break)
 
 var EC_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: '<p style = "font-size: 30px"><b>Error Correction Task</b></p><p class = "instructions"><b>Objective</b><br>Locate and correct grammatical errors in French sentences.<br><br><b>Procedure</b><br>You will see a series of sentences, one at a time. When you are shown each sentence, you will also hear the sentence being read. The written version of the sentence will remain on the screen.<br><br>Each sentence will contain <b>one</b> grammatical error. Your goal is to (1) identify the error and (2) correct the error. You will have 2 minutes for each sentence.',
+  stimulus: '<p style = "font-size: 30px"><b>Error Correction Task</b></p><p class = "instructions"><b>Objective</b><br>Locate and correct grammatical errors in French sentences.<br><br><b>Procedure</b><br>You will see 20 sentences, one at a time. The written version of the sentence will remain on the screen.<br><br>Each sentence will contain <b>ONE</b> grammatical error. Your goal is to (1) identify the error and (2) correct the error. You will have <b>1 minute</b> for each sentence.',
 choices: ['Continue to Example']
 }
 
-timeline.push(EC_instructions);
 
 EC_prompts = [{prompt: 'What is the error?', required: true}, 
 {prompt: 'What is the correction?', required: true}]
 
-
-// removed need to explain the error {prompt: 'Why is it an error?', required: true}]
-
 EC_demo_html = '<p>What is the error? <input readonly type = "text" id = "demo_error" name = "demo_response" placeholder = "on"/></p>' +
 '<p>What is the correction? <input readonly type = "text" id = "demo_correction" name = "demo_response" placeholder = "at"/></p>'
 
-/*
-'<p>Why is it an error? <input readonly type = "text" id = "demo_explanation" name = "demo_response" placeholder = "wrong preposition choice" size = "50"/></p>'
-*/
-
 EC_html = '<p>What is the error? <input type = "text" name = "error"/></p><p>What is the correction? <input type = "text" name = "correction"/></p>'
-
-/*
-<p>Why is it an error? <input type = "text" name = "explanation" size = "50"/></p>'
-*/
 
 var EC_demo = {
   timeline:[
@@ -1003,13 +1002,12 @@ var EC_demo = {
   preamble: '<i>Please follow this example when answering the questions.<br>Press continue when you are ready to begin.</i><br><br><br><b>The students are meeting on the library at 5pm.</b><br><br>'
 },
 {type: jsPsychHtmlButtonResponse,
-  stimulus: 'Provide as many answers as you can. Do not give up!<br><br>Do not use online dictionaries or reference tools.<br><br>We are interested in what <i>you</i> know!',
+  stimulus: 'Try your best to answer all of the questions. Do not give up!<br><br>Do not use online dictionaries or reference tools.<br><br>We are interested in what <i>you</i> know!',
   choices:['Begin']
 }
 ]
 }
 
-timeline.push(EC_demo);
 
 var EC_trials = {
   timeline:[
@@ -1018,29 +1016,105 @@ var EC_trials = {
     stimulus: 'Click Next to proceed to the next sentence.<br>',
     choices: ["Next"]},
 
-  {type: jsPsychSurveyHtmlFormTO,
+    // need to update this to match the htmlButtonResponse
+  {
+  type: jsPsychSurveyHtmlFormTO,
   data: jsPsych.timelineVariable('data'),
-  on_start: function(trial){
-  trial.preamble = '<audio autoplay><source src ='.concat(jsPsych.timelineVariable('audio')).concat('></audio>').concat('<b>').concat(jsPsych.timelineVariable('sentence').concat('</b><br><br>'))
-  },
-  html: EC_html,
-  preamble: '',
-  trial_duration: 121000 //duration of each question is 2 minutes 1000ms buffer
-  },
-  
+  html: EC_html.concat('<span id = "clock" style = "color:red">-:--</span><br>'),
+  preamble: jsPsych.timelineVariable('sentence'),
+  trial_duration: 61000, //duration of each question is 1 minute +  1000ms buffer
+  on_start: function(){
+    countdown_timer(61000)
+  }
+},
 ], timeline_variables: EC_timeline_stimuli, randomize_order: true
 }
 
-timeline.push(EC_trials)
 
- var end = {
+ const end = {
   type: jsPsychHtmlKeyboardResponse,
-  stimulus: 'Press the spacebar to end the test',
+  stimulus: 'You have completed the test, thank you! Please press the spacebar to end the test and be forwarded to XXXX!',
   choices: ' '
  }
  
-timeline.push(end)
- 
 
+// define the timeline order
+
+// all the prep stuff
+const fixed_start = [
+get_subject, 
+refresh_warning, 
+prepare_microphone, 
+ready_microphone,
+test_audio_instructions, 
+test_audio, 
+recording_passed, 
+enter_fullscreen
+];
+
+const park_narration_timeline = [
+SC1_preload,
+SC1_instructions,
+no_cheating,
+SC1_trials
+];
+
+const jules_timeline = [
+SC2_preload,
+SC2_instructions,
+no_cheating,
+SC2_trials
+];
+
+const samantha_timeline = [
+SC3_preload,
+SC3_instructions,
+no_cheating,
+SC3_trials
+];
+
+const dct_timeline = [
+CA_preload,
+CA_instructions1,
+CA_instructions2,
+no_cheating,
+CA_example,
+CA_trials
+];
+
+const cloze_timeline = [
+CT_instructions,
+no_cheating,
+CT_trials
+]
+
+const ec_timeline = [
+EC_instructions,
+no_cheating,
+EC_demo,
+EC_trials
+];
+
+const question_blocks = jsPsych.randomization.shuffle([park_narration_timeline, jules_timeline, samantha_timeline, dct_timeline, cloze_timeline, ec_timeline]);
+
+// dunno what to do with this: 
+//timeline.push(SC_task_instructions)
+
+// spread operator to push the new arrays
+timeline.push(
+...fixed_start,
+...question_blocks.pop(), 
+five_minute_break1, 
+...question_blocks.pop(), 
+five_minute_break2, 
+...question_blocks.pop(), 
+five_minute_break3,
+...question_blocks.pop(), 
+five_minute_break4,
+...question_blocks.pop(), 
+five_minute_break5,
+...question_blocks.pop(),
+end)
+ 
 jsPsych.run(timeline);
 </script>

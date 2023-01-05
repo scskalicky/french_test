@@ -74,9 +74,12 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
           html += trial.html;
           // add submit button
           html +=
-              '<input type="submit" id="jspsych-survey-html-form-next" class="jspsych-btn jspsych-survey-html-form" value="' +
-                  trial.button_label +
-                  '"></input>';
+          // had to change this to a button so my countdowns would work
+             '<br><button class="jspsych-btn jspsych-survey-html-form" type="button" id="jspsych-survey-html-form-next">' +
+            //   '<input type="submit" id="jspsych-survey-html-form-next" class="jspsych-btn jspsych-survey-html-form" value="' +
+                   trial.button_label +
+                 '</button>';
+                   // '"></input>';
           html += "</form>";
           display_element.innerHTML = html;
           if (trial.autofocus !== "") {
@@ -92,8 +95,9 @@ var jsPsychSurveyHtmlForm = (function (jspsych) {
               }
           }
           display_element
-              .querySelector("#jspsych-survey-html-form")
-              .addEventListener("submit", (event) => {
+                // also had to change these to the button
+              .querySelector("button")
+              .addEventListener("click", (event) => {
               // don't submit form
               event.preventDefault();
               // measure response time
