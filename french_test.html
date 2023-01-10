@@ -518,9 +518,9 @@ const CA_instructions2 = {
 };
 
 const CA_timeline_stimuli = [
-  // {scenario_num: 'DCT_1', image_one: 'image/DCT/dct_1_1.png', image_two: 'image/DCT/dct_1_2.png', image_three: 'image/DCT/dct_1_3.png', image_four: 'image/DCT/dct_1_4.png',  image_five: 'image/DCT/dct_1_5.png', image_six :'image/DCT/dct_1_6.png', image_seven: 'image/DCT/dct_1_7.png', image_eight: 'image/DCT/dct_1_8.png',image_nine: 'image/DCT/dct_1_9.png', audio_one: 'audio/DCT/DCT1.1.mp3' , audio_two: 'audio/DCT/DCT1.2.mp3',  audio_three: 'audio/DCT/DCT1.3.mp3', data: {stim_id: 'DCT_1_informal'}},
+  {scenario_num: 'DCT_1', image_one: 'image/DCT/dct_1_1.png', image_two: 'image/DCT/dct_1_2.png', image_three: 'image/DCT/dct_1_3.png', image_four: 'image/DCT/dct_1_4.png',  image_five: 'image/DCT/dct_1_5.png', image_six :'image/DCT/dct_1_6.png', image_seven: 'image/DCT/dct_1_7.png', image_eight: 'image/DCT/dct_1_8.png',image_nine: 'image/DCT/dct_1_9.png', audio_one: 'audio/DCT/DCT1.1.mp3' , audio_two: 'audio/DCT/DCT1.2.mp3',  audio_three: 'audio/DCT/DCT1.3.mp3', data: {stim_id: 'DCT_1_informal'}},
 
-  // {scenario_num: 'DCT_2', image_one: 'image/DCT/dct_2_1.png', image_two: 'image/DCT/dct_2_2.png', image_three: 'image/DCT/dct_2_3.png', image_four: 'image/DCT/dct_2_4.png', image_five: 'image/DCT/dct_2_5.png', image_six: 'image/DCT/dct_2_6.png', image_seven: 'image/DCT/dct_2_7.png', image_eight: 'image/DCT/dct_2_8.png', image_nine: 'image/DCT/dct_2_9.png', audio_one: 'audio/DCT/DCT2.1.mp3', audio_two: 'audio/DCT/DCT2.2.mp3', audio_three: 'audio/DCT/DCT2.3.mp3', data: { stim_id: 'DCT_2_formal'}},
+  {scenario_num: 'DCT_2', image_one: 'image/DCT/dct_2_1.png', image_two: 'image/DCT/dct_2_2.png', image_three: 'image/DCT/dct_2_3.png', image_four: 'image/DCT/dct_2_4.png', image_five: 'image/DCT/dct_2_5.png', image_six: 'image/DCT/dct_2_6.png', image_seven: 'image/DCT/dct_2_7.png', image_eight: 'image/DCT/dct_2_8.png', image_nine: 'image/DCT/dct_2_9.png', audio_one: 'audio/DCT/DCT2.1.mp3', audio_two: 'audio/DCT/DCT2.2.mp3', audio_three: 'audio/DCT/DCT2.3.mp3', data: { stim_id: 'DCT_2_formal'}},
 
    {scenario_num: 'DCT_3', image_one: 'image/DCT/dct_3_1.png', image_two: 'image/DCT/dct_3_2.png', image_three: 'image/DCT/dct_3_3.png',  image_four: 'image/DCT/dct_3_4.png', image_five: 'image/DCT/dct_3_5.png', image_six: 'image/DCT/dct_3_6.png', image_seven: 'image/DCT/dct_3_7.png', image_eight: 'image/DCT/dct_3_8.png', image_nine: 'image/DCT/dct_3_9.png', audio_one: 'audio/DCT/DCT3.1.mp3', audio_two: 'audio/DCT/DCT3.2.mp3', audio_three: 'audio/DCT/DCT3.3.mp3', data: { stim_id: 'DCT_3_informal'}},
 
@@ -548,7 +548,7 @@ var timeline_dct_a = [
         response_allowed_while_playing: false,
         on_start: function(trial){
           console.log(jsPsych.data.getLastTrialData().values()[0].trial_type)
-          trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_five')).concat('" height = "400" img>')
+          trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_five')).concat('" img>')
           if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response'){
             trial.choices = ['Play one more time', 'Continue']
           } else {
@@ -574,7 +574,7 @@ var timeline_dct_a = [
     {
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_six')).concat('" height = "400" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_six')).concat('"img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -606,7 +606,7 @@ var timeline_dct_a = [
         response_allowed_while_playing: false,
         on_start: function(trial){
           console.log(jsPsych.data.getLastTrialData().values()[0].trial_type)
-          trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_seven')).concat('" height = "400" img>')
+          trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_seven')).concat('" img>')
           if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response'){
             trial.choices = ['Play one more time', 'Continue']
           } else {
@@ -632,7 +632,7 @@ var timeline_dct_a = [
   {
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_eight')).concat('" height = "400" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_eight')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -658,7 +658,7 @@ var timeline_dct_a = [
   {
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_nine')).concat('" height = "400" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_nine')).concat('"img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -688,7 +688,7 @@ var timeline_dct_b = [
    { // third recording
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_five')).concat('" height = "400" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_five')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -719,7 +719,7 @@ var timeline_dct_b = [
         response_allowed_while_playing: false,
         on_start: function(trial){
           console.log(jsPsych.data.getLastTrialData().values()[0].trial_type)
-          trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_six')).concat('" height = "400" img>')
+          trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_six')).concat('" img>')
           if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response'){
             trial.choices = ['Play one more time', 'Continue']
           } else {
@@ -745,7 +745,7 @@ var timeline_dct_b = [
   { // fourth recording
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_seven')).concat('" height = "400" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_seven')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -778,7 +778,7 @@ var timeline_dct_b = [
         response_allowed_while_playing: false,
         on_start: function(trial){
           console.log(jsPsych.data.getLastTrialData().values()[0].trial_type)
-          trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_eight')).concat('" height = "400" img>')
+          trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_eight')).concat('" img>')
           if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response'){
             trial.choices = ['Play one more time', 'Continue']
           } else {
@@ -805,7 +805,7 @@ var timeline_dct_b = [
   { // recording five
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_nine')).concat('" height = "400" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_nine')).concat('"  img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -839,7 +839,7 @@ var timeline_dct_b = [
         response_allowed_while_playing: false,
         on_start: function(trial){
           console.log(jsPsych.data.getLastTrialData().values()[0].trial_type)
-          trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_five')).concat('" height = "400" img>')
+          trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_five')).concat('"img>')
           if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response'){
             trial.choices = ['Play one more time', 'Continue']
           } else {
@@ -865,7 +865,7 @@ var timeline_dct_b = [
   { // third recording
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_six')).concat('" height = "400" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_six')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -892,7 +892,7 @@ var timeline_dct_b = [
   { // fourth recording
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_seven')).concat('" height = "400" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_seven')).concat('"img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -925,7 +925,7 @@ var timeline_dct_b = [
         response_allowed_while_playing: false,
         on_start: function(trial){
           console.log(jsPsych.data.getLastTrialData().values()[0].trial_type)
-          trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_eight')).concat('" height = "400" img>')
+          trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_eight')).concat('"img>')
           if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response'){
             trial.choices = ['Play one more time', 'Continue']
           } else {
@@ -952,7 +952,7 @@ var timeline_dct_b = [
   { // recording five
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_nine')).concat('" height = "400" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_nine')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -991,7 +991,6 @@ const CA_trials = {
   { // show person they will be
     type: jsPsychImageButtonResponse,
     stimulus: jsPsych.timelineVariable('image_one'),
-    stimulus_height: '400',
     choices: ['Start your conversation...']
   },
   
@@ -999,7 +998,7 @@ const CA_trials = {
   {// participant first recording
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_two')).concat('"height = "400" img><p style = color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_two')).concat('" img><p style = color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -1029,7 +1028,7 @@ const CA_trials = {
         response_allowed_while_playing: false,
         on_start: function(trial){
           console.log(jsPsych.data.getLastTrialData().values()[0].trial_type)
-          trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_three')).concat('" height = "400" img>')
+          trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_three')).concat('" img>')
           if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response'){
             trial.choices = ['Play one more time', 'Continue']
           } else {
@@ -1054,7 +1053,7 @@ const CA_trials = {
     {// participants second recording
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_four')).concat('" height = "400" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_four')).concat('"  img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
