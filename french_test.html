@@ -299,7 +299,7 @@ var SC1_trials = {
     on_finish: function(data){
         data.stim_id = 'park_picture_description';
       //subject name
-      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+      purgeAudio(jsPsych.data.get().select('subject').values[0],
       // audio file name
       jsPsych.data.get().last(5).values()[0].stimulus.substring(6), 
       // current js data object
@@ -375,7 +375,7 @@ var SC2_trials = {
     on_finish: function(data){
         data.stim_id = 'jules_storyboard_recording';
         //subject name
-      purgeAudio(jsPsych.data.get().select('subject').values[0].Q0,
+      purgeAudio(jsPsych.data.get().select('subject').values[0],
       // audio file name
       'jules_storyboard.png', 
       // current js data object
@@ -1108,7 +1108,7 @@ const CA_trials = {
     },
 
   ], 
-  timeline_variables: CA_timeline_stimuli, randomize_order:false,
+  timeline_variables: CA_timeline_stimuli, randomize_order: true,
   }
 
 /***** C-TEST *********
@@ -1252,15 +1252,15 @@ const EC_timeline_stimuli = [
   audio: 'audio/EC/ECT16a.mp3', 
   data: {stim_id: 'EC16'}
   },
-  {sentence: '<b>Bonjour Madame Simard, tu aimes votre nouveau condo?</b>',
+  {sentence: '<b>Bonjour Madame Simard, tu aimes votre nouveau condo ?</b>',
   audio: 'audio/EC/ECT17a.mp3', 
   data: {stim_id: 'EC17'}
   },
-  {sentence: '<b>Salut! C\'est moi, Julie. Voulez-vous aller au cin&eacute;ma demain?</b>',
+  {sentence: '<b>Salut mon ami! Vous-vous du jus ?</b>',
   audio: 'audio/EC/ECT18a.mp3', 
   data: {stim_id: 'EC18'}
   },
-  {sentence: '<b>Est-ce que adorez vous la musique?</b>',
+  {sentence: '<b>Est-ce que adorez vous la musique ?</b>',
   audio: 'audio/EC/ECT19a.mp3', 
   data: {stim_id: 'EC19'}
   },
@@ -1320,7 +1320,7 @@ var EC_trials = {
   html: EC_html.concat('<span id = "clock" style = "color:red">-:--</span><br>'),
   trial_duration: 121000, //duration of each question is 2 minutes +  1000ms buffer
 },
-], timeline_variables: EC_timeline_stimuli, randomize_order: false
+], timeline_variables: EC_timeline_stimuli, randomize_order: true
 }
 
 
@@ -1348,17 +1348,17 @@ enter_fullscreen
 ];
 
 const park_narration_timeline = [
-//SC1_preload,
+SC1_preload,
 SC1_instructions,
-no_cheating
-//SC1_trials
+no_cheating,
+SC1_trials
 ];
 
 const jules_timeline = [
-//SC2_preload,
+SC2_preload,
 SC2_instructions,
-no_cheating
-//SC2_trials
+no_cheating,
+SC2_trials
 ];
 
 // const samantha_timeline = [
@@ -1373,14 +1373,14 @@ CA_preload,
 CA_instructions1,
 CA_instructions2,
 no_cheating,
-//CA_example
+//CA_example,
 CA_trials
 ];
 
 const cloze_timeline = [
 CT_instructions,
-no_cheating
-//CT_trials
+no_cheating,
+CT_trials
 ]
 
 const ec_timeline = [
@@ -1394,23 +1394,19 @@ EC_trials
 
 // first shuffle the pd
 const pd_randomise = jsPsych.randomization.shuffle([park_narration_timeline, jules_timeline])
-//console.log(pd_randomise)
 
 // then shuffle dct/pd blocks
 const dct_pd_order = jsPsych.randomization.shuffle([pd_randomise.pop(), pd_randomise.pop(), dct_timeline])
 
 // use spread operator (...) to push the new arrays from pop()
 timeline.push(
-  subject_name,
-ready_microphone,
-...dct_timeline,
-//...fixed_start,
-//...dct_pd_order.pop(),
-//five_minute_break1,
-//...dct_pd_order.pop(),
-//five_minute_break2,
-//...dct_pd_order.pop(),
-//five_minute_break3,
+...fixed_start,
+...dct_pd_order.pop(),
+five_minute_break1,
+...dct_pd_order.pop(),
+five_minute_break2,
+...dct_pd_order.pop(),
+five_minute_break3,
 ...ec_timeline,
 five_minute_break4,
 ...cloze_timeline,
