@@ -33,3 +33,13 @@ function saveData(name, data){
   //  xhr.send(JSON.stringify({filedata: data}));
   }
   
+// var dct_image_paths = []
+
+// for(var i = 1;  i <= 6; i++){
+//   for(var ii = 1; i <= 9; i++ ){
+//     dct_image_paths.push('image/DCT/dct_'.concat(i).concat('_').concat(ii).concat('.png'))
+//   }
+// };
+
+
+
