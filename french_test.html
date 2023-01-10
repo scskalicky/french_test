@@ -998,7 +998,7 @@ const CA_trials = {
   {// participant first recording
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_two')).concat('" img><p style = color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_two', true)).concat('" img><p style = color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
