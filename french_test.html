@@ -32,7 +32,6 @@
   <script src = "jspsych/plugin-survey-text.js"></script>
   <script src="jspsych/plugin-preload.js"></script>
   <link href = "jspsych/jspsych.css" rel="stylesheet" type = "text/css" />
-  <script src = 'stimuli.js' type = 'text/javascript'></script>   
   </head>
   <body></body>  
   <script>
@@ -44,7 +43,6 @@
       saveData(jsPsych.data.get().select('subject').values[0].Q0, jsPsych.data.get().csv())
      // window.location = "https://www.duolingo.com";
     },
-  preload_images: ['image/DCT/dct_1_1.png', 'image/DCT/dct_2_1.png', 'image/DCT/dct_3_1.png', 'image/DCT/dct_4_1.png', 'image/DCT/dct_5_1.png', 'image/DCT/dct_6_1.png', 'image/DCT/dct_7_1.png', 'image/DCT/dct_8_1.png', 'image/DCT/dct_9_1.png']
   });
   </script>
 </html>
@@ -487,10 +485,11 @@ const CA_audio = ['audio/DCT/DCT1.1.mp3',
 const CA_images = []
 
 for(var i = 1;  i <= 6; i++){
-  for(var ii = 1; i <= 9; i++ ){
+  for(var ii = 1; ii <= 9; ii++ ){
     CA_images.push('image/DCT/dct_'.concat(i).concat('_').concat(ii).concat('.png'))
   }
 };
+
 
 // // computer response inter trial interval
 // const computer_response_prompt = {
@@ -1400,6 +1399,7 @@ const pd_randomise = jsPsych.randomization.shuffle([park_narration_timeline, jul
 // then shuffle dct/pd blocks
 const dct_pd_order = jsPsych.randomization.shuffle([pd_randomise.pop(), pd_randomise.pop(), dct_timeline])
 
+
 // use spread operator (...) to push the new arrays from pop()
 timeline.push(
 ...fixed_start,
@@ -1414,5 +1414,8 @@ five_minute_break4,
 ...cloze_timeline,
 end)
  
+
+
+
 jsPsych.run(timeline);
 </script>
