@@ -1400,8 +1400,15 @@ const pd_randomise = jsPsych.randomization.shuffle([park_narration_timeline, jul
 const dct_pd_order = jsPsych.randomization.shuffle([pd_randomise.pop(), pd_randomise.pop(), dct_timeline])
 
 
+const preload_all = {
+  type: jsPsychPreload, 
+  images:CA_images, 
+  show_detailed_errors: true
+}
+
 // use spread operator (...) to push the new arrays from pop()
 timeline.push(
+  preload_all,
 ...fixed_start,
 ...dct_pd_order.pop(),
 five_minute_break1,
