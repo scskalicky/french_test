@@ -214,7 +214,7 @@ const test_audio_instructions = {
 const test_audio = {
   type: jsPsychHtmlAudioResponse,
     recording_duration: 10000,
-    stimulus: 'RECORDING...',
+    stimulus: '<p style = "color:red"><b>RECORDING...</b></p>',
     allow_playback: true,
     show_done_button: true,
     record_again_button_label: 'Record Again',
@@ -225,13 +225,14 @@ const test_audio = {
 // honor system - participants will click to move on. 
 const recording_passed = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'Thank you. You have indicated that you are able to hear yourself in the recording.<br>Press Continue when you are ready to continue the test.',
+    stimulus: 'Thank you. You have indicated that you are able to hear yourself in the recording.<br><br>Press Continue to proceed with the test.',
     choices: ['Continue'],
 }
 
 var enter_fullscreen = {
   type: jsPsychFullscreen,
-  fullscreen_mode: true
+  fullscreen_mode: true,
+  message: 'Your browser will now switch to full screen mode. Please leave your browser in full screen for the duration of the test.<br><br>'
 };
 
 /*
@@ -608,15 +609,15 @@ var timeline_dct_a = [
         type: jsPsychAudioButtonResponse,
         stimulus: jsPsych.timelineVariable('audio_three'),
         prompt: '',
-        choices: ['Play one more time', 'Continue'],
+        choices: ['Play one more time', 'Answer her question...'],
         response_allowed_while_playing: false,
         on_start: function(trial){
           console.log(jsPsych.data.getLastTrialData().values()[0].trial_type)
           trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_seven')).concat('" img>')
           if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response'){
-            trial.choices = ['Play one more time', 'Continue']
+            trial.choices = ['Play one more time', 'Answer her question...']
           } else {
-            trial.choices = ['Continue']
+            trial.choices = ['Answer her question...']
           }
         },
         on_finish: function(data){
@@ -721,15 +722,15 @@ var timeline_dct_b = [
         type: jsPsychAudioButtonResponse,
         stimulus: jsPsych.timelineVariable('audio_two'),
         prompt: '',
-        choices: ['Play one more time', 'Continue'],
+        choices: ['Play one more time', 'Answer her question...'],
         response_allowed_while_playing: false,
         on_start: function(trial){
           console.log(jsPsych.data.getLastTrialData().values()[0].trial_type)
           trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_six')).concat('" img>')
           if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response'){
-            trial.choices = ['Play one more time', 'Continue']
+            trial.choices = ['Play one more time', 'Answer her question...']
           } else {
-            trial.choices = ['Continue']
+            trial.choices = ['Answer her question...']
           }
         },
         on_finish: function(data){
@@ -780,15 +781,15 @@ var timeline_dct_b = [
         type: jsPsychAudioButtonResponse,
         stimulus: jsPsych.timelineVariable('audio_three'),
         prompt: '',
-        choices: ['Play one more time', 'Continue'],
+        choices: ['Play one more time', 'Answer her question...'],
         response_allowed_while_playing: false,
         on_start: function(trial){
           console.log(jsPsych.data.getLastTrialData().values()[0].trial_type)
           trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_eight')).concat('" img>')
           if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response'){
-            trial.choices = ['Play one more time', 'Continue']
+            trial.choices = ['Play one more time', 'Answer her question...']
           } else {
-            trial.choices = ['Continue']
+            trial.choices = ['Answer her question...']
           }
         },
         on_finish: function(data){
@@ -841,15 +842,15 @@ var timeline_dct_b = [
         type: jsPsychAudioButtonResponse,
         stimulus: jsPsych.timelineVariable('audio_two'),
         prompt: '',
-        choices: ['Play one more time', 'Continue'],
+        choices: ['Play one more time', 'Answer her question...'],
         response_allowed_while_playing: false,
         on_start: function(trial){
           console.log(jsPsych.data.getLastTrialData().values()[0].trial_type)
           trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_five')).concat('"img>')
           if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response'){
-            trial.choices = ['Play one more time', 'Continue']
+            trial.choices = ['Play one more time', 'Answer her question...']
           } else {
-            trial.choices = ['Continue']
+            trial.choices = ['Answer her question...']
           }
         },
         on_finish: function(data){
@@ -1031,7 +1032,7 @@ const dct_practice  = {
           if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response'){
             trial.choices = ['Play one more time', 'Continue']
           } else {
-            trial.choices = ['Continue']
+            trial.choices = ['Continue...']
           }
         },
         on_finish: function(data){
@@ -1080,7 +1081,7 @@ const dct_practice  = {
         on_start: function(trial){
           console.log(jsPsych.data.getLastTrialData().values()[0].trial_type)
           if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response'){
-            trial.choices = ['Play one more time', 'Continue']
+            trial.choices = ['Play one more time', 'Answer her question...']
           } else {
             trial.choices = ['Continue']
           }
@@ -1138,7 +1139,7 @@ const dct_starting = {
   choices: ["Continue"]
 };
 
-// first four images and question types are always the same. 
+// first three? five and six have quesitons in 4...
 const CA_trials = {
   timeline: [
   
@@ -1187,13 +1188,25 @@ const CA_trials = {
         choices: ['Play one more time', 'Continue'],
         response_allowed_while_playing: false,
         on_start: function(trial){
+
           console.log(jsPsych.data.getLastTrialData().values()[0].trial_type)
           trial.prompt = '<img src = "'.concat(jsPsych.timelineVariable('image_three')).concat('" img>')
-          if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response'){
+          // bunch of logic to change button for DCT 5 and 6
+          
+          if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response' && ['DCT_5', 'DCT_6'].includes(jsPsych.timelineVariable('scenario_num'))){
+              trial.choices = ['Play one more time', 'Answer her questions...']
+
+          } else if(jsPsych.data.getLastTrialData().values()[0].trial_type != 'html-audio-response' && ['DCT_5', 'DCT_6'].includes(jsPsych.timelineVariable('scenario_num'))) {   
+              trial.choices = ['Answer her questions...']
+
+           } else if (jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response' && ['DCT_1', 'DCT_2', 'DCT_3', 'DCT_4'].includes(jsPsych.timelineVariable('scenario_num'))) {
             trial.choices = ['Play one more time', 'Continue']
-          } else {
+
+          } else if (jsPsych.data.getLastTrialData().values()[0].trial_type != 'html-audio-response' && ['DCT_1', 'DCT_2', 'DCT_3', 'DCT_4'].includes(jsPsych.timelineVariable('scenario_num'))){
             trial.choices = ['Continue']
           }
+
+
         },
         on_finish: function(data){
           data.stim_id = jsPsych.timelineVariable('scenario_num').concat('_listening1')},
