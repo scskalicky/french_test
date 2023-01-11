@@ -184,7 +184,7 @@ const subject_name = {
 
 var refresh_warning = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: '<p style = "font-size: 30px; color: red"><b>WARNING</b></p><p>You should set aside at least one hour to complete this test. This test should be completed in one go - you cannot save your data and return later.<br><br>During the test, please <b>do not</b> refresh your browser or use the back button. <br>Doing so will result in a loss of all your data, and will be unable to continue with this project.<br><br>Finally, please do not use any dictionaries, translation tools, or other language aids. We are only interested in <b>your</b> knowledge of French.',
+    stimulus: '<p>Thank you for participating in this study!</p><p style = "font-size: 30px; color: red"><b>STOP!</b></p><p>You should set aside at least one hour to complete this test. This test should be completed in one go - you cannot save your data and return later.<br><br>During the test, please <b>do not</b> refresh your browser or use the back button. <br>Doing so will result in a loss of all your data, and will be unable to continue with this project.<br><br>Finally, please do not use any dictionaries, translation tools, or other language aids. We are only interested in <b>your</b> knowledge of French. When planning your answers, you can write down keywords using pencil/pen and paper.',
     choices: ['I Understand']
 };
 
@@ -260,8 +260,8 @@ choices: ['Continue']
 var SC1_trials = {
   timeline: [
     {type: jsPsychHtmlButtonResponse,
-    stimulus: 'Once you click this button, you will have 1 minute to study the picture and prepare your response.<br>You can start recording earlier if you prefer.',
-    choices: ["See Picture"]},
+    stimulus: 'Once you click this button, you will have 1 minute to study the picture and prepare your response.<br>Press "I\'m Ready" when you are ready to record.',
+    choices: ["I'm Ready"]},
 
     {type: jsPsychImageButtonResponse,
       stimulus: 'image/PD_1.png',
@@ -338,9 +338,9 @@ var SC2_instructions = {
 var SC2_trials = {
   timeline: [
     {
-      type: jsPsychHtmlButtonResponse,
-    stimulus: 'Once you click this button, you will have 1 minute to study the picture and prepare your response.<br>You can start recording earlier if you prefer.',
-    choices: ["See Picture"]
+    type: jsPsychHtmlButtonResponse,
+    stimulus: 'Once you click this button, you will have 1 minute to study the picture and prepare your response.<br>Press "I\'m Ready" when you are ready to record.',
+    choices: ["I'm Ready"]
   },
 
     {
@@ -580,7 +580,7 @@ var timeline_dct_a = [
     {
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_six')).concat('"img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_six')).concat('"img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -638,7 +638,7 @@ var timeline_dct_a = [
   {
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_eight')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_eight')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -656,7 +656,7 @@ var timeline_dct_a = [
           //subject name
         purgeAudio(jsPsych.data.get().select('subject').values[0],
         // audio file name
-        jsPsych.timelineVariable('scenario_num').concat('_recording4'),
+        jsPsych.timelineVariable('scenario_num').concat('_recording4_'),
         data)
   }},
   
@@ -664,7 +664,7 @@ var timeline_dct_a = [
   {
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_nine')).concat('"img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_nine')).concat('"img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -682,7 +682,7 @@ var timeline_dct_a = [
           //subject name
         purgeAudio(jsPsych.data.get().select('subject').values[0],
         // audio file name
-        jsPsych.timelineVariable('scenario_num').concat('_recording5'),
+        jsPsych.timelineVariable('scenario_num').concat('_recording5_'),
         data)
   }}]
 
@@ -694,7 +694,7 @@ var timeline_dct_b = [
    { // third recording
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_five')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_five')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -751,7 +751,7 @@ var timeline_dct_b = [
   { // fourth recording
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_seven')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_seven')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -769,7 +769,7 @@ var timeline_dct_b = [
           //subject name
         purgeAudio(jsPsych.data.get().select('subject').values[0],
         // audio file name
-        jsPsych.timelineVariable('scenario_num').concat('_recording4'),
+        jsPsych.timelineVariable('scenario_num').concat('_recording4_'),
         data)
   }},
   
@@ -811,7 +811,7 @@ var timeline_dct_b = [
   { // recording five
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_nine')).concat('"  img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_nine')).concat('"  img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -829,7 +829,7 @@ var timeline_dct_b = [
           //subject name
         purgeAudio(jsPsych.data.get().select('subject').values[0],
         // audio file name
-        jsPsych.timelineVariable('scenario_num').concat('_recording5'),
+        jsPsych.timelineVariable('scenario_num').concat('_recording5_'),
         data)
   }}];
 
@@ -871,7 +871,7 @@ var timeline_dct_b = [
   { // third recording
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_six')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_six')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -898,7 +898,7 @@ var timeline_dct_b = [
   { // fourth recording
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_seven')).concat('"img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_seven')).concat('"img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -916,7 +916,7 @@ var timeline_dct_b = [
           //subject name
         purgeAudio(jsPsych.data.get().select('subject').values[0],
         // audio file name
-        jsPsych.timelineVariable('scenario_num').concat('_recording4'),
+        jsPsych.timelineVariable('scenario_num').concat('_recording4_'),
         data)
   }},
   
@@ -958,7 +958,7 @@ var timeline_dct_b = [
   { // recording five
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_nine')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_nine')).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -976,7 +976,7 @@ var timeline_dct_b = [
           //subject name
         purgeAudio(jsPsych.data.get().select('subject').values[0],
         // audio file name
-        jsPsych.timelineVariable('scenario_num').concat('_recording5'),
+        jsPsych.timelineVariable('scenario_num').concat('_recording5_'),
         data)
   }}];
 
@@ -999,7 +999,7 @@ const dct_practice  = {
   {// first practice recording
   type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "image/DCT/dct_p_2.png" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>'
+        trial.stimulus = '<img src = "image/DCT/dct_p_2.png" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>'
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -1015,7 +1015,7 @@ const dct_practice  = {
         data.stim_id =  'dct_practice_recording1'
         purgeAudio(jsPsych.data.get().select('subject').values[0],
         // audio file name
-        'dct_practice_recording1',
+        'dct_practice_recording1_',
         data)}},
         
         
@@ -1051,7 +1051,7 @@ const dct_practice  = {
     {// second practice recording
   type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "image/DCT/dct_p_4.png" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>'
+        trial.stimulus = '<img src = "image/DCT/dct_p_4.png" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>'
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -1067,7 +1067,7 @@ const dct_practice  = {
         data.stim_id =  'dct_practice_recording2'
         purgeAudio(jsPsych.data.get().select('subject').values[0],
         // audio file name
-        'dct_practice_recording2',
+        'dct_practice_recording2_',
         data)}},
 
       { // second practice response
@@ -1101,8 +1101,9 @@ const dct_practice  = {
 
       {// third practice recording
   type: jsPsychHtmlAudioResponse,
-      on_start: function(trial){
-        trial.stimulus = '<img src = "image/DCT/dct_p_6.png" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>'
+ 
+    on_start: function(trial){
+        trial.stimulus = '<img src = "image/DCT/dct_p_6.png" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>';
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -1118,7 +1119,7 @@ const dct_practice  = {
         data.stim_id =  'dct_practice_recording3'
         purgeAudio(jsPsych.data.get().select('subject').values[0],
         // audio file name
-        'dct_practice_recording3',
+        'dct_practice_recording3_',
         data)}},
 
     {// final image showing  practice reminder
@@ -1127,7 +1128,7 @@ const dct_practice  = {
       choices: ['OK. I\'m Ready!']
 
     }
-  ]
+  ],
 };
 
 
@@ -1157,7 +1158,7 @@ const CA_trials = {
   {// participant first recording
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_two', true)).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_two', true)).concat('" img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -1212,7 +1213,7 @@ const CA_trials = {
     {// participants second recording
       type: jsPsychHtmlAudioResponse,
       on_start: function(trial){
-        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_four')).concat('"  img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p><br>')
+        trial.stimulus = '<img src = "'.concat(jsPsych.timelineVariable('image_four')).concat('"  img><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>')
       },
       stimulus: '',
       recording_duration: dct_response_time_max,
@@ -1415,7 +1416,7 @@ const EC_timeline_stimuli = [
   audio: 'audio/EC/ECT17a.mp3', 
   data: {stim_id: 'EC17'}
   },
-  {sentence: '<b>Salut mon ami! Vous-vous du jus ?</b>',
+  {sentence: '<b>Salut mon ami! Voulez-vous du jus ?</b>',
   audio: 'audio/EC/ECT18a.mp3', 
   data: {stim_id: 'EC18'}
   },
