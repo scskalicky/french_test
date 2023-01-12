@@ -4,7 +4,7 @@
   <title>French Test</title>
   <script type = "text/javascript" src="jquery-3.6.0.js"></script>
   <script id = "helper"></script>
-  <script>
+ <script>
     // force reload of stimuli pages (for development.)
     var stable = "helper_functions.js?="
     var dynamic = Date.now()
@@ -151,22 +151,12 @@ function countdown_timer(duration){
     }, 250)}
 
 
-// redundant now that we ask for subject to enter their information. 
-// var get_subject = {
-//   type: jsPsychSurveyText,
-//   questions: [{prompt: 'Please enter subject id'}],
-//   on_finish: function(data){
-//     jsPsych.data.addProperties({subject: data.response})
-//     console.log(jsPsych.data.get().select('subject').values[0].Q0)
-//   }
-// }
-
 const subject_name = {
   type: jsPsychSurveyText,
   questions: [
     {prompt: "Please enter your first name", name: 'first_name', required: true},
     {prompt: "Please enter your last name", name: 'last_name', required: true},
-    {prompt: "Please enter your univeristy email address", name: 'uni_email', required: true},
+    {prompt: "Please enter your university email address", name: 'uni_email', required: true},
     {prompt: "If there is another email address you prefer to use, enter that here", name: 'alternate_email', required: false}
   ],
   on_finish: function(data){
@@ -206,7 +196,7 @@ const ready_microphone = {
 // explain to participants they need to make sure they can hear themselves. 
 const test_audio_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: 'Let\'s make sure the test can hear you.<br>Please click the button below and speak into your microphone for a few seconds.<br>Afterwards, you will be able to play your recording.<br><br>Please make sure that you can hear your recording. If not, please make sure you microphone is working properly and try again. <br> Please do not continue the test until you are able to hear a recording of yourself played back to you.<br><br>',
+  stimulus: 'Let\'s make sure the test can hear you.<br>Please click the button below and speak into your microphone for a few seconds.<br>Afterwards, you will be able to play your recording.<br><br>Please make sure that you can hear your recording. If not, please make sure your microphone is working properly and try again. <br> Please do not continue the test until you are able to hear a recording of yourself played back to you.<br><br>',
   choices: ['Begin Recording']
 }
 
@@ -253,7 +243,7 @@ var SC1_preload = {
 
 var SC1_instructions = {
 type: jsPsychHtmlButtonResponse,
-stimulus: '<p style = "font-size: 30px"><b>Picture description task</b><p class = "instructions"><b>Objective</b><br>Describe the people and the activities the people are doing.<br><br><b>Procedure</b><br>You will see an image with many people, doing many activities. You will have 1 minute to study the image and then 3 minutes to describe what is happening in the image.<br><br> You can focus on: <ul style = "text-align: left"><li>Activities</li><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Weather</li></ul>',
+stimulus: '<p style = "font-size: 30px"><b>Picture description task</b><p class = "instructions"><b>Objective</b><br>Describe the people and the activities the people are doing.<br><br><b>Procedure</b><br>You will see an image with many people, doing many activities. You will have 1 minute to study the image and then 3 minutes to describe what is happening in the image.<br><br><b>For each character you describe, provide as much information as you can!</b><br><br> You can focus on: <ul style = "text-align: left"><li>Activities</li><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Weather</li></ul>',
 choices: ['Continue']
 }
 
@@ -1298,7 +1288,7 @@ var CT_stim = [
     c_text: french_keyboard.concat("Coucou, tu es d\'accord pour m\'aider &agrave; organiser l\'anniversaire de Clara?<p>La f&ecirc;%% est sam%% chez m%%.<p>Nous av%% un exce%% g&acirc;teau a%% chocolat e%% mon fr%% a l%% d&eacute;corations <br>e%% la mu%%.<p>Viens av%% ton cop%%. On v%% pr&eacute;parer u%% grosse sal%% de fru%% ensemble.<p> Appelle-moi quand vous arrivez."), data: {stim_id: 'CTEST_2'}
 },
 {
-    c_text: french_keyboard.concat("Un livre qui pr&eacute;tend introduire des aspects de la culture française ne serait pas complet sans un chapitre sur les beaux-arts.<p>En fa%%, de nomb%% touristes vo%% en Fra%% dans l\'inte%% d\'admirer s%% chefs-d\'&oelig;u%% de pein%%, d\'archit%% et d%% sculpture.<p>Q%% n\'a p%% entendu par%% du Louvre? d%% la cath%% Notre-Dame d%% Paris? des scul%% de Rodin?<p>Nous ne pouvons pas vous pr&eacute;senter une &eacute;tude en profondeur des beaux-arts en France."), data: {stim_id: 'CTEST_3'}
+    c_text: french_keyboard.concat("Un livre qui pr&eacute;tend introduire des aspects de la culture fran&ccedil;aise ne serait pas complet sans un chapitre sur les beaux-arts.<p>En fa%%, de nomb%% touristes vo%% en Fra%% dans l\'inte%% d\'admirer s%% chefs-d\'&oelig;u%% de pein%%, d\'archit%% et d%% sculpture.<p>Q%% n\'a p%% entendu par%% du Louvre? d%% la cath%% Notre-Dame d%% Paris? des scul%% de Rodin?<p>Nous ne pouvons pas vous pr&eacute;senter une &eacute;tude en profondeur des beaux-arts en France."), data: {stim_id: 'CTEST_3'}
 },
 
 ]
@@ -1401,7 +1391,7 @@ const EC_timeline_stimuli = [
   audio: 'audio/EC/ECT10a.mp3', 
   data: {stim_id: 'EC10'}
   },
-  {sentence: '<b>Pour c&eacute;l&eacute;brer ta f&ecirc;te, nous allent au restaurant.</b>',
+  {sentence: '<b>Pour c&eacute;l&eacute;brer ta f&ecirc;te, nous alles au restaurant.</b>',
   audio: 'audio/EC/ECT11a.mp3', 
   data: {stim_id: 'EC11'}
   },
