@@ -23,6 +23,7 @@
   <script src = "jspsych/plugin-html-button-response.js"></script>
   <script src = "jspsych/plugin-image-button-response.js"></script>
   <script src = "jspsych/plugin-image-keyboard-response.js"></script>
+  <script src = "jspsych/plugin-video-button-response.js"></script>
   <script src = "jspsych/plugin-survey-multi-select1.js"></script>
   <script src = "jspsych/plugin-survey-multi-choice1.js"></script>
   <script src = "jspsych/plugin-survey-html-form.js"></script>
@@ -178,6 +179,18 @@ var refresh_warning = {
     choices: ['I Understand']
 };
 
+
+const video_intro = {
+  type: jsPsychVideoButtonResponse,
+  stimulus: ['Introduction_V3.mp4'],
+  choices: ['Continue'],
+  controls: true,
+  prompt: "Before we start, please watch this short video explaining the purpose and content of this test.",
+  response_allowed_while_playing: false,
+  autoplay: false,
+  width: 600,
+  height: 400
+};
 
 /* activate microphone and ensure participants can hear themselves being recorded.*/
 
@@ -1502,6 +1515,7 @@ var EC_trials = {
 const fixed_start = [
 subject_name,
 refresh_warning, 
+video_intro,
 prepare_microphone, 
 ready_microphone,
 test_audio_instructions, 
