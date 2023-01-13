@@ -192,6 +192,11 @@ const video_intro = {
   height: 400
 };
 
+const video_preload = {
+  type: jsPsychPreload,
+  video: ['Introduction_V3.mp4']
+}
+
 /* activate microphone and ensure participants can hear themselves being recorded.*/
 
 // explain microphone connection
@@ -1515,6 +1520,7 @@ var EC_trials = {
 const fixed_start = [
 subject_name,
 refresh_warning, 
+video_preload,
 video_intro,
 prepare_microphone, 
 ready_microphone,
