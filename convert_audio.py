@@ -34,7 +34,7 @@ def convertAudio(filename, folder, output_directory):
 
 
 
-    # will exit with error if file already exists.
+    # will exit with error if file already exists. (not anymore!)
     ff = FFmpeg(
         executable = '/usr/local/bin/ffmpeg',
         inputs = {new_filename: None},
