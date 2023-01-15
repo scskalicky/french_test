@@ -1,5 +1,5 @@
 <?php
-// get the data from the POST message
+// php to save entire csv at the end of the experiment. 
 
 // data file
 $data = $_POST['full_data'];
