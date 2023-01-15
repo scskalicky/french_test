@@ -1375,7 +1375,8 @@ on_load: function(){
   countdown_timer(301000)
 },
 on_finish: function(){ // save the c-test trial as a csv just in case. 
-  saveData(jsPsych.data.get().select('subject').values[0].concat('_').concat(Date.now().toString()).concat('_').concat(jsPsych.timelineVariable('c_text_id')), jsPsych.data.getLastTimelineData().csv())
+  saveTrialData(jsPsych.data.get().select('subject').values[0].concat('_').concat(Date.now().toString()).concat('_').concat(jsPsych.timelineVariable('c_text_id')), jsPsych.data.getLastTimelineData().csv(),
+  jsPsych.data.get().select('subject').values[0])
  // console.log(jsPsych.data.getLastTimelineData())
 }
 }

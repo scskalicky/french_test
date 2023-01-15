@@ -24,12 +24,15 @@ function saveData(name, data){
         type: 'POST',
         data: {full_data: data, subject: name},
         dataType: 'text'})
+    }
 
- //   var xhr = new XMLHttpRequest();
-  //  xhr.open('POST', 'write_data.php');
-  //  xhr.setRequestHeader('Content-Type', 'application/json');
-  //  xhr.send(JSON.stringify({filedata: data}));
-  }
+// saves subsets of data marked by different filenames. 
+function saveTrialData(name, data, folder){
+    $.ajax({
+        url: 'write_trials.php',
+        type: 'POST',
+        data: {full_data: data, subject: name, subject_folder: folder},
+        dataType: 'text'})}
   
 // var dct_image_paths = []
 
