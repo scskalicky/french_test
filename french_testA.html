@@ -1542,13 +1542,18 @@ var EC_demo = {
 ]
 }
 
+var EC_trial_counter = 0
 
 var EC_trials = {
   timeline:[
   {
     type: jsPsychHtmlButtonResponse,
+    prompt: '',
     stimulus: 'Click Next to proceed to the next sentence.<br>',
-    choices: ["Next"]
+    choices: ["Next"],
+    on_start: function(trial){
+      trial.prompt = '<br><i>'.concat(String(EC_trial_counter)).concat('/20 sentences completed')
+    }
   },
   
 {
@@ -1564,7 +1569,8 @@ var EC_trials = {
   trial_duration: 121000, //duration of each question is 2 minutes +  1000ms buffer
   on_finish: function(){ // save the EC trial as a csv just in case. 
   saveTrialData(jsPsych.data.get().select('subject').values[0].concat('_').concat(Date.now().toString()).concat('_').concat(jsPsych.timelineVariable('s_id')), jsPsych.data.getLastTimelineData().csv(),
-  jsPsych.data.get().select('subject').values[0])
+  jsPsych.data.get().select('subject').values[0]);
+  EC_trial_counter++
  // console.log(jsPsych.data.getLastTimelineData())
 }
 },
@@ -1621,7 +1627,7 @@ const dct_timeline = [
 CA_preload,
 CA_instructions1,
 CA_instructions2,
-//dct_practice,
+dct_practice,
 dct_starting,
 no_cheating,
 CA_trials
