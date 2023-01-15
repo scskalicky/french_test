@@ -75,21 +75,21 @@ const countdown321 =
 const five_minute_break1 = 
 {
   type: jsPsychHtmlButtonResponse, 
-  stimulus: 'Nice work - you have completed 1 of 5 tasks!<br><br>Before moving on to the next section of the test, please take a short break (not longer than five minutes).<br><br> Press "Continue" when you are ready to move to the next part of the test.<br><br>',
+  stimulus: 'Nice work - you have completed 1 of 3 speaking tasks!<br><br>',
   choices:  ["Continue"]
   }
 
 const five_minute_break2 = 
 {
   type: jsPsychHtmlButtonResponse, 
-  stimulus: 'Nice work - you have completed 2 of 5 tasks!<br><br>Before moving on to the next section of the test, please take a short break (not longer than five minutes).<br><br> Press "Continue" when you are ready to move to the next part of the test.<br><br>',
+  stimulus: 'Nice work - you have completed 2 of 3 speaking tasks!<br><br>',
   choices:  ["Continue"]
   }
 
 const five_minute_break3 = 
 {
   type: jsPsychHtmlButtonResponse, 
-  stimulus: 'Nice work - you have completed 3 of 5 tasks!<br><br>Before moving on to the next section of the test, please take a short break (not longer than five minutes).<br><br> Press "Continue" when you are ready to move to the next part of the test.<br><br>',
+  stimulus: 'Nice work - you have completed all 3 speaking tasks!<br><br>Before moving on to the next section of the test, please take a short break (not longer than five minutes).<br><br> Press "Continue" when you are ready to move to the next part of the test.<br><br>',
   choices:  ["Continue"]
   }
 
@@ -111,7 +111,7 @@ const five_minute_break4 =
 const no_cheating = 
 {
   type: jsPsychHtmlButtonResponse,
-  stimulus: 'As a reminder, please do not use any dictionaries, translation tools, or other language aids. We are only interested in <b>your</b> knowledge of French.<br><br>When planning your answers, you can write down keywords using pencil/pen and paper.',
+  stimulus: 'As a reminder, please do not use any dictionaries, translation tools, or other language aids. We are only interested in <b>your</b> knowledge of French.<br>When planning your answers, you can write down keywords using pencil/pen and paper.',
   choices: ["I Understand"]
 }
 
@@ -196,7 +196,13 @@ const video_preload = {
   type: jsPsychPreload,
   video: ['introduction.mp4'],
   message: "Loading, please wait..."
-}
+};
+
+const prepare_penpaper = {
+  type: jsPsychHtmlButtonResponse,
+    stimulus: '<p style = "font-size: 30px; color: red"><b>Prepare Pen and Paper</b></p><p>Please prepare a piece of paper and a pen/pencil to take some notes while you plan your answers.<br>',
+    choices: ['OK. I\'m Ready.'],
+};
 
 /* activate microphone and ensure participants can hear themselves being recorded.*/
 
@@ -262,7 +268,7 @@ var SC1_preload = {
 
 var SC1_instructions = {
 type: jsPsychHtmlButtonResponse,
-stimulus: '<p style = "font-size: 30px"><b>Picture description task</b><p class = "instructions"><b>Objective</b><br>Describe the people and the activities the people are doing.<br><br><b>Procedure</b><br>You will see an image with many people, doing many activities. You will have 1 minute to study the image and then 3 minutes to describe what is happening in the image.<br><br><b>For each character you describe, provide as much information as you can!</b><br><br> You can focus on: <ul style = "text-align: left"><li>Activities</li><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Weather</li></ul>',
+stimulus: '<p style = "font-size: 30px"><b>Picture description task</b><p class = "instructions"><b>Objective</b><br>Describe the people and the activities the people are doing.<br><br><b>Procedure</b><br>You will see an image with many people, doing many activities. You will have 1 minute to study the image (carefully <b>plan</b> your answer), and 3 minutes to record your answer.<br><br><b><span style = "color:red">For each person you describe, provide as much information as you can!</span></b><br><br> You can focus on: <ul style = "text-align: left"><li>Activities</li><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Weather</li><li>Things people are saying or thinking</li></ul>',
 choices: ['Continue']
 }
 
@@ -277,7 +283,7 @@ var SC1_trials = {
       stimulus: 'image/PD_1.png',
       trial_duration: pd_planning_time,
       
-      prompt: '<br><span id = "clock" style = "color:red">-:--</span><br><p style = "text-align: left">Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul>',
+      prompt: '<br><span id = "clock" style = "color:red">-:--</span><br><p style = "text-align: left">Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li><li>Things people are saying or thinking</li></ul>',
       
       // countdown timer
       on_load: function(){
@@ -296,7 +302,7 @@ var SC1_trials = {
 
   {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<img src = "image/PD_1.png"><br><p style = "color:red"><b>RECORDING</b></p><span id = "clock" style = "color:red">-:--</span><p style = "text-align: left"><p>Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li></ul></p>',
+    stimulus: '<img src = "image/PD_1.png"><br><p style = "color:red"><b>RECORDING</b></p><span id = "clock" style = "color:red">-:--</span><p style = "text-align: left"><p>Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li><li>Things people are saying or thinking</li></ul></p>',
     
     recording_duration: pd_recording_time,
     show_done_button: true,
@@ -330,7 +336,7 @@ Story Completion Part 2 - storyboard of Jules
 
 var SC2_preload = {
   type: jsPsychPreload,
-  images: ['image/jules_storyboard.jpg', 'image/jules1.png'],
+  images: ['image/jules_storyboard.png', 'image/jules1.png'],
   message: "Loading..."
 }
 
@@ -338,7 +344,7 @@ var SC2_preload = {
 var SC2_instructions = {
   type: jsPsychHtmlButtonResponse,
   on_start: function(trial){
-    trial.stimulus = '<b style = "font-size: 30px">Picture Narration Task</b><p class = "instructions"><br><b>Objective</b><br>Tell the story with as many interesting details as you can.<br><br><b>Procedure</b><br>You will see five images about Jules\' new life in Montreal.<br><img src = image/jules1.png><br>Create an original story using the pictures as a source of inspiration. Give extra details based on your imagination to make the story more interesting. <b>For each image, try to create at least 4 unique sentences using French.</b> You will have 1 minute to plan your story and 3 minutes to tell your story. If you forget some words, you can use English.<br>'
+    trial.stimulus = '<b style = "font-size: 30px">Picture Narration Task</b><p class = "instructions"><br><b>Objective</b><br>Tell the story with as many interesting details as you can.<br><br><b>Procedure</b><br>You will see five images about Jules\' new life in Montreal.<br><img src = image/jules1.png><br>Create an original story using the pictures as a source of inspiration. Give extra details based on your imagination to make the story more interesting. <b>For each image, try to create at least 3 unique sentences using French.</b> You will have 1 minute to plan your story and 3 minutes to tell your story. If you forget some words, you can use English.<br>'
   },
   stimulus: '',
   choices: ['Continue']
@@ -355,7 +361,8 @@ var SC2_trials = {
 
     {
       type: jsPsychImageButtonResponse,
-      stimulus: 'image/jules_storyboard.jpg',
+      stimulus: 'image/jules_storyboard.png',
+      stimulus_width: 1000,
       prompt: '<b><span id = "clock" style = "color:red">-:--</span></b>',
       trial_duration: pd_planning_time,
      // countdown timers
@@ -374,7 +381,7 @@ var SC2_trials = {
 
   {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<img src = "image/jules_storyboard.jpg"><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>',
+    stimulus: '<img src = "image/jules_storyboard.png" width = "1000"><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>',
     recording_duration: pd_recording_time, // make it 40 seconds per picture for now.
     show_done_button: true,
     done_button_label: "Finish Recording",
@@ -507,12 +514,12 @@ const dct_practice_images = ['image/DCT/dct_p_1.png','image/DCT/dct_p_2.png','im
 
 const dct_images = CA_images.concat(dct_practice_images)
 
-// // computer response inter trial interval
-// const computer_response_prompt = {
-//   type: jsPsychHtmlKeyboardResponse,
-//   stimulus: 'Their response is...',
-//   trial_duration: 1000
-// }
+const dct_completed_four = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: "Nice work, you've completed 4 of 6 conversation tasks - only two more to go!",
+  choices: ["Continue"]
+}
+
 
 var CA_preload = 
 {type: jsPsychPreload,
@@ -534,20 +541,26 @@ const CA_instructions2 = {
   choices: ["Continue"]
 };
 
-const CA_timeline_stimuli = [
+const CA_timeline_stimuli_1_4 = jsPsych.randomization.shuffle([
   {scenario_num: 'DCT_1', image_one: 'image/DCT/dct_1_1.png', image_two: 'image/DCT/dct_1_2.png', image_three: 'image/DCT/dct_1_3.png', image_four: 'image/DCT/dct_1_4.png',  image_five: 'image/DCT/dct_1_5.png', image_six :'image/DCT/dct_1_6.png', image_seven: 'image/DCT/dct_1_7.png', image_eight: 'image/DCT/dct_1_8.png',image_nine: 'image/DCT/dct_1_9.png', audio_one: 'audio/DCT/DCT1.1.mp3' , audio_two: 'audio/DCT/DCT1.2.mp3',  audio_three: 'audio/DCT/DCT1.3.mp3', data: {stim_id: 'DCT_1_informal'}},
 
   {scenario_num: 'DCT_2', image_one: 'image/DCT/dct_2_1.png', image_two: 'image/DCT/dct_2_2.png', image_three: 'image/DCT/dct_2_3.png', image_four: 'image/DCT/dct_2_4.png', image_five: 'image/DCT/dct_2_5.png', image_six: 'image/DCT/dct_2_6.png', image_seven: 'image/DCT/dct_2_7.png', image_eight: 'image/DCT/dct_2_8.png', image_nine: 'image/DCT/dct_2_9.png', audio_one: 'audio/DCT/DCT2.1.mp3', audio_two: 'audio/DCT/DCT2.2.mp3', audio_three: 'audio/DCT/DCT2.3.mp3', data: { stim_id: 'DCT_2_formal'}},
 
    {scenario_num: 'DCT_3', image_one: 'image/DCT/dct_3_1.png', image_two: 'image/DCT/dct_3_2.png', image_three: 'image/DCT/dct_3_3.png',  image_four: 'image/DCT/dct_3_4.png', image_five: 'image/DCT/dct_3_5.png', image_six: 'image/DCT/dct_3_6.png', image_seven: 'image/DCT/dct_3_7.png', image_eight: 'image/DCT/dct_3_8.png', image_nine: 'image/DCT/dct_3_9.png', audio_one: 'audio/DCT/DCT3.1.mp3', audio_two: 'audio/DCT/DCT3.2.mp3', audio_three: 'audio/DCT/DCT3.3.mp3', data: { stim_id: 'DCT_3_informal'}},
 
-  {scenario_num: 'DCT_4', image_one: 'image/DCT/dct_4_1.png', image_two: 'image/DCT/dct_4_2.png', image_three: 'image/DCT/dct_4_3.png',  image_four: 'image/DCT/dct_4_4.png', image_five: 'image/DCT/dct_4_5.png', image_six:'image/DCT/dct_4_6.png', image_seven:'image/DCT/dct_4_7.png', image_eight:'image/DCT/dct_4_8.png',image_nine:'image/DCT/dct_4_9.png', audio_one: 'audio/DCT/DCT4.1.mp3', audio_two: 'audio/DCT/DCT4.2.mp3', audio_three: 'audio/DCT/DCT4.3.mp3', data: { stim_id: 'DCT_4_formal'}},
+  {scenario_num: 'DCT_4', image_one: 'image/DCT/dct_4_1.png', image_two: 'image/DCT/dct_4_2.png', image_three: 'image/DCT/dct_4_3.png',  image_four: 'image/DCT/dct_4_4.png', image_five: 'image/DCT/dct_4_5.png', image_six:'image/DCT/dct_4_6.png', image_seven:'image/DCT/dct_4_7.png', image_eight:'image/DCT/dct_4_8.png',image_nine:'image/DCT/dct_4_9.png', audio_one: 'audio/DCT/DCT4.1.mp3', audio_two: 'audio/DCT/DCT4.2.mp3', audio_three: 'audio/DCT/DCT4.3.mp3', data: { stim_id: 'DCT_4_formal'}}])
+
+
+const CA_timeline_stimuli_5_6 = jsPsych.randomization.shuffle([
 
   {scenario_num: 'DCT_5', image_one: 'image/DCT/dct_5_1.png', image_two: 'image/DCT/dct_5_2.png', image_three: 'image/DCT/dct_5_3.png',  image_four: 'image/DCT/dct_5_4.png', image_five: 'image/DCT/dct_5_5.png', image_six: 'image/DCT/dct_5_6.png', image_seven: 'image/DCT/dct_5_7.png', image_eight: 'image/DCT/dct_5_8.png', image_nine: 'image/DCT/dct_5_9.png', audio_one: 'audio/DCT/DCT5.1.mp3', audio_two: 'audio/DCT/DCT5.2.mp3', audio_three: 'audio/DCT/DCT5.3.mp3',  data: { stim_id: 'DCT_5_informal'}},
 
   {scenario_num: 'DCT_6', image_one: 'image/DCT/dct_6_1.png', image_two: 'image/DCT/dct_6_2.png', image_three: 'image/DCT/dct_6_3.png', image_four:'image/DCT/dct_6_4.png' , image_five:'image/DCT/dct_6_5.png', image_six:'image/DCT/dct_6_6.png', image_seven:'image/DCT/dct_6_7.png' , image_eight:'image/DCT/dct_6_8.png', image_nine: 'image/DCT/dct_6_9.png', audio_one: 'audio/DCT/DCT6.1.mp3', audio_two: 'audio/DCT/DCT6.2.mp3', audio_three: 'audio/DCT/DCT6.3.mp3',  data: { stim_id: 'DCT_6_formal'}}
-];
+]);
 
+// randomise first four then last two, first four always before last two
+const CA_timeline_stimuli = CA_timeline_stimuli_1_4.concat(CA_timeline_stimuli_5_6);
+console.log(CA_timeline_stimuli)
 
 // response duration max length for DCT
 const dct_response_time_max = 61000
@@ -1141,6 +1154,7 @@ const dct_practice  = {
   ],
 };
 
+var dct_trials = 0;
 
 const dct_starting = {
   type: jsPsychHtmlButtonResponse,
@@ -1152,10 +1166,32 @@ const dct_starting = {
 const CA_trials = {
   timeline: [
   
+  { // after four dct trials, show them a message
+    timeline: [
+      {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: 'Nice work - you\'ve completed 4 of 6 conversations, only two more to go!',
+        choices: ['Continue']
+      }
+
+    ], 
+    conditional_function: function(){
+      if(dct_trials == 4){
+        return true
+      } else {
+        return false
+      }
+    }
+  },
+
   { // transition to new scenario
     type: jsPsychHtmlButtonResponse,
     stimulus: 'You are about to begin a new scenario.<br><br>',
-    choices: ['Begin Scenario']
+    choices: ['Begin Scenario'],
+    on_finish: function(){
+      dct_trials = dct_trials + 1
+      console.log(dct_trials)
+    }
     },
   
   { // show person they will be
@@ -1290,7 +1326,7 @@ const CA_trials = {
     },
 
   ], 
-  timeline_variables: CA_timeline_stimuli, randomize_order: true,
+  timeline_variables: CA_timeline_stimuli, randomize_order: false,
   }
 
 /***** C-TEST *********
@@ -1301,13 +1337,13 @@ var french_keyboard = '<p style = "font-size:14px; text-align:center; border:dot
 
 var CT_stim = [
     {
-    c_text: french_keyboard.concat('Bonjour, je m\'appelle Marise et j\'ai un animal de compagnie!<p>I%% est bl%%, brun, e%%, tr&egrave;s pe%%. Mon a%% a d%% belles orei%%.<p>El%% sont lon%%. <p>Le ma%%, je l%% donne d%% la nourr%%.<p>Il ma%% ses caro%% tr&egrave;s rapid%%! <p>Mon a%% sp&eacute;cial n\'a%% pas l%% chiens, ma%% il ad%% les enf%%.<p>Tu as devin&eacute;, c\'est un lapin.'), data: {stim_id: 'CTEST_1'}
+    c_text: french_keyboard.concat('Bonjour, je m\'appelle Marise et j\'ai un animal de compagnie, Bruno.<p>I%% est bl%%, brun, e%%, tr&egrave;s pe%%. Mon a%% a de%% belles orei%%.<p>El%% sont lon%%. <p>Le ma%%, je l%% donne d%% la nourr%%.<p>Il ma%% ses caro%% tr&egrave;s rapid%%! <p>Bruno n\'a%% pas l%% chiens, ma%% il ad%% les enf%%.<p>Tu as devin&eacute;, c\'est un lapin.'), c_text_id: 1, data: {stim_id: 'CTEST_1'}
 },
 {
-    c_text: french_keyboard.concat("Coucou, tu es d\'accord pour m\'aider &agrave; organiser l\'anniversaire de Clara?<p>La f&ecirc;%% est sam%% chez m%%.<p>Nous av%% un exce%% g&acirc;teau a%% chocolat e%% mon fr%% a l%% d&eacute;corations <br>e%% la mu%%.<p>Viens av%% ton cop%%. On v%% pr&eacute;parer u%% grosse sal%% de fru%% ensemble.<p> Appelle-moi quand vous arrivez."), data: {stim_id: 'CTEST_2'}
+    c_text: french_keyboard.concat("Coucou, tu es d\'accord pour m\'aider &agrave; organiser l\'anniversaire de Clara?<p>La f&ecirc;%% est sam%% chez m%%.<p>Nous av%% un exce%% g&acirc;teau a%% chocolat e%% mon fr%% a l%% d&eacute;corations <br>e%% la mus%%.<p>Viens av%% ton cop%%. On v%% pr&eacute;parer u%% grosse sal%% de fru%% ensemble.<p> Appelle-moi quand vous arrivez."), c_text_id: 2, data: {stim_id: 'CTEST_2'}
 },
 {
-    c_text: french_keyboard.concat("Un livre qui pr&eacute;tend introduire des aspects de la culture fran&ccedil;aise ne serait pas complet sans un chapitre sur les beaux-arts.<p>En fa%%, de nomb%% touristes vo%% en Fra%% dans l\'inte%% d\'admirer s%% chefs-d\'&oelig;u%% de pein%%, d\'archit%% et d%% sculpture.<p>Q%% n\'a p%% entendu par%% du Louvre? d%% la cath%% Notre-Dame d%% Paris? des scul%% de Rodin?<p>Nous ne pouvons pas vous pr&eacute;senter une &eacute;tude en profondeur des beaux-arts en France."), data: {stim_id: 'CTEST_3'}
+    c_text: french_keyboard.concat("Un livre qui pr&eacute;tend introduire des aspects de la culture fran&ccedil;aise ne serait pas complet sans un chapitre sur les beaux-arts.<p>En fa%%, de nomb%% touristes vo%% en Fra%% dans l\'inte%% d\'admirer s%% chefs-d\'&oelig;u%% de pein%%, d\'archit%% et d%% sculpture.<p>Q%% n\'a p%% entendu par%% du Louvre? d%% la cath%% Notre-Dame d%% Paris? des scul%% de Rodin?<p>Nous ne pouvons pas vous pr&eacute;senter une &eacute;tude en profondeur des beaux-arts en France."), c_text_id: 3, data: {stim_id: 'CTEST_3'}
 },
 
 ]
@@ -1337,6 +1373,10 @@ trial_duration: 301000,
 button_text: '<br>Submit Answers</b>',
 on_load: function(){
   countdown_timer(301000)
+},
+on_finish: function(){ // save the c-test trial as a csv just in case. 
+  saveData(jsPsych.data.get().select('subject').values[0].concat('_').concat(Date.now().toString()).concat('_').concat(jsPsych.timelineVariable('c_text_id')), jsPsych.data.getLastTimelineData().csv())
+ // console.log(jsPsych.data.getLastTimelineData())
 }
 }
 ], timeline_variables: CT_stim, randomize_order: false
@@ -1372,82 +1412,102 @@ var CA_preload =
 const EC_timeline_stimuli = [
   {sentence: '<b>Dans mon bureau, je ai un ordinateur.</b>', 
   audio: 'audio/EC/ECT1a.mp3',
+  s_id: 'EC1',
   data: {stim_id: 'EC1'}
   },
   {sentence: '<b>Il parle pas espagnol avec ses amis.</b>', 
   audio: 'audio/EC/ECT2a.mp3',
+  s_id: 'EC2',
   data: {stim_id: 'EC2'}
   },
   {sentence: '<b>Il joue avec une balle dans le maison.</b>', 
   audio: 'audio/EC/ECT3a.mp3',
+  s_id: 'EC3',
   data: {stim_id: 'EC3'}
   },
-  {sentence: '<b>Elisabeth veut une petit plante verte dans sa classe.</b>',
+  {sentence: '<b>Elisabeth veut une petit plante dans sa classe.</b>',
   audio: 'audio/EC/ECT4a.mp3', 
+  s_id: 'EC4',
   data: {stim_id: 'EC4'}
   },
   {sentence: '<b>Ta fr&egrave;re travaille toute la journ&eacute;e au magasin.</b>',
   audio: 'audio/EC/ECT5a.mp3',
+  s_id: 'EC5',
   data: {stim_id: 'EC5'}
   },
   {sentence: '<b>Ma s&oelig;ur a une fille et deux chien.</b>',
   audio: 'audio/EC/ECT6a.mp3', 
+  s_id: 'EC6',
   data: {stim_id: 'EC6'}
   },
   {sentence: '<b>Pour la salade, Julian pr&eacute;pare les tomates rouge.</b>',
   audio: 'audio/EC/ECT7a.mp3', 
+  s_id: 'EC7',
   data: {stim_id: 'EC7'}
   },
-  {sentence: '<b>Le weekend, nous regardent la t&eacute;l&eacute;vision avec notre famille.</b>', 
+  {sentence: '<b>Le weekend, tu regarde la t&eacute;l&eacute;vision avec ta copine.</b>', 
   audio: 'audio/EC/ECT8a.mp3',
+  s_id: 'EC8',
   data: {stim_id: 'EC8'}
   },
-  {sentence: '<b>Je m\'appeler Simon et je r&eacute;side au Canada.</b>', 
+  {sentence: '<b>Bonjour, je appeler Simon et je r&eacute;side au Canada.</b>', 
   audio: 'audio/EC/ECT9a.mp3',
+  s_id: 'EC9',
   data: {stim_id: 'EC9'}
   },
   {sentence: '<b>Cette ann&eacute;e, Madame Zuniga habites sur le campus.</b>',
   audio: 'audio/EC/ECT10a.mp3', 
+  s_id: 'EC10',
   data: {stim_id: 'EC10'}
   },
-  {sentence: '<b>Pour c&eacute;l&eacute;brer ta f&ecirc;te, nous alles au restaurant.</b>',
+  {sentence: '<b>Pour c&eacute;l&eacute;brer ta f&ecirc;te, nous va au restaurant.</b>',
   audio: 'audio/EC/ECT11a.mp3', 
+  s_id: 'EC11',
   data: {stim_id: 'EC11'}
   },
   {sentence: '<b>Tu fait du v&eacute;lo de montagne avec ta m&egrave;re.</b>',
   audio: 'audio/EC/ECT12a.mp3', 
+  s_id: 'EC12',
   data: {stim_id: 'EC12'}
   },
   {sentence: '<b>Elle a trouver un ballon de foot pour Judith.</b>',
   audio: 'audio/EC/ECT13a.mp3', 
+  s_id: 'EC13',
   data: {stim_id: 'EC13'}
   },
   {sentence: '<b>David et Laurence sont lou&eacute; une chambre d\'h&ocirc;tel.</b>',
   audio: 'audio/EC/ECT14a.mp3',
+  s_id: 'EC14',
   data: {stim_id: 'EC14'}
   },
   {sentence: '<b>Nous achetons de le poisson au march&eacute;.</b>',
   audio: 'audio/EC/ECT15a.mp3', 
+  s_id: 'EC15',
   data: {stim_id: 'EC15'}
   },
   {sentence: '<b>Je prends sucre avec mon caf&eacute;.</b>',
   audio: 'audio/EC/ECT16a.mp3', 
+  s_id: 'EC16',
   data: {stim_id: 'EC16'}
   },
   {sentence: '<b>Bonjour Madame Simard, tu aimes votre nouveau condo ?</b>',
   audio: 'audio/EC/ECT17a.mp3', 
+  s_id: 'EC17',
   data: {stim_id: 'EC17'}
   },
   {sentence: '<b>Salut mon ami! Voulez-vous du jus ?</b>',
   audio: 'audio/EC/ECT18a.mp3', 
+  s_id: 'EC18',
   data: {stim_id: 'EC18'}
   },
   {sentence: '<b>Est-ce que adorez vous la musique ?</b>',
   audio: 'audio/EC/ECT19a.mp3', 
+  s_id: 'EC19',
   data: {stim_id: 'EC19'}
   },
   {sentence: '<b>Tu vas visite Paris avec Lisa en avril.</b>',
   audio: 'audio/EC/ECT20a.mp3', 
+  s_id: 'EC20',
   data: {stim_id: 'EC20'}
   }
 ]
@@ -1455,7 +1515,7 @@ const EC_timeline_stimuli = [
 
 var EC_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: '<p style = "font-size: 30px"><b>Error Correction Task</b></p><p class = "instructions"><b>Objective</b><br>Locate and correct grammatical errors in French sentences.<br><br><b>Procedure</b><br>You will see 20 sentences, one at a time. You will hear the sentence being spoken one time, while the written version of the sentence will remain on the screen.<br><br>Each sentence will contain <b>ONE</b> grammatical error. Your goal is to (1) identify the error and (2) correct the error. You will have <b>1 minute</b> for each sentence.',
+  stimulus: '<p style = "font-size: 30px"><b>Error Correction Task</b></p><p class = "instructions"><b>Objective</b><br>Locate and correct grammatical errors in French sentences.<br><br><b>Procedure</b><br>You will see 20 sentences, one at a time. You will hear the sentence being spoken one time, while the written version of the sentence will remain on the screen.<br><br>Each sentence will contain <b>ONE</b> grammatical error. Your goal is to (1) identify the error and (2) correct the error. You will have <b>2 minutes</b> for each sentence.',
 choices: ['Continue to Example']
 }
 
@@ -1466,7 +1526,7 @@ EC_prompts = [{prompt: 'What is the error?', required: true},
 EC_demo_html = '<p>What is the error? <input readonly type = "text" id = "demo_error" name = "demo_response" placeholder = "on"/></p>' +
 '<p>What is the correction? <input readonly type = "text" id = "demo_correction" name = "demo_response" placeholder = "at"/></p>'
 
-EC_html = '<p>What is the error? <input type = "text" name = "error"/></p><p>What is the correction? <input type = "text" name = "correction"/></p>'
+EC_html = '<p>What is the error? <input type = "text" name = "error"/></p><p>What is the correction? <input type = "text" name = "correction"/></p>'.concat(french_keyboard)
 
 var EC_demo = {
   timeline:[
@@ -1494,13 +1554,17 @@ var EC_trials = {
   type: jsPsychSurveyHtmlFormTO,
   
   on_start: function(trial){
-    trial.preamble = '<audio autoplay><source src ='.concat(jsPsych.timelineVariable('audio')).concat('></audio>').concat('<b>').concat(jsPsych.timelineVariable('sentence').concat('</b><br><br>'))
+    trial.preamble = '<audio autoplay><source src ='.concat(jsPsych.timelineVariable('audio')).concat('></audio>').concat('<b>').concat(jsPsych.timelineVariable('sentence'))
     countdown_timer(121000)
   },
   preamble: '',
   data: jsPsych.timelineVariable('data'),
-  html: EC_html.concat('<span id = "clock" style = "color:red">-:--</span><br>'),
+  html: EC_html,
   trial_duration: 121000, //duration of each question is 2 minutes +  1000ms buffer
+  on_finish: function(){ // save the EC trial as a csv just in case. 
+  saveData(jsPsych.data.get().select('subject').values[0].concat('_').concat(Date.now().toString()).concat('_').concat(jsPsych.timelineVariable('s_id')), jsPsych.data.getLastTimelineData().csv())
+ // console.log(jsPsych.data.getLastTimelineData())
+}
 },
 ], timeline_variables: EC_timeline_stimuli, randomize_order: true
 }
@@ -1508,11 +1572,9 @@ var EC_trials = {
 
  const end = {
   type: jsPsychHtmlKeyboardResponse,
-  stimulus: 'You have completed the test, thank you! Please press the spacebar to end the test and be forwarded to XXXX!',
+  stimulus: 'You have completed the test, thank you!<br><b><span style = "color: red">Press the SPACEBAR to end the test and upload your data!</span></b>.<br><br>Thank you for completing the test - enjoy learning French and we will be in touch in a few weeks!',
   choices: ' '
  }
- 
-
 
 
 // define the timeline order
@@ -1523,6 +1585,7 @@ subject_name,
 refresh_warning, 
 video_preload,
 video_intro,
+prepare_penpaper,
 prepare_microphone, 
 ready_microphone,
 test_audio_instructions, 
@@ -1556,7 +1619,7 @@ const dct_timeline = [
 CA_preload,
 CA_instructions1,
 CA_instructions2,
-dct_practice,
+//dct_practice,
 dct_starting,
 no_cheating,
 CA_trials
@@ -1592,6 +1655,10 @@ const preload_dct_images = {
 
 // use spread operator (...) to push the new arrays from pop()
 timeline.push(
+  subject_name,
+ // ready_microphone,
+...cloze_timeline,
+...ec_timeline,
   ...fixed_start,
   preload_dct_images,
 ...dct_pd_order.pop(),
