@@ -1228,7 +1228,7 @@ const EC_timeline_stimuli = [
   s_id: 'EC3',
   data: {stim_id: 'EC3'}
   },
-  {sentence: '<b>Cl&eacute;ment veut une petit plante verte dans son condo.</b>',
+  {sentence: '<b>Cl&eacute;ment veut une petit plante dans son condo.</b>',
   audio: 'audio/EC/ECT4b.mp3', 
   s_id: 'EC4',
   data: {stim_id: 'EC4'}
@@ -1248,7 +1248,7 @@ const EC_timeline_stimuli = [
   s_id: 'EC7',
   data: {stim_id: 'EC7'}
   },
-  {sentence: '<b>Le soir, tu regarde la t&eacute;l&eacute;vision avec ton copin.</b>', 
+  {sentence: '<b>Le soir, tu regarde la t&eacute;l&eacute;vision avec ton copain.</b>', 
   audio: 'audio/EC/ECT8b.mp3',
   s_id: 'EC8',
   data: {stim_id: 'EC8'}
@@ -1308,7 +1308,7 @@ const EC_timeline_stimuli = [
   s_id: 'EC19',
   data: {stim_id: 'EC19'}
   },
-  {sentence: '<b>Tu vas visite New York avec Julie en septembre</b>',
+  {sentence: '<b>Tu vas visite New York avec Julie en septembre.</b>',
   audio: 'audio/EC/ECT20b.mp3', 
   s_id: 'EC20',
   data: {stim_id: 'EC20'}
@@ -1396,7 +1396,7 @@ var EC_trials = {
   preamble: '',
   data: jsPsych.timelineVariable('data'),
   html: EC_html.concat('<span id = "clock" style = "color:red">-:--</span></p>'),
-  trial_duration: 121000, //duration of each question is 2 minutes +  1000ms buffer
+  trial_duration: 91000, //duration of each question is 2 minutes +  1000ms buffer
   on_finish: function(){ // save the EC trial as a csv just in case. 
   saveTrialData(jsPsych.data.get().select('subject').values[0].concat('_').concat(Date.now().toString()).concat('_').concat(jsPsych.timelineVariable('s_id')), jsPsych.data.getLastTimelineData().csv(),
   jsPsych.data.get().select('subject').values[0]);

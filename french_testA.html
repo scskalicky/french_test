@@ -1395,7 +1395,7 @@ var EC_trials = {
   preamble: '',
   data: jsPsych.timelineVariable('data'),
   html: EC_html.concat('<span id = "clock" style = "color:red">-:--</span></p>'),
-  trial_duration: 121000, //duration of each question is 2 minutes +  1000ms buffer
+  trial_duration: 91000, //duration of each question is 2 minutes +  1000ms buffer
   on_finish: function(){ // save the EC trial as a csv just in case. 
   saveTrialData(jsPsych.data.get().select('subject').values[0].concat('_').concat(Date.now().toString()).concat('_').concat(jsPsych.timelineVariable('s_id')), jsPsych.data.getLastTimelineData().csv(),
   jsPsych.data.get().select('subject').values[0]);
