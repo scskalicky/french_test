@@ -51,7 +51,7 @@
 <script>
 
 /*version A*/
-const test_version = 'A_pre';
+const test_version = 'B_pre';
 
 // init timeline
 var timeline = [];
@@ -256,8 +256,9 @@ const pd_recording_time = 181000; // three minutes
 
 var park_preload = {
   type: jsPsychPreload,
-  images: 'image//park/park_a.png',
+  images: 'image//park/park_b.png',
   message: 'Loading...'
+  
 };
 
 var park_instructions = {
@@ -274,7 +275,7 @@ var park_trials = {
     choices: ["I'm Ready"]},
 
     {type: jsPsychImageButtonResponse,
-      stimulus: 'image/park/park_a.png',
+      stimulus: 'image/park/park_b.png',
       trial_duration: pd_planning_time,
       
       prompt: '<br><span id = "clock" style = "color:red">-:--</span><br><p style = "text-align: left">Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li><li>Things people are saying or thinking</li></ul>',
@@ -297,7 +298,7 @@ var park_trials = {
 
   {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<img src = "image/park/park_a.png"><br><p style = "color:red"><b>RECORDING</b></p><span id = "clock" style = "color:red">-:--</span><p style = "text-align: left"><p>Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li><li>Things people are saying or thinking</li></ul></p>',
+    stimulus: '<img src = "image/park/park_b.png"><br><p style = "color:red"><b>RECORDING</b></p><span id = "clock" style = "color:red">-:--</span><p style = "text-align: left"><p>Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li><li>Things people are saying or thinking</li></ul></p>',
     
     recording_duration: pd_recording_time,
     show_done_button: true,
@@ -331,7 +332,7 @@ Story Completion Part 2 - story board narration
 
 var story_narration_preload = {
   type: jsPsychPreload,
-  images: ['image/storyboard/story_narration_a.png'],
+  images: ['image/storyboard/story_narration_b.png'],
   message: "Loading..."
 };
 
@@ -356,7 +357,7 @@ var story_narration_trials = {
 
     {
       type: jsPsychImageButtonResponse,
-      stimulus: 'image/storyboard/story_narration_a.png',
+      stimulus: 'image/storyboard/story_narration_b.png',
       stimulus_width: 1100,
       prompt: '<b><span id = "clock" style = "color:red">-:--</span></b>',
       trial_duration: pd_planning_time,
@@ -378,7 +379,7 @@ var story_narration_trials = {
 
   {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<img src = "image/storyboard/story_narration_a.png" width = "1100"><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>',
+    stimulus: '<img src = "image/storyboard/story_narration_b.png" width = "1100"><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>',
     recording_duration: pd_recording_time, // make it 40 seconds per picture for now.
     show_done_button: true,
     done_button_label: "Finish Recording",
@@ -436,7 +437,7 @@ const dct_trial_images = [];
 
 for(var i = 1;  i <= 6; i++){
   for(var ii = 1; ii <= 9; ii++ ){
-    dct_trial_images.push('image/DCT/dct_'.concat(i).concat('a-00').concat(ii).concat('.png'));
+    dct_trial_images.push('image/DCT/dct_'.concat(i).concat('b-00').concat(ii).concat('.png'));
   }
 }
 
@@ -1212,103 +1213,103 @@ var dct_preload =
 };
 
 const EC_timeline_stimuli = [
-  {sentence: '<b>Dans mon bureau, je ai un ordinateur.</b>', 
-  audio: 'audio/EC/ECT1a.mp3',
+  {sentence: '<b>Dans mon appartement, je ai une valise.</b>', 
+  audio: 'audio/EC/ECT1b.mp3',
   s_id: 'EC1',
   data: {stim_id: 'EC1'}
   },
-  {sentence: '<b>Il parle pas espagnol avec ses amis.</b>', 
-  audio: 'audio/EC/ECT2a.mp3',
+  {sentence: '<b>Il parle pas allemand avec ses parents.</b>', 
+  audio: 'audio/EC/ECT2b.mp3',
   s_id: 'EC2',
   data: {stim_id: 'EC2'}
   },
-  {sentence: '<b>Il joue avec une balle dans le maison.</b>', 
-  audio: 'audio/EC/ECT3a.mp3',
+  {sentence: '<b>Il mange une orange dans le maison.</b>', 
+  audio: 'audio/EC/ECT3b.mp3',
   s_id: 'EC3',
   data: {stim_id: 'EC3'}
   },
-  {sentence: '<b>Elisabeth veut une petit plante dans sa classe.</b>',
-  audio: 'audio/EC/ECT4a.mp3', 
+  {sentence: '<b>Cl&eacute;ment veut une petit plante verte dans son condo.</b>',
+  audio: 'audio/EC/ECT4b.mp3', 
   s_id: 'EC4',
   data: {stim_id: 'EC4'}
   },
-  {sentence: '<b>Ta fr&egrave;re travaille toute la journ&eacute;e au magasin.</b>',
-  audio: 'audio/EC/ECT5a.mp3',
+  {sentence: '<b>Ta fr&egrave;re travaille toute la semaine au bureau.</b>',
+  audio: 'audio/EC/ECT5b.mp3',
   s_id: 'EC5',
   data: {stim_id: 'EC5'}
   },
-  {sentence: '<b>Ma s&oelig;ur a une fille et deux chien.</b>',
-  audio: 'audio/EC/ECT6a.mp3', 
+  {sentence: '<b>Ma m&egrave;re a un gar&ccedil;on et deux chien.</b>',
+  audio: 'audio/EC/ECT6b.mp3', 
   s_id: 'EC6',
   data: {stim_id: 'EC6'}
   },
-  {sentence: '<b>Pour la salade, Julian pr&eacute;pare les tomates rouge.</b>',
-  audio: 'audio/EC/ECT7a.mp3', 
+  {sentence: '<b>Pour le sandwich, Julian pr&eacute;pare les tomates rouge.</b>',
+  audio: 'audio/EC/ECT7b.mp3', 
   s_id: 'EC7',
   data: {stim_id: 'EC7'}
   },
-  {sentence: '<b>Le weekend, tu regarde la t&eacute;l&eacute;vision avec ta copine.</b>', 
-  audio: 'audio/EC/ECT8a.mp3',
+  {sentence: '<b>Le soir, tu regarde la t&eacute;l&eacute;vision avec ton copin.</b>', 
+  audio: 'audio/EC/ECT8b.mp3',
   s_id: 'EC8',
   data: {stim_id: 'EC8'}
   },
-  {sentence: '<b>Bonjour, je appeler Simon et je r&eacute;side au Canada.</b>', 
-  audio: 'audio/EC/ECT9a.mp3',
+  {sentence: '<b>Je m\'appeler Philippe et je r&eacute;side au Mexique.</b>', 
+  audio: 'audio/EC/ECT9b.mp3',
   s_id: 'EC9',
   data: {stim_id: 'EC9'}
   },
-  {sentence: '<b>Cette ann&eacute;e, Madame Zuniga habites sur le campus.</b>',
-  audio: 'audio/EC/ECT10a.mp3', 
+  {sentence: '<b>Cette ann&eacute;e, Monsieur Payant habites sur le campus.</b>',
+  audio: 'audio/EC/ECT10b.mp3', 
   s_id: 'EC10',
   data: {stim_id: 'EC10'}
   },
-  {sentence: '<b>Pour c&eacute;l&eacute;brer ta f&ecirc;te, nous va au restaurant.</b>',
-  audio: 'audio/EC/ECT11a.mp3', 
+  {sentence: '<b>Pour c&eacute;l&eacute;brer ton anniversaire, nous va au cin&eacute;ma.</b>',
+  audio: 'audio/EC/ECT11b.mp3', 
   s_id: 'EC11',
   data: {stim_id: 'EC11'}
   },
-  {sentence: '<b>Tu fait du v&eacute;lo de montagne avec ta m&egrave;re.</b>',
-  audio: 'audio/EC/ECT12a.mp3', 
+  {sentence: '<b>Tu fait du ski de montagne avec ta s&oelig;ur.</b>',
+  audio: 'audio/EC/ECT12b.mp3', 
   s_id: 'EC12',
   data: {stim_id: 'EC12'}
   },
-  {sentence: '<b>Elle a trouver un ballon de foot pour Judith.</b>',
-  audio: 'audio/EC/ECT13a.mp3', 
+  {sentence: '<b>Elle a trouver un ballon de basket pour Pierre.</b>',
+  audio: 'audio/EC/ECT13b.mp3', 
   s_id: 'EC13',
   data: {stim_id: 'EC13'}
   },
-  {sentence: '<b>David et Laurence sont lou&eacute; une chambre d\'h&ocirc;tel.</b>',
-  audio: 'audio/EC/ECT14a.mp3',
+  {sentence: '<b>Benoit et Victoria sont lou&eacute; une chambre d\'h&ocirc;tel.</b>',
+  audio: 'audio/EC/ECT14b.mp3',
   s_id: 'EC14',
   data: {stim_id: 'EC14'}
   },
-  {sentence: '<b>Nous achetons de le poisson au march&eacute;.</b>',
-  audio: 'audio/EC/ECT15a.mp3', 
+  {sentence: '<b>Nous achetons de le pain au march&eacute;.</b>',
+  audio: 'audio/EC/ECT15b.mp3', 
   s_id: 'EC15',
   data: {stim_id: 'EC15'}
   },
-  {sentence: '<b>Je prends sucre avec mon caf&eacute;.</b>',
-  audio: 'audio/EC/ECT16a.mp3', 
+  {sentence: '<b>Je prends lait avec mon th&eacute;.</b>',
+  audio: 'audio/EC/ECT16b.mp3', 
   s_id: 'EC16',
   data: {stim_id: 'EC16'}
   },
-  {sentence: '<b>Bonjour Madame Simard, tu aimes votre nouveau condo ?</b>',
-  audio: 'audio/EC/ECT17a.mp3', 
+  {sentence: '<b>Bonjour Monsieur Kim, tu aimes votre nouvelle voiture ?</b>',
+  audio: 'audio/EC/ECT17b.mp3', 
   s_id: 'EC17',
   data: {stim_id: 'EC17'}
   },
-  {sentence: '<b>Salut mon ami! Voulez-vous du jus ?</b>',
-  audio: 'audio/EC/ECT18a.mp3', 
+  {sentence: '<b>Salut mon ami. Voulez-vous une banane ?</b>',
+  audio: 'audio/EC/ECT18b.mp3', 
   s_id: 'EC18',
   data: {stim_id: 'EC18'}
   },
-  {sentence: '<b>Est-ce que adorez vous la musique ?</b>',
-  audio: 'audio/EC/ECT19a.mp3', 
+  {sentence: '<b>Est-ce que adorez vous la robe ?</b>',
+  audio: 'audio/EC/ECT19b.mp3', 
   s_id: 'EC19',
   data: {stim_id: 'EC19'}
   },
-  {sentence: '<b>Tu vas visite Paris avec Lisa en avril.</b>',
-  audio: 'audio/EC/ECT20a.mp3', 
+  {sentence: '<b>Tu vas visite New York avec Julie en septembre</b>',
+  audio: 'audio/EC/ECT20b.mp3', 
   s_id: 'EC20',
   data: {stim_id: 'EC20'}
   }
