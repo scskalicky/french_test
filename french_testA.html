@@ -379,7 +379,7 @@ var story_narration_trials = {
     {
       type: jsPsychImageButtonResponse,
       stimulus: 'image/storyboard/story_narration_a.png',
-      stimulus_width: 1100,
+      //stimulus_width: 1100,
       prompt: '<b><span id = "clock" style = "color:red">-:--</span></b>',
       trial_duration: pd_planning_time,
      // countdown timers
@@ -400,7 +400,7 @@ var story_narration_trials = {
 
   {
     type: jsPsychHtmlAudioResponse,
-    stimulus: '<img src = "image/storyboard/story_narration_a.png" width = "1100"><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>',
+    stimulus: '<img src = "image/storyboard/story_narration_a.png"><p style = "color:red"><b>RECORDING</b><br><span id = "clock" style = "color:red">-:--</span></p>',
     recording_duration: pd_recording_time, // make it 40 seconds per picture for now.
     show_done_button: true,
     done_button_label: "Finish Recording",
