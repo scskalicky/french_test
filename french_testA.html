@@ -167,7 +167,7 @@ const subject_name = {
 
 var refresh_warning = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: '<p class = "instructions">Thank you for participating in this study!</p><p class = "instructions" style = "font-size: 30px; color: red"><b>STOP!</b></p><p class = "instructions">You should set aside at least one hour to complete this test. This test should be completed in one go - you cannot save your data and return later.<br><br>During the test, please <b><span style = "color:red;">do not</b><span> refresh your browser or use the back button. <br>Doing so will result in a loss of all your data, and will be unable to continue with this project.<br><br>Finally, please be sure to take this test on a computer in a quiet room. Do not use any dictionaries, translation tools, or other language aids. We are only interested in <b>your</b> knowledge of French. When planning your answers, you can write down keywords using pencil/pen and paper.</p><br>',
+    stimulus: '<p class = "instructions">Thank you for participating in this study!</p><p class = "instructions" style = "font-size: 30px; color: red"><b>STOP!</b></p><p class = "instructions">You should set aside at least one hour to complete this test. This test should be completed in one go - you cannot save your data and return later.<br><br>During the test, please <b><span style = "color:red;">do not</b><span> refresh your browser or use the back button. <br>Doing so will result in a loss of all your data, and you will be unable to continue with this project.<br><br>Finally, please be sure to take this test on a computer in a quiet room. Do not use any dictionaries, translation tools, or other language aids. We are only interested in <b>your</b> knowledge of French. When planning your answers, you can write down keywords using pencil/pen and paper.</p><br>',
     choices: ['I Understand']
 };
 
@@ -207,7 +207,7 @@ const prepare_penpaper = {
 // explain microphone connection
 const prep_microphone1 = {
   type: jsPsychHtmlButtonResponse,
-    stimulus: '<p style = "font-size: 30px; color: red"><b>Prepare Microphone</b></p><p>We recommend using a pair of headphones with a microphone. However, you can also use your computer\'s built-in microphone. Make sure you are in a quiet room.<br><br>Once you are ready, click this button to prompt browser access to your microphone. This process will differ depending on your browser. We recommend using Chrome. Click Continue to see examples of allowing access for different browsers.<br><br>',
+    stimulus: '<p style = "font-size: 30px; color: red"><b>Prepare Microphone</b></p><p>We recommend using a pair of headphones with a microphone. However, you can also use your computer\'s built-in microphone. Make sure you are in a quiet room.<br><br>Once you are ready, click this button to prompt browser access to your microphone. This process will differ depending on your browser. <b>We recommend using Chrome.</b> Click Continue to see examples of allowing access for different browsers.<br><br>',
     choices: ['See Example'],
 
 };
@@ -235,7 +235,7 @@ const ready_microphone = {
 // explain to participants they need to make sure they can hear themselves. 
 const test_audio_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: '<p class = "instructions">Let\'s make sure the test can hear you.<br><br>Please click the button below and speak into your microphone for a few seconds. Once you are done, you will be able to play your recording.<br><br>Please make sure that you can hear your recording. If not, please make sure your microphone is working properly and try again. <br> Please do not continue the test until you are able to hear a recording of yourself played back to you.</p><br>',
+  stimulus: '<p class = "instructions">Let\'s make sure the test can hear you.<br><br>Please click the button below and speak into your microphone for a few seconds once you see the word RECORDING. Once you are done, you will be able to play your recording.<br><br>Please make sure that you can hear your recording. If not, please make sure your microphone is working properly and try again. <br> Please do not continue the test until you are able to hear a recording of yourself played back to you.</p><br>',
   choices: ['Begin Recording']
 };
 
@@ -278,7 +278,7 @@ const pd_recording_time = 181000; // three minutes
 
 var park_preload = {
   type: jsPsychPreload,
-  images: 'image//park/park_a.png',
+  images: 'image/park/park_a.png',
   message: 'Loading...'
 };
 
@@ -1072,10 +1072,10 @@ const dct_trials = {
           trial.prompt = '<br><img src = "'.concat(jsPsych.timelineVariable('image_three')).concat('" img>').concat('<br><span style = "font-size:12px;">(2/8)</span>');
           // bunch of logic to change button for DCT 5 and 6
           if(jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response' && ['DCT_5', 'DCT_6'].includes(jsPsych.timelineVariable('scenario_num'))){
-              trial.choices = ['Play one more time', 'Answer her questions...'];
+              trial.choices = ['Play one more time', 'Answer her question...'];
 
           } else if(jsPsych.data.getLastTrialData().values()[0].trial_type != 'html-audio-response' && ['DCT_5', 'DCT_6'].includes(jsPsych.timelineVariable('scenario_num'))) {   
-              trial.choices = ['Answer her questions...'];
+              trial.choices = ['Answer her question...'];
 
            } else if (jsPsych.data.getLastTrialData().values()[0].trial_type == 'html-audio-response' && ['DCT_1', 'DCT_2', 'DCT_3', 'DCT_4'].includes(jsPsych.timelineVariable('scenario_num'))) {
             trial.choices = ['Play one more time', 'Continue'];
