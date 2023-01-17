@@ -184,6 +184,13 @@ const video_intro = {
   height: 400
 };
 
+const test_structure = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: '<p class = "instructions"><b>Overview of Test Structure</b><br>The test includes five different sections. The first three sections all ask you to record yourself as you respond to pictures and audio. The last two sections ask you to identify and correct errors in French sentences or to fill in missing pieces of words to make complete paragraphs.</p>',
+  choices: ['Continue']
+};
+
+
 const video_preload = {
   type: jsPsychPreload,
   video: ['introduction.mp4'],
@@ -1424,6 +1431,7 @@ subject_name,
 refresh_warning, 
 video_preload,
 video_intro,
+test_structure,
 prepare_penpaper,
 prepare_microphone, 
 ready_microphone,
