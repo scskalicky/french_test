@@ -167,7 +167,7 @@ const subject_name = {
 
 var refresh_warning = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: '<p>Thank you for participating in this study!</p><p style = "font-size: 30px; color: red"><b>STOP!</b></p><p>You should set aside at least one hour to complete this test. This test should be completed in one go - you cannot save your data and return later.<br><br>During the test, please <b>do not</b> refresh your browser or use the back button. <br>Doing so will result in a loss of all your data, and will be unable to continue with this project.<br><br>Finally, please do not use any dictionaries, translation tools, or other language aids. We are only interested in <b>your</b> knowledge of French. When planning your answers, you can write down keywords using pencil/pen and paper.<br><br>',
+    stimulus: '<p class = "instructions">Thank you for participating in this study!</p><p class = "instructions" style = "font-size: 30px; color: red"><b>STOP!</b></p><p class = "instructions">You should set aside at least one hour to complete this test. This test should be completed in one go - you cannot save your data and return later.<br><br>During the test, please <b><span style = "color:red;">do not</b><span> refresh your browser or use the back button. <br>Doing so will result in a loss of all your data, and will be unable to continue with this project.<br><br>Finally, please be sure to take this test on a computer in a quiet room. Do not use any dictionaries, translation tools, or other language aids. We are only interested in <b>your</b> knowledge of French. When planning your answers, you can write down keywords using pencil/pen and paper.</p><br>',
     choices: ['I Understand']
 };
 
@@ -205,10 +205,26 @@ const prepare_penpaper = {
 
 /* activate microphone and ensure participants can hear themselves being recorded.*/
 
+const prep_microphone1 = {
+  type: jsPsychHtmlButtonResponse,
+    stimulus: '<p style = "font-size: 30px; color: red"><b>Prepare Microphone</b></p><p>We recommend using a pair of headphones with a microphone. However, you can also use your computer\'s built-in microphone. Make sure you are in a quiet room.<br><br>Once you are ready, click this button to prompt browser access to your microphone. This process will differ depending on your browser. We recommend using Chrome. Click Continue to see examples of allowing access for different browsers.<br><br>',
+    choices: ['See Example'],
+
+};
+
+const allow_mic_image = {
+  type: jsPsychImageButtonResponse,
+  stimulus: 'image/browsers.png',
+  stimulus_width: 1000,
+  choices: ["OK. Continue"],
+  prompt: "Please ALLOW the site to access your microphone."
+
+};
+
 // explain microphone connection
-const prepare_microphone = {
+const prep_microphone2 = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: '<p style = "font-size: 30px; color: red"><b>Prepare Microphone</b></p><p>We recommend using a pair of headphones with a microphone. However, you can also use your computer\'s built-in microphone. Make sure you are in a quiet room.<br><br>Once you are ready, click this button to prompt browser access to your microphone.<br><br>',
+    stimulus: 'Once you are ready, click this button to prompt browser access to your microphone.<br><br>',
     choices: ['Add Microphone'],
 };
 
@@ -239,7 +255,7 @@ const test_audio = {
 // honor system - participants will click to move on. 
 const recording_passed = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: '<p class = "instructions">Thank you. If you are able to hear yourself in the recording, press Continue to proceed with the test.<br><br>If you are unable to hear yourself, please reload the test and try connecting a different headset/microphone. If you still experience difficulty, please contact us: payant.caroline@uqam.ca</p><br>',
+    stimulus: '<p class = "instructions">Thank you. If you are able to hear yourself in the recording, press Continue to proceed with the test.<br><br>If you are unable to hear yourself, please reload the test by clicking again on the survey link or refreshing this page. Then try connecting a different headset/microphone, or using a different browser. If you still experience difficulty, please contact Stephen: stephen.skalicky@vuw.ac.nz</p><br>',
     choices: ['Continue'],
 };
 
@@ -270,7 +286,7 @@ var park_preload = {
 
 var park_instructions = {
 type: jsPsychHtmlButtonResponse,
-stimulus: '<p style = "font-size: 30px"><b>Picture description task</b><p class = "instructions"><b>Objective</b><br>Describe the people and the activities the people are doing.<br><br><b>Procedure</b><br>You will see an image with many people, doing many activities. You will have 1 minute to study the image (carefully <b>plan</b> your answer), and 3 minutes to record your answer.<br><br><b><span style = "color:red">For each person you describe, provide as much information as you can!</span></b><br><br> You can focus on: <ul style = "text-align: left"><li>Activities</li><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Weather</li><li>Things people are saying or thinking</li></ul>',
+stimulus: '<p style = "font-size: 30px"><b>Picture Description task</b><p class = "instructions"><b>Objective</b><br>Describe the people and the activities the people are doing.<br><br><b>Procedure</b><br>You will see an image with many people, doing many activities. You will have 1 minute to study the image (carefully <b>plan</b> your answer), and 3 minutes to record your answer.<br><br><b><span style = "color:red">For each person you describe, provide as much information as you can!</span></b><br><br> You can focus on: <ul style = "text-align: left"><li>Activities</li><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Weather</li><li>Things people are saying or thinking</li></ul>',
 choices: ['Continue']
 };
 
@@ -347,7 +363,7 @@ var story_narration_preload = {
 var story_narration_instructions = {
   type: jsPsychHtmlButtonResponse,
   on_start: function(trial){
-    trial.stimulus = '<b style = "font-size: 30px">Picture Narration Task</b><p class = "instructions"><br><b>Objective</b><br>Tell the story with as many interesting details as you can.<br><br><b>Procedure</b><br>Create an original and logical story using the six pictures you see as a source of inspiration. Give extra details based on your imagination to make the story more interesting. For each picture, try to create at least 3 unique sentences using French. You will have 1 minute to plan your story and 3 minutes to tell your story.<br><br>';
+    trial.stimulus = '<b style = "font-size: 30px">Picture Narration Task</b><p class = "instructions"><br><b>Objective</b><br>Tell the story with as many interesting details as you can.<br><br><b>Procedure</b><br>Based on the six pictures provided, create an original and logical story. Use the six pictures as a source of inspiration, and give extra details using your imagination to make the story more interesting. For each picture, try to create at least 3 unique sentences using French. Make sure that your story is coherent.<br><br>Once you click "Continue", you will have 1 minute to study the pictures and prepare your response.<br><br>';
   },
   stimulus: '',
   choices: ['Continue']
@@ -502,6 +518,13 @@ const dct_timeline_stimuli_5_6 = jsPsych.randomization.shuffle([
 
   {scenario_num: 'DCT_6', image_one: 'image/DCT/dct_6b-001.png', image_two: 'image/DCT/dct_6b-002.png', image_three: 'image/DCT/dct_6b-003.png', image_four:'image/DCT/dct_6b-004.png' , image_five:'image/DCT/dct_6b-005.png', image_six:'image/DCT/dct_6b-006.png', image_seven:'image/DCT/dct_6b-007.png' , image_eight:'image/DCT/dct_6b-008.png', image_nine: 'image/DCT/dct_6b-009.png', audio_one: 'audio/DCT/DCT6.1.mp3', audio_two: 'audio/DCT/DCT6.2.mp3', audio_three: 'audio/DCT/DCT6.3.mp3',  data: { stim_id: 'DCT_6_formal'}}
 ]);
+
+
+var dct_warning = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: '<p style = "color:red;">IMPORTANT</p><br>DO NOT REFRESH YOUR BROWSER OR HIT BACK AT ANY POINT. Your data will be lost, and you will not be able to participate in the study!<br><br>',
+  choices: ["Continue"]
+};
 
 // randomise first four then last two, first four always before last two
 const dct_timeline_stimuli = dct_timeline_stimuli_1_4.concat(dct_timeline_stimuli_5_6);
@@ -1143,6 +1166,9 @@ Participants will read three short texts. Each text will have some words missing
 
 var french_keyboard = '<p style = "font-size:14px; text-align:center; border:dotted; width:500px;margin:auto">If your keyboard does not have French accents, please use these numbers to replace the appropriate letter with the corresponding number:<br>1 = &agrave;&emsp;&emsp;&emsp;2 = &eacute;&emsp;&emsp;&emsp;3 = &ecirc;&emsp;&emsp;&emsp;4 = &egrave;<br>Example: For the word <b>&eacute;cole</b>, please type it as <b>2cole</b><br><i>Please type in the missing letters to complete the words.</i></p><br><br><p style = "text-align:center"><span id = "clock" style = "color:red">-:--</span></p><br>';
 
+
+var french_keyboard2 = '<p style = "font-size:14px; text-align:center; border:dotted; width:500px;margin:auto">If your keyboard does not have French accents, please use these numbers to replace the appropriate letter with the corresponding number:<br>1 = &agrave;&emsp;&emsp;&emsp;2 = &eacute;&emsp;&emsp;&emsp;3 = &ecirc;&emsp;&emsp;&emsp;4 = &egrave;<br>Example: For the word <b>&eacute;cole</b>, please type it as <b>2cole</b></p>';
+
 var CT_stim = [
     {
     c_text: french_keyboard.concat('Bonjour, je m\'appelle Marise et j\'ai un animal de compagnie, Bruno.<p>I%% est bl%%, brun, e%%, tr&egrave;s pe%%. Mon a%% a de%% belles orei%%.<p>El%% sont lon%%. <p>Le ma%%, je l%% donne d%% la nourr%%.<p>Il ma%% ses caro%% tr&egrave;s rapid%%! <p>Bruno n\'a%% pas l%% chiens, ma%% il ad%% les enf%%.<p>Tu as devin&eacute;, Bruno, c\'est un lapin.'), c_text_id: 'CTEST1', data: {stim_id: 'CTEST_1'}
@@ -1158,10 +1184,19 @@ var CT_stim = [
 
 var CT_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: '<p style = "font-size: 30px"><b> Word Completion Task</b></p><p class = "instructions"><b>Objective</b><br>To fill in missing parts of a word to make texts complete.<br><br><b>Procedure</b><br> In the following texts, parts of some words are missing. Please type in the missing letters to complete the words. You will have 5 minutes for each text.<br><br>Do your best to not leave any spaces blank!',
+  stimulus: '<p style = "font-size: 30px"><b> Word Completion Task</b></p><p class = "instructions"><b>Objective</b><br>To fill in missing parts of a word to make texts complete.<br><br><b>Procedure</b><br> In the following texts, parts of some words are missing. Please type in the missing letters to complete the words. You will have 6 minutes for each text.<br><br>Do your best to not leave any spaces blank!',
 choices: ['Continue']
 };
 
+var french_keyboard_intro = {
+  type:jsPsychHtmlButtonResponse,
+  stimulus: '',
+  choices: ["Continue"],
+  on_start:  function(trial){
+    trial.stimulus = french_keyboard2.concat('<br>');
+  
+}
+};
 // in case we want to REQUIRE answers 
 // https://github.com/jspsych/jsPsych/discussions/2543
 
@@ -1177,10 +1212,10 @@ choices: ['Continue'],
 type: jsPsychCloze,
 text: jsPsych.timelineVariable('c_text'),
 data: jsPsych.timelineVariable("data"),
-trial_duration: 301000,
+trial_duration: 361000,
 button_text: '<br>Submit Answers</b>',
 on_load: function(){
-  countdown_timer(301000);
+  countdown_timer(361000);
 },
 on_finish: function(){ // save the c-test trial as a csv just in case. 
   saveTrialData(jsPsych.data.get().select('subject').values[0].concat('_').concat(Date.now().toString()).concat('_').concat(jsPsych.timelineVariable('c_text_id')), jsPsych.data.getLastTimelineData().csv(),
@@ -1433,7 +1468,9 @@ video_preload,
 video_intro,
 test_structure,
 prepare_penpaper,
-prepare_microphone, 
+prep_microphone1,
+allow_mic_image,
+prep_microphone2, 
 ready_microphone,
 test_audio_instructions, 
 test_audio, 
@@ -1460,6 +1497,7 @@ dct_preload,
 dct_instructions1,
 dct_instructions2,
 dct_practice,
+dct_warning,
 dct_starting,
 no_cheating,
 dct_trials
@@ -1467,6 +1505,7 @@ dct_trials
 
 const cloze_timeline = [
 CT_instructions,
+french_keyboard_intro,
 no_cheating,
 CT_trials
 ];
@@ -1474,6 +1513,7 @@ CT_trials
 const ec_timeline = [
 EC_preload,
 EC_instructions,
+french_keyboard_intro,
 no_cheating,
 EC_demo,
 EC_trials
