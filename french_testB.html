@@ -207,9 +207,15 @@ const prepare_penpaper = {
 
 const prep_microphone1 = {
   type: jsPsychHtmlButtonResponse,
-    stimulus: '<p style = "font-size: 30px; color: red"><b>Prepare Microphone</b></p><p>We recommend using a pair of headphones with a microphone. However, you can also use your computer\'s built-in microphone. Make sure you are in a quiet room.<br><br>Once you are ready, click this button to prompt browser access to your microphone. This process will differ depending on your browser. <b>We recommend using Chrome.</b> Click Continue to see examples of allowing access for different browsers.<br><br>',
+    stimulus: '<p style = "font-size: 30px; color: red"><b>Prepare Microphone</b></p><p>We recommend using a pair of headphones with a microphone. However, you can also use your computer\'s built-in microphone. Make sure you are in a quiet room.<br><br><b>We recommend using Chrome.</b><br><br> Click Continue to see examples of allowing access for different browsers.<br><br>',
     choices: ['See Example'],
 
+};
+
+var  preload_mic_image = {
+  type: jsPsychPreload,
+  images: ['image/browsers.png'],
+  message: 'Loading...'
 };
 
 const allow_mic_image = {
@@ -224,7 +230,7 @@ const allow_mic_image = {
 // explain microphone connection
 const prep_microphone2 = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'Once you are ready, click this button to prompt browser access to your microphone.<br><br>',
+    stimulus: 'Once you are ready, click the "Add Microphone" button to prompt browser access to your microphone.<br><br>',
     choices: ['Add Microphone'],
 };
 
@@ -1469,6 +1475,7 @@ video_intro,
 test_structure,
 prepare_penpaper,
 prep_microphone1,
+preload_mic_image,
 allow_mic_image,
 prep_microphone2, 
 ready_microphone,
