@@ -37,6 +37,8 @@
   <body></body>  
   <script>
   const jsPsych = initJsPsych({
+    show_progress_bar: true,
+    message_progress_bar: '<span style = "color:red";><b>DO NOT REFRESH YOUR BROWSER OR HIT BACK!<span></b>',
     on_finish: function(data){
       //jsPsych.data.displayData();
      // console.log('finished')
@@ -526,7 +528,7 @@ const dct_timeline_stimuli_5_6 = jsPsych.randomization.shuffle([
 
 var dct_warning = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: '<p style = "color:red;">IMPORTANT</p><br>DO NOT REFRESH YOUR BROWSER OR HIT BACK AT ANY POINT. Your data will be lost, and you will not be able to participate in the study!<br><br>',
+  stimulus: '<p style = "color:red;">IMPORTANT</p><br>DO NOT REFRESH YOUR BROWSER OR HIT BACK AT ANY POINT! <br><br>Your data will be lost, and you will not be able to participate in the study!<br><br>',
   choices: ["Continue"]
 };
 
