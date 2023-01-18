@@ -40,11 +40,14 @@
     show_progress_bar: true,
     message_progress_bar: '<span style = "color:red";><b>DO NOT REFRESH YOUR BROWSER OR HIT BACK!<span></b>',
     on_finish: function(data){
+      const subject_url = jsPsych.data.get().select('subject').values[0];
+      const email1_url = jsPsych.data.get().select('uni_email').values[0];
+      const email2_url = jsPsych.data.get().select('alternate_email').values[0];
       //jsPsych.data.displayData();
      // console.log('finished')
       // save data to csv
       saveData(jsPsych.data.get().select('subject').values[0], jsPsych.data.get().csv());
-      window.location = "https://figuratively-speaking.com/ft/french_test/thankyou.html";
+      window.location = "https://vuw.qualtrics.com/jfe/form/SV_56BeZAD6eb5pS2W?sub=".concat(subject_url).concat('&email1=').concat(email1_url).concat('&email2=').concat(email2_url)
     },
   });
   </script>
@@ -1555,7 +1558,8 @@ five_minute_break3,
 ...ec_timeline,
 five_minute_break4,
 ...cloze_timeline,
-end);
+end
+);
  
 jsPsych.run(timeline);
 
