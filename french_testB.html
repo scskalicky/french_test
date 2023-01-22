@@ -348,7 +348,7 @@ var park_trials = {
       //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0],
       // audio file name
-      jsPsych.data.get().last(5).values()[0].stimulus.substring(6), 
+      'park_b.png', 
       // current js data object
       data);
       console.log(jsPsych.data.get().last(5).values()[0].stimulus.substring(6));
@@ -423,7 +423,7 @@ var story_narration_trials = {
     },
     //save audio
     on_finish: function(data){
-        data.stim_id = 'jules_storyboard_recording';
+        data.stim_id = 'isabelle_storyboard_recording';
         //subject name
       purgeAudio(jsPsych.data.get().select('subject').values[0],
       // audio file name
