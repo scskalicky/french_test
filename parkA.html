@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>French Test</title>
+  <script type = "text/javascript" src="jquery-3.6.0.js"></script>
+  <script id = "helper"></script>
+ <script>
+    // force reload of stimuli pages (for development.)
+    var stable = "helper_functions.js?="
+    var dynamic = Date.now()
+    var parent = document.getElementById("helper")
+    var someScriptElement = document.createElement("script")
+    someScriptElement.setAttribute("src", stable + dynamic)
+    helper.appendChild(someScriptElement)
+    </script>
+  <script src = "jspsych/jspsych.js"></script>
+  <script src = 'jspsych/plugin-fullscreen.js'></script>
+  <script src = "jspsych/plugin-html-keyboard-response.js"></script>
+  <script src = "jspsych/plugin-initialize-microphone.js"></script>
+  <script src = "jspsych/plugin-html-audio-response.js"></script>
+  <script src = "jspsych/plugin-audio-keyboard-response.js"></script>
+  <script src = "jspsych/plugin-audio-button-response.js"></script>
+  <script src = "jspsych/plugin-html-button-response.js"></script>
+  <script src = "jspsych/plugin-image-button-response.js"></script>
+  <script src = "jspsych/plugin-image-keyboard-response.js"></script>
+  <script src = "jspsych/plugin-video-button-response.js"></script>
+  <script src = "jspsych/plugin-survey-multi-select1.js"></script>
+  <script src = "jspsych/plugin-survey-multi-choice1.js"></script>
+  <script src = "jspsych/plugin-survey-html-form.js"></script>
+  <script src = "jspsych/plugin-survey-html-form-timeout5.js"></script>
+  <script src = "jspsych/plugin-instructions.js"></script>
+  <script src = "jspsych/plugin-cloze19.js"></script>
+  <script src = "jspsych/plugin-survey-text.js"></script>
+  <script src="jspsych/plugin-preload.js"></script>
+  <link href = "jspsych/jspsych.css" rel="stylesheet" type = "text/css" />
+  </head>
+  <body></body>  
+  <script>
+  const jsPsych = initJsPsych({
+    show_progress_bar: true,
+    message_progress_bar: '<span style = "color:red";><b>DO NOT REFRESH YOUR BROWSER OR HIT BACK!<span></b>',
+    on_finish: function(data){
+      const subject_url = jsPsych.data.get().select('subject').values[0];
+      const email1_url = jsPsych.data.get().select('uni_email').values[0];
+      const email2_url = jsPsych.data.get().select('alternate_email').values[0];
+      console.log(subject_url);
+      console.log(email1_url);
+      console.log(email2_url);
+
+      //jsPsych.data.displayData();
+     // console.log('finished')
+      // save data to csv
+      saveData(jsPsych.data.get().select('subject').values[0], jsPsych.data.get().csv());
+      window.location = "https://vuw.qualtrics.com/jfe/form/SV_eJXVSwIkhrIpCnQ?sub=".concat(subject_url).concat('&email1=').concat(email1_url).concat('&email2=').concat(email2_url)
+    },
+  });
+  </script>
+</html>
+
+<script>
+
+/*version A*/
+const test_version = 'A_pre_PARK';
+
+// init timeline
+var timeline = [];
+
+
+/* reuse this countdown variable throughout*/
+const countdown321 =  
+{
+  // simulate a countdown for recording to start
+  type: jsPsychHtmlKeyboardResponse,
+  choices: 'NO_KEYS',
+  trial_duration: 1050,
+  timeline: [
+    {stimulus: 'Begin recording in 3...'},
+    {stimulus: 'Begin recording in 2...'},
+    {stimulus: 'Begin recording in 1...'}
+  ]};
+
+
+const no_cheating = 
+{
+  type: jsPsychHtmlButtonResponse,
+  stimulus: '<p class = "instructions">As a reminder, please do not use any dictionaries, translation tools, or other language aids. We are only interested in <b>your</b> knowledge of French. When planning your answers, you can write down keywords using pencil/pen and paper.</p><br>',
+  choices: ["I Understand"]
+};
+
+// function to create countdown timers. 
+// requires a span with id = clock to modify the inner HTML of the question.
+// must be associated with a htmlButtonResponse jsPsych trial item or other button trials, otherwise must add to jsPsych plugin manually. 
+function countdown_timer(duration){
+  var wait_time = duration; // total time to wait
+  var start_time = performance.now(); // get current time
+  
+  var interval = setInterval(function(){  
+      // calculate time left and convert to minutes/seconds
+      var time_left = wait_time - (performance.now() - start_time);
+      var minutes = Math.floor(time_left / 1000 / 60);
+      var seconds = Math.floor((time_left - minutes * 1000 * 60)/1000);
+      var seconds_str = seconds.toString().padStart(2,'0');
+      
+      // populate the clock html with the minutes and seconds
+      document.querySelector('#clock').innerHTML = minutes + ':' + seconds_str;
+        
+      // we need to stop the timer if subject clicks button
+      // listen for the button being clicked to end the trial early.
+      var clicked = false;
+      
+      // kill the interval if button clicked
+      const btn = document.querySelector('button');
+      btn.addEventListener("click", () => {
+      //clicked = true
+      clearInterval(interval);
+      });
+        
+      // if the timer runs out, clear interval and replace with a message
+      if(time_left <= 0){
+        clearInterval(interval);
+        document.querySelector('#clock').innerHTML = "Time's Up!";
+      }
+    
+    }, 
+    250);
+  }
+
+
+const subject_name = {
+  type: jsPsychSurveyText,
+  questions: [
+    {prompt: "Please enter your first name", name: 'first_name', required: true},
+    {prompt: "Please enter your last name", name: 'last_name', required: true},
+    {prompt: "Please enter your university email address", name: 'uni_email', required: true},
+    {prompt: "If there is another email address you prefer to use, enter that here", name: 'alternate_email', required: false}
+  ],
+  on_finish: function(data){
+   jsPsych.data.addProperties({
+    first_name: data.response.first_name,
+    last_name: data.response.last_name,
+    subject:  data.response.first_name.concat('_', data.response.last_name, '_', test_version), 
+    uni_email: data.response.uni_email, 
+    alternate_email: data.response.alternate_email});
+    console.log(data);
+  }
+};
+
+
+var refresh_warning = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '<p class = "instructions">Thank you again for your participation!</p><p class = "instructions">The purpose of this short test is to gather a second recording of your description of a park scene. This should take you less than 10 minutes.<br><br>During the test, please <b><span style = "color:red;">do not</b><span> refresh your browser or use the back button. <br><br>Just as before, please be sure to take this test on a computer in a quiet room. Do not use any dictionaries, translation tools, or other language aids. We are only interested in <b>your</b> knowledge of French. When planning your answers, you can write down keywords using pencil/pen and paper.</p><br>',
+    choices: ['I Understand']
+};
+
+const prepare_penpaper = {
+  type: jsPsychHtmlButtonResponse,
+    stimulus: '<p style = "font-size: 30px; color: red"><b>Prepare Pen and Paper</b></p><p>Please prepare a piece of paper and a pen/pencil to take some notes while you plan your answers.<br><br>',
+    choices: ['OK. I\'m Ready.'],
+};
+
+/* activate microphone and ensure participants can hear themselves being recorded.*/
+
+// explain microphone connection
+const prep_microphone1 = {
+  type: jsPsychHtmlButtonResponse,
+    stimulus: '<p style = "font-size: 30px; color: red"><b>Prepare Microphone</b></p><p>We recommend using a pair of headphones with a microphone. However, you can also use your computer\'s built-in microphone. Make sure you are in a quiet room.<br><br><b>We recommend using Chrome.</b><br><br> Click "See Example" to see examples of allowing access for different browsers.<br><br>',
+    choices: ['See Example'],
+
+};
+
+var  preload_mic_image = {
+  type: jsPsychPreload,
+  images: ['image/browsers.png'],
+  message: 'Loading...'
+};
+
+const allow_mic_image = {
+  type: jsPsychImageButtonResponse,
+  stimulus: 'image/browsers.png',
+  stimulus_width: 1000,
+  prompt: "Please ALLOW the site to access your microphone.",
+  choices: ["OK. Continue"]
+};
+
+// explain microphone connection
+const prep_microphone2 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: 'Once you are ready, click the "Add Microphone" button to prompt browser access to your microphone.<br><br>',
+    choices: ['Add Microphone'],
+};
+
+// prompt for permission and initialise microphone
+const ready_microphone = {
+    type: jsPsychInitializeMicrophone
+};
+
+// explain to participants they need to make sure they can hear themselves. 
+const test_audio_instructions = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: '<p class = "instructions">Let\'s make sure the test can hear you.<br><br>Please click the button below and speak into your microphone for a few seconds once you see the word RECORDING. Once you are done, you will be able to play your recording.<br><br>Please make sure that you can hear your recording. If not, please make sure your microphone is working properly and try again. <br> Please do not continue the test until you are able to hear a recording of yourself played back to you.</p><br>',
+  choices: ['Begin Recording']
+};
+
+// allow recording and playback, recording limited to 10 seconds. 
+const test_audio = {
+  type: jsPsychHtmlAudioResponse,
+    recording_duration: 10000,
+    stimulus: '<p style = "color:red"><b>RECORDING...</b></p>',
+    allow_playback: true,
+    show_done_button: true,
+    record_again_button_label: 'Record Again',
+    on_finish: function(data){
+      data.response = 'sanitized';}
+};
+
+// honor system - participants will click to move on. 
+const recording_passed = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '<p>Thank you. If you are able to hear yourself in the recording, press Continue to proceed with the test.<br><br>If you are unable to hear yourself, please reload the test by clicking again on the survey link or refreshing this page. Then try connecting a different headset/microphone, or using a different browser. If you still experience difficulty, please contact Stephen: stephen.skalicky@vuw.ac.nz</p><br>',
+    choices: ['Continue'],
+};
+
+
+
+var enter_fullscreen = {
+  type: jsPsychFullscreen,
+  fullscreen_mode: true,
+  message: '<p class = "instructions">Your browser will now switch to full screen mode. Please leave your browser in full screen for the duration of the test.</p><br>'
+};
+
+/*
+
+Picture Description Tasks
+
+*/
+
+// set picture description planning and recording times
+const pd_planning_time = 61000; // one minute
+const pd_recording_time = 181000; // three minutes
+
+var park_preload = {
+  type: jsPsychPreload,
+  images: 'image/park/park_a.png',
+  message: 'Loading...'
+};
+
+var park_instructions = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '<p style = "font-size: 30px"><b>Picture Description Task</b><p class = "instructions"><b>Objective</b><br>Describe the people and the activities the people are doing.<br><br><b>Procedure</b><br>You will see an image with many people, doing many activities. You will have 1 minute to study the image (carefully <b>plan</b> your answer), and 3 minutes to record your answer.<br><br><b><span style = "color:red">For each person you describe, provide as much information as you can!</span></b><br><br> You can focus on: <ul style = "text-align: left"><li>Activities</li><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Weather</li><li>Things people are saying or thinking</li></ul>',
+choices: ['Continue']
+};
+
+
+var park_trials = {
+  timeline: [
+    {type: jsPsychHtmlButtonResponse,
+    stimulus: 'Once you click this button, you will have 1 minute to study the picture and prepare your response.<br><br>',
+    choices: ["I'm Ready"]},
+
+    {type: jsPsychImageButtonResponse,
+      stimulus: 'image/park/park_a.png',
+      trial_duration: pd_planning_time,
+      
+      prompt: '<br><span id = "clock" style = "color:red">-:--</span><br><p style = "text-align: left">Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li><li>Things people are saying or thinking</li></ul>',
+      
+      // countdown timer
+      on_load: function(){
+        countdown_timer(pd_planning_time);
+      },
+
+      on_finish: function(data){
+        data.stim_id = 'PD_1';
+      },
+      choices: ["I'm Ready!"]
+    },
+
+    // 3 second countdown
+    countdown321,
+
+  // record answer 
+
+  {
+    type: jsPsychHtmlAudioResponse,
+    stimulus: '<img src = "image/park/park_a.png"><br><p style = "color:red"><b>RECORDING</b></p><span id = "clock" style = "color:red">-:--</span><p style = "text-align: left"><p>Remember to describe:</p><ul style = "text-align: left; font-size: 12"><li>People: clothing (color, types), physical traits, likes/dislikes</li><li>Objects (food, vehicles), and their location on the image</li><li>Activities</li><li>Weather</li><li>Things people are saying or thinking</li></ul></p>',
+    
+    recording_duration: pd_recording_time,
+    show_done_button: true,
+    done_button_label: "Finish Recording",
+    
+    // countdown timer
+    on_load: function(){
+      countdown_timer(pd_recording_time);
+    },
+    
+    on_finish: function(data){
+      data.stim_id = 'park_picture_description';
+      //subject name
+      purgeAudio(jsPsych.data.get().select('subject').values[0],
+      // audio file name
+      'park_a.png', 
+      // current js data object
+      data);
+      console.log(jsPsych.data.get().last(5).values()[0].stimulus.substring(6));
+    },
+
+}
+  ]
+};
+
+ const end = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: '<p class = "instructions">Thank you for completing the second park description! Please click the button below to submit your recording.</p<br>',
+  choices: ['Submit Test']
+ };
+
+ 
+
+// define the timeline order
+
+// all the prep stuff
+const fixed_start = [
+subject_name,
+refresh_warning, 
+prepare_penpaper,
+prep_microphone1,
+preload_mic_image,
+allow_mic_image,
+prep_microphone2,
+ready_microphone,
+test_audio_instructions, 
+test_audio, 
+recording_passed, 
+enter_fullscreen
+];
+
+const park_narration_timeline = [
+park_preload,
+park_instructions,
+no_cheating,
+park_trials
+];
+
+
+// use spread operator (...) to push the new arrays from pop()
+timeline.push(
+...fixed_start,
+...park_narration_timeline,
+end
+);
+ 
+jsPsych.run(timeline);
+
+</script>
