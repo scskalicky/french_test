@@ -36,7 +36,7 @@ def convertAudio(filename, folder, output_directory):
 
     # will exit with error if file already exists. (not anymore!)
     ff = FFmpeg(
-        executable = '/usr/local/bin/ffmpeg',
+        executable = '/opt/homebrew/bin/ffmpeg',
         inputs = {new_filename: None},
         outputs = {converted_filename: "-y -nostats -loglevel error"}) # '-y' allows overwriting files. -loglevel error avoids the spam that plays as it is processing (although it can be kind of fun to watch)
     ff.cmd
