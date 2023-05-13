@@ -167,7 +167,7 @@ const subject_name = {
    jsPsych.data.addProperties({
     first_name: data.response.first_name,
     last_name: data.response.last_name,
-    subject:  data.response.first_name.concat('_', data.response.last_name, '_', test_version), 
+    subject:  data.response.first_name.concat('_', data.response.last_name, '_', test_version, '_').concat(Date.now().toString()), 
     uni_email: data.response.uni_email, 
     alternate_email: data.response.alternate_email});
     console.log(data);
