@@ -46,7 +46,7 @@
       //jsPsych.data.displayData();
      // console.log('finished')
       // save data to csv
-      saveData(jsPsych.data.get().select('subject').values[0], jsPsych.data.get().csv());
+     // saveData(jsPsych.data.get().select('subject').values[0], jsPsych.data.get().csv());
       window.location = "https://vuw.qualtrics.com/jfe/form/SV_56BeZAD6eb5pS2W?sub=".concat(subject_url).concat('&email1=').concat(email1_url).concat('&email2=').concat(email2_url)
     },
   });
@@ -55,7 +55,7 @@
 
 <script>
 
-/*version A*/
+/*version B*/
 const test_version = 'B_pre';
 
 // init timeline
@@ -1467,6 +1467,18 @@ var EC_trials = {
   choices: ['Submit Test']
  };
 
+
+ const save_buffer = {
+  type: jsPsychHtmlKeyboardResponse,
+  on_start: function(){
+    // save data
+    saveData(jsPsych.data.get().select('subject').values[0], jsPsych.data.get().csv());
+  },
+  stimulus: "Please wait a moment...",
+  trial_duration: 5000,
+  choices: ['']
+}
+ 
  
 
 // define the timeline order
@@ -1558,6 +1570,7 @@ five_minute_break3,
 ...ec_timeline,
 five_minute_break4,
 ...cloze_timeline,
+save_buffer,
 end
 );
  
